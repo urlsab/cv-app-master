@@ -1,0 +1,14 @@
+.styledResumeData {
+    color: green;
+    background-color: peru;
+    font-size: 30px;
+}
+
+.itemStyle {
+    color: chartreuse;
+    background-color: rgb(41, 11, 70);
+    font-size: 22px;
+    width: 150px;
+    height: 300px;
+
+}

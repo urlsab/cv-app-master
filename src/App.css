@@ -1,0 +1,10 @@
+body {
+  background-color: rgb(231, 216, 216);
+  color: rgb(21, 2, 39);
+}
+
+.styleItem {
+  color: chartreuse;
+  font-size: 25px;
+  background-color: chocolate;
+}

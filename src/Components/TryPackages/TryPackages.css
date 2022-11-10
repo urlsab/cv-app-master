@@ -1,0 +1,12 @@
+.style {
+    color: blue;
+    background-color: red;
+    margin: 20px auto;
+    width: 200px;
+    height: 100px;
+    font-family: 'Lora', serif;
+}
+
+.loraFont {
+    font-family: 'Lora', serif;
+}
