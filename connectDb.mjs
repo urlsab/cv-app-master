@@ -1,13 +1,13 @@
-if (process.env.NODE_ENV !== "production") {
-  require('dotenv').config();
-}
+import dotenv from 'dotenv';
+import mongoose from 'mongoose';
 
-const mongoose = require("mongoose");
-// require('dotenv').config(); -- maby delete
+if (process.env.NODE_ENV !== "production") {
+  dotenv.config();
+}
 
 const dbUrl = process.env.DB_URL;
 
-const dbConnect = async () => {
+export const dbConnect = async () => {
 
   mongoose.connect(dbUrl, {
     useNewUrlParser: true,
@@ -21,5 +21,3 @@ const dbConnect = async () => {
   });
     
 }
-
-module.exports = dbConnect;

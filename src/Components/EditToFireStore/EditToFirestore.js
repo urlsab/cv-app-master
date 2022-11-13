@@ -4,7 +4,7 @@ import "./EditToFirestore.css";
 import { useState } from "react";
 
 // setDoc = update the whole document - even delete what we didn't change
-import { doc, updateDoc, setDoc } from 'firebase/firestore';
+import { doc, updateDoc } from 'firebase/firestore';
 import { firestoreDB } from '../../firestoreConfig/firestoreConfig';
 
 const EditToFirestore = () => {

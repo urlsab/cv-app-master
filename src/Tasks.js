@@ -1,6 +1,10 @@
 /*
 
-*
+2. diplay on allResumes route the whole data of each resume created
+- focus on addResume func to solve that
+
+3. style forms and allresume route
+
 
 
 
@@ -8,6 +12,12 @@
 
 INFO LISTS:
 -------------
+
+// const resumeArticles = [' ','EDUCATION', 'CERTIFICATES', 'IMPORTANT LINKS', 'EXPERIENCE', 'SIDEPROJECTS', 'SKILLS']
+// const arrClassName = ['name', 'photo', 'about', 'work', 'education', 'skills', 'community'];
+
+
+===================
 
 1. STYLING THE PDF:
 
