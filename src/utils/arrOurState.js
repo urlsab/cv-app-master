@@ -21,3 +21,6 @@ export const arrInitialState = [
     'certificates',
     'gender'
 ]
+
+// const resumeArticlesAreas = [' ','EDUCATION', 'CERTIFICATES', 'IMPORTANT LINKS', 'EXPERIENCE', 'SIDEPROJECTS', 'SKILLS']
+// const arrClassName = ['name', 'photo', 'about', 'work', 'education', 'skills', 'community'];

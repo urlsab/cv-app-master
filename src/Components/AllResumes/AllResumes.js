@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./AllResumes.css";
 
-import { collection, getDocs } from "firebase/firestore";
-import { firestoreDB } from "../../firestoreConfig/firestoreConfig";
+import { getDocs } from "firebase/firestore";
+import { cvCollection } from "../../firestoreConfig/firestoreConfig";
+// import AddResume from "../AddResume/AddResume";
 
 const ResumeFirestore = () => {
 
     const [cv, setCv] = useState([]);
 
+    // fix: show whole resume object
     const getCv = () => {
-        const resumesCollectionRef = collection(firestoreDB, 'resumes');
-        getDocs(resumesCollectionRef).then(response => {
-            const displayResumes = response.docs.map (doc => ({
+        getDocs(cvCollection).then(response => {
+            const displayResumes = response.docs.map(doc => ({
                 data: doc.data(),
                 id: doc.id,
             }))
@@ -29,10 +30,17 @@ const ResumeFirestore = () => {
        <p className="letters">All Resumes users made</p>
        <button onClick={() => getCv()}>Show All Resumes</button>
        <ol>
-         {cv.map(showCv => 
-           <li key={showCv.id}> {showCv.data.name} ----- {showCv.id}</li> 
+         {cv.map(showCv =>
+         // fix: show whole resume object : 1. like <resumetable> 
+           <li key={showCv.id}> 
+              <div>
+                {showCv.data.firstName} 
+                {showCv.data.lastName}
+                {showCv.data.gender}
+                {showCv.data.age}
+              </div>
+           </li> 
         )}
-
        </ol>
     </div>
   );

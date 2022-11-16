@@ -1,9 +1,43 @@
 /*
 
-2. diplay on allResumes route the whole data of each resume created
-- focus on addResume func to solve that
+diplay on allResumes route the whole data of each resume created
 
-3. style forms and allresume route
+** fix: export to pdf the dada - not empty page !!
+** fix: require any input tag !!
+** fix: submit the data - not empty strings !!
+** make: typing on input form ---> will show up on resumeTable (in any route!)
+
+ROUTE:SUBMITINPUTFORM
+** split <inputform>
+** split <submit>
+** create <submitInput> = <inputform> + <submit>
+
+ROUTE: CREATEPDFRESUME
+** split <resumeTable>
+** split <pdfButton>
+** create <createPdfResume> = <resumeTable> + <pdfButton>
+
+
+** create <resumetable> by map()
+** show on live inputs values inside resume table component
+** pass data between <inputsform> to <resumeTable> or on <pdfresume> component
+
+** display on \ResumeTable\ component the inputs values of \InputsForm\ component
+
+---------------------------------------------------
+* create: saperate component for render inputs
+* create: saperate component for button exportPdf
+* create: saperate component for button submit
+
+** and then : call only the resume form to \allResume\ component
+
+1. show all resumes with :
+ a. all data without the id. 
+ b. diplay it in css style = like the resume form
+
+[ focus on \allResume\ component funcs to solve that ]
+
+2. style forms that display on \allResume\ component 
 
 
 
@@ -13,8 +47,7 @@
 INFO LISTS:
 -------------
 
-// const resumeArticles = [' ','EDUCATION', 'CERTIFICATES', 'IMPORTANT LINKS', 'EXPERIENCE', 'SIDEPROJECTS', 'SKILLS']
-// const arrClassName = ['name', 'photo', 'about', 'work', 'education', 'skills', 'community'];
+
 
 
 ===================

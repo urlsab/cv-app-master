@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from 'firebase/firestore';
+import { getFirestore, collection } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCEryolwTvi751-v2evqPUquUvlcugNys8",
@@ -11,5 +11,6 @@ const firebaseConfig = {
   appId: "1:235192135514:web:ea64088e39ac83740d0d63"
 };
   
-const app = initializeApp(firebaseConfig); 
+export const app = initializeApp(firebaseConfig); 
 export const firestoreDB = getFirestore(app);
+export const cvCollection = collection(firestoreDB, 'resumes');
