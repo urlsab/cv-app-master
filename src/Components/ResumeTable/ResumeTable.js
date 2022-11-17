@@ -1,48 +1,11 @@
 import React from "react";
 import './ResumeTable.css';
 
-import { useState } from "react";
-// import { initialState } from "../../utils/ourState";
-import { cvCollection } from "../../firestoreConfig/firestoreConfig";
-import { getDocs } from "firebase/firestore";
-import { useToggle } from "../../utils/useToggle";
-
 const ResumeTable = () => {
 
-    // const [ourForm, setOurForm] = useState(initialState);
-
-    // const handleChange = (event) => {
-    //     const { name, value } = event.target;
-    //     setOurForm(prevState => ({
-    //         objectName: {
-    //             ...prevState.objectName,
-    //             [name]: value
-    //         },
-    //     }));
-    // };
-
-    const [cv, setCv] = useState([]);
-    const [toggle, setToggle] = useToggle();
-
-    // fix: show whole resume object
-    const getCv = () => {
-        getDocs(cvCollection).then(response => {
-            const displayResumes = response.docs.map(doc => ({
-                data: doc.data(),
-                id: doc.id,
-            }))
-            setCv(displayResumes);
-        })
-        .catch(error => console.log(error));
-    }
-
-    return (
-        
+    return ( 
+        // improve: create <resumetable> by map()
         <div>
-            <button onClick={setToggle}>toggle it</button>
-            {toggle ? 
-            
-            
             <main className="wrapper">
                 
                 <article className="resume">
@@ -95,10 +58,8 @@ const ResumeTable = () => {
                         <b className='contentSpaces'></b> 
                         <b className='contentSpaces'></b>   
                     </section>
-            
                 </article>
             </main>
-            : null}
         </div>
     );
 }

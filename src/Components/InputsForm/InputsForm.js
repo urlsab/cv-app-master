@@ -1,40 +1,48 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import './InputsForm.css';
+
+import { addDoc } from "firebase/firestore";
+import { cvCollection } from "../../firestoreConfig/firestoreConfig";
+import { PDFExport } from "@progress/kendo-react-pdf";
 
 import { arrInitialState } from '../../utils/arrOurState';
 import { initialState } from "../../utils/ourState";
-import { useState } from "react";
+import { useToggle } from "../../utils/useToggle";
 
-import SubmitInput from "../SubmitInput/SubmitInput";
-
-// import { addDoc } from "firebase/firestore";
-// import { cvCollection } from "../../firestoreConfig/firestoreConfig";
 // import PdfResume from "../PdfResume/PdfResume";
-// import ResumeTable from "../ResumeTable/ResumeTable";
-// import ToggleResumeTable from "../ToggleResumeTable/ToggleResumeTable";
 
 const arrState = arrInitialState;
 
 const InputsForm = () => {
 
     const [ourForm, setOurForm] = useState(initialState);
-    // const [toggle, setToggle] = useState(false);
+    const [toggle, setToggle] = useToggle();
 
-    // const handleAddResume = (event) => {
-    //     event.preventDefault();
-    //     // firestoreDB making auto id for any object
-    //     // add: the whole data to firestoreDB
-    //         addDoc(cvCollection, ourForm.objectName).then(response => {
-    //             console.log(ourForm.objectName);
-    //             console.log(response);
-    //             //mayby: we use the path for each user id
-    //             console.log(response.id);
-    //             //mayby: we use the path for each user resumes
-    //             console.log(response.path);
-    //         }).catch(error => {
-    //             console.log(error);
-    //     })
-    // };
+    // maybe change to: useRef(null)
+    const pdfExportComponent = useRef();
+    
+    const handleExportWithComponent = () => {
+        pdfExportComponent.current.save();
+    };
+
+    //add: refresh after submit - usenavigate-maybe
+    const handleAddResume = (event) => {
+        
+        // firestoreDB making auto id for any object
+        event.preventDefault();
+            addDoc(cvCollection, ourForm.objectName).then(response => {
+                console.log(ourForm.objectName);
+                console.log(response);
+                //mayby: we use the path for each user id
+                console.log(response.id);
+                //mayby: we use the path for each user resumes
+                console.log(response.path);
+                
+            }).catch(error => {
+                console.log(error);
+        })
+        
+    };
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -53,13 +61,13 @@ const InputsForm = () => {
             arrState.map(i =>
                 (
                     <input
+                        required="required"
                         key={i}
                         type="text"
                         name={i}
                         placeholder={i}
                         maxLength={40}
                         value={ourForm.objectName[i]}
-                        required
                         onChange={handleChange}
                         style={{width:"150px"}}
                     />
@@ -68,31 +76,101 @@ const InputsForm = () => {
         );   
     }
 
-    //SubmitInputForm
-
     return (
-        // className="InputsFormStyle"
         <div style={{margin:"auto 30px"}}>
-            <form>
+            <form onSubmit={handleAddResume}>
             <br/>
+
             {renderInputs()}
+
             <br/>
-            {/* <SubmitInput/> */}
-            {/* <button style={{margin:"10px 20px 10px 20px", padding: "2px", width:"70px", height:"40px"}} type="submit">Save Resume</button> */}
+            <button 
+                style={{margin:"10px 20px 10px 20px", 
+                padding: "2px", width:"70px", height:"40px"}} 
+                type="submit">Save Resume
+            </button>
             </form>
 
             <br/>
-            {/* <ToggleResumeTable/> */}
-            {/* <button style={{margin:"40px 500px", padding: "1px", width:"90px", height:"40px"}} onClick={() => setToggle(!toggle)} >
-                See Resume
+            
+        {toggle ? 
+        <div>
+            <button 
+                style={{margin:"10px 20px 10px 20px", 
+                padding: "2px", width:"70px", height:"40px"}}  
+                onClick={setToggle}>Hide Resume
             </button>
+            <PDFExport ref={pdfExportComponent}>
+                <div>
+                    <main className="wrapper">
+                        
+                        <article className="resume">
 
-            <br/>
-            {toggle && (<ResumeTable/>)} */}
-            {/* or: {toggle && (<PdfResume/>)} */}
+                            <section className="grid-area name">
+                            <h4>NAME</h4> 
+                                <b className="spaceInline">{ourForm.objectName.firstName}</b>
+                                <b className='spaceIline'>{ourForm.objectName.lastName}</b>
+                                <b className='contentSpaces'>{ourForm.objectName.email}</b>
+                                <b className='contentSpaces'>{ourForm.objectName.age}</b>
+                            </section>
 
-            {/* <button style={{margin:"10px 20px 10px 20px", padding: "2px", width:"90px", height:"40px"}} onClick={() => handleChange()}>pass inputs to resume</button>  */}
+                            <section className="grid-area about">
+                            <h4>ABOUT</h4>
+                                <b className='contentSpaces'>{ourForm.objectName.country}</b> 
+                                <b className='contentSpaces'>{ourForm.objectName.city}</b>
+                                <b className='contentSpaces'>{ourForm.objectName.phoneNumber}</b>    
+                            </section>
+
+                            <section className="grid-area community">
+                            <h4>COMMUNITY</h4>
+                                <b className='contentSpaces'>{ourForm.objectName.jobTitle}</b>
+                                <b className='contentSpaces'>{ourForm.objectName.linkedinLink}</b>
+                                <b className='contentSpaces'>{ourForm.objectName.facebookLink}</b>
+                                <b className='contentSpaces'>{ourForm.objectName.portfolioLink}</b>
+                                <b className='contentSpaces'>{ourForm.objectName.githubLink}</b>
+                                <b className='contentSpaces'>{ourForm.objectName.experience}</b> 
+                            </section>
+
+                            <section className="grid-area education">
+                                <h3>EDUCATION</h3>
+                                <b className='contentSpaces'>{ourForm.objectName.sideProjects}</b>
+                            </section>
+
+                            <section className="grid-area work">
+                                <h4>EXPERIENCE</h4>   
+                                <b className='contentSpaces'>{ourForm.objectName.skills}</b>
+                                <b className='contentSpaces'>{ourForm.objectName.schoolName}</b>    
+                            </section>
+
+                            <section className="grid-area photo">
+                                <h4>SIDEPROJECT</h4> 
+                                <b className='contentSpaces'>{ourForm.objectName.relevantCourses}</b> 
+                                <b className='contentSpaces'>{ourForm.objectName.degree}</b> 
+                                <b className='contentSpaces'>{ourForm.objectName.gpa}</b> 
+                            </section>
+
+                            <section className="grid-area skills">
+                            <h4>SKILLS</h4>
+                                <b className='contentSpaces'>{ourForm.objectName.certificates}</b> 
+                                <b className='contentSpaces'>{ourForm.objectName.gender}</b>   
+                            </section>
+                        </article>
+                    </main>
+                </div>
+            </PDFExport>
+            <button 
+                style={{margin:"10px 20px 10px 20px", 
+                padding: "2px", width:"70px", height:"40px"}} 
+                onClick={handleExportWithComponent}>Export to pdf 
+            </button>
         </div>
+        
+            : <button 
+                style={{margin:"10px 20px 10px 20px", 
+                padding: "2px", width:"70px", height:"40px"}}  
+                onClick={setToggle}>Show Resume
+            </button>}
+    </div>
     );
 
 }
