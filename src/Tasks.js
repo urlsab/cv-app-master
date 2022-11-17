@@ -1,48 +1,30 @@
 /*
 
-diplay on allResumes route the whole data of each resume created
+===================
+1. make app works
+2. style the app
+3. improve code
+===================
 
-** fix: export to pdf the dada - not empty page !!
-** fix: require any input tag !!
-** fix: submit the data - not empty strings !!
-** make: typing on input form ---> will show up on resumeTable (in any route!)
+-------------------
+importation:
 
-ROUTE:SUBMITINPUTFORM
-** split <inputform>
-** split <submit>
-** create <submitInput> = <inputform> + <submit>
+1. react
+2. css
+3. packages
+4. utils
+5. components
+-------------------
 
-ROUTE: CREATEPDFRESUME
-** split <resumeTable>
-** split <pdfButton>
-** create <createPdfResume> = <resumeTable> + <pdfButton>
+*** if needed: return to the hindi video about firestore / other updated videos
 
+---
+1. add: export pdf button to <allResumes>
 
-** create <resumetable> by map()
-** show on live inputs values inside resume table component
-** pass data between <inputsform> to <resumeTable> or on <pdfresume> component
+2. add: toggle button to <allResumes>
 
-** display on \ResumeTable\ component the inputs values of \InputsForm\ component
-
----------------------------------------------------
-* create: saperate component for render inputs
-* create: saperate component for button exportPdf
-* create: saperate component for button submit
-
-** and then : call only the resume form to \allResume\ component
-
-1. show all resumes with :
- a. all data without the id. 
- b. diplay it in css style = like the resume form
-
-[ focus on \allResume\ component funcs to solve that ]
-
-2. style forms that display on \allResume\ component 
-
-
-
-
-
+3. create passport - by google registering
+[user can acsses only their cv]
 
 INFO LISTS:
 -------------
