@@ -2,12 +2,16 @@ import React, { useState, useRef } from "react";
 import './InputsForm.css';
 
 import { addDoc } from "firebase/firestore";
-import { cvCollection } from "../../firestoreConfig/firestoreConfig";
+import { firestoreDB } from "../../firestoreConfig/firestoreConfig";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../firestoreConfig/firestoreConfig";
+import { collection } from "firebase/firestore";
 import { PDFExport } from "@progress/kendo-react-pdf";
 
 import { arrInitialState } from '../../utils/arrOurState';
 import { initialState } from "../../utils/ourState";
 import { useToggle } from "../../utils/useToggle";
+import Navbar from "../Navbar/Navbar";
 
 // import PdfResume from "../PdfResume/PdfResume";
 
@@ -15,6 +19,7 @@ const arrState = arrInitialState;
 
 const InputsForm = () => {
 
+    const [user, loading, error] = useAuthState(auth);
     const [ourForm, setOurForm] = useState(initialState);
     const [toggle, setToggle] = useToggle();
 
@@ -26,11 +31,14 @@ const InputsForm = () => {
     };
 
     //add: refresh after submit - usenavigate-maybe
+    //users/id/resumes/id/full object
     const handleAddResume = (event) => {
         
         // firestoreDB making auto id for any object
         event.preventDefault();
-            addDoc(cvCollection, ourForm.objectName).then(response => {
+        // `${user.email}` - cretes new collection with the use email name !!!
+        const usersCollection = collection(firestoreDB, `${user.email}`);
+            addDoc(usersCollection, ourForm.objectName).then(response => {
                 console.log(ourForm.objectName);
                 console.log(response);
                 //mayby: we use the path for each user id
@@ -78,6 +86,7 @@ const InputsForm = () => {
 
     return (
         <div style={{margin:"auto 30px"}}>
+            <Navbar/>
             <form onSubmit={handleAddResume}>
             <br/>
 
@@ -170,6 +179,7 @@ const InputsForm = () => {
                 padding: "2px", width:"70px", height:"40px"}}  
                 onClick={setToggle}>Show Resume
             </button>}
+            
     </div>
     );
 

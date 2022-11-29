@@ -1,18 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./AllResumes.css";
 
-import { getDocs } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { cvCollection } from "../../firestoreConfig/firestoreConfig";
+import { usersCollection } from "../../firestoreConfig/firestoreConfig";
 
 import { useToggle } from "../../utils/useToggle";
+import { PDFExport } from "@progress/kendo-react-pdf";
+import Navbar from "../Navbar/Navbar";
 
-const ResumeFirestore = () => {
+import { firestoreDB } from "../../firestoreConfig/firestoreConfig";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../firestoreConfig/firestoreConfig";
+
+const AllResumes = () => {
 
     const [cv, setCv] = useState([]);
     const [toggle, setToggle] = useToggle();
+    const [user, loading, error] = useAuthState(auth);
+
+    // maybe change to: useRef(null)
+    const pdfExportComponent = useRef();
+    
+    const handleExportWithComponent = () => {
+        pdfExportComponent.current.save();
+    };
 
     const getCv = () => {
-        getDocs(cvCollection).then(response => {
+        const privateCollection = collection(firestoreDB, `${user.email}` )
+        getDocs(privateCollection).then(response => {
             const displayResumes = response.docs.map(doc => ({
                 data: doc.data(),
                 id: doc.id,
@@ -29,14 +45,28 @@ const ResumeFirestore = () => {
 
   return (
       <div>
+
+        <Navbar/>
         <p className="letters">All Resumes users made</p>
-        <button onClick={() => getCv()}>Show All Resumes</button>
+
+        {/* <button onClick={() => getCv()}>Show All Resumes</button> */}
+
+        {toggle ?
+        
+        <div>
+            <button 
+                style={{margin:"10px 20px 10px 20px", 
+                padding: "2px", width:"70px", height:"40px"}}  
+                onClick={setToggle}>Hide My Resumes
+            </button>
+
         <ol>
          {cv.map(showCv => 
            <li key={showCv.id}> 
 
+            <PDFExport ref={pdfExportComponent}>
               <div>
-                <main className="wrapper">
+                 <main className="wrapper">
                   
                   <article className="resume">
 
@@ -89,13 +119,28 @@ const ResumeFirestore = () => {
                           <b className='contentSpaces'>{showCv.data.gender}</b>   
                       </section>
                   </article>
-                </main>
+                 </main>
               </div>
+            </PDFExport> 
+            <button 
+                style={{margin:"10px 20px 10px 20px", 
+                padding: "2px", width:"70px", height:"40px"}} 
+                onClick={handleExportWithComponent}>Export to pdf 
+            </button>
            </li> 
           )}
         </ol>
+
+    </div>
+
+        : <button 
+                style={{margin:"10px 20px 10px 20px", 
+                padding: "2px", width:"70px", height:"40px"}}  
+                onClick={ ()=> {setToggle(); getCv();}}>Show My Resumes
+        </button>}
+
       </div>
   );
 }
 
-export default ResumeFirestore;
+export default AllResumes;
