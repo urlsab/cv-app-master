@@ -1,16 +1,47 @@
+// import React from "react";
+
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection } from 'firebase/firestore';
+import { getFirestore } from 'firebase/firestore';
+// collection, query, getDocs, where, addDoc
+
+// import { useAuthState,UpdatePasswordHook,useUpdatePassword,useUpdateProfile } from "react-firebase-hooks/auth";
+
+import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCEryolwTvi751-v2evqPUquUvlcugNys8",
-  authDomain: "resumes-builder.firebaseapp.com",
-  databaseURL: "https://resumes-builder-default-rtdb.firebaseio.com",
-  projectId: "resumes-builder",
-  storageBucket: "resumes-builder.appspot.com",
-  messagingSenderId: "235192135514",
-  appId: "1:235192135514:web:ea64088e39ac83740d0d63"
+  // hide srtings with .env
+  apiKey: `${process.env.REACT_APP_API_KEY}`,
+  authDomain: `${process.env.REACT_APP_AUTH_DOMAIN}`,
+  databaseURL: `${process.env.REACT_APP_DB_URL}`,
+  projectId: `${process.env.REACT_APP_PROJECT_ID}`,
+  storageBucket: `${process.env.REACT_APP_STORAGE_BUCKET}`,
+  messagingSenderId: `${process.env.REACT_APP_SENDER_ID}`,
+  appId: `${process.env.REACT_APP_API_ID}`
 };
   
-export const app = initializeApp(firebaseConfig); 
+const app = initializeApp(firebaseConfig); 
 export const firestoreDB = getFirestore(app);
-export const cvCollection = collection(firestoreDB, 'resumes');
+export const auth = getAuth(app);
+export default app;
+
+// const googleProvider = new GoogleAuthProvider();
+
+// const signInWithGoogle = async () => {
+//   try {
+//     const res = await signInWithPopup(auth, googleProvider);
+//     const user = res.user;
+//     const q = query(collection(firestoreDB, "resumes"), where("uid", "==", user.uid));
+//     const docs = await getDocs(q);
+//     if (docs.docs.length === 0) {
+//       await addDoc(collection(firestoreDB, "resumes"), {
+//         uid: user.uid,
+//         name: user.displayName,
+//         authProvider: "google",
+//         email: user.email,
+//       });
+//     }
+//   } catch (err) {
+//     console.error(err);
+//     alert(err.message);
+//   }
+// };
