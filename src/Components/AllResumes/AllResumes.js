@@ -64,6 +64,7 @@ const AllResumes = () => {
          {cv.map(showCv => 
            <li key={showCv.id}> 
 
+            {/* fix: export specific resume. but now exports only the last resume  */}
             <PDFExport ref={pdfExportComponent}>
               <div>
                  <main className="wrapper">
@@ -136,7 +137,7 @@ const AllResumes = () => {
         : <button 
                 style={{margin:"10px 20px 10px 20px", 
                 padding: "2px", width:"70px", height:"40px"}}  
-                onClick={ ()=> {setToggle(); getCv();}}>Show My Resumes
+                onClick={ ()=> { setToggle(); getCv(); } }>Show My Resumes
         </button>}
 
       </div>

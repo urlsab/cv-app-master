@@ -14,22 +14,42 @@ importation:
 3. packages
 4. utils
 5. components
--------------------
 
-*** if needed: return to the hindi video about firestore / other updated videos
+---------------------
 
----
-1. add: export pdf button to <allResumes>
+AUTH
 
-2. add: toggle button to <allResumes>
+make: delete resume function
 
-3. create passport - by google registering
-[user can acsses only their cv]
+make: delete account function
 
-INFO LISTS:
--------------
+make: edit resume function 
+
+-----------
+
+PDF
+
+fix : export pdf only the last cv - should export cv that near his button
+
+------------
+
+HOSTING
+* fix: deploy correctly on firebase
+
+------------
 
 
+CSS
+style: <resumetable> font size
+add: options for fonts on <resumetable>
+add: options for colors on <resumetable>
+fix: display the wanted favicon
+
+-----------------------
+
+
+PACKAGE.JSON
+* //maby cahnge to: cv-app-master - in package.json - to no "url"
 
 
 ===================

@@ -1,6 +1,6 @@
 import "./RegisterApp.css";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 
 import { collection, doc, setDoc } from "firebase/firestore";
@@ -10,15 +10,19 @@ import { auth } from "../../firestoreConfig/firestoreConfig"
 import { firestoreDB } from "../../firestoreConfig/firestoreConfig";
 
 import { initialPassword } from "../../utils/passwordsObject";
+import { useAuthState } from "react-firebase-hooks/auth";
+
+import emailjs from '@emailjs/browser';
 
 const RegisterApp = () => {
 
+    const form = useRef();
+    const navigate = useNavigate();
+
+    const [user] = useAuthState(auth);
     const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
     const [emailAdd, setEmailAdd] = useState('');
     const [rePassword, setRePassword] = useState('');
-
-    const navigate = useNavigate();
 
   const onSubmitHandler = async (e) => {
 
@@ -28,10 +32,12 @@ const RegisterApp = () => {
 
     // hash of "hesed2emet1" = 'UkVEQUNURUQ=' , UkVEQUNURUQ=
       .then((userCredential) => {
-          const userData = userCredential.user;
+          let userData = userCredential.user;
+          userData.displayName = rePassword;
           console.log(auth);
-          console.log(userData);
-          console.log(`the user password is: ${rePassword}`);
+          console.log(userData)
+          console.log(`the user password is: ${rePassword} `);
+        //   console.log(`displayName:${disName}`);
       })
       .catch((error) => {
           const errorCode = error.code;
@@ -43,11 +49,35 @@ const RegisterApp = () => {
       const usersCollection = collection(firestoreDB, `${emailAdd}`);
       setDoc(doc(usersCollection, "userPassword"), initialPassword.objectPassword)
         .then(() => {
-          navigate("/");
+          console.log("set password in doc successfully")
       }).catch(error => {
           console.log(error);
+  });
+  console.log(`your password is: ${rePassword} `);
+  emailjs.sendForm(
+      process.env.REACT_APP_SERVICE_ID, 
+      process.env.REACT_APP_TEMPLATE_ID, 
+      form.current, 
+      process.env.REACT_APP_PUBLIC_KEY, {
+      user_name: firstName,
+      message: rePassword,
+      user_email: emailAdd
   })
+      .then((result) => {
+          console.log(result.text);
+          console.log(result.status);
+          console.log(result);
+          navigate("/")
+      }).catch ((error) => {
+          console.log(error.text);
+      });
+        
 }
+
+    // const sendPasswordToEmail = (event) => {
+    //     // event.preventDefault();
+        
+    // }
 
   return (
 
@@ -65,18 +95,18 @@ const RegisterApp = () => {
                         </h2>                        
                     </div>
 
-                    <form onSubmit={onSubmitHandler}>                   
+                    <form onSubmit={onSubmitHandler} ref={form}>                   
                         <div>
 
                             <div>
                                 <label htmlFor="email-address">
-                                    First name
+                                    Full name
                                 </label>
                                 <input
-                                    label="First name"
+                                    label="user_name"
                                     value={firstName}
                                     onChange={(e) => setFirstName(e.target.value)}                                    
-                                    name="firstname"
+                                    name="user_name"
                                     type="text"                                    
                                     required                                
                                     placeholder="First name"                                   
@@ -84,27 +114,13 @@ const RegisterApp = () => {
                             </div>
 
                             <div>
-                                <label htmlFor="email-address">
-                                    Last name
-                                </label>
-                                <input
-                                    label="Last name"
-                                    value={lastName}
-                                    onChange={(e) => setLastName(e.target.value)}                                    
-                                    required
-                                    type="text"
-                                    name="lastname"                                                                       
-                                    placeholder="Last name"                                    
-                                />
-                            </div>
-                            
-                            <div>
                                 <label htmlFor="email-address" className="sr-only">
                                 Email address
                                 </label>
                                 <input
                                     type="email"
-                                    label="Email address"
+                                    label="user_email"
+                                    name="user_email"
                                     value={emailAdd}
                                     onChange={(e) => setEmailAdd(e.target.value)}                                    
                                     required
@@ -118,6 +134,7 @@ const RegisterApp = () => {
                                 </label>
                                 <input
                                     type="password"
+                                    name="message"
                                     label="Create password"
                                     value={rePassword}
                                     onChange={(e) => setRePassword(e.target.value)}                                    
@@ -127,15 +144,18 @@ const RegisterApp = () => {
                             </div>
                         </div>                        
                         <div>
-                            <button type="submit"> Sign up </button>
+                            <button type="submit" style={{marginTop: "20px"}}> Sign up </button>
+                            
                         </div>                        
                     </form>
+                    {/* <button onClick={sendPasswordToEmail}>send password to email</button> */}
                     <p className="text-sm text-white text-center">
                         Already have an account?{' '}
                         <NavLink to="/">Sign in</NavLink>
                     </p>
                 </div>
             </div>
+            
         </section>
       </main>
     </>

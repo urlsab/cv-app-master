@@ -1,19 +1,17 @@
-import React, { useState, useRef } from "react";
 import './InputsForm.css';
 
-import { addDoc } from "firebase/firestore";
-import { firestoreDB } from "../../firestoreConfig/firestoreConfig";
+import React, { useState, useRef } from "react";
+
+import { addDoc, collection } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../../firestoreConfig/firestoreConfig";
-import { collection } from "firebase/firestore";
 import { PDFExport } from "@progress/kendo-react-pdf";
 
+import { firestoreDB, auth } from "../../firestoreConfig/firestoreConfig";
 import { arrInitialState } from '../../utils/arrOurState';
 import { initialState } from "../../utils/ourState";
 import { useToggle } from "../../utils/useToggle";
-import Navbar from "../Navbar/Navbar";
 
-// import PdfResume from "../PdfResume/PdfResume";
+import Navbar from "../Navbar/Navbar";
 
 const arrState = arrInitialState;
 
@@ -22,6 +20,8 @@ const InputsForm = () => {
     const [user, loading, error] = useAuthState(auth);
     const [ourForm, setOurForm] = useState(initialState);
     const [toggle, setToggle] = useToggle();
+
+    const currentPassword = ourForm.objectName.userPassword;
 
     // maybe change to: useRef(null)
     const pdfExportComponent = useRef();
@@ -34,11 +34,13 @@ const InputsForm = () => {
     //users/id/resumes/id/full object
     const handleAddResume = (event) => {
         
-        // firestoreDB making auto id for any object
+        // firestoreDB making auto uid for any document in hte user.email collection
         event.preventDefault();
         // `${user.email}` - cretes new collection with the use email name !!!
         const usersCollection = collection(firestoreDB, `${user.email}`);
-            addDoc(usersCollection, ourForm.objectName).then(response => {
+
+            addDoc(usersCollection, ourForm.objectName)
+            .then(response => {
                 console.log(ourForm.objectName);
                 console.log(response);
                 //mayby: we use the path for each user id

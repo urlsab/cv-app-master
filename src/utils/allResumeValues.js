@@ -19,7 +19,7 @@ export const allResumeValues = [
     '{ourForm.objectName.degree}',
     '{ourForm.objectName.gpa}',
     '{ourForm.objectName.certificates}',
-    '{ourForm.objectName.gender}',    
+    '{ourForm.objectName.gender}' 
 ];
 
 // to remove quotes

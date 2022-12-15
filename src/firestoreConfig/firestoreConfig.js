@@ -1,15 +1,9 @@
-// import React from "react";
-
+import { getAuth } from 'firebase/auth';
 import { initializeApp } from "firebase/app";
 import { getFirestore } from 'firebase/firestore';
-// collection, query, getDocs, where, addDoc
-
-// import { useAuthState,UpdatePasswordHook,useUpdatePassword,useUpdateProfile } from "react-firebase-hooks/auth";
-
-import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
-  // hide srtings with .env
+  
   apiKey: `${process.env.REACT_APP_API_KEY}`,
   authDomain: `${process.env.REACT_APP_AUTH_DOMAIN}`,
   databaseURL: `${process.env.REACT_APP_DB_URL}`,
@@ -19,10 +13,9 @@ const firebaseConfig = {
   appId: `${process.env.REACT_APP_API_ID}`
 };
   
-const app = initializeApp(firebaseConfig); 
+export const app = initializeApp(firebaseConfig); 
 export const firestoreDB = getFirestore(app);
 export const auth = getAuth(app);
-export default app;
 
 // const googleProvider = new GoogleAuthProvider();
 
