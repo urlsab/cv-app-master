@@ -4,10 +4,5 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff",
-  "icons": [{
-    "src": "favicon cv app master.png",
-      "type": "image/png",
-      "sizes": "32x32"
-  }]
+  "background_color": "#ffffff"
 }
