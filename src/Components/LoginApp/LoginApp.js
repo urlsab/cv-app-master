@@ -5,7 +5,8 @@ import { useNavigate, NavLink } from "react-router-dom";
 
 import { auth } from "../../../src/firestoreConfig/firestoreConfig";
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { style } from "@mui/system";
+
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 const LoginApp = () => {
 
@@ -18,6 +19,21 @@ const LoginApp = () => {
 
   //   if (loading) {
   //     // maybe trigger a loading screen
+
+  const googleSignIn = () => {
+    const googleAuth = new GoogleAuthProvider();
+    return signInWithPopup(auth, googleAuth);
+  }
+
+  const handleGoogleSignIn = async (e) => {
+    e.preventDefault();
+    try {
+      await googleSignIn();
+      navigate("/dashboard");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
 
   const onLogin = (e) => {
@@ -96,6 +112,8 @@ const LoginApp = () => {
                                         Login                                                                  
                                     </button>
                                 </div>
+
+                                <button onClick={handleGoogleSignIn} style={{marginTop: "20px"}}> Sign in with google </button>
                                 
                             </form>
                         
