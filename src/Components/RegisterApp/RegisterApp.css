@@ -35,3 +35,14 @@
   .registerStyle {
     margin: 10% 40%;
   }
+
+  .registerForm {
+   
+    background-color:white;
+    padding: 60px;
+    margin: 5rem auto;
+    width: 290px;
+    border-radius: 30px;
+    opacity: 0.85;
+    text-align: center;
+} 
