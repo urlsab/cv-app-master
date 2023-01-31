@@ -12,6 +12,14 @@ import { firestoreDB } from "../../firestoreConfig/firestoreConfig";
 import { initialPassword } from "../../utils/passwordsObject";
 import { useAuthState } from "react-firebase-hooks/auth";
 
+import TextField from '@mui/material/TextField';
+import { Button } from "@mui/material";
+
+import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
+import LoginIcon from '@mui/icons-material/Login';
+import Fade from 'react-reveal/Fade';
+import GradingIcon from '@mui/icons-material/Grading';
+
 import emailjs from '@emailjs/browser';
 
 const RegisterApp = () => {
@@ -24,142 +32,122 @@ const RegisterApp = () => {
     const [emailAdd, setEmailAdd] = useState('');
     const [rePassword, setRePassword] = useState('');
 
-  const onSubmitHandler = async (e) => {
+    const navigateToSignIn = () => {
+        navigate("/");
+    }
 
-    e.preventDefault();
-    
-    await createUserWithEmailAndPassword(auth, emailAdd, rePassword)
-
-    // hash of "hesed2emet1" = 'UkVEQUNURUQ=' , UkVEQUNURUQ=
-      .then((userCredential) => {
-          let userData = userCredential.user;
-          userData.displayName = rePassword;
-          console.log(auth);
-          console.log(userData)
-          console.log(`the user password is: ${rePassword} `);
+    const onSubmitHandler = async (e) => {
+        e.preventDefault();
+        await createUserWithEmailAndPassword(auth, emailAdd, rePassword)
+        // hash of "hesed2emet1" = 'UkVEQUNURUQ=' , UkVEQUNURUQ=
+        .then((userCredential) => {
+            let userData = userCredential.user;
+            userData.displayName = rePassword;
+            console.log(auth);
+            console.log(userData)
+            console.log(`the user password is: ${rePassword} `);
         //   console.log(`displayName:${disName}`);
       })
+
       .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(errorCode, errorMessage);
-      });
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode, errorMessage);
+      })
+
       // save user password in new collection
       initialPassword.objectPassword.thePassword = rePassword;
       const usersCollection = collection(firestoreDB, `${emailAdd}`);
       setDoc(doc(usersCollection, "userPassword"), initialPassword.objectPassword)
         .then(() => {
-          console.log("set password in doc successfully")
-      }).catch(error => {
-          console.log(error);
-  });
-  console.log(`your password is: ${rePassword} `);
-  emailjs.sendForm(
-      process.env.REACT_APP_SERVICE_ID, 
-      process.env.REACT_APP_TEMPLATE_ID, 
-      form.current, 
-      process.env.REACT_APP_PUBLIC_KEY, {
-      user_name: firstName,
-      message: rePassword,
-      user_email: emailAdd
-  })
-      .then((result) => {
-          console.log(result.text);
-          console.log(result.status);
-          console.log(result);
-          navigate("/")
-      }).catch ((error) => {
-          console.log(error.text);
-      });
+            console.log("set password in doc successfully")
+        })
+
+        .catch(error => {
+            console.log(error);
+        });
+        console.log(`your password is: ${rePassword} `);
+        emailjs.sendForm(
+            process.env.REACT_APP_SERVICE_ID, 
+            process.env.REACT_APP_TEMPLATE_ID, 
+            form.current, 
+            process.env.REACT_APP_PUBLIC_KEY, {
+            user_name: firstName,
+            message: rePassword,
+            user_email: emailAdd
+        })
+        .then((result) => {
+            console.log(result.text);
+            console.log(result.status);
+            console.log(result);
+            navigate("/")
+        })
+
+        .catch ((error) => {
+            console.log(error.text);
+        });
         
-}
+    }
 
-    // const sendPasswordToEmail = (event) => {
-    //     // event.preventDefault();
-        
-    // }
+    return (
 
-  return (
+        <>
+    
+            <div className="mainContainer">
 
-    <>
-    <main className="registerStyle" >        
-        <section>
+                <div className="loginForm">
+                
+                    <form className="loginFormContainer" onSubmit={onSubmitHandler} ref={form}>                    
 
-            <div>
-
-                <div>
-
-                    <div>
-                        <h2>
-                            Are you new? Sign up today
-                        </h2>                        
-                    </div>
-
-                    <form onSubmit={onSubmitHandler} ref={form}>                   
-                        <div>
-
-                            <div>
-                                <label htmlFor="email-address">
-                                    Full name
-                                </label>
-                                <input
-                                    label="user_name"
-                                    value={firstName}
-                                    onChange={(e) => setFirstName(e.target.value)}                                    
-                                    name="user_name"
-                                    type="text"                                    
-                                    required                                
-                                    placeholder="First name"                                   
-                                />
-                            </div>
-
-                            <div>
-                                <label htmlFor="email-address" className="sr-only">
-                                Email address
-                                </label>
-                                <input
-                                    type="email"
-                                    label="user_email"
-                                    name="user_email"
-                                    value={emailAdd}
-                                    onChange={(e) => setEmailAdd(e.target.value)}                                    
-                                    required
-                                    placeholder="Email address"                                
-                                />
-                            </div>
-
-                            <div>
-                                <label htmlFor="password" className="sr-only">
-                                    Password
-                                </label>
-                                <input
-                                    type="password"
-                                    name="message"
-                                    label="Create password"
-                                    value={rePassword}
-                                    onChange={(e) => setRePassword(e.target.value)}                                    
-                                    required
-                                    placeholder="Password"                                
-                                />
-                            </div>
-                        </div>                        
-                        <div>
-                            <button type="submit" style={{marginTop: "20px"}}> Sign up </button>
+                        <TextField                              
+                            name="user_name"
+                            type="text"                                    
+                            required 
+                            // all fields stretch to this width
+                            sx={{width:"280px"}}                               
+                            label="Full name"   
+                            value={firstName} 
+                            onChange={(e) => setFirstName(e.target.value)}                                
+                        />
+                    
+                        <TextField  
+                            type="email"
+                            label="Email"
+                            name="user_email"
+                            required  
+                            value={emailAdd}
+                            onChange={(e) => setEmailAdd(e.target.value)}                                                                 
+                        />
+                    
+                        <TextField
+                            type="password"
+                            name="message"
+                            label="Password"
+                            required  
+                            value={rePassword}
+                            onChange={(e) => setRePassword(e.target.value)}                                                                    
+                        />
                             
-                        </div>                        
+                        <Button startIcon={<AssignmentTurnedInIcon/>} size="large" color="success" variant="contained" type="submit"> Sign up </Button>
+                        
+                        <Button onClick={navigateToSignIn} size="large" startIcon={<LoginIcon/>}  variant="outlined" color="primary"> login </Button>
+                        {/* <Button> Already have an account? <NavLink to="/">Sign in</NavLink> </Button>  */}
+
                     </form>
-                    {/* <button onClick={sendPasswordToEmail}>send password to email</button> */}
-                    <p className="text-sm text-white text-center">
-                        Already have an account?{' '}
-                        <NavLink to="/">Sign in</NavLink>
-                    </p>
+                     
                 </div>
+
+                <div className="textContainer">
+                    <Fade bottom delay={1200}> <h1>📄 <b className="textStyle"> SIGN UP</b> ✏️ </h1> </Fade>
+                    <Fade bottom delay={2100}> <h1> 🎁 <b className="textStyle"> FOR  </b>🆓 </h1> </Fade>
+                    <Fade bottom delay={3000}> <h1> 💼 <b className="textStyle">CAREER TICKETS</b> 🎫 </h1> </Fade>
+                </div>
+
             </div>
-            
-        </section>
-      </main>
-    </>
-  );
+             
+        </>
+
+    );
 
 }
 

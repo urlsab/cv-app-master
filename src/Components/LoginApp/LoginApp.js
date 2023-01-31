@@ -13,6 +13,10 @@ import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 import Fade from 'react-reveal/Fade';
 
+import PasswordIcon from '@mui/icons-material/Password';
+import InputAdornment from '@mui/material/InputAdornment';
+import Box from '@mui/material/Box';
+import EmailIcon from '@mui/icons-material/Email';
 import GradingIcon from '@mui/icons-material/Grading';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import GoogleIcon from '@mui/icons-material/Google';
@@ -81,33 +85,44 @@ const LoginApp = () => {
                     <Fade top delay={300}>
                                           
                         <form className="loginFormContainer"> 
-                                                                                      
+
+                            
+                            {/* <EmailIcon/> */}
                             <TextField
                                 id="email"
                                 name="email"
                                 type="email" 
                                 label="Email"                                   
-                                required   
-                                                                        
+                                required 
+                                InputProps={{startAdornment: (
+                                    <InputAdornment position="start">
+                                        <EmailIcon />
+                                    </InputAdornment>
+                                )}}     
+                                // all fields stretch to this width
+                                sx={{width:"280px"}}                                   
                                 onChange={(e)=>setEmail(e.target.value)}
-                            />
-                              
+                            /> 
+                                                                                         
                             <TextField
                                 id="password"
                                 name="password"
                                 type="password"
                                 label="Password"                                    
-                                required   
-                                 
-                                sx={{width:"280px"}}                                          
+                                required 
+                                InputProps={{startAdornment: (
+                                    <InputAdornment position="start">
+                                        <PasswordIcon />
+                                    </InputAdornment>
+                                )}}                                             
                                 onChange={(e)=>setPassword(e.target.value)}
                             />
                     
                             <Button size="large" startIcon={<VpnKeyIcon/>} variant="contained" color="inherit" onClick={onLogin}> Login </Button>
                         
                             <Button size="large" startIcon={<GoogleIcon/>} variant="contained" color="error" onClick={handleGoogleSignIn}>  Login</Button>
-                                    
-                            <Button onClick={navigateToRegister} size="large" startIcon={<PersonAddIcon/>} variant="outlined" color="primary">  Create account  </Button>
+                                           
+                            <Button onClick={navigateToRegister} size="large" startIcon={<PersonAddIcon/>} variant="outlined" color="primary">  Sign up  </Button>
                                      
                         </form>
 
@@ -116,9 +131,9 @@ const LoginApp = () => {
                 </div>
                     
                 <div className="textContainer">
-                    <Fade left delay={1200}> <h1> <b className="textStyle"> ONE STEP</b> 👞 </h1> </Fade>
-                    <Fade left delay={2100}> <h1> ✍&#127996; <b className="textStyle"> TO CREATE</b> </h1> </Fade>
-                    <Fade left delay={3000}> <h1>  <b className="textStyle">YOUR CV</b> 📄 </h1> </Fade>
+                    <Fade left delay={1200}> <h1> <b className="textStyle"> LOGIN</b> 🔌 </h1> </Fade>
+                    <Fade left delay={2100}> <h1> ✍&#127996; <b className="textStyle"> TO </b> </h1> </Fade>
+                    <Fade left delay={3000}> <h1> ✨ <b className="textStyle">MASTERPIECE</b> ✨  </h1> </Fade>
                 </div>
                 
             </div>
