@@ -13,46 +13,61 @@ import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 import Fade from 'react-reveal/Fade';
 
+import GradingIcon from '@mui/icons-material/Grading';
+import VpnKeyIcon from '@mui/icons-material/VpnKey';
+import GoogleIcon from '@mui/icons-material/Google';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+
 const LoginApp = () => {
 
-  // const [user, loading, error] = useAuthState(auth);
-  
     const navigate = useNavigate();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    // const [user, loading, error] = useAuthState(auth);
 
     const googleSignIn = () => {
         const googleAuth = new GoogleAuthProvider();
         return signInWithPopup(auth, googleAuth);
     }
 
+    const navigateToRegister = () => {
+        navigate("/register")
+    }
+
     const handleGoogleSignIn = async (e) => {
+
         e.preventDefault();
+
         try {
             await googleSignIn();
             navigate("/dashboard");
+
         } catch (error) {
             console.log(error.message);
         }
     };
 
     const onLogin = (e) => {
+
         e.preventDefault();
+
         signInWithEmailAndPassword(auth, email, password)
+
         .then((userCredential) => {
             const user = userCredential.user;
             console.log(user);
             console.log(password);
-            navigate("/dashboard");
-            
+            navigate("/dashboard");    
         })
+
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
             console.log(errorCode, errorMessage);
             alert(errorCode);
         });
+
     }
 
     return (
@@ -61,55 +76,49 @@ const LoginApp = () => {
 
             <div className="mainContainer">
 
-                <Fade top delay={300}>
-                                      
-                    <form className="loginFormContainer"> 
-                                            
-                        <div className="textFieldStyle">                                        
+                <div className="loginForm">
+
+                    <Fade top delay={300}>
+                                          
+                        <form className="loginFormContainer"> 
+                                                                                      
                             <TextField
-                                // className="inputStyle"
-                                id="email-address"
+                                id="email"
                                 name="email"
                                 type="email" 
-                                label="Email Address"                                   
-                                required                                            
-                                placeholder="Email address"
+                                label="Email"                                   
+                                required   
+                                                                        
                                 onChange={(e)=>setEmail(e.target.value)}
                             />
-                        </div>
-
-                        <div className="textFieldStyle">            
+                              
                             <TextField
                                 id="password"
                                 name="password"
                                 type="password"
                                 label="Password"                                    
-                                required                                            
-                                placeholder="Password"
+                                required   
+                                 
+                                sx={{width:"280px"}}                                          
                                 onChange={(e)=>setPassword(e.target.value)}
                             />
-                        </div>
-
-                        <div className="textFieldStyle">
-                            <Button variant="contained" color="info" onClick={onLogin}> Login By Password </Button>
-                        </div>
-
-                        <div className="textFieldStyle">
-                            <Button variant="contained" color="error" onClick={handleGoogleSignIn}> Signin with google </Button>
-                        </div>         
+                    
+                            <Button size="large" startIcon={<VpnKeyIcon/>} variant="contained" color="inherit" onClick={onLogin}> Login </Button>
                         
-                        <div className="textFieldStyle">
-                                <NavLink to="/register" > Create New account</NavLink>
-                        </div>
-                        
-                    </form>
+                            <Button size="large" startIcon={<GoogleIcon/>} variant="contained" color="error" onClick={handleGoogleSignIn}>  Login</Button>
+                                    
+                            <Button onClick={navigateToRegister} size="large" startIcon={<PersonAddIcon/>} variant="outlined" color="primary">  Create account  </Button>
+                                     
+                        </form>
 
-                </Fade>
+                    </Fade>
 
+                </div>
+                    
                 <div className="textContainer">
-                    <Fade left delay={1200} >  <h1 className="textStyle"> One Simple Step</h1> </Fade>
-                    <Fade left delay={2100} >  <h1 className="textStyle"> To Start Create</h1> </Fade>
-                    <Fade left delay={3000} >  <h1 className="textStyle"> An Amazing CV</h1> </Fade>
+                    <Fade left delay={1200}> <h1> <b className="textStyle"> ONE STEP</b> 👞 </h1> </Fade>
+                    <Fade left delay={2100}> <h1> ✍&#127996; <b className="textStyle"> TO CREATE</b> </h1> </Fade>
+                    <Fade left delay={3000}> <h1>  <b className="textStyle">YOUR CV</b> 📄 </h1> </Fade>
                 </div>
                 
             </div>

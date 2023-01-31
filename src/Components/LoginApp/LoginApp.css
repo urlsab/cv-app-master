@@ -9,37 +9,47 @@
   align-content: center;
 }
 
+.loginForm {
+  /* background-color: #771442; */
+  display: flex;
+  align-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
 .loginFormContainer {
   background-color: white;
-  border-radius: 30px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: stretch;
+  height: 480px;
+  width: 320px;
+  margin: auto;
+  text-align: center;
+  justify-content: space-evenly;
+}
+
+.textContainer {
+  /* background-color: aqua; */
+  text-align: center;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-content: center;
   justify-content: center;
   align-items: center;
-  width:290px ;
-  height: 390px;
-}
-
-.textFieldStyle {
-  border-radius: 2px;
-  margin: 10px auto;
-}
-
-.inputStyle {
-  background-color: rgb(177, 186, 223);
-  padding: 13px 12px;
-}
-
-.textContainer {
-  /* background-color: aqua; */
-  text-align: center;
+  font-size: 35px;
+  font-family: 'Rubik', serif;
 }
 
 .textStyle {
-  font-size: 60px;
-  background: -webkit-linear-gradient(45deg, #c45aeb, #771442 100%);
+  /* font-size: 70px; */
+  background: -webkit-linear-gradient(45deg, #efc417, #daf93d  100%);
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
