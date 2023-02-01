@@ -43,13 +43,13 @@
   align-content: center;
   justify-content: center;
   align-items: center;
-  font-size: 35px;
+  font-size: 30px;
   font-family: 'Rubik', serif;
 }
 
 .textStyle {
   /* font-size: 70px; */
-  background: -webkit-linear-gradient(45deg, #efc417, #daf93d  100%);
+  background: -webkit-linear-gradient(45deg, #ffffff, #efe691  100%);
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }

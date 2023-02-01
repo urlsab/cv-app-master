@@ -120,7 +120,7 @@ const LoginApp = () => {
                     
                             <Button size="large" startIcon={<VpnKeyIcon/>} variant="contained" color="inherit" onClick={onLogin}> Login </Button>
                         
-                            <Button size="large" startIcon={<GoogleIcon/>} variant="contained" color="error" onClick={handleGoogleSignIn}>  Login</Button>
+                            <Button size="large" startIcon={<GoogleIcon/>} variant="contained" color="error" onClick={handleGoogleSignIn}>  Login by google</Button>
                                            
                             <Button onClick={navigateToRegister} size="large" startIcon={<PersonAddIcon/>} variant="outlined" color="primary">  Sign up  </Button>
                                      
@@ -130,10 +130,11 @@ const LoginApp = () => {
 
                 </div>
                     
+                    {/* skin color: &#127996; */}
                 <div className="textContainer">
-                    <Fade left delay={1200}> <h1> <b className="textStyle"> LOGIN</b> 🔌 </h1> </Fade>
-                    <Fade left delay={2100}> <h1> ✍&#127996; <b className="textStyle"> TO </b> </h1> </Fade>
-                    <Fade left delay={3000}> <h1> ✨ <b className="textStyle">MASTERPIECE</b> ✨  </h1> </Fade>
+                    <Fade left delay={1200}> <h1> <b className="textStyle"> LOGIN</b> </h1> </Fade>
+                    <Fade left delay={2100}> <h1> <b className="textStyle"> YOUR CV </b> </h1> </Fade>
+                    <Fade left delay={3000}> <h1> <b className="textStyle">TO CAREER</b>   </h1> </Fade>
                 </div>
                 
             </div>
