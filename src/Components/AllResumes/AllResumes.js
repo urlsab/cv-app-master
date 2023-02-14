@@ -1,11 +1,21 @@
-import React, { useState, useRef } from "react";
 import "./AllResumes.css";
+import React, { useState, useRef } from "react";
 
 import { collection, deleteDoc, getDocs, doc, updateDoc } from "firebase/firestore";
 import { useToggle } from "../../utils/useToggle";
 import { createRandomId } from "../../utils/randomId";
 import { PDFExport } from "@progress/kendo-react-pdf";
 import Navbar from "../Navbar/Navbar";
+
+import { Button } from "@mui/material";
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import DeleteIcon from '@mui/icons-material/Delete';
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import EditIcon from '@mui/icons-material/Edit';
+
+import Fade from 'react-reveal/Fade';
+import LightSpeed from 'react-reveal/LightSpeed';
 
 import { useNavigate } from "react-router-dom";
 
@@ -87,7 +97,9 @@ const AllResumes = () => {
         // pushRefs();
 
         return (
-            <div>          
+
+            <div> 
+
                 <ol> 
                 {/* el = cv[i] */}
                     {
@@ -152,23 +164,26 @@ const AllResumes = () => {
                                 </main> */}
                                 </PDFExport>
 
-                                <button 
-                                    style={{margin:"10px 20px 10px 20px", 
-                                    padding: "2px", width:"70px", height:"40px"}} 
-                                    onClick={ () => { handleExportWithComponent(); }}>Export to pdf 
-                                </button>
+                                <Button 
+                                     color="primary"
+                                     variant="contained"
+                                     startIcon={<PictureAsPdfIcon/>}
+                                    onClick={ () => { handleExportWithComponent(); }}>download 
+                                </Button>
                                 
-                                <button
-                                    style={{margin:"10px 20px 10px 20px", 
-                                    padding: "2px", width:"70px", height:"40px"}} 
-                                    onClick={ () => { handleDeleteDoc(el.id); }}>Delet this resume
-                                </button>
+                                <Button
+                                    startIcon={<DeleteIcon/>}
+                                    color="error"
+                                    variant="contained"
+                                    onClick={ () => { handleDeleteDoc(el.id); }}>Delete
+                                </Button>
 
-                                <button
-                                    style={{margin:"10px 20px 10px 20px", 
-                                    padding: "2px", width:"70px", height:"40px"}} 
-                                    onClick={ () => { handleEditResume(el.id); }}>edit this resume
-                                </button>
+                                <Button
+                                    color="inherit"
+                                    variant="contained"
+                                    startIcon={<EditIcon/>}
+                                    onClick={ () => { handleEditResume(el.id); }}>edit
+                                </Button>
 
                             </li>        
                         ) 
@@ -178,48 +193,59 @@ const AllResumes = () => {
     )         
 }
         
-
-
   // maybe: replace that with the getcv that inisde onclick button bcv[i]ow
   //   useEffect(() => {
   //     getCv();
   // }, [])
 
   return (
-      <div>
 
-{/* {goodBye()} */}
-
-        <Navbar/>
-
-        <p className="letters">All Resumes users made</p>
-
-        {/* {runFuncs()} */}
-
-        {toggle ?
+    <>
         
-        <div>
+        <div className="allResumesContainer">
 
-            <button 
-                style={{margin:"10px 20px 10px 20px", 
-                padding: "2px", width:"70px", height:"40px"}}  
-                onClick={ () => { setToggle(); } }>Hide My Resumes
-            </button>
-
+            <Navbar/>
             
-            {renderFake()}
+            <div className="headersContainer">            
+                <LightSpeed left delay={300}><h1> <b className="textStyle">MANAGE YOUR RESUMES BY :</b>  </h1> </LightSpeed>
+                <LightSpeed left delay={900}><h1> ✔️ <b className="textStyle">EDIT & UPDATE </b> 📝 </h1> </LightSpeed>
+                <LightSpeed left delay={1500}><h1> ✔️ <b className="textStyle">DELETE FOREVER </b> 🚮 </h1> </LightSpeed>
+                <LightSpeed left delay={2100}><h1> ✔️ <b className="textStyle">DOWNLOAD AS PDF  </b> 📥 </h1> </LightSpeed>
+                <LightSpeed left delay={2700}><h1> ✔️ <b className="textStyle">PRINT IMMEDIATELY </b> 📃 </h1> </LightSpeed>
+            </div>
+
+                {toggle ?
+            
+                    <div>
+
+                        <Fade delay={300}>  <Button sx={{m:3}} size="large" startIcon={<VisibilityOffIcon/>} variant="contained" color="secondary" onClick={setToggle}> Hide collection  </Button> </Fade>
+
+                        {/* <button 
+                            style={{margin:"10px 20px 10px 20px", 
+                            padding: "2px", width:"70px", height:"40px"}}  
+                            onClick={ () => { setToggle(); } }>Hide My Resumes
+                        </button> */}
+
+                        {renderFake()}
+
+                    </div>
+
+                    : <Fade delay={300}>  <Button sx={{m:3}} startIcon={<VisibilityIcon/>} size="large" variant="contained" color="warning" onClick={ () => { setToggle(); getCv(); } }> Show collection  </Button> </Fade>
+                    
+                    // <button 
+                    //         style={{margin:"10px 20px 10px 20px", 
+                    //         padding: "2px", width:"70px", height:"40px"}}  
+                    //         onClick={ () => { setToggle(); getCv(); } }>Show My Resumes
+                    // </button>
+
+                }
 
         </div>
 
-            : <button 
-                    style={{margin:"10px 20px 10px 20px", 
-                    padding: "2px", width:"70px", height:"40px"}}  
-                    onClick={ () => { setToggle(); getCv(); } }>Show My Resumes
-            </button>
-    }
+    </>
 
-      </div>
   );
+
 }
 
 export default AllResumes;
