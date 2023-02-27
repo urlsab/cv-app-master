@@ -8,6 +8,8 @@ import { PDFExport } from "@progress/kendo-react-pdf";
 
 import TextField from '@mui/material/TextField';
 
+import ReactToPrint from 'react-to-print';
+
 import InputAdornment from '@mui/material/InputAdornment';
 import EmailIcon from '@mui/icons-material/Email';
 
@@ -142,9 +144,10 @@ const InputsForm = () => {
                                 onClick={setToggle}>Hide Resume
                             </Button>
 
-                            <PDFExport ref={pdfExportComponent}>
+                            <PDFExport ref={pdfExportComponent.current}>
+                            <ReactToPrint trigger={() => <button>PRINT NOW</button>} content={() => pdfExportComponent.current}/>
 
-                                <div>
+                                <div ref={pdfExportComponent}>
                                     <main className="wrapper">
                                         
                                         <article className="resume">
@@ -206,6 +209,7 @@ const InputsForm = () => {
                                     </main>
                                 </div>
 
+                            
                             </PDFExport>
 
                             <Button 
