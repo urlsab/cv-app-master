@@ -2,6 +2,8 @@ import './InputsForm.css';
 
 import React, { useState, useRef } from "react";
 
+import { useNavigate } from "react-router-dom";
+
 import { addDoc, collection } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { PDFExport } from "@progress/kendo-react-pdf";
@@ -24,6 +26,8 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 
+import Fade from 'react-reveal/Fade';
+
 import DownloadIcon from '@mui/icons-material/Download';
 
 import { arrIcons } from '../../utils/allIcons';
@@ -38,10 +42,12 @@ const InputsForm = () => {
     const [ourForm, setOurForm] = useState(initialState);
     const [toggle, setToggle] = useToggle();
 
+    const navigate = useNavigate();
+
     // const currentPassword = ourForm.objectName.userPassword;
 
     // maybe change to: useRef(null)
-    const pdfExportComponent = useRef();
+    const pdfExportComponent = useRef(null);
     
     const handleExportWithComponent = () => {
         pdfExportComponent.current.save();
@@ -64,6 +70,7 @@ const InputsForm = () => {
                 console.log(response.id);
                 //mayby: we use the path for each user resumes
                 console.log(response.path);
+                navigate("/allResumes")
                 
             }).catch(error => {
                 console.log(error);
@@ -85,14 +92,14 @@ const InputsForm = () => {
     const renderInputs = () => {
 
         return (
-            arrState.map((el, i)  =>
+            arrState.map((i)  =>
                 (
                     <TextField
                         required="required"
                         key={i}
                         type="text"
                         name={i}
-                        placeholder={el}
+                        placeholder={i}
                         maxLength={40}
                         value={ourForm.objectName[i]}
                         onChange={handleChange}
@@ -118,18 +125,20 @@ const InputsForm = () => {
 
                     <div className='formInputContainer'>
                     
-                        <form className='inputsFieldsContainer' onSubmit={handleAddResume}>
-                        
-                            {renderInputs()}
+                        <Fade delay={800}>
+                            <form className='inputsFieldsContainer' onSubmit={handleAddResume}>
+                            
+                                {renderInputs()}
 
-                            <Button 
-                                startIcon={<SaveIcon/>}
-                                color="success"
-                                variant="contained"
-                                type="submit">Save Resume
-                            </Button>
+                                <Button 
+                                    startIcon={<SaveIcon/>}
+                                    color="success"
+                                    variant="contained"
+                                    type="submit">Save Resume
+                                </Button>
 
-                        </form>
+                            </form>
+                        </Fade>
 
                     </div>
 
@@ -144,12 +153,12 @@ const InputsForm = () => {
                                 onClick={setToggle}>Hide Resume
                             </Button>
 
-                            <PDFExport ref={pdfExportComponent.current}>
+                            <PDFExport ref={pdfExportComponent}>
                             <ReactToPrint trigger={() => <button>PRINT NOW</button>} content={() => pdfExportComponent.current}/>
 
                                 <div ref={pdfExportComponent}>
                                     <main className="wrapper">
-                                        
+                                        {ourForm.objectName.address}
                                         <article className="resume">
 
                                             <section className="grid-area name">
