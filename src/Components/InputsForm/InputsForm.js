@@ -8,6 +8,8 @@ import { addDoc, collection } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { PDFExport } from "@progress/kendo-react-pdf";
 
+import PrintIcon from '@mui/icons-material/Print';
+
 import TextField from '@mui/material/TextField';
 
 import ReactToPrint from 'react-to-print';
@@ -100,10 +102,12 @@ const InputsForm = () => {
                         type="text"
                         name={i}
                         placeholder={i}
+                        // maybe comment that - for long descriptions of work experience e.g.
                         maxLength={40}
                         value={ourForm.objectName[i]}
                         onChange={handleChange}
                         size="small"
+                        
                         InputProps={{startAdornment: (
                             <InputAdornment position="start">
                                 {arrIcons[i]}
@@ -144,6 +148,8 @@ const InputsForm = () => {
 
                     {toggle ? 
 
+                        <Fade delay={400}>
+
                         <div className='showResumeStyle'>
 
                             <Button 
@@ -154,11 +160,12 @@ const InputsForm = () => {
                             </Button>
 
                             <PDFExport ref={pdfExportComponent}>
-                            <ReactToPrint trigger={() => <button>PRINT NOW</button>} content={() => pdfExportComponent.current}/>
+
+                            
 
                                 <div ref={pdfExportComponent}>
                                     <main className="wrapper">
-                                        {ourForm.objectName.address}
+
                                         <article className="resume">
 
                                             <section className="grid-area name">
@@ -179,19 +186,19 @@ const InputsForm = () => {
                                                 <b className='contentSpaces'>{ourForm.objectName.degreeTypeAndname}</b> 
                                                 <b className='contentSpaces'>{ourForm.objectName.schoolNameAndlocation}</b> 
                                                 <b className='contentSpaces'>{ourForm.objectName.timeLearnedDegree}</b>
-                                                <b className='contentSpaces'>{ourForm.objectName.gpa}</b>
+                                                {/* <b className='contentSpaces'>{ourForm.objectName.gpa}</b> */}
                                                 <b className='contentSpaces'>{ourForm.objectName.relevantCourses}</b> 
                                             </section>
 
                                             <section className='grid-area relevantCourses'>
-                                                <h3>RELEVANT COURSES</h3>
-                                                <b className='contentSpaces'>{ourForm.objectName.relevantCourses}</b> 
+                                                <h3>RELEVANT COURSES1234</h3>
+                                                {/* <b className='contentSpaces'>{ourForm.objectName.relevantCourses}</b>  */}
                                             </section>
 
                                             <section className="grid-area skils">
                                             {/* <h4>COMMUNITY</h4> */}
                                                 
-                                                <b className='contentSpaces'>{ourForm.objectName.skills}</b> 
+                                                
                                             </section>
 
                                             <section className="grid-area work">
@@ -207,7 +214,7 @@ const InputsForm = () => {
 
                                             <section className="grid-area skills">
                                                 <h4>SKILLS</h4> 
-                                                 
+                                                <b className='contentSpaces'>{ourForm.objectName.skills}</b> 
                                             </section>
 
                                             <section className="grid-area sideProjects">
@@ -221,15 +228,26 @@ const InputsForm = () => {
                             
                             </PDFExport>
 
-                            <Button 
-                                color="primary"
-                                variant="contained"
-                                // startIcon={<PictureAsPdfIcon/>}
-                                startIcon={<DownloadIcon/>}
-                                onClick={handleExportWithComponent}>pdf 
-                            </Button>
+                            <Fade delay={800}>
+                                <div className='buttonsStyle'>
+                                    <Button 
+                                        sx={{m:1}}
+                                        color="primary"
+                                        variant="contained"
+                                        // startIcon={<PictureAsPdfIcon/>}
+                                        startIcon={<DownloadIcon/>}
+                                        onClick={handleExportWithComponent}>pdf 
+                                    </Button>
+
+                                    <ReactToPrint trigger={() => <Button sx={{m:1}} color="success" variant="contained" startIcon={<PrintIcon/>}>PRINT</Button>} content={() => pdfExportComponent.current}/>
+                                </div>
+                            </Fade>
+                            
+                            
 
                         </div>
+
+                        </Fade>
                         
                             : <Button 
                                 color="warning"
