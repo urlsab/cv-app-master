@@ -169,6 +169,7 @@ const InputsForm = () => {
                                         <article className="resume">
 
                                             <section className="grid-area name">
+
                                                 <b className="spaceInline">{ourForm.objectName.fullName}</b>
                                                 <b className='contentSpaces'>{ourForm.objectName.jobTitle}</b>
                                                 <b className='contentSpaces'>{ourForm.objectName.address}</b>
@@ -182,16 +183,18 @@ const InputsForm = () => {
 
                                             <section className="grid-area education">
                                             {/* <h4>ABOUT</h4> */}
-                                                <h3>EDUCATION</h3>
+                                            {ourForm.objectName.degreeTypeAndname ? <Fade delay={300}><h3>EDUCATION</h3></Fade> : null}
+                                                {/* <h3>EDUCATION</h3> */}
                                                 <b className='contentSpaces'>{ourForm.objectName.degreeTypeAndname}</b> 
                                                 <b className='contentSpaces'>{ourForm.objectName.schoolNameAndlocation}</b> 
                                                 <b className='contentSpaces'>{ourForm.objectName.timeLearnedDegree}</b>
                                                 {/* <b className='contentSpaces'>{ourForm.objectName.gpa}</b> */}
-                                                <b className='contentSpaces'>{ourForm.objectName.relevantCourses}</b> 
+                                                 
                                             </section>
 
                                             <section className='grid-area relevantCourses'>
-                                                <h3>RELEVANT COURSES1234</h3>
+                                            {ourForm.objectName.relevantCourses ? <Fade delay={300}><h5>RELEVANT COURSES</h5></Fade> : null}
+                                                <b className='contentSpaces'>{ourForm.objectName.relevantCourses}</b>
                                                 {/* <b className='contentSpaces'>{ourForm.objectName.relevantCourses}</b>  */}
                                             </section>
 
@@ -207,18 +210,18 @@ const InputsForm = () => {
                                             </section>
 
                                             <section className="grid-area work">
-                                                <h4>EXPERIENCE</h4>   
+                                                {ourForm.objectName.buildDuration ? <Fade delay={300}><h3>EXPERIENCE</h3></Fade> : null}  
                                                 <b className='contentSpaces'>{ourForm.objectName.buildDuration}</b>
                                                     
                                             </section>
 
                                             <section className="grid-area skills">
-                                                <h4>SKILLS</h4> 
+                                            {ourForm.objectName.skills ? <Fade delay={300}><h3>SKILLS</h3></Fade> : null}
                                                 <b className='contentSpaces'>{ourForm.objectName.skills}</b> 
                                             </section>
 
                                             <section className="grid-area sideProjects">
-                                                <h3>SIDE PROJECTS</h3>
+                                            {ourForm.objectName.companyName ? <Fade delay={300}><h3>SIDE PROJECTS</h3></Fade> : null}
                                                 <b className='contentSpaces'>{ourForm.objectName.companyName}</b>   
                                             </section>
                                         </article>
@@ -232,14 +235,25 @@ const InputsForm = () => {
                                 <div className='buttonsStyle'>
                                     <Button 
                                         sx={{m:1}}
-                                        color="primary"
+                                        color="error"
                                         variant="contained"
                                         // startIcon={<PictureAsPdfIcon/>}
                                         startIcon={<DownloadIcon/>}
                                         onClick={handleExportWithComponent}>pdf 
                                     </Button>
 
-                                    <ReactToPrint trigger={() => <Button sx={{m:1}} color="success" variant="contained" startIcon={<PrintIcon/>}>PRINT</Button>} content={() => pdfExportComponent.current}/>
+                                    <ReactToPrint 
+                                        trigger={() => 
+                                        <Button 
+                                        sx={
+                                            [{m:1, backgroundColor:"rgb(250, 204, 0)",
+                                        },
+                                        {'&:hover': {backgroundColor: "rgb(250, 184, 0)"}}
+                                    ]}
+                                        variant="contained" 
+                                        color="inherit"
+                                        startIcon={<PrintIcon/>}>PRINT</Button>} 
+                                        content={() => pdfExportComponent.current}/>
                                 </div>
                             </Fade>
                             

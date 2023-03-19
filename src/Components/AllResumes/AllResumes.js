@@ -7,12 +7,19 @@ import { createRandomId } from "../../utils/randomId";
 import { PDFExport } from "@progress/kendo-react-pdf";
 import Navbar from "../Navbar/Navbar";
 
+import ReactToPrint from 'react-to-print';
+import PrintIcon from '@mui/icons-material/Print';
+
+import UseAnimations from "react-useanimations";
+import trash2 from 'react-useanimations/lib/trash2';
+
 import { Button } from "@mui/material";
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import DeleteIcon from '@mui/icons-material/Delete';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import EditIcon from '@mui/icons-material/Edit';
+import DownloadIcon from '@mui/icons-material/Download';
 
 import Fade from 'react-reveal/Fade';
 import LightSpeed from 'react-reveal/LightSpeed';
@@ -28,6 +35,9 @@ import { pdf } from "@progress/kendo-drawing";
 
 const AllResumes = () => {
 
+    const [printIndex, setPrintIndex] = useState(-1);
+    const pdfExportRef = useRef(null);
+
     const [cv, setCv] = useState([]);
     const [toggle, setToggle] = useToggle();
     
@@ -36,15 +46,34 @@ const AllResumes = () => {
 
     const navigate = useNavigate();
 
-    // maybe change to: useRef(null)
     const pdfExportComponent = useRef();
+
+    const pdfExports = cv.map(() => pdfExportComponent);
+
+    const exportPDF = (ref) => {
+        ref.current.save();
+    };
+
+    // const exportPDF = (index) => {
+    //     setPrintIndex(cur => index);
+    //     pdfExportRef.current.save();
+    //     setPrintIndex(cur => -1);
+    // };
+
+    // maybe change to: useRef(null)
+    
     
     const handleExportWithComponent = () => {
         pdfExportComponent.current.save();
     };
 
     const handleEditResume = (id) => {
-        updateDoc(doc(firestoreDB,`${user.email}`, id ), {age:16})
+        updateDoc(doc(firestoreDB,`${user.email}`, id ), {address:16}).then(res => {
+            console.log(res);
+            // navigate("/allResumes");
+            window.location.reload(false);
+        })
+        .catch(error => console.log(error)); 
 }
 
     const handleDeleteDoc = (id) => {
@@ -53,6 +82,7 @@ const AllResumes = () => {
             console.log("successfully deleted");
             // make: delete from screen immediately without refresh page
             //reload page - and see how the resume deleted from screen
+            // navigate("/allResumes");
             window.location.reload(false);
         })
         .catch(error => console.log(error)); 
@@ -70,6 +100,7 @@ const AllResumes = () => {
                 key: doc.id
             })) 
             setCv(displayResumes);
+            console.log(displayResumes[0].info.userName);
             console.log("successfully set all cv's");
             // render that as a components in map !
             // console.log(displayResumes[1].info);
@@ -98,16 +129,18 @@ const AllResumes = () => {
 
         return (
 
-            <div> 
+            <div className="resumesShowStyle"> 
 
-                <ol> 
+                <ol className="olStyle"> 
                 {/* el = cv[i] */}
                     {
                         cv.map((el, i) => 
                         
-                            <li key={el.id}>
-                                <PDFExport key={cv[i]} ref={pdfExportComponent}>
-                                    <p>{cv[i].info.age}</p>
+                            <li className="liStyle" key={el.id}>
+                                <PDFExport key={el.id} ref={pdfExports[i]}>
+                                <p key={cv[i]}>{cv[i].info.address}</p>
+                                    <p>{cv[i].info.gpa}</p>
+                                    <p>{cv[i].info.userName} </p>
                                 {/* <main className="wrapper">
                                 
                                 <article className="resume">
@@ -164,26 +197,51 @@ const AllResumes = () => {
                                 </main> */}
                                 </PDFExport>
 
-                                <Button 
-                                     color="primary"
-                                     variant="contained"
-                                     startIcon={<PictureAsPdfIcon/>}
-                                    onClick={ () => { handleExportWithComponent(); }}>download 
-                                </Button>
-                                
-                                <Button
-                                    startIcon={<DeleteIcon/>}
-                                    color="error"
-                                    variant="contained"
-                                    onClick={ () => { handleDeleteDoc(el.id); }}>Delete
-                                </Button>
+                                <div className="threeButtonsStyle">
+                                        
+                                    <Button 
+                                        key={el.id}
+                                        color="error"
+                                        variant="contained"
+                                        sx={{m:1}}
+                                        startIcon={<DownloadIcon/>}
+                                        //  endIcon={<PictureAsPdfIcon/>}
+                                        onClick={() => exportPDF(pdfExports[i])}>PDF 
+                                    </Button>
 
-                                <Button
-                                    color="inherit"
-                                    variant="contained"
-                                    startIcon={<EditIcon/>}
-                                    onClick={ () => { handleEditResume(el.id); }}>edit
-                                </Button>
+                                    <ReactToPrint trigger={() => 
+                                        <Button 
+                                        sx={
+                                            [{m:1, backgroundColor:"rgb(250, 204, 0)",
+                                        },
+                                        {'&:hover': {backgroundColor: "rgb(250, 184, 0)"}}
+                                    ]}
+                                            variant="contained" 
+                                            color="inherit"
+                                            startIcon={<PrintIcon/>}>PRINT</Button>} 
+                                            content={() => pdfExportComponent.current}
+                                        />
+                                    
+                                    <Button
+                                        color="inherit"
+                                        sx={{m:1}}
+                                        variant="contained"
+                                        startIcon={<EditIcon/>}
+                                        onClick={ () => { handleEditResume(el.id); }}>edit
+                                    </Button>
+
+                                    <Button
+                                        startIcon={<DeleteIcon/>}
+                                        color="info"
+                                        sx={{m:1, backgroundColor:"rgb(20,40,120)"}}
+                                        variant="contained"
+                                        onClick={ () => { handleDeleteDoc(el.id); }}>Delete
+                                        {/* <UseAnimations animation={trash2} size={25} />  */}
+                                    </Button>
+
+                                    
+
+                                </div>
 
                             </li>        
                         ) 
@@ -206,17 +264,18 @@ const AllResumes = () => {
 
             <Navbar/>
             
-            <div className="headersContainer">            
-                <LightSpeed left delay={300}><h1> <b className="textStyle">MANAGE YOUR RESUMES BY :</b>  </h1> </LightSpeed>
-                <LightSpeed left delay={900}><h1> ✔️ <b className="textStyle">EDIT & UPDATE </b> 📝 </h1> </LightSpeed>
-                <LightSpeed left delay={1500}><h1> ✔️ <b className="textStyle">DELETE FOREVER </b> 🚮 </h1> </LightSpeed>
-                <LightSpeed left delay={2100}><h1> ✔️ <b className="textStyle">DOWNLOAD AS PDF  </b> 📥 </h1> </LightSpeed>
-                <LightSpeed left delay={2700}><h1> ✔️ <b className="textStyle">PRINT IMMEDIATELY </b> 📃 </h1> </LightSpeed>
+            <div className="headersContainer">   
+                {/* ✔️ */}
+                {/* <LightSpeed left delay={500}><h1> <b className="textStyle">MANAGE YOUR RESUMES BY :</b>  </h1> </LightSpeed> */}
+                <LightSpeed left delay={1500}><h1> 📝 <b className="textStyle">EDIT & UPDATE </b>  </h1> </LightSpeed>
+                <LightSpeed left delay={2500}><h1> 🚮 <b className="textStyle">DELETE FOREVER </b>  </h1> </LightSpeed>
+                <LightSpeed left delay={3500}><h1> 📥 <b className="textStyle">DOWNLOAD AS PDF  </b>  </h1> </LightSpeed>
+                <LightSpeed left delay={4500}><h1> 📃 <b className="textStyle">PRINT IMMEDIATELY </b>  </h1> </LightSpeed>
             </div>
 
                 {toggle ?
             
-                    <div>
+                    <div className="hideButtonStyle">
 
                         <Fade delay={300}>  <Button sx={{m:3}} size="large" startIcon={<VisibilityOffIcon/>} variant="contained" color="secondary" onClick={setToggle}> Hide collection  </Button> </Fade>
 
