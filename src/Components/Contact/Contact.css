@@ -1,0 +1,33 @@
+.contactContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 537px;
+    text-align: center;
+    font-family: 'Itim';
+    background: rgb(251,173,63);
+    font-size: 20px;
+    background: linear-gradient(73deg, rgb(163, 98, 7) 0%, rgb(199, 53, 13) 100%);
+}
+
+.textsContainerContact{
+    /* background-color: brown; */
+    font-size: 14px;
+    background: -webkit-linear-gradient(80deg, rgb(255, 233, 107) 0%, white  100%);
+    /* color: #ed6c02; */
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.textBoxContainer{
+    background-color: chartreuse;
+}
+
+.shortText{
+    /* background-color: aqua; */
+    /* color: blue; */
+    font-size: 30px;
+}

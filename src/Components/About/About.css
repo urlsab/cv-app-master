@@ -1,0 +1,42 @@
+.aboutContainer {
+    display: flex;
+    background: rgb(63,94,251);
+    background: linear-gradient(73deg, rgb(45, 62, 146) 0%, rgb(62, 20, 85) 100%);
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 537px;
+    font-family: 'Itim';
+    font-size: 19px;
+    
+}
+
+.textStyle {
+    /* font-size: 70px; */
+    background: -webkit-linear-gradient(80deg, rgb(255, 233, 107) 0%, white  100%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .contactUsStyle {
+    background: -webkit-linear-gradient(80deg, rgb(255, 233, 107) 0%, white  100%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    cursor: pointer;
+    font-size: 30px;
+  }
+
+  /* .contactUsStyle.a:hover {
+    font-size: 0px;
+    color: red;
+  } */
+
+  /* a.contactUsStyle:hover {
+    background-color: blueviolet;
+    color: aqua;
+  } */
+
+  
