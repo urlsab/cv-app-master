@@ -138,7 +138,7 @@ const AllResumes = () => {
                         
                             <li className="liStyle" key={el.id}>
                                 <PDFExport key={el.id} ref={pdfExports[i]}>
-                                <p key={cv[i]}>{cv[i].info.address}</p>
+                                <p key={cv[i]}>{cv[i].info.fullName}</p>
                                     <p>{cv[i].info.gpa}</p>
                                     <p>{cv[i].info.userName} </p>
                                 {/* <main className="wrapper">
@@ -233,7 +233,7 @@ const AllResumes = () => {
                                     <Button
                                         startIcon={<DeleteIcon/>}
                                         color="info"
-                                        sx={{m:1, backgroundColor:"rgb(20,40,120)"}}
+                                        sx={{m:1, backgroundColor:"rgb(20,75,170)"}}
                                         variant="contained"
                                         onClick={ () => { handleDeleteDoc(el.id); }}>Delete
                                         {/* <UseAnimations animation={trash2} size={25} />  */}
@@ -267,10 +267,10 @@ const AllResumes = () => {
             <div className="headersContainer">   
                 {/* ✔️ */}
                 {/* <LightSpeed left delay={500}><h1> <b className="textStyle">MANAGE YOUR RESUMES BY :</b>  </h1> </LightSpeed> */}
-                <LightSpeed left delay={1500}><h1> 📝 <b className="textStyle">EDIT & UPDATE </b>  </h1> </LightSpeed>
-                <LightSpeed left delay={2500}><h1> 🚮 <b className="textStyle">DELETE FOREVER </b>  </h1> </LightSpeed>
-                <LightSpeed left delay={3500}><h1> 📥 <b className="textStyle">DOWNLOAD AS PDF  </b>  </h1> </LightSpeed>
-                <LightSpeed left delay={4500}><h1> 📃 <b className="textStyle">PRINT IMMEDIATELY </b>  </h1> </LightSpeed>
+                <LightSpeed left delay={300}><h1> 📝 <b className="textStyle">EDIT & UPDATE </b>  </h1> </LightSpeed>
+                <LightSpeed left delay={600}><h1> 🚮 <b className="textStyle">DELETE FOREVER </b>  </h1> </LightSpeed>
+                <LightSpeed left delay={900}><h1> 📥 <b className="textStyle">DOWNLOAD AS PDF  </b>  </h1> </LightSpeed>
+                <LightSpeed left delay={1200}><h1> 📃 <b className="textStyle">PRINT IMMEDIATELY </b>  </h1> </LightSpeed>
             </div>
 
                 {toggle ?

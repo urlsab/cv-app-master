@@ -23,9 +23,9 @@ const About = () => {
         <div className='aboutContainer'>
 
           <div className='allText'>
-            <Fade delay={400} top><h1> 🧩 <b className='textStyle'> CVA IS A FREE APP FOR BUILD AND DESIGN CV </b></h1></Fade>
-            <Fade delay={800} top><h1> 🧮 <b className='textStyle'> INCLUDES FEATURES WITH FRIENDLY USE </b></h1></Fade>
-            <Fade delay={1200} top> <h1 > 📞 <b className='textStyle'> CONTACT US FOR ANY PURPOSE </b> </h1></Fade>  
+            <Fade delay={400} top><h1 className='symbolAndText'> 🧩 <b className='textStyle'> CVA IS A FREE APP FOR BUILD AND DESIGN CV </b></h1></Fade>
+            <Fade delay={800} top><h1 className='symbolAndText'> 🧮 <b className='textStyle'> INCLUDES FEATURES WITH FRIENDLY USE </b></h1></Fade>
+            <Fade delay={1200} top> <h1 className='symbolAndText' > 📞 <b className='textStyle'> CONTACT US FOR ANY PURPOSE </b> </h1></Fade>  
           </div>
 
           <div className='aboutButton'>

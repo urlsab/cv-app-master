@@ -98,13 +98,13 @@ const Contact = () => {
             
           <div className='textsContainerContact'>
             <Fade delay={300} top> <h1> ❔ <b className='shortText'>FOR ANY ISSUE </b> </h1> </Fade>
-            <Fade delay={900} top> <h1> 📬 <b className='shortText'>  LEAVE A MESSAGE HERE </b> </h1> </Fade>
-            <Fade delay={1500} top> <h1> ☎️ <b className='shortText'>  AND WE CALL YOU BACK SOON  </b> </h1> </Fade>
+            <Fade delay={600} top> <h1> 📬 <b className='shortText'>  LEAVE A MESSAGE HERE </b> </h1> </Fade>
+            <Fade delay={900} top> <h1> ☎️ <b className='shortText'>  AND WE CALL YOU BACK SOON  </b> </h1> </Fade>
           </div>
 
           <div className='textBoxContainer'>
             
-            <Fade top dalay={2000}>
+            <Fade  delay={1200} top >
                         
               <form ref={form} onSubmit={onSubmitHandler} className="loginFormContainer">                    
 
