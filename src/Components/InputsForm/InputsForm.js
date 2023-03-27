@@ -6,9 +6,13 @@ import { useNavigate } from "react-router-dom";
 
 import SchoolIcon from '@mui/icons-material/School';
 
+import WorkIcon from '@mui/icons-material/Work';
+
 import { addDoc, collection } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { PDFExport } from "@progress/kendo-react-pdf";
+
+import PsychologyIcon from '@mui/icons-material/Psychology';
 
 import PrintIcon from '@mui/icons-material/Print';
 
@@ -167,62 +171,61 @@ const InputsForm = () => {
                             <PDFExport  ref={pdfExportComponent}>
 
                                 <div ref={pdfExportComponent}>
-                                    <main className="wrapper">
 
-                                        <article className="resume">
+                                    <div className="resume">
 
-                                            <section className="grid-area name">
-                                                <b className="spaceInline">{ourForm.objectName.fullName}</b>
-                                                <b className='contentSpaces'>{ourForm.objectName.jobTitle}</b>
-                                                <b className='contentSpaces'>{ourForm.objectName.address}</b>
-                                                <b className='contentSpaces'>{ourForm.objectName.phoneNumber}</b>
-                                                <b className='contentSpaces'>{ourForm.objectName.githubLink}</b>
-                                                <b className='contentSpaces'>{ourForm.objectName.linkedinLink}</b>
-                                                <b className='contentSpaces'>{ourForm.objectName.email}</b>
-                                                <b className='contentSpaces'>{ourForm.objectName.portfolioLink}</b>
-                                            </section>
+                                        <div className="grid-area name">
+                                            <b className="spaceInline">{ourForm.objectName.fullName}</b>
+                                            <b className='contentSpaces'>{ourForm.objectName.jobTitle}</b>
+                                            <b className='contentSpaces'>{ourForm.objectName.address}</b>
+                                            <b className='contentSpaces'>{ourForm.objectName.phoneNumber}</b>
+                                            <b className='contentSpaces'>{ourForm.objectName.githubLink}</b>
+                                            <b className='contentSpaces'>{ourForm.objectName.linkedinLink}</b>
+                                            <b className='contentSpaces'>{ourForm.objectName.email}</b>
+                                            <b className='contentSpaces'>{ourForm.objectName.portfolioLink}</b>
+                                        </div>
 
-                                            <section className="grid-area education">
-                                                {ourForm.objectName.degreeTypeAndname ? <Fade delay={300}><h3><SchoolIcon sx={{mr:1, height:"15px", width:"15px"}}/>EDUCATION</h3></Fade> : null}    
-                                                <b className='contentSpaces'>{ourForm.objectName.degreeTypeAndname}</b> 
-                                                <b className='contentSpaces'>{ourForm.objectName.schoolNameAndlocation}</b> 
-                                                <b className='contentSpaces'>{ourForm.objectName.timeLearnedDegree}</b>
-                                                {/* <b className='contentSpaces'>{ourForm.objectName.gpa}</b> */}
-                                                 
-                                            </section>
+                                        <div className="grid-area education">
+                                            {ourForm.objectName.degreeTypeAndname ? <Fade delay={300}><h4><SchoolIcon sx={{mr:1, height:"15px", width:"15px"}}/>EDUCATION</h4></Fade> : null}    
+                                            <b className='contentSpaces'>{ourForm.objectName.degreeTypeAndname}</b> 
+                                            <b className='contentSpaces'>{ourForm.objectName.schoolNameAndlocation}</b> 
+                                            <b className='contentSpaces'>{ourForm.objectName.timeLearnedDegree}</b>
+                                            {/* <b className='contentSpaces'>{ourForm.objectName.gpa}</b> */}
+                                                
+                                        </div>
 
-                                            <section className='grid-area relevantCourses'>
-                                            {ourForm.objectName.relevantCourses ? <Fade delay={300}><h5>RELEVANT COURSES</h5></Fade> : null}
-                                                <b className='contentSpaces'>{ourForm.objectName.relevantCourses}</b>
-                                            </section>
+                                        <div className='grid-area relevantCourses'>
+                                        {ourForm.objectName.relevantCourses ? <Fade delay={300}><h4>RELEVANT COURSES</h4></Fade> : null}
+                                            <b className='contentSpaces'>{ourForm.objectName.relevantCourses}</b>
+                                        </div>
 
-                                            <section className="grid-area work">
-                                                {ourForm.objectName.position ? <Fade delay={300}><h3> WORK EXPERIENCE </h3></Fade> : null}  
-                                                <b className='contentSpaces'>{ourForm.objectName.position}</b>
-                                                <b className='contentSpaces'>{ourForm.objectName.companyName}</b>
-                                                <b className='contentSpaces'>{ourForm.objectName.locationAndduration}</b>
-                                                <b className='contentSpaces'>{ourForm.objectName.products}</b>      
-                                            </section>
+                                        <div className="grid-area work">
+                                            {ourForm.objectName.position ? <Fade delay={300}><h4> WORK EXPERIENCE </h4></Fade> : null}  
+                                            <b className='contentSpaces'>{ourForm.objectName.position}</b>
+                                            <b className='contentSpaces'>{ourForm.objectName.companyName}</b>
+                                            <b className='contentSpaces'>{ourForm.objectName.locationAndDuration}</b>
+                                            <b className='contentSpaces'>{ourForm.objectName.products}</b>      
+                                        </div>
 
-                                            <section className="grid-area sideProjects">
-                                                {ourForm.objectName.projectName ? <Fade delay={300}><h3> SIDE PROJECTS </h3></Fade> : null}
-                                                <b className='contentSpaces'>{ourForm.objectName.projectName}</b> 
-                                                <b className='contentSpaces'>{ourForm.objectName.buildDuration}</b>  
-                                                <b className='contentSpaces'>{ourForm.objectName.shortProjectDescription}</b>  
-                                                <b className='contentSpaces'>{ourForm.objectName.techUsed}</b>  
-                                                <b className='contentSpaces'>{ourForm.objectName.githubCodeLink}</b>    
-                                            </section>
+                                        <div className="grid-area sideProjects">
+                                            {ourForm.objectName.projectName ? <Fade delay={300}><h4> SIDE PROJECTS </h4></Fade> : null}
+                                            <b className='contentSpaces'>{ourForm.objectName.projectName}</b> 
+                                            <b className='contentSpaces'>{ourForm.objectName.buildDuration}</b>  
+                                            <b className='contentSpaces'>{ourForm.objectName.shortProjectDescription}</b>  
+                                            <b className='contentSpaces'>{ourForm.objectName.techUsed}</b>  
+                                            <b className='contentSpaces'>{ourForm.objectName.githubCodeLink}</b>    
+                                        </div>
 
-                                            <section className="grid-area skills">
-                                                {ourForm.objectName.ProgrammingLanguages ? <Fade delay={300}><h3> SKILLS </h3></Fade> : null}
-                                                {ourForm.objectName.ProgrammingLanguages ? <Fade delay={300}><b>Programming Languages: {ourForm.objectName.ProgrammingLanguages}</b></Fade> : null} 
-                                                {ourForm.objectName.Databases ? <Fade delay={300}><b>Databases: {ourForm.objectName.Databases} </b></Fade> : null} 
-                                                {ourForm.objectName.Frameworks ? <Fade delay={300}><b>Frameworks: {ourForm.objectName.Frameworks} </b></Fade> : null} 
-                                                {ourForm.objectName.GeneralKnowledge ? <Fade delay={300}><b>General knowledge: {ourForm.objectName.GeneralKnowledge} </b></Fade> : null}   
-                                            </section>
+                                        <div className="grid-area skills">
+                                            {ourForm.objectName.ProgrammingLanguages ? <Fade delay={300}><h6><PsychologyIcon sx={{mr:1, height:"15px", width:"15px"}}/> SKILLS </h6><Fade delay={600}>  <b>Programming Languages: {ourForm.objectName.ProgrammingLanguages}</b> </Fade> </Fade> : null}
+                                            {/* {ourForm.objectName.ProgrammingLanguages ? <Fade delay={300}><b>Programming Languages: {ourForm.objectName.ProgrammingLanguages}</b></Fade> : null}  */}
+                                            {ourForm.objectName.Databases ? <Fade delay={300}><b>Databases: {ourForm.objectName.Databases} </b></Fade> : null} 
+                                            {ourForm.objectName.Frameworks ? <Fade delay={300}><b>Frameworks: {ourForm.objectName.Frameworks} </b></Fade> : null} 
+                                            {ourForm.objectName.GeneralKnowledge ? <Fade delay={300}><b>General knowledge: {ourForm.objectName.GeneralKnowledge} </b></Fade> : null}   
+                                        </div>
 
-                                        </article>
-                                    </main>
+                                    </div>
+
                                 </div>
 
                             

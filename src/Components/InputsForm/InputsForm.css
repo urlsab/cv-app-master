@@ -39,20 +39,6 @@
 }
 
 
-
-/* align cv to center of page */
-.wrapper {
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* background-color: chartreuse; */
-    align-content: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin: 20px auto;
-}
-
 .showResumeStyle {
     /* background-color: darkmagenta; */
     display: flex;
@@ -65,155 +51,162 @@
 }
 
 .resume {
-    display: grid;
-    margin: 10px;
-    background-color: white;
 
-    /* this is like 8.5in */
-    /* width: 1260px;  */
-
-    /* make width unChange able - fixed size */
-    width: 613px; 
-
-    /* make hieght grows with content added */
-    height: 792px;
-
-    /* and this like 11in */
-    /* height: 1630.588px; */
+    display: inline-grid;
+    font-size: 20px;
     
-
-    /* hardcoded purely for codepen example */
+    background-color: white;
+    
+    flex-direction: column;
+    align-items: center;
+ 
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 20px auto;
+   
+    width: 613px;
+    height: 792px;
+    margin-left: 30px;
+    
     grid-template-columns: 1fr 2fr;
-    grid-template-rows   : 1fr 1fr;
-    box-shadow           : 0 5px 9px 0 rgba(0, 0, 0, 0.35);
-
-    /* THIS IS THE SHAPE OF THE RESUME!!! */
-    grid-template-areas  : 
+    grid-template-rows: 1fr 1fr;
+    box-shadow: 0 5px 9px 0 rgba(0, 0, 0, 0.35);
+    grid-template-areas:
         "name work"
         "education sideProjects"
         "relevantCourses skills";
 }
 
-.grid-area {
-    /* padding: 1em 1em 1em 1em; */
-    /* padding: 0 0; */
-    background-color: white;
-    border: none;
-    text-align: center;
-    align-content: flex-start;
-    /* border : 1px red solid; */
-}
+/* .grid-area { */
+    /* padding: 1em 1em 1em 1em; 
+    padding: 0 0; */
+    
+    /* border: none; */
+    /* text-align: center; */
+    /* align-content: flex-start; */
+/* } */
 
 .name {
     grid-area: name;
-    background-color: white;
-    text-align: center;
-    margin: inherit;
-    grid-area: name;
-    background-color: white;
-    text-align: center;
-    margin: inherit;
+
+    border: none;
+
+    background-color: bisque;
+    
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-content: flex-start;
     flex-wrap: wrap;
     align-items: flex-start;
+
     margin-left: 30px;
-    margin-top: 30px;
-
-}
-
-
-.work {
-    grid-area: work;
-    background-color: white;
-    text-align: center;
-    margin: inherit;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-content: flex-start;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    margin-left: 30px;
-    margin-top: 30px;
-
-    text-align: inherit;
-}
-
-.skills {
-    grid-area:skills;
-    background-color: white;
-    text-align: center;
-    margin: inherit;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-content: flex-start;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    margin-left: 30px;
-    margin-top: 30px;
-
-    text-align: inherit;
+    
 }
 
 .education {
     grid-area       : education;
-    background-color: white;
+    background-color: lightgray;
     text-align: center;
-    margin: inherit;
-
+    
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-content: flex-start;
     flex-wrap: wrap;
     align-items: flex-start;
-    margin-left: 30px;
-    margin-top: 30px;
-
+    
     text-align: inherit;
-}
 
-.sideProjects {
-    grid-area: community;
-    background-color: white;
-    text-align: center;
-    margin: inherit;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-content: flex-start;
-    flex-wrap: wrap;
-    align-items: flex-start;
     margin-left: 30px;
-    margin-top: 30px;
 
-    text-align: inherit;
+    border: none;
+
+
 }
 
 .relevantCourses {
     grid-area: relevantCourses;
-    background-color: white;
+   
+    background-color: lightgrey;
     text-align: center;
-    margin: inherit;
 
+    border: none;
+   
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-content: flex-start;
     flex-wrap: wrap;
     align-items: flex-start;
-    margin-left: 30px;
-    margin-top: 30px;
+    
     text-align: inherit;
+
+    margin-left: 30px;
+
+   
 }
 
+.work {
+    grid-area: work;
+    
+    background-color: white;
+    text-align: center;
+
+    border: none;
+   
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    
+    text-align: inherit;
+
+    margin-left: 30px;
+}
+
+.skills {
+    grid-area:skills;
+    
+    background-color: white;
+    text-align: center;
+
+    border: none;
+   
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    
+    text-align: inherit;
+
+    margin-left: 30px;
+}
+
+.sideProjects {
+    grid-area:sideProjects;
+
+    border: none;
+    
+    background-color: white;
+    text-align: center;
+   
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    
+    text-align: inherit;
+
+    margin-left: 30px;
+}
 
 .contentSpaces {
     /* margin-top: 3px; */
