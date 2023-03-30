@@ -51,24 +51,18 @@
 }
 
 .resume {
-
     display: inline-grid;
     font-size: 20px;
-    
     background-color: white;
-    
     flex-direction: column;
-    align-items: center;
- 
-    align-content: center;
-    justify-content: center;
+    /* align-items: center; */
+    /* align-content: center; */
+    /* justify-content: center; */
     flex-wrap: wrap;
-    margin: 20px auto;
-   
+    /* margin: 20px auto; */
     width: 613px;
     height: 792px;
-    margin-left: 30px;
-    
+    /* margin-left: 30px; */
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr 1fr;
     box-shadow: 0 5px 9px 0 rgba(0, 0, 0, 0.35);
@@ -89,20 +83,44 @@
 
 .name {
     grid-area: name;
-
+    width: 200px;
+    height: 200px;
     border: none;
-
     background-color: bisque;
-    
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-content: flex-start;
+    justify-content: space-evenly;
+    align-content: space-around;
     flex-wrap: wrap;
-    align-items: flex-start;
-
-    margin-left: 30px;
+    align-items: center;
+    /* margin-top: 10px; */
+    text-align: center;
     
+}
+
+.nameStyle {
+    font-size: 20px;
+    font-family: 'Poppins';
+    margin-top: 10px;
+}
+
+.jobTitleStyle {
+    font-size: 18px;
+    font-family: 'Itim';
+    margin-top: 10px;
+}
+
+.contactStyle {
+    font-size: 16px;
+    font-family: 'arial';
+    margin-top: 10px;
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 .education {
@@ -119,9 +137,11 @@
     
     text-align: inherit;
 
-    margin-left: 30px;
+    /* margin-left: 30px; */
 
     border: none;
+
+    width: 200px;
 
 
 }
@@ -143,7 +163,9 @@
     
     text-align: inherit;
 
-    margin-left: 30px;
+    /* margin-left: 30px; */
+
+    width: 200px;
 
    
 }
@@ -211,7 +233,7 @@
 .contentSpaces {
     /* margin-top: 3px; */
     display: block;
-    font-size: 13px;
+    font-size: 17px;
 }
 
 .spaceInline {
