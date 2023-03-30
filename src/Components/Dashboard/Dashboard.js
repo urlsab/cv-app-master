@@ -1,18 +1,55 @@
+import "./Dashboard.css";
+
 import React, { useEffect, useState } from "react";
+
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import "./Dashboard.css";
 
 import { firestoreDB } from "../../firestoreConfig/firestoreConfig";
 import { auth } from "../../firestoreConfig/firestoreConfig";
 
-import { query, collection, getDocs, where } from "firebase/firestore";
+import useWindowSize from 'react-use/lib/useWindowSize';
+
+import UseAnimations from "react-useanimations";
+import visibility from 'react-useanimations/lib/visibility';
+
+import { query, collection, getDocs, where, getDoc, doc } from "firebase/firestore";
 import Navbar from "../Navbar/Navbar";
 
+import Pulse from 'react-reveal/Pulse';
+import RubberBand from 'react-reveal/RubberBand';
+import Flip from 'react-reveal/Flip';
+import Jump from 'react-reveal/Jump';
+import Fade from 'react-reveal/Fade';
+import Flash from 'react-reveal/Flash';
+
+import { Button } from "@mui/material";
+import NoteAddIcon from '@mui/icons-material/NoteAdd';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+
+import Conffeti from 'react-confetti';
+
 const Dashboard = () => {
+
+  const [cv, setCv] = useState([]);
   const [user, loading, error] = useAuthState(auth);
   const [name, setName] = useState("");
   const navigate = useNavigate();
+
+  const { widthSize, heightSize } = useWindowSize();
+
+
+  const navigateToErrorNoAccount = () => {
+    navigate("/errorNoAccount");
+  }
+
+  const navigateToCreateResume = () => {
+    navigate("/postInputs")
+  }
+
+  const navigateToShowResumes = () => {
+    navigate("/allResumes")
+  }
 
   const fetchUserName = async () => {
     try {
@@ -20,30 +57,78 @@ const Dashboard = () => {
       const doc = await getDocs(q);
       const data = doc.docs[0];
       setName(data);
+      console.log(data);
     } catch (err) {
       console.error(err);
       alert("An error occured while fetching user data");
     }
   };
 
+  const getCv = async () => {
+
+    const privateCollection = collection(firestoreDB, `${user.email}` );
+
+    await getDocs(privateCollection).then(response => {
+        
+        const displayResumes = response.docs.map(doc => ({
+            info: doc.data(),
+            id: doc.id,
+            key: doc.id
+        })) 
+        setCv(displayResumes);
+        console.log(displayResumes.info.userName);
+        console.log("successfully set all docs");
+        // render that as a components in map !
+        // console.log(displayResumes[1].info);
+        // console.log(`the age value is ${displayResumes[1].info.age}` );
+        
+    })
+    .catch(error => console.log(error)); 
+}
+ 
   useEffect(() => {
     if (loading) return;
-    if (!user) return navigate("/");
+    if (!user) return navigate("/login");
     fetchUserName();
+
+    getCv();
+
   }, [user, loading, error]);
 
   return (
-    <div className="dashboard">
-      <Navbar/>
-       <div className="dashboard__container">
-        Logged in as
-         {/* <div>{name}</div> */}
-         <div>{user?.email}</div>
-         <h1> wellcome </h1>
-         <h2> now you can create, download and see your resumes</h2>
-         <h3> and all for free</h3>
-       </div>
-     </div>
+
+    <>
+      
+      <div className="dasboardContainer">
+
+      {/* width={widthSize} height={heightSize} */}
+
+        <Conffeti className="conffetiStyle" />      
+
+        <div className="wordsContainer">
+        
+        {/* {cv.map((el, i) => cv[0].info.userName !== '' ? <Flip bottom delay={1100}><h1 className="greetingStyle"> WELLCOME  <b className="styleName">{cv[0].info.userName} </b></h1></Flip>
+        :navigateToErrorNoAccount()
+        )} */}
+
+          <Flip bottom delay={1100}><h1 className="greetingStyle"> WELLCOME  {cv.map((el, i) => <b className="styleName"> {cv[i].info.userName} </b>)} </h1></Flip>
+          <Flip bottom delay={2000}><h1> <b className="greetingStyle"> TO THE CVA </b> 📱 </h1></Flip>
+                 
+        </div>
+
+        <div className="optionsContainer">
+         
+          <Fade top delay={2700}> <h1> <Jump delay={4000} duration={2000} forever={true}>👇</Jump>  </h1> </Fade>
+            <div className="buttonsContainer">
+              <Fade  delay={3400}> <Button startIcon={<NoteAddIcon/>} onClick={navigateToCreateResume} size="medium" sx={{m:2, width:"140px", height:"60px"}} variant="contained" color="primary">CREATE CV</Button> </Fade> 
+              <Fade  delay={3400}> <Button startIcon={<ManageAccountsIcon/>} onClick={navigateToShowResumes} size="medium" sx={{m:2, width:"140px", height:"60px"}} variant="contained" color="warning"> MY AREA</Button> </Fade>
+            </div> 
+        </div>
+          
+      </div>
+
+    </>
+
   );
 
 }
