@@ -16,7 +16,11 @@ import PsychologyIcon from '@mui/icons-material/Psychology';
 
 import PrintIcon from '@mui/icons-material/Print';
 
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+
 import TextField from '@mui/material/TextField';
+
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 
 import ReactToPrint from 'react-to-print';
 
@@ -84,6 +88,7 @@ const InputsForm = () => {
                 
             }).catch(error => {
                 console.log(error);
+                console.log("error from handleAddResume function");
         })
         
     };
@@ -175,32 +180,41 @@ const InputsForm = () => {
                                     <div className="resume">
 
                                         <div className="grid-area name">
-                                            <b className="spaceInline">{ourForm.objectName.fullName}</b>
-                                            <b className='contentSpaces'>{ourForm.objectName.jobTitle}</b>
-                                            <b className='contentSpaces'>{ourForm.objectName.address}</b>
-                                            <b className='contentSpaces'>{ourForm.objectName.phoneNumber}</b>
-                                            <b className='contentSpaces'>{ourForm.objectName.githubLink}</b>
-                                            <b className='contentSpaces'>{ourForm.objectName.linkedinLink}</b>
-                                            <b className='contentSpaces'>{ourForm.objectName.email}</b>
-                                            <b className='contentSpaces'>{ourForm.objectName.portfolioLink}</b>
+
+                                            <b className="nameStyle">{ourForm.objectName.fullName}</b>
+                                            <b className='jobTitleStyle'>{ourForm.objectName.jobTitle}</b>
+                                            {/* <b className='contentSpaces'>{ourForm.objectName.address}</b> */}
+                                            <div className='contactStyle'>
+                                                <b >{ourForm.objectName.phoneNumber}</b>
+                                                <b >{ourForm.objectName.githubLink}</b>
+                                                <b >{ourForm.objectName.linkedinLink}</b>
+                                                <b >{ourForm.objectName.email}</b>
+                                                <b >{ourForm.objectName.portfolioLink}</b>
+                                            </div>
+                                            
                                         </div>
 
                                         <div className="grid-area education">
-                                            {ourForm.objectName.degreeTypeAndname ? <Fade delay={300}><h4><SchoolIcon sx={{mr:1, height:"15px", width:"15px"}}/>EDUCATION</h4></Fade> : null}    
-                                            <b className='contentSpaces'>{ourForm.objectName.degreeTypeAndname}</b> 
-                                            <b className='contentSpaces'>{ourForm.objectName.schoolNameAndlocation}</b> 
-                                            <b className='contentSpaces'>{ourForm.objectName.timeLearnedDegree}</b>
-                                            {/* <b className='contentSpaces'>{ourForm.objectName.gpa}</b> */}
+                                            {ourForm.objectName.degreeTypeAndname ? <Fade delay={300}><h5 style={{marginLeft:"30px"}}><SchoolIcon sx={{mr:1, height:"15px", width:"15px"}} /> EDUCATION</h5></Fade> : null}   
+                                            <div style={{marginLeft:"30px"}}>
+                                                <b className='contentSpaces'>{ourForm.objectName.degreeTypeAndname}</b> 
+                                                <b className='contentSpaces'>{ourForm.objectName.schoolNameAndlocation}</b> 
+                                                <b className='contentSpaces'>{ourForm.objectName.timeLearnedDegree}</b>
+                                                {/* <b className='contentSpaces'>{ourForm.objectName.gpa}</b> */}
+                                            </div> 
+
                                                 
                                         </div>
 
                                         <div className='grid-area relevantCourses'>
-                                        {ourForm.objectName.relevantCourses ? <Fade delay={300}><h4>RELEVANT COURSES</h4></Fade> : null}
-                                            <b className='contentSpaces'>{ourForm.objectName.relevantCourses}</b>
+                                        {ourForm.objectName.relevantCourses ? <Fade delay={300}><h6 style={{marginLeft:"30px"}}> <MenuBookIcon sx={{mr:1, height:"15px", width:"15px"}} /> RELEVANT COURSES</h6></Fade> : null}
+                                            <div style={{marginLeft:"30px"}}>
+                                                <b className='contentSpaces'>{ourForm.objectName.relevantCourses}</b>
+                                            </div>
                                         </div>
 
                                         <div className="grid-area work">
-                                            {ourForm.objectName.position ? <Fade delay={300}><h4> WORK EXPERIENCE </h4></Fade> : null}  
+                                            {ourForm.objectName.position ? <Fade delay={300}><h5> <WorkIcon sx={{mr:1, height:"15px", width:"15px"}} /> WORK EXPERIENCE </h5></Fade> : null}  
                                             <b className='contentSpaces'>{ourForm.objectName.position}</b>
                                             <b className='contentSpaces'>{ourForm.objectName.companyName}</b>
                                             <b className='contentSpaces'>{ourForm.objectName.locationAndDuration}</b>
@@ -208,7 +222,7 @@ const InputsForm = () => {
                                         </div>
 
                                         <div className="grid-area sideProjects">
-                                            {ourForm.objectName.projectName ? <Fade delay={300}><h4> SIDE PROJECTS </h4></Fade> : null}
+                                            {ourForm.objectName.projectName ? <Fade delay={300}><h5> <AppRegistrationIcon sx={{mr:1, height:"15px", width:"15px"}} /> SIDE PROJECTS </h5></Fade> : null}
                                             <b className='contentSpaces'>{ourForm.objectName.projectName}</b> 
                                             <b className='contentSpaces'>{ourForm.objectName.buildDuration}</b>  
                                             <b className='contentSpaces'>{ourForm.objectName.shortProjectDescription}</b>  
@@ -217,11 +231,14 @@ const InputsForm = () => {
                                         </div>
 
                                         <div className="grid-area skills">
-                                            {ourForm.objectName.ProgrammingLanguages ? <Fade delay={300}><h6><PsychologyIcon sx={{mr:1, height:"15px", width:"15px"}}/> SKILLS </h6><Fade delay={600}>  <b>Programming Languages: {ourForm.objectName.ProgrammingLanguages}</b> </Fade> </Fade> : null}
-                                            {/* {ourForm.objectName.ProgrammingLanguages ? <Fade delay={300}><b>Programming Languages: {ourForm.objectName.ProgrammingLanguages}</b></Fade> : null}  */}
-                                            {ourForm.objectName.Databases ? <Fade delay={300}><b>Databases: {ourForm.objectName.Databases} </b></Fade> : null} 
-                                            {ourForm.objectName.Frameworks ? <Fade delay={300}><b>Frameworks: {ourForm.objectName.Frameworks} </b></Fade> : null} 
-                                            {ourForm.objectName.GeneralKnowledge ? <Fade delay={300}><b>General knowledge: {ourForm.objectName.GeneralKnowledge} </b></Fade> : null}   
+                                            {ourForm.objectName.ProgrammingLanguages ? <Fade delay={300}><h5><PsychologyIcon sx={{mr:1, height:"15px", width:"15px"}}/> SKILLS </h5><Fade delay={600}>  <b style={{fontSize:"13px"}}>Programming Languages: {ourForm.objectName.ProgrammingLanguages}</b> </Fade> </Fade> : null}
+                                            <div className='skillsHeadersStyle'>
+                                                {/* {ourForm.objectName.ProgrammingLanguages ? <Fade delay={300}><b>Programming Languages: {ourForm.objectName.ProgrammingLanguages}</b></Fade> : null}  */}
+                                                {ourForm.objectName.Databases ? <Fade delay={300}><b style={{fontSize:"13px"}}>Databases: {ourForm.objectName.Databases} </b></Fade> : null} 
+                                                {ourForm.objectName.Frameworks ? <Fade delay={300}><b style={{fontSize:"13px"}}>Frameworks: {ourForm.objectName.Frameworks} </b></Fade> : null} 
+                                                {ourForm.objectName.GeneralKnowledge ? <Fade delay={300}><b style={{fontSize:"13px"}}>General knowledge: {ourForm.objectName.GeneralKnowledge} </b></Fade> : null} 
+                                            </div>
+                                              
                                         </div>
 
                                     </div>
