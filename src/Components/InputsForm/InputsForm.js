@@ -180,8 +180,27 @@ const InputsForm = () => {
                                     <div className="resume">
 
                                         <div className="grid-area name">
+                                            {/* sx={{border: 'none',"& fieldset": { border: 'none' },}}  */}
+                                            <TextField
+                                                type="text"
+                                                name="message"
+                                                // label="Your Message"
+                                                required 
+                                                
+                                                id="outlined-multiline-static"
+                                                multiline
+                                                inputProps={{maxLength:"40"}}
+                                                value={ourForm.objectName.fullName}
+                                                // maxRows={3}
+                                                InputProps={{style: {fontSize:22, color:"white", fontFamily:"Itim"}}}
+                                                sx={{border: 'none',"& fieldset": { border: 'none' },backgroundColor:"green"}}
+                                                
+                                                // onChange={handleChange} 
+                                                // rows={4}
+                                            />
 
-                                            <b className="nameStyle">{ourForm.objectName.fullName}</b>
+
+                                            {/* <b className="nameStyle">{ourForm.objectName.fullName}</b> */}
                                             <b className='jobTitleStyle'>{ourForm.objectName.jobTitle}</b>
                                             {/* <b className='contentSpaces'>{ourForm.objectName.address}</b> */}
                                             <div className='contactStyle'>

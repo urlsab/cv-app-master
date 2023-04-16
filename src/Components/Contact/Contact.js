@@ -158,13 +158,17 @@ const Contact = () => {
                 <TextField
                   type="text"
                   name="message"
-                  label="Your Message"
+                  // label="Your Message"
                   required 
                   id="outlined-multiline-static"
                   multiline
                   value={text}
+                   
                   onChange={(e) => setText(e.target.value)} 
+                  
+                  //unlimited chars - but limit the size of text box when first time render and typing
                   rows={4}
+                  maxRows={6}
                 />
                       
                   <Button endIcon={<SendIcon/>} size="large" color="info" variant="contained" type="submit"> SEND</Button>
