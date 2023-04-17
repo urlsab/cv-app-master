@@ -54,6 +54,12 @@ const InputsForm = () => {
     const [ourForm, setOurForm] = useState(initialState);
     const [toggle, setToggle] = useToggle();
 
+    const [fullName, setFullname] = useState('');
+    // const [text, setText] = useState('');
+    // const [text, setText] = useState('');
+    // const [text, setText] = useState('');
+    // const [text, setText] = useState('');
+
     const navigate = useNavigate();
 
     // const currentPassword = ourForm.objectName.userPassword;
@@ -103,6 +109,30 @@ const InputsForm = () => {
         }))
     };
 
+    const renderTextFields = () => {
+        return (
+            arrState.map((i) =>
+                <TextField
+                    type="text"
+                    name={i}
+                    // label="Your Message"
+                    required 
+                    placeholder={i}
+                    id="outlined-multiline-static"
+                    multiline
+                    
+                    value={ourForm.objectName[i]}
+                    // maxRows={3}
+                    InputProps={{style: {fontSize:20, color:"black", fontFamily:"Itim", backgroundColor:"green"}}}
+                    sx={{border: 'none',"& fieldset": { border: 'none' } }}
+                    
+                    onChange={handleChange.bind()} 
+                    // rows={4}
+                />
+            )
+        )
+    }
+
 
     const renderInputs = () => {
 
@@ -140,7 +170,7 @@ const InputsForm = () => {
 
                 <Navbar/>
 
-                    <div className='formInputContainer'>
+                    {/* <div className='formInputContainer'>
                     
                         <Fade delay={800}>
                             <form className='inputsFieldsContainer' onSubmit={handleAddResume}>
@@ -157,59 +187,159 @@ const InputsForm = () => {
                             </form>
                         </Fade>
 
-                    </div>
+                    </div> */}
 
-                    {toggle ? 
+                    {/* {toggle ?  */}
 
                         <Fade delay={400}>
 
                         <div className='showResumeStyle'>
 
-                            <Button 
-                                color="secondary"
-                                variant="contained"
-                                startIcon={<VisibilityOffIcon/>} 
-                                onClick={setToggle}>Hide Resume
-                            </Button>
-
-                            {/* fileName='baba.pdf' */}
+                            
                             <PDFExport  ref={pdfExportComponent}>
 
                                 <div ref={pdfExportComponent}>
 
                                     <div className="resume">
 
-                                        <div className="grid-area name">
-                                            {/* sx={{border: 'none',"& fieldset": { border: 'none' },}}  */}
+                                        {/* {renderTextFields()} */}
+
+                                         <div className="grid-area name">
+                                            
                                             <TextField
                                                 type="text"
-                                                name="message"
-                                                // label="Your Message"
+                                                name="fullName"
+                                             
                                                 required 
-                                                
+                                                placeholder='Full Name'
                                                 id="outlined-multiline-static"
                                                 multiline
-                                                inputProps={{maxLength:"40"}}
                                                 value={ourForm.objectName.fullName}
-                                                // maxRows={3}
-                                                InputProps={{style: {fontSize:22, color:"white", fontFamily:"Itim"}}}
-                                                sx={{border: 'none',"& fieldset": { border: 'none' },backgroundColor:"green"}}
                                                 
-                                                // onChange={handleChange} 
-                                                // rows={4}
+                                                InputProps={{style: {fontSize:22, color:"white", fontFamily:"Itim"}}}
+                                                sx={{border: 'none',"& fieldset": { border: 'none' }, p:0  }}
+                                                
+                                                onChange={handleChange.bind()} 
+                                                
+                                            />
+
+                                            <TextField
+                                                type="text"
+                                                name="jobTitle"
+                                                
+                                                required 
+                                                placeholder='Role Title'
+                                                id="outlined-multiline-static"
+                                                multiline
+                                                
+                                                value={ourForm.objectName.jobTitle}
+                                                
+                                                InputProps={{style: {fontSize:21, color:"white", fontFamily:"Sens"}}}
+                                                sx={{border: 'none',"& fieldset": { border: 'none' }, p:0  }}
+                                                
+                                                onChange={handleChange.bind()} 
+                                                
+                                            />
+
+                                            <TextField
+                                                type="text"
+                                                name="phoneNumber"
+                                                
+                                                required 
+                                                placeholder='phone number'
+                                                id="outlined-multiline-static"
+                                                multiline
+                                                
+                                                value={ourForm.objectName.phoneNumber}
+                                                
+                                                InputProps={{style: {fontSize:20, color:"white", fontFamily:"Itim"}}}
+                                                sx={{border: 'none',"& fieldset": { border: 'none' }, p:0  }}
+                                                
+                                                onChange={handleChange.bind()} 
+                                                
+                                            />
+
+                                            <TextField
+                                                type="text"
+                                                name="githubLink"
+                                                
+                                                required 
+                                                placeholder='githubLink'
+                                                id="outlined-multiline-static"
+                                                multiline
+                                                
+                                                value={ourForm.objectName.githubLink}
+                                                
+                                                InputProps={{style: {fontSize:20, color:"white", fontFamily:"Itim", padding:"0.3in "}}}
+                                                sx={{border: 'none',"& fieldset": { border: 'none' }, p:0  }}
+                                                
+                                                onChange={handleChange.bind()} 
+                                                
+                                            />
+
+                                            <TextField
+                                                type="text"
+                                                name="linkedinLink"
+                                                
+                                                required 
+                                                placeholder='linkedinLink'
+                                                id="outlined-multiline-static"
+                                                multiline
+                                                
+                                                value={ourForm.objectName.linkedinLink}
+                                                
+                                                InputProps={{style: {fontSize:20, color:"white", fontFamily:"Itim"}}}
+                                                sx={{border: 'none',"& fieldset": { border: 'none' }, p:0  }}
+                                                
+                                                onChange={handleChange.bind()} 
+                                                
+                                            />
+
+                                            <TextField
+                                                type="text"
+                                                name="email"
+                                                
+                                                required 
+                                                placeholder='email'
+                                                id="outlined-multiline-static"
+                                                multiline
+                                                
+                                                value={ourForm.objectName.email}
+                                                
+                                                InputProps={{style: {fontSize:20, color:"white", fontFamily:"Itim"}}}
+                                                sx={{border: 'none',"& fieldset": { border: 'none' }, p:0  }}
+                                                
+                                                onChange={handleChange.bind()} 
+                                                
+                                            />
+
+                                            <TextField
+                                                type="text"
+                                                name="portfolioLink"
+                                                
+                                                required 
+                                                placeholder='portfolioLink'
+                                                id="outlined-multiline-static"
+                                                multiline
+                                                
+                                                value={ourForm.objectName.portfolioLink}
+                                                
+                                                InputProps={{style: {fontSize:20, color:"white", fontFamily:"Itim"}}}
+                                                sx={{border: 'none',"& fieldset": { border: 'none' }, p:0  }}
+                                                
+                                                onChange={handleChange.bind()} 
+                                                
                                             />
 
 
-                                            {/* <b className="nameStyle">{ourForm.objectName.fullName}</b> */}
-                                            <b className='jobTitleStyle'>{ourForm.objectName.jobTitle}</b>
-                                            {/* <b className='contentSpaces'>{ourForm.objectName.address}</b> */}
-                                            <div className='contactStyle'>
-                                                <b >{ourForm.objectName.phoneNumber}</b>
-                                                <b >{ourForm.objectName.githubLink}</b>
+                                            
+                                            {/* <div className='contactStyle'> */}
+                                                
+                                                {/* <b >{ourForm.objectName.githubLink}</b>
                                                 <b >{ourForm.objectName.linkedinLink}</b>
                                                 <b >{ourForm.objectName.email}</b>
-                                                <b >{ourForm.objectName.portfolioLink}</b>
-                                            </div>
+                                                <b >{ourForm.objectName.portfolioLink}</b> */}
+                                            {/* </div> */}
                                             
                                         </div>
 
@@ -219,7 +349,7 @@ const InputsForm = () => {
                                                 <b className='contentSpaces'>{ourForm.objectName.degreeTypeAndname}</b> 
                                                 <b className='contentSpaces'>{ourForm.objectName.schoolNameAndlocation}</b> 
                                                 <b className='contentSpaces'>{ourForm.objectName.timeLearnedDegree}</b>
-                                                {/* <b className='contentSpaces'>{ourForm.objectName.gpa}</b> */}
+                                                
                                             </div> 
 
                                                 
@@ -252,15 +382,15 @@ const InputsForm = () => {
                                         <div className="grid-area skills">
                                             {ourForm.objectName.ProgrammingLanguages ? <Fade delay={300}><h5><PsychologyIcon sx={{mr:1, height:"15px", width:"15px"}}/> SKILLS </h5><Fade delay={600}>  <b style={{fontSize:"13px"}}>Programming Languages: {ourForm.objectName.ProgrammingLanguages}</b> </Fade> </Fade> : null}
                                             <div className='skillsHeadersStyle'>
-                                                {/* {ourForm.objectName.ProgrammingLanguages ? <Fade delay={300}><b>Programming Languages: {ourForm.objectName.ProgrammingLanguages}</b></Fade> : null}  */}
+                                              
                                                 {ourForm.objectName.Databases ? <Fade delay={300}><b style={{fontSize:"13px"}}>Databases: {ourForm.objectName.Databases} </b></Fade> : null} 
                                                 {ourForm.objectName.Frameworks ? <Fade delay={300}><b style={{fontSize:"13px"}}>Frameworks: {ourForm.objectName.Frameworks} </b></Fade> : null} 
                                                 {ourForm.objectName.GeneralKnowledge ? <Fade delay={300}><b style={{fontSize:"13px"}}>General knowledge: {ourForm.objectName.GeneralKnowledge} </b></Fade> : null} 
                                             </div>
                                               
-                                        </div>
+                                        </div> 
 
-                                    </div>
+                                    </div> 
 
                                 </div>
 
@@ -273,7 +403,7 @@ const InputsForm = () => {
                                     {/* <a href='' download=''> DOWNLOAD TO PC </a> */}
 
                                     <Button 
-                                        sx={{m:1}}
+                                        sx={{m:1, mt:4}}
                                         color="error"
                                         variant="contained"
                                         // startIcon={<PictureAsPdfIcon/>}
@@ -284,32 +414,43 @@ const InputsForm = () => {
                                     <ReactToPrint 
                                         trigger={() => 
                                         <Button 
-                                        sx={
-                                            [{m:1, backgroundColor:"rgb(250, 204, 0)",
-                                        },
-                                        {'&:hover': {backgroundColor: "rgb(250, 184, 0)"}}
-                                    ]}
-                                        variant="contained" 
-                                        color="inherit"
-                                        startIcon={<PrintIcon/>}>PRINT</Button>} 
-                                        content={() => pdfExportComponent.current}/>
+                                            sx={
+                                                    [{m:1,mt:4, backgroundColor:"rgb(250, 204, 0)",
+                                                },
+                                                {'&:hover': {backgroundColor: "rgb(250, 184, 0)"}}
+                                            ]}
+                                                variant="contained" 
+                                                color="inherit"
+                                                startIcon={<PrintIcon/>}>PRINT
+                                        </Button>
+                                        } 
+                                        content={() => pdfExportComponent.current}
+                                    />
+
+                                <Button 
+                                    startIcon={<SaveIcon/>}
+                                    color="success"
+                                    variant="contained"
+                                    sx={{m:1, mt: 4}}
+                                    onClick={handleAddResume}>Save Resume
+                                </Button>
+
                                 </div>
+
                             </Fade>
                             
-                            
-
                         </div>
 
                         </Fade>
                         
-                            : <Button 
+                            {/* : <Button 
                                 color="warning"
                                 variant="contained" 
                                 startIcon={<VisibilityIcon/>}
                                 onClick={setToggle}>Show Resume
-                            </Button>
+                            </Button> */}
                         
-                    }
+                    {/* } */}
                 
             </div>
 
