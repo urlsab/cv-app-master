@@ -214,10 +214,11 @@ const InputsForm = () => {
                                                 placeholder='Full Name'
                                                 id="outlined-multiline-static"
                                                 multiline
+                                                
                                                 value={ourForm.objectName.fullName}
                                                 
-                                                InputProps={{style: {fontSize:22, color:"white", fontFamily:"Itim"}}}
-                                                sx={{border: 'none',"& fieldset": { border: 'none' }, p:0  }}
+                                                InputProps={{style: {fontSize:26, color:"white", fontFamily:"Itim", height:"10px", backgroundColor:"red"}}}
+                                                sx={{border: 'none',"& fieldset": { border: 'none' }, }}
                                                 
                                                 onChange={handleChange.bind()} 
                                                 
@@ -234,8 +235,8 @@ const InputsForm = () => {
                                                 
                                                 value={ourForm.objectName.jobTitle}
                                                 
-                                                InputProps={{style: {fontSize:21, color:"white", fontFamily:"Sens"}}}
-                                                sx={{border: 'none',"& fieldset": { border: 'none' }, p:0  }}
+                                                InputProps={{style: {fontSize:20, color:"white", fontFamily:"Exo", height:"9px", backgroundColor:"green", width:"259px"}}}
+                                                sx={{border: 'none',"& fieldset": { border: 'none' }  }}
                                                 
                                                 onChange={handleChange.bind()} 
                                                 
@@ -252,7 +253,7 @@ const InputsForm = () => {
                                                 
                                                 value={ourForm.objectName.phoneNumber}
                                                 
-                                                InputProps={{style: {fontSize:20, color:"white", fontFamily:"Itim"}}}
+                                                InputProps={{style: {fontSize:18, color:"white", fontFamily:"Open-Sans", height:"8px"}}}
                                                 sx={{border: 'none',"& fieldset": { border: 'none' }, p:0  }}
                                                 
                                                 onChange={handleChange.bind()} 
@@ -270,7 +271,7 @@ const InputsForm = () => {
                                                 
                                                 value={ourForm.objectName.githubLink}
                                                 
-                                                InputProps={{style: {fontSize:20, color:"white", fontFamily:"Itim", padding:"0.3in "}}}
+                                                InputProps={{style: {fontSize:21, color:"white", fontFamily:"Itim", height:"8px"}}}
                                                 sx={{border: 'none',"& fieldset": { border: 'none' }, p:0  }}
                                                 
                                                 onChange={handleChange.bind()} 
@@ -288,7 +289,7 @@ const InputsForm = () => {
                                                 
                                                 value={ourForm.objectName.linkedinLink}
                                                 
-                                                InputProps={{style: {fontSize:20, color:"white", fontFamily:"Itim"}}}
+                                                InputProps={{style: {fontSize:21, color:"white", fontFamily:"Itim", height:"8px"}}}
                                                 sx={{border: 'none',"& fieldset": { border: 'none' }, p:0  }}
                                                 
                                                 onChange={handleChange.bind()} 
@@ -306,7 +307,7 @@ const InputsForm = () => {
                                                 
                                                 value={ourForm.objectName.email}
                                                 
-                                                InputProps={{style: {fontSize:20, color:"white", fontFamily:"Itim"}}}
+                                                InputProps={{style: {fontSize:21, color:"white", fontFamily:"Itim", height:"8px"}}}
                                                 sx={{border: 'none',"& fieldset": { border: 'none' }, p:0  }}
                                                 
                                                 onChange={handleChange.bind()} 
@@ -324,7 +325,7 @@ const InputsForm = () => {
                                                 
                                                 value={ourForm.objectName.portfolioLink}
                                                 
-                                                InputProps={{style: {fontSize:20, color:"white", fontFamily:"Itim"}}}
+                                                InputProps={{style: {fontSize:21, color:"white", fontFamily:"Itim", height:"8px"}}}
                                                 sx={{border: 'none',"& fieldset": { border: 'none' }, p:0  }}
                                                 
                                                 onChange={handleChange.bind()} 
