@@ -205,6 +205,8 @@ const InputsForm = () => {
                                         {/* {renderTextFields()} */}
 
                                          <div className="grid-area name">
+
+                                            <div className='styleNameAndTitle'>
                                             
                                             <TextField
                                                 type="text"
@@ -217,7 +219,7 @@ const InputsForm = () => {
                                                 
                                                 value={ourForm.objectName.fullName}
                                                 
-                                                InputProps={{style: {fontSize:26, color:"white", fontFamily:"Itim", height:"10px", backgroundColor:"red"}}}
+                                                InputProps={{style: {fontSize:26, color:"white", fontFamily:"Itim", height:"10px" ,width:"7cm"}}}
                                                 sx={{border: 'none',"& fieldset": { border: 'none' }, }}
                                                 
                                                 onChange={handleChange.bind()} 
@@ -235,8 +237,30 @@ const InputsForm = () => {
                                                 
                                                 value={ourForm.objectName.jobTitle}
                                                 
-                                                InputProps={{style: {fontSize:20, color:"white", fontFamily:"Exo", height:"9px", backgroundColor:"green", width:"259px"}}}
+                                                InputProps={{style: {fontSize:20, color:"white", fontFamily:"Exo", height:"9px", width:"7cm"}}}
                                                 sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                
+                                                onChange={handleChange.bind()} 
+                                                
+                                            />
+
+                                            </div>
+
+                                            <div className='styleContactParagraph'>
+
+                                            <TextField
+                                                type="text"
+                                                name="email"
+                                                
+                                                required 
+                                                placeholder='email'
+                                                id="outlined-multiline-static"
+                                                multiline
+                                                
+                                                value={ourForm.objectName.email}
+                                                
+                                                InputProps={{style: {fontSize:15, color:"white", fontFamily:"Exo", height:"12px",padding:"9px", width:"7cm"}}}
+                                                sx={{border: 'none',"& fieldset": { border: 'none' } }}
                                                 
                                                 onChange={handleChange.bind()} 
                                                 
@@ -253,8 +277,8 @@ const InputsForm = () => {
                                                 
                                                 value={ourForm.objectName.phoneNumber}
                                                 
-                                                InputProps={{style: {fontSize:18, color:"white", fontFamily:"Open-Sans", height:"8px"}}}
-                                                sx={{border: 'none',"& fieldset": { border: 'none' }, p:0  }}
+                                                InputProps={{style: {fontSize:14, color:"white", fontFamily:"Exo", height:"11px",padding:"8px", width:"7cm"}}}
+                                                sx={{border: 'none',"& fieldset": { border: 'none' } }}
                                                 
                                                 onChange={handleChange.bind()} 
                                                 
@@ -271,8 +295,8 @@ const InputsForm = () => {
                                                 
                                                 value={ourForm.objectName.githubLink}
                                                 
-                                                InputProps={{style: {fontSize:21, color:"white", fontFamily:"Itim", height:"8px"}}}
-                                                sx={{border: 'none',"& fieldset": { border: 'none' }, p:0  }}
+                                                InputProps={{style: {fontSize:14, color:"white", fontFamily:"Exo", height:"11px",padding:"8px", width:"7cm"}}}
+                                                sx={{border: 'none',"& fieldset": { border: 'none' } }}
                                                 
                                                 onChange={handleChange.bind()} 
                                                 
@@ -289,31 +313,14 @@ const InputsForm = () => {
                                                 
                                                 value={ourForm.objectName.linkedinLink}
                                                 
-                                                InputProps={{style: {fontSize:21, color:"white", fontFamily:"Itim", height:"8px"}}}
-                                                sx={{border: 'none',"& fieldset": { border: 'none' }, p:0  }}
+                                                InputProps={{style: {fontSize:14, color:"white", fontFamily:"Exo", height:"11px",padding:"8px", width:"7cm"}}}
+                                                sx={{border: 'none',"& fieldset": { border: 'none' } }}
                                                 
                                                 onChange={handleChange.bind()} 
                                                 
                                             />
 
-                                            <TextField
-                                                type="text"
-                                                name="email"
-                                                
-                                                required 
-                                                placeholder='email'
-                                                id="outlined-multiline-static"
-                                                multiline
-                                                
-                                                value={ourForm.objectName.email}
-                                                
-                                                InputProps={{style: {fontSize:21, color:"white", fontFamily:"Itim", height:"8px"}}}
-                                                sx={{border: 'none',"& fieldset": { border: 'none' }, p:0  }}
-                                                
-                                                onChange={handleChange.bind()} 
-                                                
-                                            />
-
+                                            
                                             <TextField
                                                 type="text"
                                                 name="portfolioLink"
@@ -325,13 +332,14 @@ const InputsForm = () => {
                                                 
                                                 value={ourForm.objectName.portfolioLink}
                                                 
-                                                InputProps={{style: {fontSize:21, color:"white", fontFamily:"Itim", height:"8px"}}}
-                                                sx={{border: 'none',"& fieldset": { border: 'none' }, p:0  }}
+                                                InputProps={{style: {fontSize:14, color:"white", fontFamily:"Exo", height:"11px",padding:"8px", width:"7cm"}}}
+                                                sx={{border: 'none',"& fieldset": { border: 'none' } }}
                                                 
                                                 onChange={handleChange.bind()} 
                                                 
                                             />
 
+                                            </div>
 
                                             
                                             {/* <div className='contactStyle'> */}
