@@ -20,6 +20,9 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 
 import TextField from '@mui/material/TextField';
 
+import Textarea from '@mui/joy/Textarea';
+
+
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 
 import ReactToPrint from 'react-to-print';
@@ -204,27 +207,42 @@ const InputsForm = () => {
 
                                         {/* {renderTextFields()} */}
 
-                                         <div className="grid-area name">
+                                        <div className="grid-area name">
 
                                             <div className='styleNameAndTitle'>
-                                            
+
+                                            {/* <div className="textarea">
+                                                <Textarea
+                                                    required
+                                                    size="sm"
+                                                    placeholder="Full Name"
+                                                    resize="none"
+                                                />
+                                            </div>     */}
+                                                                                                                               
                                             <TextField
                                                 type="text"
                                                 name="fullName"
                                              
                                                 required 
                                                 placeholder='Full Name'
-                                                id="outlined-multiline-static"
+                                                id="outlined-multiline-flexible"
                                                 multiline
-                                                
-                                                value={ourForm.objectName.fullName}
-                                                
-                                                InputProps={{style: {fontSize:26, color:"white", fontFamily:"Itim", height:"10px" ,width:"7cm"}}}
-                                                sx={{border: 'none',"& fieldset": { border: 'none' }, }}
+                                                rows={2}
+
+                                                value={ourForm.objectName.fullName.toUpperCase()}
+                                            
+                                                InputProps={{style: {fontSize:22, color:"white", fontFamily:"Itim", height:"10px" ,width:"7cm"}}}
+                                                sx={{border: 'none',"& fieldset": { border: 'none' }, display:"block" }}
                                                 
                                                 onChange={handleChange.bind()} 
                                                 
                                             />
+
+                                            {/* <p>
+                                                
+                                                <span className="textarea" role="textbox" contentEditable="true"></span>
+                                            </p> */}
 
                                             <TextField
                                                 type="text"
@@ -232,13 +250,13 @@ const InputsForm = () => {
                                                 
                                                 required 
                                                 placeholder='Role Title'
-                                                id="outlined-multiline-static"
+                                                id="outlined-multiline-flexible"
                                                 multiline
                                                 
-                                                value={ourForm.objectName.jobTitle}
+                                                value={ourForm.objectName.jobTitle.toUpperCase()}
                                                 
                                                 InputProps={{style: {fontSize:20, color:"white", fontFamily:"Exo", height:"9px", width:"7cm"}}}
-                                                sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                sx={{border: 'none',"& fieldset": { border: 'none' }, display:"block", mt:1  }}
                                                 
                                                 onChange={handleChange.bind()} 
                                                 
@@ -259,7 +277,7 @@ const InputsForm = () => {
                                                 
                                                 value={ourForm.objectName.email}
                                                 
-                                                InputProps={{style: {fontSize:15, color:"white", fontFamily:"Exo", height:"12px",padding:"9px", width:"7cm"}}}
+                                                InputProps={{style: {fontSize:16, color:"white", fontFamily:"Exo", height:"12px",padding:"9px", width:"7cm"}}}
                                                 sx={{border: 'none',"& fieldset": { border: 'none' } }}
                                                 
                                                 onChange={handleChange.bind()} 
@@ -277,8 +295,8 @@ const InputsForm = () => {
                                                 
                                                 value={ourForm.objectName.phoneNumber}
                                                 
-                                                InputProps={{style: {fontSize:14, color:"white", fontFamily:"Exo", height:"11px",padding:"8px", width:"7cm"}}}
-                                                sx={{border: 'none',"& fieldset": { border: 'none' } }}
+                                                InputProps={{style: {fontSize:16, color:"white", fontFamily:"Exo", height:"11px",padding:"8px", width:"7cm"}}}
+                                                sx={{border: 'none',"& fieldset": { border: 'none' }, mt:0.5 }}
                                                 
                                                 onChange={handleChange.bind()} 
                                                 
@@ -295,8 +313,8 @@ const InputsForm = () => {
                                                 
                                                 value={ourForm.objectName.githubLink}
                                                 
-                                                InputProps={{style: {fontSize:14, color:"white", fontFamily:"Exo", height:"11px",padding:"8px", width:"7cm"}}}
-                                                sx={{border: 'none',"& fieldset": { border: 'none' } }}
+                                                InputProps={{style: {fontSize:16, color:"white", fontFamily:"Exo", height:"11px",padding:"8px", width:"7cm"}}}
+                                                sx={{border: 'none',"& fieldset": { border: 'none' }, mt:0.5 }}
                                                 
                                                 onChange={handleChange.bind()} 
                                                 
@@ -313,13 +331,12 @@ const InputsForm = () => {
                                                 
                                                 value={ourForm.objectName.linkedinLink}
                                                 
-                                                InputProps={{style: {fontSize:14, color:"white", fontFamily:"Exo", height:"11px",padding:"8px", width:"7cm"}}}
-                                                sx={{border: 'none',"& fieldset": { border: 'none' } }}
+                                                InputProps={{style: {fontSize:16, color:"white", fontFamily:"Exo", height:"11px",padding:"8px", width:"7cm"}}}
+                                                sx={{border: 'none',"& fieldset": { border: 'none' }, mt:0.5 }}
                                                 
                                                 onChange={handleChange.bind()} 
                                                 
                                             />
-
                                             
                                             <TextField
                                                 type="text"
@@ -332,8 +349,8 @@ const InputsForm = () => {
                                                 
                                                 value={ourForm.objectName.portfolioLink}
                                                 
-                                                InputProps={{style: {fontSize:14, color:"white", fontFamily:"Exo", height:"11px",padding:"8px", width:"7cm"}}}
-                                                sx={{border: 'none',"& fieldset": { border: 'none' } }}
+                                                InputProps={{style: {fontSize:16, color:"white", fontFamily:"Exo", height:"11px",padding:"8px", width:"7cm"}}}
+                                                sx={{border: 'none',"& fieldset": { border: 'none' }, mt:0.5 }}
                                                 
                                                 onChange={handleChange.bind()} 
                                                 
@@ -342,20 +359,37 @@ const InputsForm = () => {
                                             </div>
 
                                             
-                                            {/* <div className='contactStyle'> */}
-                                                
-                                                {/* <b >{ourForm.objectName.githubLink}</b>
-                                                <b >{ourForm.objectName.linkedinLink}</b>
-                                                <b >{ourForm.objectName.email}</b>
-                                                <b >{ourForm.objectName.portfolioLink}</b> */}
-                                            {/* </div> */}
+
+                                            {/* <h5 style={{marginLeft:"10px"}}><SchoolIcon sx={{mr:1, height:"15px", width:"15px"}} /> EDUCATION</h5> */}
                                             
+                                    
                                         </div>
 
+                                        
+                                            
+
                                         <div className="grid-area education">
-                                            {ourForm.objectName.degreeTypeAndname ? <Fade delay={300}><h5 style={{marginLeft:"30px"}}><SchoolIcon sx={{mr:1, height:"15px", width:"15px"}} /> EDUCATION</h5></Fade> : null}   
+                                            {/* {ourForm.objectName.degreeTypeAndname ? <Fade delay={300}><h5 style={{marginLeft:"30px"}}><SchoolIcon sx={{mr:1, height:"15px", width:"15px"}} /> EDUCATION</h5></Fade> : null}  */}
+                                            <TextField
+                                                type="text"
+                                                name="degreeTypeAndname"
+                                                
+                                                required 
+                                                placeholder='Degree type and name'
+                                                id="outlined-multiline-static"
+                                                multiline
+                                                
+                                                value={ourForm.objectName.degreeTypeAndname}
+                                                
+                                                InputProps={{style: {fontSize:16, color:"black", fontFamily:"Exo", height:"11px",padding:"8px", width:"7cm"}}}
+                                                sx={{border: 'none',"& fieldset": { border: 'none' }, mt:0.5 }}
+                                                
+                                                onChange={handleChange.bind()} 
+                                                
+                                            />  
+
                                             <div style={{marginLeft:"30px"}}>
-                                                <b className='contentSpaces'>{ourForm.objectName.degreeTypeAndname}</b> 
+                                                {/* <b className='contentSpaces'>{ourForm.objectName.degreeTypeAndname}</b>  */}
                                                 <b className='contentSpaces'>{ourForm.objectName.schoolNameAndlocation}</b> 
                                                 <b className='contentSpaces'>{ourForm.objectName.timeLearnedDegree}</b>
                                                 
@@ -372,11 +406,84 @@ const InputsForm = () => {
                                         </div>
 
                                         <div className="grid-area work">
-                                            {ourForm.objectName.position ? <Fade delay={300}><h5> <WorkIcon sx={{mr:1, height:"15px", width:"15px"}} /> WORK EXPERIENCE </h5></Fade> : null}  
-                                            <b className='contentSpaces'>{ourForm.objectName.position}</b>
+                                        <h5> <WorkIcon sx={{mr:1, height:"15px", width:"15px"}} /> WORK EXPERIENCE </h5>
+                                            {/* {ourForm.objectName.position ? <Fade delay={300}><h5> <WorkIcon sx={{mr:1, height:"15px", width:"15px"}} /> WORK EXPERIENCE </h5></Fade> : null}   */}
+                                            <TextField
+                                                type="text"
+                                                name="position"
+                                                
+                                                required 
+                                                placeholder='Position'
+                                                id="outlined-multiline-static"
+                                                multiline
+                                                
+                                                value={ourForm.objectName.position}
+                                                
+                                                InputProps={{style: {fontSize:16, color:"black", fontFamily:"Exo", height:"11px",padding:"8px", width:"7cm"}}}
+                                                sx={{border: 'none',"& fieldset": { border: 'none' }, mt:0.5 }}
+                                                
+                                                onChange={handleChange.bind()} 
+                                                
+                                            />  
+
+<TextField
+                                                type="text"
+                                                name="companyName"
+                                                
+                                                required 
+                                                placeholder='Company name'
+                                                id="outlined-multiline-static"
+                                                multiline
+                                                
+                                                value={ourForm.objectName.companyName}
+                                                
+                                                InputProps={{style: {fontSize:16, color:"black", fontFamily:"Exo", height:"11px",padding:"8px", width:"7cm"}}}
+                                                sx={{border: 'none',"& fieldset": { border: 'none' }, mt:0.5 }}
+                                                
+                                                onChange={handleChange.bind()} 
+                                                
+                                            />  
+
+<TextField
+                                                type="text"
+                                                name="position"
+                                                
+                                                required 
+                                                placeholder='Position'
+                                                id="outlined-multiline-static"
+                                                multiline
+                                                
+                                                value={ourForm.objectName.position}
+                                                
+                                                InputProps={{style: {fontSize:16, color:"black", fontFamily:"Exo", height:"11px",padding:"8px", width:"7cm"}}}
+                                                sx={{border: 'none',"& fieldset": { border: 'none' }, mt:0.5 }}
+                                                
+                                                onChange={handleChange.bind()} 
+                                                
+                                            />  
+
+                                            <TextField
+                                                type="text"
+                                                name="position"
+                                                
+                                                required 
+                                                placeholder='Position'
+                                                id="outlined-multiline-static"
+                                                multiline
+                                                
+                                                value={ourForm.objectName.position}
+                                                
+                                                InputProps={{style: {fontSize:16, color:"black", fontFamily:"Exo", height:"11px",padding:"8px", width:"7cm"}}}
+                                                sx={{border: 'none',"& fieldset": { border: 'none' }, mt:0.5 }}
+                                                
+                                                onChange={handleChange.bind()} 
+                                                
+                                            />  
+
+                                            {/* <b className='contentSpaces'>{ourForm.objectName.position}</b>
                                             <b className='contentSpaces'>{ourForm.objectName.companyName}</b>
                                             <b className='contentSpaces'>{ourForm.objectName.locationAndDuration}</b>
-                                            <b className='contentSpaces'>{ourForm.objectName.products}</b>      
+                                            <b className='contentSpaces'>{ourForm.objectName.products}</b>       */}
                                         </div>
 
                                         <div className="grid-area sideProjects">
