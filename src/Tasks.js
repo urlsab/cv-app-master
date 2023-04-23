@@ -1,25 +1,57 @@
 /*
 
-===================
-1. make app works
-2. style the app
-3. improve code
-===================
+-------------
 
--------------------
-importation:
+RESUME
 
-1. react
-2. css
-3. packages
-4. utils
-5. components
+!!! 1. style shell like beanjobs
 
----------------------
+!! create todo list as dynamic paragraphes in shell
+!! create with \ without nedd of server\db
 
+--
+
+2. create dynmaic text box
+
+3. create function for adding text box by user
+
+4. create dynamic heigt pgae & paragraphes
+
+5. create multilines text boxs that NOT resize horizontally after one line
+
+ ------------------
+
+! consider create few templates (3-4) with different style - 
+ as few components / onclick function change their classname
+
+ ---------------------
+ 
+! Allresume.js
+
+fix : export pdf only the last cv - or delete this page
+
+-------------------------
+
+
+GIF
+
+! create loading gif component for: 
+
+
+1. submit new cv (inputs.js)
+2. delete cv (all resume.js)
+3. register
+4. login regular
+5. login with google
+6. when contact
+7. when logout
+
+
+--------
+
+------
 AUTH
 
-make: delete resume function
 
 make: delete account function
 
@@ -27,29 +59,14 @@ make: edit resume function
 
 -----------
 
-PDF
-
-fix : export pdf only the last cv - should export cv that near his button
-
-------------
-
-HOSTING
-* fix: deploy correctly on firebase
-
-------------
-
-
 CSS
-style: <resumetable> font size
+
+
 add: options for fonts on <resumetable>
 add: options for colors on <resumetable>
 fix: display the wanted favicon
 
 -----------------------
-
-
-PACKAGE.JSON
-* //maby cahnge to: cv-app-master - in package.json - to no "url"
 
 
 ===================
