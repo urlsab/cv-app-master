@@ -1,41 +1,23 @@
-
-import React, { useState } from "react";
 import './Todo.css';
+import React, { useState } from "react";
 
 const Todo = () => {
-
-
-  const [hoveredCart, setHoveredCart] = useState(-1);
-
-  const showCartHandler = (i) =>{
-    
-    setHoveredCart(i);
-    setDisplay('displayed');
-}
-
-const hideCartHandler= () => {
-      
-      setHoveredCart(-1);
-      setDisplay('notdisplayed');
-}
-
 
   const [display, setDisplay] = useState('notdisplayed');
   const [inputList, setInputList] = useState([{ firstName: '' }]);
 
-  const showButton = (e) => {
+  const showButton = (e, i) => {
     e.preventDefault();
+
     setDisplay('displayed');
   };
 
   const hideButton = (e) => {
     e.preventDefault();
     setDisplay('notdisplayed');
-    
 
     // setDisplay('notdisplayed')
     //}, 1000);
-
   };
 
   // handle input change
@@ -62,33 +44,38 @@ const hideCartHandler= () => {
     <div>
       {inputList.map((x, i) => {
         return (
-          <div 
-            className="box" 
-            
-            >
-          <input
-            onMouseEnter={e => showCartHandler(e)}
-            onMouseLeave={e => hideCartHandler(e)}
-            name="firstName"
-            placeholder=" "
-              
-            value={x.firstName}
-            onChange={(e) => handleInputChange(e, i)}
-          />
+          <div
+            key={i}
+            className="box"
+            // onMouseOver={e}
+            onMouseEnter={(e) => showButton(e)}
+            onMouseLeave={(e) => hideButton(e)}
+          >
+            <input
+              key={i}
+              name="firstName"
+              placeholder=" "
+              value={x.firstName}
+              onChange={(e) => handleInputChange(e, i)}
+            />
             <div className="btn-box">
               {inputList.length !== 1 && (
-                <button className={display} onClick={() => handleRemoveClick(i)}>
+                <button key={i}
+                  className={display}
+                  onClick={() => handleRemoveClick(i)}
+                >
                   Remove
                 </button>
               )}
               {inputList.length - 1 === i && (
-                <button className={display} onClick={handleAddClick}>Add</button>
+                <button key={i} className={display} onClick={handleAddClick}>
+                  Add
+                </button>
               )}
             </div>
           </div>
         );
       })}
-      
     </div>
   );
 }
