@@ -36,8 +36,11 @@ const Todo = () => {
   };
 
   // handle click event of the Add button
-  const handleAddClick = () => {
-    setInputList([...inputList, { firstName: '' }]);
+  const handleAddClick = (index) => {
+    const list = [...inputList];
+    list.splice(index, 0, { firstName: ''});
+    setInputList(list);
+    // setInputList([...inputList, { firstName: '' }]);
   };
 
   return (
@@ -54,24 +57,29 @@ const Todo = () => {
             <input
               key={i}
               name="firstName"
-              placeholder=" "
+              className="inputStyle"
+              placeholder="type here"
               value={x.firstName}
               onChange={(e) => handleInputChange(e, i)}
             />
             <div className="btn-box">
-              {inputList.length !== 1 && (
+              
+                
+              
+              {/* {inputList.length - 1 === i && ( */}
+                <button key={i} className={display} onClick={handleAddClick}>
+                  Add
+                </button>
+
+                {inputList.length !== 1 && (
                 <button key={i}
                   className={display}
                   onClick={() => handleRemoveClick(i)}
                 >
                   Remove
                 </button>
-              )}
-              {inputList.length - 1 === i && (
-                <button key={i} className={display} onClick={handleAddClick}>
-                  Add
-                </button>
-              )}
+                )}
+              {/* )} */}
             </div>
           </div>
         );
