@@ -36,7 +36,7 @@ const AllResumes = () => {
     
     const [user] = useAuthState(auth);
 
-    const pdfExportComponent = useRef(null);
+    const pdfExportComponent = cv.map((i) => React.createRef(i));
     
     const handleExportWithComponent = (data) => {
         pdfExportComponent.current.save();
@@ -47,7 +47,7 @@ const AllResumes = () => {
 
     const exportPDF = (i) => {
         console.log(pdfExportComponent[i]);
-        pdfExportComponent.current.save();
+        pdfExportComponent[i].current.save();
     };
 
     const handleEditResume = (id) => {
@@ -105,7 +105,7 @@ const AllResumes = () => {
                         cv.map((el, i) => 
                         
                             <li className="liStyle" key={el.id}>
-                                <PDFExport key={el.id} ref={pdfExportComponent}>
+                                <PDFExport key={el.id} ref={pdfExportComponent[i]}>
                                 <p key={cv[i]}>{cv[i].info.fullName}</p>
                                     <p>{cv[i].info.gpa}</p>
                                     <p>{cv[i].info.userName} </p>
