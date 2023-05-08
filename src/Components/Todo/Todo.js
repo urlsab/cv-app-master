@@ -1,14 +1,12 @@
 import './Todo.css';
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 const Todo = () => {
-
   const [display, setDisplay] = useState('notdisplayed');
   const [inputList, setInputList] = useState([{ firstName: '' }]);
 
   const showButton = (e, i) => {
     e.preventDefault();
-
     setDisplay('displayed');
   };
 
@@ -38,7 +36,7 @@ const Todo = () => {
   // handle click event of the Add button
   const handleAddClick = (index) => {
     const list = [...inputList];
-    list.splice(index, 0, { firstName: ''});
+    list.splice(index +1 , 0, { firstName: '' });
     setInputList(list);
     // setInputList([...inputList, { firstName: '' }]);
   };
@@ -63,22 +61,20 @@ const Todo = () => {
               onChange={(e) => handleInputChange(e, i)}
             />
             <div className="btn-box">
-              
-                
-              
               {/* {inputList.length - 1 === i && ( */}
-                <button key={i} className={display} onClick={handleAddClick}>
-                  Add
-                </button>
+              <button key={i} className={display} onClick={() => handleAddClick(i)}>
+                Add
+              </button>
 
-                {inputList.length !== 1 && (
-                <button key={i}
+              {inputList.length !== 1 && (
+                <button
+                  key={i}
                   className={display}
                   onClick={() => handleRemoveClick(i)}
                 >
                   Remove
                 </button>
-                )}
+              )}
               {/* )} */}
             </div>
           </div>
@@ -86,6 +82,6 @@ const Todo = () => {
       })}
     </div>
   );
-}
+};
 
 export default Todo;
