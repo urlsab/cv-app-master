@@ -2,17 +2,21 @@ import './Todo.css';
 import React, { useState } from 'react';
 
 const Todo = () => {
-  const [display, setDisplay] = useState('notdisplayed');
-  const [inputList, setInputList] = useState([{ firstName: '' }]);
+  // const [display, setDisplay] = useState('notdisplayed');
+  const [inputList, setInputList] = useState([{ firstName: '' , display: 'notdisplayed'}]);
 
   const showButton = (e, i) => {
     e.preventDefault();
-    setDisplay('displayed');
+    const list = [...inputList];
+    list[i].display = 'displayed';
+    setInputList(list);
   };
 
-  const hideButton = (e) => {
+  const hideButton = (e, i) => {
     e.preventDefault();
-    setDisplay('notdisplayed');
+    const list = [...inputList];
+    list[i].display = 'notdisplayed';
+    setInputList(list);
 
     // setDisplay('notdisplayed')
     //}, 1000);
@@ -49,8 +53,8 @@ const Todo = () => {
             key={i}
             className="box"
             // onMouseOver={e}
-            onMouseEnter={(e) => showButton(e)}
-            onMouseLeave={(e) => hideButton(e)}
+            onMouseEnter={(e) => showButton(e, i)}
+            onMouseLeave={(e) => hideButton(e, i)}
           >
             <input
               key={i}
@@ -62,14 +66,14 @@ const Todo = () => {
             />
             <div className="btn-box">
               {/* {inputList.length - 1 === i && ( */}
-              <button key={i} className={display} onClick={() => handleAddClick(i)}>
+              <button key={i} className={x.display} onClick={() => handleAddClick(i)}>
                 Add
               </button>
 
               {inputList.length !== 1 && (
                 <button
                   key={i}
-                  className={display}
+                  className={x.display}
                   onClick={() => handleRemoveClick(i)}
                 >
                   Remove
