@@ -14,6 +14,8 @@ import { PDFExport } from "@progress/kendo-react-pdf";
 
 import PsychologyIcon from '@mui/icons-material/Psychology';
 
+import Todo from '../Todo/Todo';
+
 import PrintIcon from '@mui/icons-material/Print';
 
 import MenuBookIcon from '@mui/icons-material/MenuBook';
@@ -21,7 +23,6 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 import TextField from '@mui/material/TextField';
 
 import Textarea from '@mui/joy/Textarea';
-
 
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 
@@ -58,26 +59,16 @@ const InputsForm = () => {
     const [toggle, setToggle] = useToggle();
 
     const [fullName, setFullname] = useState('');
-    // const [text, setText] = useState('');
-    // const [text, setText] = useState('');
-    // const [text, setText] = useState('');
-    // const [text, setText] = useState('');
 
     const navigate = useNavigate();
 
-    // const currentPassword = ourForm.objectName.userPassword;
-
-    // maybe change to: useRef(null)
     const pdfExportComponent = useRef(null);
     
     const handleExportWithComponent = (data) => {
         pdfExportComponent.current.save();
         console.log(data);
-        // console.log(fileName);
     };
 
-    //add: refresh after submit - usenavigate-maybe
-    //users/id/resumes/id/full object
     const handleAddResume = (event) => {
         
         // firestoreDB making auto uid for any document in hte user.email collection
@@ -199,7 +190,7 @@ const InputsForm = () => {
                         <div className='showResumeStyle'>
 
                             
-                            <PDFExport  ref={pdfExportComponent}>
+                            <PDFExport ref={pdfExportComponent}>
 
                                 <div ref={pdfExportComponent}>
 
@@ -229,7 +220,7 @@ const InputsForm = () => {
                                                 id="outlined-multiline-flexible"
                                                 multiline
                                                 rows={2}
-
+                                                // onClick={addSection}
                                                 value={ourForm.objectName.fullName.toUpperCase()}
                                             
                                                 InputProps={{style: {fontSize:22, color:"white", fontFamily:"Itim", height:"10px" ,width:"7cm"}}}
@@ -255,7 +246,7 @@ const InputsForm = () => {
                                                 
                                                 value={ourForm.objectName.jobTitle.toUpperCase()}
                                                 
-                                                InputProps={{style: {fontSize:20, color:"white", fontFamily:"Exo", height:"9px", width:"7cm"}}}
+                                                InputProps={{style: {fontSize:19, color:"white", fontFamily:"Exo", height:"9px", width:"7cm"}}}
                                                 sx={{border: 'none',"& fieldset": { border: 'none' }, display:"block", mt:1  }}
                                                 
                                                 onChange={handleChange.bind()} 
@@ -407,6 +398,7 @@ const InputsForm = () => {
 
                                         <div className="grid-area work">
                                         <h5> <WorkIcon sx={{mr:1, height:"15px", width:"15px"}} /> WORK EXPERIENCE </h5>
+                                        <Todo/>
                                             {/* {ourForm.objectName.position ? <Fade delay={300}><h5> <WorkIcon sx={{mr:1, height:"15px", width:"15px"}} /> WORK EXPERIENCE </h5></Fade> : null}   */}
                                             <TextField
                                                 type="text"
@@ -419,7 +411,7 @@ const InputsForm = () => {
                                                 
                                                 value={ourForm.objectName.position}
                                                 
-                                                InputProps={{style: {fontSize:16, color:"black", fontFamily:"Exo", height:"11px",padding:"8px", width:"7cm"}}}
+                                                InputProps={{style: {fontSize:16, color:"black", fontFamily:"Exo", height:"11px",padding:"8px", width:"12cm"}}}
                                                 sx={{border: 'none',"& fieldset": { border: 'none' }, mt:0.5 }}
                                                 
                                                 onChange={handleChange.bind()} 
@@ -437,7 +429,7 @@ const InputsForm = () => {
                                                 
                                                 value={ourForm.objectName.companyName}
                                                 
-                                                InputProps={{style: {fontSize:16, color:"black", fontFamily:"Exo", height:"11px",padding:"8px", width:"7cm"}}}
+                                                InputProps={{style: {fontSize:16, color:"black", fontFamily:"Exo", height:"11px",padding:"8px", width:"12cm"}}}
                                                 sx={{border: 'none',"& fieldset": { border: 'none' }, mt:0.5 }}
                                                 
                                                 onChange={handleChange.bind()} 
@@ -446,16 +438,16 @@ const InputsForm = () => {
 
 <TextField
                                                 type="text"
-                                                name="position"
+                                                name="locationAndDuration"
                                                 
                                                 required 
-                                                placeholder='Position'
+                                                placeholder='Location And Duration'
                                                 id="outlined-multiline-static"
                                                 multiline
                                                 
-                                                value={ourForm.objectName.position}
+                                                value={ourForm.objectName.locationAndDuration}
                                                 
-                                                InputProps={{style: {fontSize:16, color:"black", fontFamily:"Exo", height:"11px",padding:"8px", width:"7cm"}}}
+                                                InputProps={{style: {fontSize:16, color:"black", fontFamily:"Exo", height:"11px",padding:"8px", width:"12cm"}}}
                                                 sx={{border: 'none',"& fieldset": { border: 'none' }, mt:0.5 }}
                                                 
                                                 onChange={handleChange.bind()} 
@@ -464,16 +456,16 @@ const InputsForm = () => {
 
                                             <TextField
                                                 type="text"
-                                                name="position"
+                                                name="products"
                                                 
                                                 required 
-                                                placeholder='Position'
+                                                placeholder='products'
                                                 id="outlined-multiline-static"
                                                 multiline
                                                 
-                                                value={ourForm.objectName.position}
+                                                value={ourForm.objectName.products}
                                                 
-                                                InputProps={{style: {fontSize:16, color:"black", fontFamily:"Exo", height:"11px",padding:"8px", width:"7cm"}}}
+                                                InputProps={{style: {fontSize:16, color:"black", fontFamily:"Exo", height:"11px",padding:"8px", width:"12cm"}}}
                                                 sx={{border: 'none',"& fieldset": { border: 'none' }, mt:0.5 }}
                                                 
                                                 onChange={handleChange.bind()} 
@@ -496,9 +488,14 @@ const InputsForm = () => {
                                         </div>
 
                                         <div className="grid-area skills">
-                                            {ourForm.objectName.ProgrammingLanguages ? <Fade delay={300}><h5><PsychologyIcon sx={{mr:1, height:"15px", width:"15px"}}/> SKILLS </h5><Fade delay={600}>  <b style={{fontSize:"13px"}}>Programming Languages: {ourForm.objectName.ProgrammingLanguages}</b> </Fade> </Fade> : null}
+                                            {/* {ourForm.objectName.ProgrammingLanguages ? <Fade delay={300}><h5><PsychologyIcon sx={{mr:1, height:"15px", width:"15px"}}/> SKILLS </h5><Fade delay={600}>  <b style={{fontSize:"13px"}}>Programming Languages: {ourForm.objectName.ProgrammingLanguages}</b> </Fade> </Fade> : null} */}
                                             <div className='skillsHeadersStyle'>
-                                              
+                                                
+                                            <h5><PsychologyIcon sx={{mr:1, height:"15px", width:"15px"}}/> SKILLS </h5>
+                                            <b style={{fontSize:"13px"}}>Programming Languages: {ourForm.objectName.ProgrammingLanguages}</b>
+                                            <b style={{fontSize:"13px"}}>Programming Languages: {ourForm.objectName.ProgrammingLanguages}</b>
+                                            <b style={{fontSize:"13px"}}>Programming Languages: {ourForm.objectName.ProgrammingLanguages}</b>
+                                            <b style={{fontSize:"13px"}}>Programming Languages: {ourForm.objectName.ProgrammingLanguages}</b>
                                                 {ourForm.objectName.Databases ? <Fade delay={300}><b style={{fontSize:"13px"}}>Databases: {ourForm.objectName.Databases} </b></Fade> : null} 
                                                 {ourForm.objectName.Frameworks ? <Fade delay={300}><b style={{fontSize:"13px"}}>Frameworks: {ourForm.objectName.Frameworks} </b></Fade> : null} 
                                                 {ourForm.objectName.GeneralKnowledge ? <Fade delay={300}><b style={{fontSize:"13px"}}>General knowledge: {ourForm.objectName.GeneralKnowledge} </b></Fade> : null} 
