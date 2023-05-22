@@ -103,59 +103,6 @@ const InputsForm = () => {
         }))
     };
 
-    const renderTextFields = () => {
-        return (
-            arrState.map((i) =>
-                <TextField
-                    type="text"
-                    name={i}
-                    // label="Your Message"
-                    required 
-                    placeholder={i}
-                    id="outlined-multiline-static"
-                    multiline
-                    
-                    value={ourForm.objectName[i]}
-                    // maxRows={3}
-                    InputProps={{style: {fontSize:20, color:"black", fontFamily:"Itim", backgroundColor:"green"}}}
-                    sx={{border: 'none',"& fieldset": { border: 'none' } }}
-                    
-                    onChange={handleChange.bind()} 
-                    // rows={4}
-                />
-            )
-        )
-    }
-
-
-    const renderInputs = () => {
-
-        return (
-            arrState.map((i)  =>
-                (
-                    <TextField
-                        required="required"
-                        key={i}
-                        type="text"
-                        name={i}
-                        placeholder={i}
-                        // maybe comment that - for long descriptions of work experience e.g.
-                        maxLength={40}
-                        value={ourForm.objectName[i]}
-                        onChange={handleChange}
-                        size="small"
-                        
-                        InputProps={{startAdornment: (
-                            <InputAdornment position="start">
-                                {arrIcons[i]}
-                            </InputAdornment>
-                        )}}  
-                    />
-                )
-            )
-        );   
-    }
-
     return (
 
         <>
@@ -344,12 +291,7 @@ const InputsForm = () => {
                             </Fade>
                             
                         </div>
-                        <div style={{marginTop:"50px"}}>
-                            <h4>CV e.g.</h4>
-                        <img src="cv template example.png" width="200" height="300"></img>
-                        </div>
-                        
-
+                    
                         </Fade>
                 
             </div>
@@ -361,3 +303,55 @@ const InputsForm = () => {
 }
 
 export default InputsForm;
+
+//const renderTextFields = () => {
+    //     return (
+    //         arrState.map((i) =>
+    //             <TextField
+    //                 type="text"
+    //                 name={i}
+    //                 // label="Your Message"
+    //                 required 
+    //                 placeholder={i}
+    //                 id="outlined-multiline-static"
+    //                 multiline
+                    
+    //                 value={ourForm.objectName[i]}
+    //                 // maxRows={3}
+    //                 InputProps={{style: {fontSize:20, color:"black", fontFamily:"Itim", backgroundColor:"green"}}}
+    //                 sx={{border: 'none',"& fieldset": { border: 'none' } }}
+                    
+    //                 onChange={handleChange.bind()} 
+    //                 // rows={4}
+    //             />
+    //         )
+    //     )
+    // }
+
+    // const renderInputs = () => {
+
+    //     return (
+    //         arrState.map((i)  =>
+    //             (
+    //                 <TextField
+    //                     required="required"
+    //                     key={i}
+    //                     type="text"
+    //                     name={i}
+    //                     placeholder={i}
+    //                     // maybe comment that - for long descriptions of work experience e.g.
+    //                     maxLength={40}
+    //                     value={ourForm.objectName[i]}
+    //                     onChange={handleChange}
+    //                     size="small"
+                        
+    //                     InputProps={{startAdornment: (
+    //                         <InputAdornment position="start">
+    //                             {arrIcons[i]}
+    //                         </InputAdornment>
+    //                     )}}  
+    //                 />
+    //             )
+    //         )
+    //     );   
+    // }
