@@ -117,6 +117,10 @@ const Todo = () => {
               onChange={(e) => { handleInputChange(e, i); }}
             />
 
+<div class="text-area" contenteditable="true">
+  
+  </div>
+
             
               
             </div>
