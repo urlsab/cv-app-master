@@ -9,7 +9,7 @@ const Todo = () => {
 
   // const [display, setDisplay] = useState('notdisplayed');
    
-  const [inputList, setInputList] = useState([{ firstName: '•', display: 'notdisplayed'}]);
+  const [inputList, setInputList] = useState([{ firstName: '', display: 'notdisplayed'}]);
 
   const [text, setText] = useState('');
 
@@ -56,7 +56,7 @@ const Todo = () => {
   // handle click event of the Add button
   const handleAddClick = (index) => {
     const list = [...inputList];
-    list.splice(index + 1 , 0, { firstName: '•' });
+    list.splice(index + 1 , 0, { firstName: '' });
     setInputList(list);
   };
 
@@ -93,11 +93,9 @@ const Todo = () => {
                 </button>
               )}
 
-
-
-    
+              <div key={i + 2} onChange={(e) => { handleInputChange(e, i); }}   className="listBullet" contentEditable="true" > </div>
   
-            <TextField
+            {/* <TextField
               key={i + 2}
               size='small'
               onKeyDown={(e) => handleKeyPress(e)}
@@ -115,14 +113,11 @@ const Todo = () => {
               
               value={`${x.firstName}`}
               onChange={(e) => { handleInputChange(e, i); }}
-            />
+            /> */}
 
-<div class="text-area" contenteditable="true">
-  
-  </div>
-
-            
-              
+          {/* {short solution for bullet list} */}
+          {/* contenteditable - allow to write content like input tag */}
+                     
             </div>
           </div>
         );
