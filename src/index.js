@@ -43,9 +43,12 @@ const router = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  
+  //<React.Fragment>
+  // remember that it was <React.strictMode> component
+  <React.Fragment>
     <RouterProvider router={router} />
-  </React.StrictMode>
+  </React.Fragment>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -50,13 +50,16 @@ const Todo = () => {
   const handleRemoveClick = (index) => {
     const list = [...inputList];
     list.splice(index, 1);
+    console.log(list[index]);
     setInputList(list);
+    
   };
 
   // handle click event of the Add button
   const handleAddClick = (index) => {
     const list = [...inputList];
     list.splice(index + 1 , 0, { firstName: '' });
+    console.log(list[index]);
     setInputList(list);
   };
 
@@ -92,8 +95,9 @@ const Todo = () => {
                   
                 </button>
               )}
-
-              <div key={i + 2} onChange={(e) => { handleInputChange(e, i); }}   className="listBullet" contentEditable="true" > </div>
+              {/* suppressContentEditableWarning={true}  - aviod react warrnig*/}
+              {/* contentEditable={true} - aloow to write text inside this div */}
+              <div key={i + 2} suppressContentEditableWarning={true} contentEditable={true} onChange={(e) => { handleInputChange(e, i); }}   className="listBullet"   > </div>
   
             {/* <TextField
               key={i + 2}
