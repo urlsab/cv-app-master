@@ -111,7 +111,7 @@ const Dashboard = () => {
         :navigateToErrorNoAccount()
         )} */}
 
-          <Flip bottom delay={1100}><h1 className="greetingStyle"> WELLCOME  {cv.map((el, i) => <b className="styleName"> {cv[i].info.userName} </b>)} </h1></Flip>
+          <Flip bottom delay={1100}><h1 className="greetingStyle"> WELLCOME  {cv.map((el, i) => <b key={i} className="styleName"> {cv[i].info.userName} </b>)} </h1></Flip>
           <Flip bottom delay={2000}><h1> <b className="greetingStyle"> TO THE CVA </b> 📱 </h1></Flip>
                  
         </div>
