@@ -1,23 +1,46 @@
 /*
+@@ how to use patch package ? ?
+
+probebly warrnings from react-reval animation package:
+
+- use react reveal awesome package instead - check if the warring is realy disappear
+- maby command `npx react-codemod rename-unsafe-lifecycles`
+- leave that as is by knowing that it's only warrning
+
+ERRORS:
+
+fix: bundle.js:126686 Warning: Legacy context API has been detected within a strict-mode tree.
+
+The old API will be supported in all 16.x releases, but applications using it should migrate to the new version.
+
+Please update the following components: RevealBase
+
+
+fix: Warning: componentWillReceiveProps has been renamed, and is not recommended for use.
+
+In React 18.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run `npx react-codemod rename-unsafe-lifecycles` in your project source folder.
+
+Please update the following components: RevealBase
+
+------
+
+logout components: maybe add dynamic name "goodbey {userName}" 
+
 
 -------------
 
 RESUME
 
-!!! 1. style shell like beanjobs
+! make ADD the clicked index of bullet list
+! make DELETE the clicked index of bullet list
 
-!! create todo list as dynamic paragraphes in shell
-!! create with \ without nedd of server\db
+==============
 
---
+1. make left gray back ground under the orange
 
-2. create dynmaic text box
+2. create todo for headres
 
-3. create function for adding text box by user
-
-4. create dynamic heigt pgae & paragraphes
-
-5. create multilines text boxs that NOT resize horizontally after one line
+3. create todo for mini headers
 
  ------------------
 
@@ -26,12 +49,6 @@ RESUME
 
  ---------------------
  
-! Allresume.js
-
-fix : export pdf only the last cv - or delete this page
-
--------------------------
-
 
 GIF
 
@@ -46,12 +63,9 @@ GIF
 6. when contact
 7. when logout
 
-
 --------
 
-------
 AUTH
-
 
 make: delete account function
 
@@ -61,13 +75,13 @@ make: edit resume function
 
 CSS
 
+!! match all screen sizes
 
 add: options for fonts on <resumetable>
 add: options for colors on <resumetable>
 fix: display the wanted favicon
 
 -----------------------
-
 
 ===================
 
