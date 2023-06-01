@@ -33,11 +33,9 @@ const Dashboard = () => {
 
   const [cv, setCv] = useState([]);
   const [user, loading, error] = useAuthState(auth);
+
   const [name, setName] = useState("");
   const navigate = useNavigate();
-
-  const { widthSize, heightSize } = useWindowSize();
-
 
   const navigateToErrorNoAccount = () => {
     navigate("/errorNoAccount");
@@ -57,7 +55,6 @@ const Dashboard = () => {
       const doc = await getDocs(q);
       const data = doc.docs[0];
       setName(data);
-      console.log(data);
     } catch (err) {
       console.error(err);
       alert("An error occured while fetching user data");
@@ -66,7 +63,7 @@ const Dashboard = () => {
 
   const getCv = async () => {
 
-    const privateCollection = collection(firestoreDB, `${user.email}` );
+    const privateCollection = collection(firestoreDB, `${user.email}`, "00000Data" );
 
     await getDocs(privateCollection).then(response => {
         
@@ -76,12 +73,8 @@ const Dashboard = () => {
             key: doc.id
         })) 
         setCv(displayResumes);
-        console.log(displayResumes.info.userName);
+        console.log(displayResumes[0].info.userName);
         console.log("successfully set all docs");
-        // render that as a components in map !
-        // console.log(displayResumes[1].info);
-        // console.log(`the age value is ${displayResumes[1].info.age}` );
-        
     })
     .catch(error => console.log(error)); 
 }
@@ -134,3 +127,5 @@ const Dashboard = () => {
 }
 
 export default Dashboard;
+
+// const { widthSize, heightSize } = useWindowSize();
