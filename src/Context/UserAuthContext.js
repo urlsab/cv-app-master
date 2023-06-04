@@ -8,12 +8,20 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 
+import { collection, getDocs, getDoc } from "firebase/firestore";
+
+import { firestoreDB } from "../firestoreConfig/firestoreConfig";
+
+import { useAuthState } from "react-firebase-hooks/auth";
+
 import { auth } from "../firestoreConfig/firestoreConfig";
 
-export const userAuthContext = createContext();
+const userAuthContext = createContext();
 
 export function UserAuthContextProvider({ children }) {
   const [user, setUser] = useState({});
+  const [userData] = useAuthState(auth);
+  const [cv, setCv] = useState([]);
 
   function logIn(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
@@ -29,6 +37,25 @@ export function UserAuthContextProvider({ children }) {
     return signInWithPopup(auth, googleAuthProvider);
   }
 
+  async function getCv() {
+
+    const privateCollection = collection(firestoreDB, `${userData.email}` );
+
+    await getDocs(privateCollection).then(response => {
+        
+        const displayResumes = response.docs.map(doc => ({
+            info: doc.data(),
+            id: doc.id,
+            key: doc.id
+        })) 
+        setCv(displayResumes);
+        console.log(displayResumes[0].info.userName);
+        console.log("successfully set all cv's");
+        
+    })
+    .catch(error => console.log(error)); 
+}
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
       console.log("Auth", currentuser);
@@ -42,7 +69,7 @@ export function UserAuthContextProvider({ children }) {
 
   return (
     <userAuthContext.Provider
-      value={{ user, logIn, signUp, logOut, googleSignIn }}
+      value={{ user, userData, cv, logIn, signUp, logOut, googleSignIn, getCv }}
     >
       {children}
     </userAuthContext.Provider>

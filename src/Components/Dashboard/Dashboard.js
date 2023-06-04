@@ -127,5 +127,3 @@ const Dashboard = () => {
 }
 
 export default Dashboard;
-
-// const { widthSize, heightSize } = useWindowSize();

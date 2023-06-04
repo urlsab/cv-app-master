@@ -25,6 +25,7 @@ Please update the following components: RevealBase
 ------
 
 logout components: maybe add dynamic name "goodbey {userName}" 
+- use local storage as a soulution
 
 
 -------------

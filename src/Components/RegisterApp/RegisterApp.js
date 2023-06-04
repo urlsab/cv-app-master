@@ -9,8 +9,12 @@ import {  createUserWithEmailAndPassword  } from 'firebase/auth';
 import { auth } from "../../firestoreConfig/firestoreConfig"
 import { firestoreDB } from "../../firestoreConfig/firestoreConfig";
 
+import { getAuth } from "firebase/auth";
+
 import { initialPassword } from "../../utils/passwordsObject";
 import { useAuthState } from "react-firebase-hooks/auth";
+
+import EntryNavbar from '../EntryNavbar/EntryNavbar';
 
 import TextField from '@mui/material/TextField';
 import { Button } from "@mui/material";
@@ -25,6 +29,8 @@ import InputAdornment from '@mui/material/InputAdornment';
 import EmailIcon from '@mui/icons-material/Email';
 import PasswordIcon from '@mui/icons-material/Password';
 
+import HomeIcon from '@mui/icons-material/Home';
+
 import emailjs from '@emailjs/browser';
 
 const RegisterApp = () => {
@@ -32,13 +38,15 @@ const RegisterApp = () => {
     const form = useRef();
     const navigate = useNavigate();
 
+    const curAuth = getAuth();
+
     const [user] = useAuthState(auth);
     const [firstName, setFirstName] = useState('');
     const [emailAdd, setEmailAdd] = useState('');
     const [rePassword, setRePassword] = useState('');
 
     const navigateToSignIn = () => {
-        navigate("/");
+        navigate("/login");
     }
 
     // const sendToEmail = (e) => {
@@ -85,16 +93,22 @@ const RegisterApp = () => {
 
         e.preventDefault();
 
-        await createUserWithEmailAndPassword(auth, emailAdd, rePassword)
+        console.log(curAuth, emailAdd, rePassword);
+
+        await createUserWithEmailAndPassword(curAuth, emailAdd, rePassword)
 
         // hash of "hesed2emet1" = 'UkVEQUNURUQ=' , UkVEQUNURUQ=
         .then((userCredential) => {
             let userData = userCredential.user;
-            userData.displayName = rePassword;
+
+            
+
+            userData.displayName = firstName;
             userData.phoneNumber = firstName;
             
             console.log(auth);
-            console.log(userData)
+            console.log(userData);
+            
             console.log(`the user password is: ${rePassword} `);
             console.log(`displayName:${userData.displayName}`);
             console.log(`phoneNumber:${userData.phoneNumber}`);
@@ -115,11 +129,14 @@ const RegisterApp = () => {
     //   e.preventDefault();
       const usersCollection = collection(firestoreDB, `${emailAdd}`);
       
-      await setDoc(doc(usersCollection, "firstData"), {thePassword: rePassword, userName: firstName})
+      // add AAA to aviod render user name at /dashboard from cv[0] array 
+      await setDoc(doc(usersCollection, "00000Data"), {thePassword: rePassword, userName: firstName})
         .then(() => {
             // console.log(initialPassword.objectPassword.thePassword);
             console.log("set password as a collection successfully");
+            
             // navigate("/");
+            
         })
 
         .catch(error => {
@@ -143,25 +160,40 @@ const RegisterApp = () => {
             console.log(result.text);
             console.log(result.status);
             console.log(result);
-            navigate("/");
+            navigate("/login");
         })
 
         .catch((error) => {
             console.log(error.text);
             console.log("error from emailjs function")
         });
+
+        const userArray = [firstName];
+
+        const users = localStorage.setItem('userName', JSON.stringify(userArray));
+        console.log(users);
+
+        const userData = JSON.parse(localStorage.getItem('userName'));
+        console.log(userData);
+
+        const saveUserNameLoacl = localStorage.setItem(emailAdd, JSON.stringify(firstName));
+        console.log(saveUserNameLoacl);
         
     }
 
     return (
 
-        // <>
+        <>
+
+        <EntryNavbar/>
+
+        {/* <Fade><a className="homeStyle" href="/"><HomeIcon/></a></Fade> */}
     
-            <div className="mainContainer">
+            <div className="containerRegiter">
 
                 <div className="loginForm">
-                
-                    <Fade left dalay={300}>
+
+                    <Fade top dalay={300}>
                        
                         <form ref={form} onSubmit={onSubmitHandler}  className="loginFormContainer">                    
 
@@ -224,14 +256,14 @@ const RegisterApp = () => {
                 </div>
 
                 <div className="textContainer">
-                    <Fade bottom delay={1200}> <h1> <b className="textStyle"> SIGN UP</b> </h1> </Fade>
-                    <Fade bottom delay={2100}> <h1> <b className="textStyle"> FOR FREE </b> </h1> </Fade>
-                    <Fade bottom delay={3000}> <h1> <b className="textStyle">CREATION</b> 🎨 </h1> </Fade>
+                    <Fade left delay={600}> <h1> <b className="textStyle"> SIGN UP</b> </h1> </Fade>
+                    <Fade left delay={900}> <h1> <b className="textStyle"> FOR FREE </b> </h1> </Fade>
+                    <Fade left delay={1200}> <h1> <b className="textStyle">CREATION</b> 🎨 </h1> </Fade>
                 </div>
 
             </div>
              
-        // </>
+        </>
 
     );
 
