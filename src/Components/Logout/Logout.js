@@ -35,6 +35,10 @@ const Logout = () => {
   const navigate = useNavigate();
 
   const navigateToHome = () => {
+
+    // avoid user name index in local storage + memory waste
+    localStorage.clear();
+
     navigate("/");
   }
 
@@ -70,19 +74,22 @@ const renderFake = () => {
 
 useEffect(() => {
   
-  console.log(localStorage);
+  console.log(window.localStorage);
   //getCv();
 }, [user, loading, error, info]);
 
   return (
     <div className="logoutContainer">
+
+      
       
       <Fade bottom delay={300}> <h1> <b className='goodBeyStyle'> YOUR GREAT CV - OUR SUCCESS </b> </h1> </Fade>
 
       {/* maybe add dynamic name "goodbey {userName}" */}
 
-      {cv.map((el, i) => <b key={cv[i]} className='styleName'> {cv[i].info.userName} </b>)}
-      <Fade bottom delay={1100}> <h1 > <b className='goodBeyStyle'>  SEE YOU SOON  </b> 🤙 </h1>  </Fade>
+      {/* {cv.map((el, i) => <b key={cv[i]} className='styleName'> {cv[i].info.userName} </b>)} */}
+      
+      <Fade bottom delay={1100}> <h1 > <b className='goodBeyStyle'>  SEE YOU SOON {localStorage.getItem(localStorage.key(0))}  </b> 🤙 </h1>  </Fade>
       {renderFake()} 
       
       <Fade delay={900}> <Button sx={{m:3}} startIcon={<HomeIcon/>} onClick={navigateToHome} color="primary" variant="contained"> home </Button> </Fade>

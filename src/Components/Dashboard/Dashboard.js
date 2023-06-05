@@ -75,6 +75,16 @@ const Dashboard = () => {
         setCv(displayResumes);
         console.log(displayResumes[0].info.userName);
         console.log("successfully set all docs");
+
+      // setter
+      localStorage.setItem("userName",displayResumes[0].info.userName);
+
+      // getter
+      localStorage.getItem(displayResumes[0].info.userName);
+
+      console.log(localStorage);
+
+      console.log("save user name on local storage successfully");
     })
     .catch(error => console.log(error)); 
 }
