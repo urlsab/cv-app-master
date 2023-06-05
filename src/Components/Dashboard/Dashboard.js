@@ -8,20 +8,11 @@ import { useNavigate } from "react-router-dom";
 import { firestoreDB } from "../../firestoreConfig/firestoreConfig";
 import { auth } from "../../firestoreConfig/firestoreConfig";
 
-import useWindowSize from 'react-use/lib/useWindowSize';
+import { query, collection, getDocs, where } from "firebase/firestore";
 
-import UseAnimations from "react-useanimations";
-import visibility from 'react-useanimations/lib/visibility';
-
-import { query, collection, getDocs, where, getDoc, doc } from "firebase/firestore";
-import Navbar from "../Navbar/Navbar";
-
-import Pulse from 'react-reveal/Pulse';
-import RubberBand from 'react-reveal/RubberBand';
 import Flip from 'react-reveal/Flip';
 import Jump from 'react-reveal/Jump';
 import Fade from 'react-reveal/Fade';
-import Flash from 'react-reveal/Flash';
 
 import { Button } from "@mui/material";
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
@@ -37,9 +28,9 @@ const Dashboard = () => {
   const [name, setName] = useState("");
   const navigate = useNavigate();
 
-  const navigateToErrorNoAccount = () => {
-    navigate("/errorNoAccount");
-  }
+  // const navigateToErrorNoAccount = () => {
+  //   navigate("/errorNoAccount");
+  // }
 
   const navigateToCreateResume = () => {
     navigate("/postInputs")
@@ -103,8 +94,6 @@ const Dashboard = () => {
     <>
       
       <div className="dasboardContainer">
-
-      {/* width={widthSize} height={heightSize} */}
 
         <Conffeti className="conffetiStyle" />      
 

@@ -1,5 +1,5 @@
 import "./AllResumes.css";
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 
 import { collection, deleteDoc, getDocs, doc, updateDoc } from "firebase/firestore";
 import { useToggle } from "../../utils/useToggle";
@@ -14,7 +14,7 @@ import { Button } from "@mui/material";
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import DeleteIcon from '@mui/icons-material/Delete';
-// import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+
 import EditIcon from '@mui/icons-material/Edit';
 import DownloadIcon from '@mui/icons-material/Download';
 
@@ -24,27 +24,18 @@ import LightSpeed from 'react-reveal/LightSpeed';
 import { firestoreDB } from "../../firestoreConfig/firestoreConfig";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firestoreConfig/firestoreConfig";
-// import { pdf } from "@progress/kendo-drawing";
+
 
 const AllResumes = () => {
-
-    const [printIndex, setPrintIndex] = useState(-1);
-    const pdfExportRef = useRef(null);
 
     const [cv, setCv] = useState([]);
     const [toggle, setToggle] = useToggle();
     
     const [user] = useAuthState(auth);
 
+    // React.createRef - avoid hooks rules
     const pdfExportComponent = cv.map((i) => React.createRef(i));
     
-    const handleExportWithComponent = (data) => {
-        pdfExportComponent.current.save();
-        console.log(data);
-    };
-
-    // const pdfExportComponent = cv.map((ref) => pdfExportRef);
-
     const exportPDF = (i) => {
         console.log(pdfExportComponent[i]);
         pdfExportComponent[i].current.save();
@@ -107,7 +98,7 @@ const AllResumes = () => {
                             <li className="liStyle" key={el.id}>
                                 <PDFExport key={el.id} ref={pdfExportComponent[i]}>
                                 <p key={cv[i]}>{cv[i].info.fullName}</p>
-                                    <p>{cv[i].info.gpa}</p>
+                                    
                                     <p>{cv[i].info.userName} </p>
                                 
                                 </PDFExport>
@@ -152,9 +143,7 @@ const AllResumes = () => {
                                         variant="contained"
                                         onClick={ () => { handleDeleteDoc(el.id); }}>Delete
                                         
-                                    </Button>
-
-                                    
+                                    </Button>    
 
                                 </div>
 
@@ -166,8 +155,6 @@ const AllResumes = () => {
     )         
 }
         
-  
-
   return (
 
     <>
@@ -189,16 +176,14 @@ const AllResumes = () => {
             
                     <div className="hideButtonStyle">
 
-                        <Fade delay={300}>  <Button sx={{m:3}} size="large" startIcon={<VisibilityOffIcon/>} variant="contained" color="secondary" onClick={setToggle}> Hide collection  </Button> </Fade>
+                        <Fade delay={300}>  <Button sx={{m:3}} size="large" startIcon={<VisibilityOffIcon/>} variant="contained" color="secondary" onClick={setToggle}> Hide cvs  </Button> </Fade>
 
                         {renderFake()}
 
                     </div>
 
-                    : <Fade delay={300}>  <Button sx={{m:3}} startIcon={<VisibilityIcon/>} size="large" variant="contained" color="warning" onClick={ () => { setToggle(); getCv(); } }> Show collection  </Button> </Fade>
+                    : <Fade delay={300}>  <Button sx={{m:3}} startIcon={<VisibilityIcon/>} size="large" variant="contained" color="warning" onClick={ () => { setToggle(); getCv(); } }> Show cvs  </Button> </Fade>
                     
-   
-
                 }
 
         </div>
