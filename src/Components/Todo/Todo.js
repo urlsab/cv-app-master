@@ -13,6 +13,15 @@ const Todo = () => {
 
   const [text, setText] = useState('');
 
+//   const inputRef = inputList.map((i) => React.createRef(i));
+
+//   const inputRefCurrent = (i) => {
+//     console.log(inputRef[i]);
+//     inputRef[i].current.save();
+// };
+
+// onClick={() => inputRefCurrent(i)}
+
   const handleChanges = (event, i) => {
     setText(event.target.value);
   };
@@ -41,6 +50,11 @@ const Todo = () => {
   // handle input change
   const handleInputChange = (e, index) => {
     const { name, value } = e.target;
+
+    handleKeyPress(e, index);
+
+    // inputRef[index].current.save();
+
     const list = [...inputList];
     list[index][name] =  value;
     setInputList(list);
@@ -49,6 +63,9 @@ const Todo = () => {
   // handle click event of the Remove button
   const handleRemoveClick = (index) => {
     const list = [...inputList];
+
+    // inputRef[index].current.save();
+
     list.splice(index, 1);
     console.log(list[index]);
     setInputList(list);
@@ -58,7 +75,10 @@ const Todo = () => {
   // handle click event of the Add button
   const handleAddClick = (index) => {
     const list = [...inputList];
-    list.splice(index + 1 , 0, { firstName: '' });
+
+    // inputRef[index].current.save();
+
+    list.splice(index + 1 , 0, { firstName: ''});
     console.log(list[index]);
     setInputList(list);
   };
@@ -75,12 +95,35 @@ const Todo = () => {
             onMouseLeave={(e) => hideButton(e, i)}
           >
 
+            <input
+              key={i}
+              name="firstName"
+              className="inputStyle"
+              placeholder="Header"
+              value={x.firstName}
+              onChange={(e) => handleInputChange(e, i)}
+            />
+
+            <div 
+                key={i + 2} 
+                
+                // ref={inputRef[i]}
+                // placeholder="content list"
+                suppressContentEditableWarning={true} 
+                contentEditable={true} 
+                
+                onChange={(e) => { handleInputChange(e, i); }}  
+                className="listBullet" > 
+              </div>
+
+
             <div className="btn-box">
               {/* {inputList.length - 1 === i && ( */}
               <button 
                 style={{backgroundColor:"green", width:"10px", height:"10px"}} 
                 key={i + 3} className={x.display} 
                 onClick={() => handleAddClick(i)}
+                // onClick={() => inputRefCurrent(i)}
               >
                 
               </button>
@@ -95,9 +138,10 @@ const Todo = () => {
                   
                 </button>
               )}
+
               {/* suppressContentEditableWarning={true}  - aviod react warrnig*/}
               {/* contentEditable={true} - aloow to write text inside this div */}
-              <div key={i + 2} suppressContentEditableWarning={true} contentEditable={true} onChange={(e) => { handleInputChange(e, i); }}   className="listBullet"   > </div>
+              
   
             {/* <TextField
               key={i + 2}
@@ -119,8 +163,8 @@ const Todo = () => {
               onChange={(e) => { handleInputChange(e, i); }}
             /> */}
 
-          {/* {short solution for bullet list} */}
-          {/* contenteditable - allow to write content like input tag */}
+            {/* {short solution for bullet list} */}
+            {/* contenteditable - allow to write content like input tag */}
                      
             </div>
           </div>
@@ -131,39 +175,3 @@ const Todo = () => {
 };
 
 export default Todo;
-
-/*
-
-import React, { useState } from 'react';
-
-const BulletTextarea = () => {
-  const [content, setContent] = useState('');
-
-  const handleChange = (event) => {
-    setContent(event.target.value);
-  };
-
-  const renderContentWithBullets = () => {
-    // Replace lines starting with a bullet character with <ul> and <li>
-    const lines = content.split('\n');
-    const bulletLines = lines.map((line, index) => {
-      if (line.trim().startsWith('•')) {
-        return <li key={index}>{line.substring(1)}</li>;
-      }
-      return line;
-    });
-
-    return <ul>{bulletLines}</ul>;
-  };
-
-  return (
-    <div>
-      <textarea value={content} onChange={handleChange} />
-      <div>{renderContentWithBullets()}</div>
-    </div>
-  );
-};
-
-export default BulletTextarea;
-
-*/
