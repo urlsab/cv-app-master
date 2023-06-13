@@ -1,78 +1,10 @@
-.box {
-  /* margin-bottom: 1px; */
+.wrapTodo {
   /* background-color: aqua; */
-  /* padding-right: 2px; */
-  width: fit-content;
-}
-
-.btn-box {
-  width: 20px;
-  display: inline;
-  
-  /* padding-left: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-right: 10px; */
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .bulletStyle {
-  /* background-color: aqua; */
-  
   width: 420px;
-  
-}
-
-.notdisplayed {
-  display: none;
-}
-
-.displayed {
-  display: inline-block;
-}
-
-.inputStyle {
-  border: none;
-}
-
-.inputStyle:focus {
-  outline: none;
-}
-
-.grow-wrap {
-  /* easy way to plop the elements on top of each other and have them both sized based on the tallest one's height */
-  display: grid;
-}
-.grow-wrap::after {
-  /* Note the weird space! Needed to preventy jumpy behavior */
-  content: attr(data-replicated-value) " ";
-
-  /* This is how textarea text behaves */
-  white-space: pre-wrap;
-
-  /* Hidden from view, clicks, and screen readers */
-  visibility: hidden;
-}
-.grow-wrap > textarea {
-  /* You could leave this, but after a user resizes, then it ruins the auto sizing */
-  resize: none;
-
-  /* Firefox shows scrollbar on growth, you can hide like this. */
-  overflow: hidden;
-}
-.grow-wrap > textarea,
-.grow-wrap::after {
-  /* Identical styling required!! */
-  border: 1px solid black;
-  padding: 0.5rem;
-  font: inherit;
-
-  /* Place on top of each other */
-  grid-area: 1 / 1 / 2 / 2;
-}
-
-.autosize {
-  resize: none;
-  overflow: hidden;
 }
 
 /* allow to move line by enter and display bullet for every start line */
@@ -88,7 +20,91 @@
 
   /* limit the width */
   width: 420px;
- 
+}
+
+/* when type enter and move line - will display bullet */
+/* other css props not working here */
+.listBullet div {
+  display: list-item;
+}
+
+.box {
+  margin-bottom: 1px;
+  /* background-color: aqua; */
+  padding-right: 2px;
+  width: fit-content;
+}
+
+.btn-box {
+  width: 20px;
+  display: inline;
+  /* padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px; */
+}
+
+.notdisplayed {
+  display: none;
+}
+
+.displayed {
+  display: inline-block;
+}
+
+.inputStyle {
+  border: none;
+  resize: none;
+  overflow: hidden;
+  width: 420px;
+  font-size: 18px;
+}
+
+.inputStyle:focus {
+  outline: none;
+  resize: none;
+  overflow: hidden;
+}
+
+.listBullet {
+  display: list-item;
+  margin-left: 1em;
+  outline: none;
+  border: none;
+
+  /* manipulate style here */
+  font-size: 15px;
+  font-family: 'Itim';
+  margin-bottom: 20px;
+
+  /* limit the width */
+  width: 420px;
+}
+
+.listBullet input {
+  display: list-item;
+}
+
+.bulletStyle {
+  /* background-color: aqua; */
+
+  width: 420px;
+}
+
+/* allow to move line by enter and display bullet for every start line */
+.listBullet {
+  display: list-item;
+  margin-left: 1em;
+  outline: none;
+
+  /* manipulate style here */
+  font-size: 15px;
+  font-family: 'Itim';
+  margin-bottom: 20px;
+  margin-left: 17px;
+
+  /* limit the width */
+  width: 420px;
 }
 
 /* when type enter and move line - will display bullet */
