@@ -4,32 +4,20 @@ import React, { useState, useRef } from "react";
 
 import { useNavigate } from "react-router-dom";
 
-import SchoolIcon from '@mui/icons-material/School';
-
 import WorkIcon from '@mui/icons-material/Work';
+import SchoolIcon from '@mui/icons-material/School';
 
 import { addDoc, collection } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { PDFExport } from "@progress/kendo-react-pdf";
 
-import PsychologyIcon from '@mui/icons-material/Psychology';
-
 import Todo from '../Todo/Todo';
 
 import PrintIcon from '@mui/icons-material/Print';
 
-import MenuBookIcon from '@mui/icons-material/MenuBook';
-
 import TextField from '@mui/material/TextField';
 
-import Textarea from '@mui/joy/Textarea';
-
-import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
-
 import ReactToPrint from 'react-to-print';
-
-import InputAdornment from '@mui/material/InputAdornment';
-import EmailIcon from '@mui/icons-material/Email';
 
 import { firestoreDB, auth } from "../../firestoreConfig/firestoreConfig";
 import { arrInitialState } from '../../utils/arrOurState';
@@ -38,15 +26,10 @@ import { useToggle } from "../../utils/useToggle";
 
 import { Button } from "@mui/material";
 import SaveIcon from '@mui/icons-material/Save';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 
 import Fade from 'react-reveal/Fade';
 
 import DownloadIcon from '@mui/icons-material/Download';
-
-import { arrIcons } from '../../utils/allIcons';
 
 import Navbar from "../Navbar/Navbar";
 
@@ -118,27 +101,15 @@ const InputsForm = () => {
 
                         <div className='showResumeStyle'>
 
-                            
                             <PDFExport ref={pdfExportComponent}>
 
                                 <div ref={pdfExportComponent}>
 
                                     <div className="resume">
 
-                                        {/* {renderTextFields()} */}
+                                        <div className='styleNameAndTitle'>
 
-                                        <div className="grid-area name">
-
-                                            <div className='styleNameAndTitle'>
-
-                                            {/* <div className="textarea">
-                                                <Textarea
-                                                    required
-                                                    size="sm"
-                                                    placeholder="Full Name"
-                                                    resize="none"
-                                                />
-                                            </div>     */}
+                                            
                                                                                                                                
                                             <TextField
                                                 type="text"
@@ -151,10 +122,11 @@ const InputsForm = () => {
                                                 rows={2}
                                                 // onClick={addSection}
                                                 value={ourForm.objectName.fullName.toUpperCase()}
-                                            
-                                                InputProps={{style: {fontSize:22, color:"white", fontFamily:"Itim", height:"10px" ,width:"7cm"}}}
+                                                inputProps={{maxLength:30}}
+                                                InputProps={{style: {fontSize:18, color:"black", fontFamily:"Itim", height:"10px" ,width:"7cm"}}}
                                                 sx={{border: 'none',"& fieldset": { border: 'none' }, display:"block" }}
                                                 
+                                                 // .bind() for use the code of onchange also here
                                                 onChange={handleChange.bind()} 
                                                 
                                             />
@@ -172,19 +144,21 @@ const InputsForm = () => {
                                                 placeholder='Role Title'
                                                 id="outlined-multiline-flexible"
                                                 multiline
+                                                inputProps={{maxLength:20}}
                                                 
                                                 value={ourForm.objectName.jobTitle.toUpperCase()}
                                                 
-                                                InputProps={{style: {fontSize:19, color:"white", fontFamily:"Exo", height:"9px", width:"7cm"}}}
+                                                InputProps={{style: {fontSize:19, color:"black", fontFamily:"Exo", height:"9px", width:"7cm"}}}
                                                 sx={{border: 'none',"& fieldset": { border: 'none' }, display:"block", mt:1  }}
                                                 
+                                               
                                                 onChange={handleChange.bind()} 
                                                 
                                             />
 
                                             </div>
 
-                                            <div className='styleContactParagraph'>
+                                            {/* <div className='styleContactParagraph'> */}
 
                                             <TextField
                                                 type="text"
@@ -196,8 +170,8 @@ const InputsForm = () => {
                                                 multiline
                                                 
                                                 value={ourForm.objectName.email}
-                                                
-                                                InputProps={{style: {fontSize:16, color:"white", fontFamily:"Exo", height:"12px",padding:"9px", width:"7cm"}}}
+                                                inputProps={{maxLength:27}}
+                                                InputProps={{style: {fontSize:16, color:"black", fontFamily:"Exo", height:"12px",padding:"9px", width:"7cm"}}}
                                                 sx={{border: 'none',"& fieldset": { border: 'none' } }}
                                                 
                                                 onChange={handleChange.bind()} 
@@ -212,40 +186,36 @@ const InputsForm = () => {
                                                 placeholder='phone number'
                                                 id="outlined-multiline-static"
                                                 multiline
-                                                
+                                                inputProps={{maxLength:18}}
                                                 value={ourForm.objectName.phoneNumber}
                                                 
-                                                InputProps={{style: {fontSize:16, color:"white", fontFamily:"Exo", height:"11px",padding:"8px", width:"7cm"}}}
+                                                InputProps={{style: {fontSize:16, color:"black", fontFamily:"Exo", height:"11px",padding:"8px", width:"7cm"}}}
                                                 sx={{border: 'none',"& fieldset": { border: 'none' }, mt:0.5 }}
                                                 
                                                 onChange={handleChange.bind()} 
                                                 
                                             />
 
-                                            
-
-                                            </div>
+                                           {/* </div> */}
 
                                             
 
                                             {/* <h5 style={{marginLeft:"10px"}}><SchoolIcon sx={{mr:1, height:"15px", width:"15px"}} /> EDUCATION</h5> */}
+                                                                                
+                                        
+
+                                        
+
+                                            <div className="grid-area work">
+                                            <h5> <WorkIcon sx={{mr:1, height:"15px", width:"15px"}} /> WORK EXPERIENCE </h5>
+                                            <Todo/>
                                             
-                                    
                                         </div>
-
-
-                                        <div className="grid-area work">
-                                        <h5> <WorkIcon sx={{mr:1, height:"15px", width:"15px"}} /> WORK EXPERIENCE </h5>
-                                        <Todo/>
-                                            
-                                        </div>
-
 
                                     </div> 
 
                                 </div>
 
-                            
                             </PDFExport>
 
                             <Fade delay={800}>
@@ -292,7 +262,7 @@ const InputsForm = () => {
                             
                         </div>
                     
-                        </Fade>
+                    </Fade>
                 
             </div>
 
@@ -302,56 +272,4 @@ const InputsForm = () => {
 
 }
 
-export default InputsForm;
-
-//const renderTextFields = () => {
-    //     return (
-    //         arrState.map((i) =>
-    //             <TextField
-    //                 type="text"
-    //                 name={i}
-    //                 // label="Your Message"
-    //                 required 
-    //                 placeholder={i}
-    //                 id="outlined-multiline-static"
-    //                 multiline
-                    
-    //                 value={ourForm.objectName[i]}
-    //                 // maxRows={3}
-    //                 InputProps={{style: {fontSize:20, color:"black", fontFamily:"Itim", backgroundColor:"green"}}}
-    //                 sx={{border: 'none',"& fieldset": { border: 'none' } }}
-                    
-    //                 onChange={handleChange.bind()} 
-    //                 // rows={4}
-    //             />
-    //         )
-    //     )
-    // }
-
-    // const renderInputs = () => {
-
-    //     return (
-    //         arrState.map((i)  =>
-    //             (
-    //                 <TextField
-    //                     required="required"
-    //                     key={i}
-    //                     type="text"
-    //                     name={i}
-    //                     placeholder={i}
-    //                     // maybe comment that - for long descriptions of work experience e.g.
-    //                     maxLength={40}
-    //                     value={ourForm.objectName[i]}
-    //                     onChange={handleChange}
-    //                     size="small"
-                        
-    //                     InputProps={{startAdornment: (
-    //                         <InputAdornment position="start">
-    //                             {arrIcons[i]}
-    //                         </InputAdornment>
-    //                     )}}  
-    //                 />
-    //             )
-    //         )
-    //     );   
-    // }
+export default InputsForm;    

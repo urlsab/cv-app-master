@@ -87,6 +87,7 @@ const Todo = () => {
     <div>
       {inputList.map((x, i) => {
         return (
+          <div className='wrapTodo' >
           <div
             key={i + 1}
             className="box"
@@ -95,49 +96,69 @@ const Todo = () => {
             onMouseLeave={(e) => hideButton(e, i)}
           >
 
-            <input
-              key={i}
-              name="firstName"
-              className="inputStyle"
-              placeholder="Header"
-              value={x.firstName}
-              onChange={(e) => handleInputChange(e, i)}
-            />
-
-            <div 
-                key={i + 2} 
-                
-                // ref={inputRef[i]}
-                // placeholder="content list"
-                suppressContentEditableWarning={true} 
-                contentEditable={true} 
-                
-                onChange={(e) => { handleInputChange(e, i); }}  
-                className="listBullet" > 
-              </div>
-
-
             <div className="btn-box">
               {/* {inputList.length - 1 === i && ( */}
               <button 
-                style={{backgroundColor:"green", width:"10px", height:"10px"}} 
+                style={{backgroundColor:"transparent",color:"green", width:"20px", height:"20px", border:"none"}} 
                 key={i + 3} className={x.display} 
                 onClick={() => handleAddClick(i)}
                 // onClick={() => inputRefCurrent(i)}
               >
-                
+                +
               </button>
 
               {inputList.length !== 1 && (
                 <button
                   key={i + 4}
-                  style={{backgroundColor:"red", width:"10px", height:"10px"}} 
+                  style={{backgroundColor:"transparent",color:"red", width:"20px", height:"20px", border:"none"}} 
                   className={x.display}
                   onClick={() => handleRemoveClick(i)}
                 >
-                  
+                  x
                 </button>
               )}
+
+            <div key={i  + 7}>
+
+              <input
+                // key={i + 9}
+                name="firstName"
+                height="100px"
+                width="420px"
+                maxLength="40"
+                className="inputStyle"
+                placeholder="Role | Company name"
+                value={x.firstName}
+                onChange={(e) => handleInputChange(e, i)}
+              />
+
+            
+
+            {/* <input
+              key={i}
+              name="firstName"
+              className="inputStyle"
+              placeholder="Duration dates | Location"
+              value={x.firstName}
+              onChange={(e) => handleInputChange(e, i)}
+            /> */}
+
+              <div key={i + 6 }>
+                <div key={ i + 9}
+            
+                  // ref={inputRef[i]}
+                  // placeholder="content list"
+                  suppressContentEditableWarning={true} 
+                  contentEditable={true} 
+                  
+                  onChange={(e) => { handleInputChange(e, i); }}  
+                  className="listBullet" > 
+                </div>
+
+              </div>
+              
+            </div>
+
 
               {/* suppressContentEditableWarning={true}  - aviod react warrnig*/}
               {/* contentEditable={true} - aloow to write text inside this div */}
@@ -167,6 +188,7 @@ const Todo = () => {
             {/* contenteditable - allow to write content like input tag */}
                      
             </div>
+          </div>
           </div>
         );
       })}
