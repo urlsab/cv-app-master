@@ -136,7 +136,7 @@ const InputsForm = () => {
                                                 <span className="textarea" role="textbox" contentEditable="true"></span>
                                             </p> */}
 
-                                            <TextField
+                                            {/* <TextField
                                                 type="text"
                                                 name="jobTitle"
                                                 
@@ -154,13 +154,13 @@ const InputsForm = () => {
                                                
                                                 onChange={handleChange.bind()} 
                                                 
-                                            />
+                                            /> */}
 
                                             </div>
 
                                             {/* <div className='styleContactParagraph'> */}
 
-                                            <TextField
+                                            {/* <TextField
                                                 type="text"
                                                 name="email"
                                                 
@@ -194,7 +194,7 @@ const InputsForm = () => {
                                                 
                                                 onChange={handleChange.bind()} 
                                                 
-                                            />
+                                            /> */}
 
                                            {/* </div> */}
 
