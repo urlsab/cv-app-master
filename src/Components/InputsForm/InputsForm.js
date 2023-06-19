@@ -40,6 +40,9 @@ const InputsForm = () => {
     const [user, loading, error] = useAuthState(auth);
     const [ourForm, setOurForm] = useState(initialState);
     const [toggle, setToggle] = useToggle();
+    const [text, setText] = useState('');
+
+    const [inputList, setInputList] = useState([{ firstName: '', display: 'notdisplayed'}]);
 
     const [fullName, setFullname] = useState('');
 
@@ -51,6 +54,26 @@ const InputsForm = () => {
         pdfExportComponent.current.save();
         console.log(data);
     };
+
+    const handleKeyPress = (event, index) => {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          setText((prevText) => prevText + '\n\u2022 ');
+        }
+      };
+
+    // handle input change
+  const handleInputChange = (e, index) => {
+    const { name, value } = e.target;
+
+    // handleKeyPress(e, index);
+
+    // inputRef[index].current.save();
+
+    const list = [...inputList];
+    list[index][name] =  value;
+    setInputList(list);
+  };
 
     const handleAddResume = (event) => {
         
@@ -109,8 +132,35 @@ const InputsForm = () => {
 
                                         <div className='styleNameAndTitle'>
 
+                                            <div className='square'>
+
+                                            <div className='firstGroup'>
+                                                <div
                                             
-                                                                                                                               
+                                                // ref={inputRef[i]}
+                                                // placeholder="content list"
+                                                suppressContentEditableWarning={true} 
+                                                contentEditable={true} 
+                                                style={{width:'6cm', fontSize:"20px"}}
+                                                onChange={(e) => { handleInputChange(e); }}  
+                                                className="listBullet" > 
+                                                Full Name 
+                                                </div>
+
+                                                <div
+                                            
+                                                // ref={inputRef[i]}
+                                                // placeholder="content list"
+                                                suppressContentEditableWarning={true} 
+                                                contentEditable={true} 
+                                                style={{width:'6cm', fontSize:"20px", fontFamily:"sans-serif"}}
+                                                onChange={(e) => { handleInputChange(e); }}  
+                                                className="listBullet" > 
+                                                Role
+                                                </div>
+
+                                            </div>
+
                                             <TextField
                                                 type="text"
                                                 name="fullName"
@@ -119,48 +169,39 @@ const InputsForm = () => {
                                                 placeholder='Full Name'
                                                 id="outlined-multiline-flexible"
                                                 multiline
-                                                rows={2}
+                                                rows={1}
                                                 // onClick={addSection}
                                                 value={ourForm.objectName.fullName.toUpperCase()}
+                                                inputProps={{maxLength:20}}
+                                                InputProps={{style: {fontSize:18, color:"black", fontFamily:"Itim", height:"10px" ,width:"7cm"}}}
+                                                sx={{border: 'none',"& fieldset": { border: 'none' }, display:"block" }}
+                                                
+                                                 // .bind() for use the code of onchange also here
+                                                onChange={handleChange.bind()} 
+                                            />
+
+                                            <TextField
+                                                type="text"
+                                                name="jobTitle"
+                                                rows={1}
+                                                required 
+                                                placeholder='Role'
+                                                id="outlined-multiline-flexible"
+                                                multiline
+                                                
+                                                // onClick={addSection}
+                                                value={ourForm.objectName.jobTitle.toUpperCase()}
                                                 inputProps={{maxLength:30}}
                                                 InputProps={{style: {fontSize:18, color:"black", fontFamily:"Itim", height:"10px" ,width:"7cm"}}}
                                                 sx={{border: 'none',"& fieldset": { border: 'none' }, display:"block" }}
                                                 
                                                  // .bind() for use the code of onchange also here
                                                 onChange={handleChange.bind()} 
-                                                
                                             />
 
-                                            {/* <p>
-                                                
-                                                <span className="textarea" role="textbox" contentEditable="true"></span>
-                                            </p> */}
+                                            
 
-                                            {/* <TextField
-                                                type="text"
-                                                name="jobTitle"
-                                                
-                                                required 
-                                                placeholder='Role Title'
-                                                id="outlined-multiline-flexible"
-                                                multiline
-                                                inputProps={{maxLength:20}}
-                                                
-                                                value={ourForm.objectName.jobTitle.toUpperCase()}
-                                                
-                                                InputProps={{style: {fontSize:19, color:"black", fontFamily:"Exo", height:"9px", width:"7cm"}}}
-                                                sx={{border: 'none',"& fieldset": { border: 'none' }, display:"block", mt:1  }}
-                                                
-                                               
-                                                onChange={handleChange.bind()} 
-                                                
-                                            /> */}
-
-                                            </div>
-
-                                            {/* <div className='styleContactParagraph'> */}
-
-                                            {/* <TextField
+                                            <TextField
                                                 type="text"
                                                 name="email"
                                                 
@@ -168,14 +209,15 @@ const InputsForm = () => {
                                                 placeholder='email'
                                                 id="outlined-multiline-static"
                                                 multiline
+                                                inputProps={{maxLength:27}}
                                                 
                                                 value={ourForm.objectName.email}
-                                                inputProps={{maxLength:27}}
-                                                InputProps={{style: {fontSize:16, color:"black", fontFamily:"Exo", height:"12px",padding:"9px", width:"7cm"}}}
-                                                sx={{border: 'none',"& fieldset": { border: 'none' } }}
                                                 
+                                                InputProps={{style: {fontSize:16, color:"black", fontFamily:"Exo", height:"9px", width:"7cm"}}}
+                                                sx={{border: 'none',"& fieldset": { border: 'none' }, mt:1  }}
+                                                
+                                               
                                                 onChange={handleChange.bind()} 
-                                                
                                             />
 
                                             <TextField
@@ -186,15 +228,37 @@ const InputsForm = () => {
                                                 placeholder='phone number'
                                                 id="outlined-multiline-static"
                                                 multiline
-                                                inputProps={{maxLength:18}}
+                                                inputProps={{maxLength:27}}
+                                                
                                                 value={ourForm.objectName.phoneNumber}
                                                 
-                                                InputProps={{style: {fontSize:16, color:"black", fontFamily:"Exo", height:"11px",padding:"8px", width:"7cm"}}}
-                                                sx={{border: 'none',"& fieldset": { border: 'none' }, mt:0.5 }}
+                                                InputProps={{style: {fontSize:16, color:"black", fontFamily:"Exo", height:"9px", width:"7cm"}}}
+                                                sx={{border: 'none',"& fieldset": { border: 'none' }, display:"block"  }}
                                                 
+                                               
                                                 onChange={handleChange.bind()} 
+                                            />
+
+                             
+
+
+                                            </div>
+                                            
+                                                                                                                               
+                                            
+
+                                            {/* <p>
                                                 
-                                            /> */}
+                                                <span className="textarea" role="textbox" contentEditable="true"></span>
+                                            </p> */}
+
+                                            
+
+                                            </div>
+
+                                            {/* <div className='styleContactParagraph'> */}
+
+                                            
 
                                            {/* </div> */}
 

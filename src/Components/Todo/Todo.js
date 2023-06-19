@@ -152,7 +152,7 @@ const Todo = () => {
                   contentEditable={true} 
                   
                   onChange={(e) => { handleInputChange(e, i); }}  
-                  className="listBullet" > 
+                  className="listBulletRight" > 
                 </div>
 
               </div>
