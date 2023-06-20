@@ -122,159 +122,123 @@ const InputsForm = () => {
 
                         <Fade delay={400}>
 
-                        <div className='showResumeStyle'>
-
                             <PDFExport ref={pdfExportComponent}>
 
                                 <div ref={pdfExportComponent}>
 
                                     <div className="resume">
 
-                                        <div className='styleNameAndTitle'>
+                                        <div className='grid-area name'>
 
                                             <div className='square'>
 
-                                            <div className='firstGroup'>
-                                                <div
-                                            
-                                                // ref={inputRef[i]}
-                                                // placeholder="content list"
+                                                <div className='firstGroup'>
+
+                                                <TextField
+                                                    type="text"
+                                                    name="email"
+                                                    
+                                                    required 
+                                                    placeholder='email'
+                                                    id="outlined-multiline-static"
+                                                    multiline
+                                                    inputProps={{maxLength:27}}
+                                                    
+                                                    value={ourForm.objectName.email}
+                                                    
+                                                    InputProps={{style: {fontSize:16, color:"black", fontFamily:"Exo", height:"9px", width:"7cm"}}}
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                    
+                                                
+                                                    onChange={handleChange.bind()} 
+                                                />
+
+                                                <TextField
+                                                    type="text"
+                                                    name="phoneNumber"
+                                                    
+                                                    required 
+                                                    placeholder='phone number'
+                                                    id="outlined-multiline-static"
+                                                    multiline
+                                                    inputProps={{maxLength:27}}
+                                                    
+                                                    value={ourForm.objectName.phoneNumber}
+                                                    
+                                                    InputProps={{style: {fontSize:16, color:"black", fontFamily:"Exo", height:"9px", width:"7cm"}}}
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' } }}
+                                                    
+                                                
+                                                    onChange={handleChange.bind()} 
+                                                />
+
+                                                    {/* <div
+                                                        data-text="Full name"
+                                                        data-value={ourForm.objectName.fullName}
+                                                        suppressContentEditableWarning={true} 
+                                                        contentEditable={true} 
+                                                        style={{width:'6cm', fontSize:"20px", marginBottom:"7px"}}
+                                                        onChange={(e) => { handleInputChange.bind(e); }}  
+                                                        className="listBullet" > 
+                                                    </div>
+
+                                                    <div
+                                                        data-text="Role"
+                                                        data-value={6}
+                                                        suppressContentEditableWarning={true} 
+                                                        contentEditable={true} 
+                                                        style={{width:'6cm', fontSize:"20px", fontFamily:"sans-serif"}}
+                                                        onChange={(e) => { handleInputChange.bind(e); }}  
+                                                        className="listBullet" > 
+                                                    </div> */}
+
+                                                </div>
+
+                                                
+
+                                            </div>
+
+                                            {/* after square */}
+
+                                            <h4 style={{marginLeft:"10px"}}><SchoolIcon sx={{mr:1, height:"15px", width:"15px"}} /> EDUCATION</h4>
+                   
+                                            <TextField
+                                                    type="text"
+                                                    name="schoolNameAndlocation"
+                                                    
+                                                    required 
+                                                    placeholder='schoolNameAndlocation'
+                                                    id="outlined-multiline-static"
+                                                    multiline
+                                                    inputProps={{maxLength:27}}
+                                                    
+                                                    value={ourForm.objectName.schoolNameAndlocation}
+                                                    
+                                                    InputProps={{style: {fontSize:16, color:"black", fontFamily:"Exo", height:"9px", width:"7cm"}}}
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }, display:"in" }}
+                                                    
+                                                
+                                                    onChange={handleChange.bind()} 
+                                                />
+
+                                            <div
+                                                data-text="education"
                                                 suppressContentEditableWarning={true} 
-                                                contentEditable={true} 
+                                                contentEditable={true}
+                                                name="schoolNameAndlocation"
                                                 style={{width:'6cm', fontSize:"20px"}}
-                                                onChange={(e) => { handleInputChange(e); }}  
+                                                onChange={(e) => { handleInputChange.bind(e); }}  
                                                 className="listBullet" > 
-                                                Full Name 
-                                                </div>
-
-                                                <div
-                                            
-                                                // ref={inputRef[i]}
-                                                // placeholder="content list"
-                                                suppressContentEditableWarning={true} 
-                                                contentEditable={true} 
-                                                style={{width:'6cm', fontSize:"20px", fontFamily:"sans-serif"}}
-                                                onChange={(e) => { handleInputChange(e); }}  
-                                                className="listBullet" > 
-                                                Role
-                                                </div>
-
                                             </div>
-
-                                            <TextField
-                                                type="text"
-                                                name="fullName"
-                                             
-                                                required 
-                                                placeholder='Full Name'
-                                                id="outlined-multiline-flexible"
-                                                multiline
-                                                rows={1}
-                                                // onClick={addSection}
-                                                value={ourForm.objectName.fullName.toUpperCase()}
-                                                inputProps={{maxLength:20}}
-                                                InputProps={{style: {fontSize:18, color:"black", fontFamily:"Itim", height:"10px" ,width:"7cm"}}}
-                                                sx={{border: 'none',"& fieldset": { border: 'none' }, display:"block" }}
-                                                
-                                                 // .bind() for use the code of onchange also here
-                                                onChange={handleChange.bind()} 
-                                            />
-
-                                            <TextField
-                                                type="text"
-                                                name="jobTitle"
-                                                rows={1}
-                                                required 
-                                                placeholder='Role'
-                                                id="outlined-multiline-flexible"
-                                                multiline
-                                                
-                                                // onClick={addSection}
-                                                value={ourForm.objectName.jobTitle.toUpperCase()}
-                                                inputProps={{maxLength:30}}
-                                                InputProps={{style: {fontSize:18, color:"black", fontFamily:"Itim", height:"10px" ,width:"7cm"}}}
-                                                sx={{border: 'none',"& fieldset": { border: 'none' }, display:"block" }}
-                                                
-                                                 // .bind() for use the code of onchange also here
-                                                onChange={handleChange.bind()} 
-                                            />
-
-                                            
-
-                                            <TextField
-                                                type="text"
-                                                name="email"
-                                                
-                                                required 
-                                                placeholder='email'
-                                                id="outlined-multiline-static"
-                                                multiline
-                                                inputProps={{maxLength:27}}
-                                                
-                                                value={ourForm.objectName.email}
-                                                
-                                                InputProps={{style: {fontSize:16, color:"black", fontFamily:"Exo", height:"9px", width:"7cm"}}}
-                                                sx={{border: 'none',"& fieldset": { border: 'none' }, mt:1  }}
-                                                
-                                               
-                                                onChange={handleChange.bind()} 
-                                            />
-
-                                            <TextField
-                                                type="text"
-                                                name="phoneNumber"
-                                                
-                                                required 
-                                                placeholder='phone number'
-                                                id="outlined-multiline-static"
-                                                multiline
-                                                inputProps={{maxLength:27}}
-                                                
-                                                value={ourForm.objectName.phoneNumber}
-                                                
-                                                InputProps={{style: {fontSize:16, color:"black", fontFamily:"Exo", height:"9px", width:"7cm"}}}
-                                                sx={{border: 'none',"& fieldset": { border: 'none' }, display:"block"  }}
-                                                
-                                               
-                                                onChange={handleChange.bind()} 
-                                            />
-
-                             
-
-
-                                            </div>
-                                            
                                                                                                                                
-                                            
 
-                                            {/* <p>
-                                                
-                                                <span className="textarea" role="textbox" contentEditable="true"></span>
-                                            </p> */}
-
-                                            
-
-                                            </div>
-
-                                            {/* <div className='styleContactParagraph'> */}
-
-                                            
-
-                                           {/* </div> */}
-
-                                            
-
-                                            {/* <h5 style={{marginLeft:"10px"}}><SchoolIcon sx={{mr:1, height:"15px", width:"15px"}} /> EDUCATION</h5> */}
-                                                                                
-                                        
-
-                                        
-
-                                            <div className="grid-area work">
-                                            <h5> <WorkIcon sx={{mr:1, height:"15px", width:"15px"}} /> WORK EXPERIENCE </h5>
-                                            <Todo/>
-                                            
                                         </div>
+
+                                            {/* rigth part */}
+                                            <div className="grid-area work">
+                                                <h4> <WorkIcon sx={{mr:1, height:"15px", width:"15px"}} /> WORK EXPERIENCE </h4>
+                                                <Todo/>
+                                            </div>
 
                                     </div> 
 
@@ -323,9 +287,7 @@ const InputsForm = () => {
                                 </div>
 
                             </Fade>
-                            
-                        </div>
-                    
+
                     </Fade>
                 
             </div>

@@ -87,7 +87,7 @@ const Todo = () => {
     <div>
       {inputList.map((x, i) => {
         return (
-          <div className='wrapTodo' >
+          <div>
           <div
             key={i + 1}
             className="box"

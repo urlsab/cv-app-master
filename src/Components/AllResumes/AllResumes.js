@@ -10,6 +10,8 @@ import Navbar from "../Navbar/Navbar";
 import ReactToPrint from 'react-to-print';
 import PrintIcon from '@mui/icons-material/Print';
 
+import TextField from '@mui/material/TextField';
+
 import { Button } from "@mui/material";
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -21,9 +23,15 @@ import DownloadIcon from '@mui/icons-material/Download';
 import Fade from 'react-reveal/Fade';
 import LightSpeed from 'react-reveal/LightSpeed';
 
+
+
 import { firestoreDB } from "../../firestoreConfig/firestoreConfig";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firestoreConfig/firestoreConfig";
+
+import Todo from "../Todo/Todo";
+import WorkIcon from '@mui/icons-material/Work';
+import SchoolIcon from '@mui/icons-material/School';
 
 
 const AllResumes = () => {
@@ -97,9 +105,121 @@ const AllResumes = () => {
                         
                             <li className="liStyle" key={el.id}>
                                 <PDFExport key={el.id} ref={pdfExportComponent[i]}>
-                                <p key={cv[i]}>{cv[i].info.fullName}</p>
-                                    
-                                    <p>{cv[i].info.userName} </p>
+
+                                <div className="resume">
+
+                                        <div className='grid-area name'>
+
+                                            <div className='square'>
+
+                                                <div className='firstGroup'>
+
+                                                    <div
+                                                        data-text="Full name"
+                                                        data-value={cv[i].info.fullName} 
+                                                        
+                                                        style={{width:'6cm', fontSize:"20px", marginBottom:"7px"}}
+                                                        
+                                                        className="listBullet" > 
+                                                        {cv[i].info.fullName} 
+                                                    </div>
+
+                                                    <div
+                                                        data-text="Role"
+                                                        data-value={6}
+                                                         
+                                                        style={{width:'6cm', fontSize:"20px", fontFamily:"sans-serif"}}
+                                                         
+                                                        className="listBullet" > 
+                                                        {cv[i].info.fullName} 
+                                                    </div>
+
+                                                </div>
+
+                                                <TextField
+                                                    type="text"
+                                                    name="email"
+                                                    
+                                                    required 
+                                                    placeholder='email'
+                                                    id="outlined-multiline-static"
+                                                    multiline
+                                                    inputProps={{maxLength:27}}
+                                                    
+                                                    value={cv[i].info.fullName} 
+                                                    
+                                                    InputProps={{style: {fontSize:16, color:"black", fontFamily:"Exo", height:"9px", width:"7cm"}, readOnly: true}}
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }, mt:1  }}
+                                                    
+                                                
+                                                     
+                                                />
+
+                                                <TextField
+                                                    type="text"
+                                                    name="phoneNumber"
+                                                    
+                                                    required 
+                                                    placeholder='phone number'
+                                                    id="outlined-multiline-static"
+                                                    multiline
+                                                    inputProps={{maxLength:27}}
+                                                    
+                                                    value={cv[i].info.fullName} 
+                                                    
+                                                    InputProps={{style: {fontSize:16, color:"black", fontFamily:"Exo", height:"9px", width:"7cm"}, readOnly: true}}
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' } }}
+                                                    
+                                                
+                                                    
+                                                />
+
+                                            </div>
+
+                                            {/* after square */}
+
+                                            <h4 style={{marginLeft:"10px"}}><SchoolIcon sx={{mr:1, height:"15px", width:"15px"}} /> EDUCATION</h4>
+                   
+                                            <TextField
+                                                    type="text"
+                                                    name="schoolNameAndlocation"
+                                                    
+                                                    required 
+                                                    placeholder='schoolNameAndlocation'
+                                                    id="outlined-multiline-static"
+                                                    multiline
+                                                    inputProps={{maxLength:27}}
+                                                    defaultValue={cv[i].info.fullName}
+                                                    // value={cv[i].info.fullName} 
+                                                    
+                                                    InputProps={{style: {fontSize:16, color:"black", fontFamily:"Exo", height:"9px", width:"7cm"}, readOnly: true}}
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }, display:"in" }}
+                                                    
+                                                
+                                                    
+                                                />
+
+                                            <div
+                                                data-text="education"
+                                                
+                                                name="schoolNameAndlocation"
+                                                style={{width:'6cm', fontSize:"20px"}}
+                                                  
+                                                className="listBullet" > 
+                                                {cv[i].info.fullName} 
+                                            </div>
+                                                                                                                               
+
+                                        </div>
+
+                                            {/* rigth part */}
+                                            <div className="grid-area work">
+                                                <h4> <WorkIcon sx={{mr:1, height:"15px", width:"15px"}} /> WORK EXPERIENCE </h4>
+                                                <Todo/>
+                                                {cv[i].info.fullName} 
+                                            </div>
+
+                                    </div> 
                                 
                                 </PDFExport>
 
