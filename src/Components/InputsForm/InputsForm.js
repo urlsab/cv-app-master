@@ -16,6 +16,9 @@ import Todo from '../Todo/Todo';
 import PrintIcon from '@mui/icons-material/Print';
 
 import TextField from '@mui/material/TextField';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
 
 import ReactToPrint from 'react-to-print';
 
@@ -39,17 +42,12 @@ const InputsForm = () => {
 
     const [user, loading, error] = useAuthState(auth);
     const [ourForm, setOurForm] = useState(initialState);
-    const [toggle, setToggle] = useToggle();
     const [text, setText] = useState('');
-
     const [inputList, setInputList] = useState([{ firstName: '', display: 'notdisplayed'}]);
 
-    const [fullName, setFullname] = useState('');
-
     const navigate = useNavigate();
-
     const pdfExportComponent = useRef(null);
-    
+
     const handleExportWithComponent = (data) => {
         pdfExportComponent.current.save();
         console.log(data);
@@ -63,17 +61,17 @@ const InputsForm = () => {
       };
 
     // handle input change
-  const handleInputChange = (e, index) => {
-    const { name, value } = e.target;
+    const handleInputChange = (e, index) => {
+        const { name, value } = e.target;
 
-    // handleKeyPress(e, index);
+        // handleKeyPress(e, index);
 
-    // inputRef[index].current.save();
+        // inputRef[index].current.save();
 
-    const list = [...inputList];
-    list[index][name] =  value;
-    setInputList(list);
-  };
+        const list = [...inputList];
+        list[index][name] =  value;
+        setInputList(list);
+    };
 
     const handleAddResume = (event) => {
         
@@ -110,116 +108,67 @@ const InputsForm = () => {
     };
 
     return (
-
         <>
-        
             <div className='createResumeContainer'>
-
                 <Navbar/>
+                    <Fade delay={400}>
+                        <PDFExport ref={pdfExportComponent}>
+                            <div ref={pdfExportComponent}>
+                                <div className="resume">
+                                    <div className='grid-area name'>
+                                        <div className='square'>
+                                            <div className='firstGroup'>  
 
-
-                    {/* {toggle ?  */}
-
-                        <Fade delay={400}>
-
-                            <PDFExport ref={pdfExportComponent}>
-
-                                <div ref={pdfExportComponent}>
-
-                                    <div className="resume">
-
-                                        <div className='grid-area name'>
-
-                                            <div className='square'>
-
-                                                <div className='firstGroup'>
-
-                                                <TextField
-                                                    type="text"
-                                                    name="email"
-                                                    
-                                                    required 
-                                                    placeholder='email'
-                                                    id="outlined-multiline-static"
-                                                    multiline
-                                                    inputProps={{maxLength:27}}
-                                                    
-                                                    value={ourForm.objectName.email}
-                                                    
-                                                    InputProps={{style: {fontSize:16, color:"black", fontFamily:"Exo", height:"9px", width:"7cm"}}}
-                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                    
+                                            <TextField
+                                                type="text"
+                                                name="fullName"
                                                 
-                                                    onChange={handleChange.bind()} 
-                                                />
-
-                                                <TextField
-                                                    type="text"
-                                                    name="phoneNumber"
-                                                    
-                                                    required 
-                                                    placeholder='phone number'
-                                                    id="outlined-multiline-static"
-                                                    multiline
-                                                    inputProps={{maxLength:27}}
-                                                    
-                                                    value={ourForm.objectName.phoneNumber}
-                                                    
-                                                    InputProps={{style: {fontSize:16, color:"black", fontFamily:"Exo", height:"9px", width:"7cm"}}}
-                                                    sx={{border: 'none',"& fieldset": { border: 'none' } }}
-                                                    
+                                                required 
+                                                multiline
+                                                placeholder='Full Name'
+                                                // sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                value={ourForm.objectName.fullName}
+                                                onChange={handleChange}
+                                                style={{
+                                                //resize: 'both',
+                                                // fontSize:'50px',
+                                                marginTop:"25px",
+                                                marginBottom: '10px',
+                                                // border: 'none',
+                                                // padding: '0.5rem',
                                                 
-                                                    onChange={handleChange.bind()} 
-                                                />
-
-                                                    {/* <div
-                                                        data-text="Full name"
-                                                        data-value={ourForm.objectName.fullName}
-                                                        suppressContentEditableWarning={true} 
-                                                        contentEditable={true} 
-                                                        style={{width:'6cm', fontSize:"20px", marginBottom:"7px"}}
-                                                        onChange={(e) => { handleInputChange.bind(e); }}  
-                                                        className="listBullet" > 
-                                                    </div>
-
-                                                    <div
-                                                        data-text="Role"
-                                                        data-value={6}
-                                                        suppressContentEditableWarning={true} 
-                                                        contentEditable={true} 
-                                                        style={{width:'6cm', fontSize:"20px", fontFamily:"sans-serif"}}
-                                                        onChange={(e) => { handleInputChange.bind(e); }}  
-                                                        className="listBullet" > 
-                                                    </div> */}
-
-                                                </div>
-
+                                                width:'230px',
                                                 
-
+                                                
+                                                
+                                                // position: 'relative',
+                                                }}
+                                                InputProps={{style: {fontFamily:"Exo",fontSize:24, padding: '0.2rem', lineHeight:"30px"}}}
+                                                
+                                            
+                                            />
+                                                
                                             </div>
+
+                                        </div>
 
                                             {/* after square */}
 
                                             <h4 style={{marginLeft:"10px"}}><SchoolIcon sx={{mr:1, height:"15px", width:"15px"}} /> EDUCATION</h4>
                    
                                             <TextField
-                                                    type="text"
-                                                    name="schoolNameAndlocation"
-                                                    
-                                                    required 
-                                                    placeholder='schoolNameAndlocation'
-                                                    id="outlined-multiline-static"
-                                                    multiline
-                                                    inputProps={{maxLength:27}}
-                                                    
-                                                    value={ourForm.objectName.schoolNameAndlocation}
-                                                    
-                                                    InputProps={{style: {fontSize:16, color:"black", fontFamily:"Exo", height:"9px", width:"7cm"}}}
-                                                    sx={{border: 'none',"& fieldset": { border: 'none' }, display:"in" }}
-                                                    
-                                                
-                                                    onChange={handleChange.bind()} 
-                                                />
+                                                type="text"
+                                                name="schoolNameAndlocation"
+                                                required 
+                                                placeholder='schoolNameAndlocation'
+                                                id="outlined-multiline-static"
+                                                multiline
+                                                inputProps={{maxLength:27}}
+                                                value={ourForm.objectName.schoolNameAndlocation}         
+                                                InputProps={{style: {fontSize:18, color:"black", fontFamily:"Exo", height:"9px", width:"7cm"}}}
+                                                sx={{border: 'none',"& fieldset": { border: 'none' }, display:"in" }}
+                                                onChange={handleChange.bind()} 
+                                            />
 
                                             <div
                                                 data-text="education"
