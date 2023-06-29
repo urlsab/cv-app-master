@@ -124,220 +124,222 @@ const InputsForm = () => {
                             <div ref={pdfExportComponent}>
                                 <div className="resume">
                                     <div className='grid-area name'>
+
                                         <div className='square'>
-                                            <div className='firstGroup'>  
 
-                                            <TextField
-                                                type="text"
-                                                name="fullName"
-                                                
-                                                required 
-                                                multiline
-                                                placeholder='Full Name'
+                                            <div className='firstGroup'> 
 
-                                                // for hide the border
-                                                sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                value={ourForm.objectName.fullName.toUpperCase()}
-                                                onChange={handleChange}
-                                                style={{
-                                                //resize: 'both',
-                                                // fontSize:'50px',
-                                                marginTop:"25px",
-                                                //marginBottom: '10px',
-                                                // border: 'none',
-                                                // padding: '0.5rem',
-                                                
-                                                width:'230px',
-                                                
-                                                // position: 'relative',
-                                                }}
-                                                InputProps={{style: {fontFamily:"Rubik",fontSize:24, padding: '0.2rem', lineHeight:"25px"}}}
-                                                
-                                            />
+                                                <TextField
+                                                    type="text"
+                                                    name="fullName"
+                                                    
+                                                    required 
+                                                    multiline
+                                                    placeholder='Full Name'
 
-                                            <TextField
-                                                type="text"
-                                                name="jobTitle"
-                                                
-                                                required 
-                                                multiline
-                                                placeholder='Role'
-                                                sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                value={ourForm.objectName.jobTitle}
-                                                onChange={handleChange}
-                                                style={{
-                                                //resize: 'both',
-                                                // fontSize:'50px',
-                                                // marginTop:"25px",
-                                                // marginBottom: '10px',
-                                                // border: 'none',
-                                                // padding: '0.5rem',
-                                                
-                                                width:'230px',
-                                                
-                                                // position: 'relative',
-                                                }}
-                                                InputProps={{style: {fontFamily:"Lato",fontSize:20, padding: '0.2rem', lineHeight:"25px"}}}
-                                                
-                                            />
+                                                    // for hide the border
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                    value={ourForm.objectName.fullName.toUpperCase()}
+                                                    onChange={handleChange}
+                                                    style={{
+                                                    //resize: 'both',
+                                                    // fontSize:'50px',
+                                                    marginTop:"25px",
+                                                    //marginBottom: '10px',
+                                                    // border: 'none',
+                                                    // padding: '0.5rem',
+                                                    
+                                                    width:'230px',
+                                                    
+                                                    // position: 'relative',
+                                                    }}
+                                                    InputProps={{style: {fontFamily:"Rubik",fontSize:24, padding: '0.2rem', lineHeight:"25px"}}}
+                                                    
+                                                />
 
-                                            <TextField
-                                                type="email"
-                                                name="email"
-                                                
-                                                required 
-                                                multiline
-                                                placeholder='Email'
-                                                sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                value={ourForm.objectName.email}
-                                                onChange={handleChange}
-                                                style={{
-                                                //resize: 'both',
-                                                // fontSize:'50px',
-                                                marginTop:"15px",
-                                                // marginBottom: '10px',
-                                                // border: 'none',
-                                                // padding: '0.5rem',
-                                                
-                                                width:'230px',
-                                                
-                                                // position: 'relative',
-                                                }}
-                                                InputProps={{style: {fontFamily:"Exo",fontSize:13, padding: '0.2rem', lineHeight:"15px"}, 
-                                                startAdornment: (
-                                                    <InputAdornment position='start'>
-                                                        <EmailIcon sx={{fontSize:15}}/>
-                                                    </InputAdornment>
-                                                )
-                                                
-                                            }}/>
+                                                <TextField
+                                                    type="text"
+                                                    name="jobTitle"
+                                                    
+                                                    required 
+                                                    multiline
+                                                    placeholder='Role'
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                    value={ourForm.objectName.jobTitle}
+                                                    onChange={handleChange}
+                                                    style={{
+                                                    //resize: 'both',
+                                                    // fontSize:'50px',
+                                                    // marginTop:"25px",
+                                                    // marginBottom: '10px',
+                                                    // border: 'none',
+                                                    // padding: '0.5rem',
+                                                    
+                                                    width:'230px',
+                                                    
+                                                    // position: 'relative',
+                                                    }}
+                                                    InputProps={{style: {fontFamily:"Lato",fontSize:20, padding: '0.2rem', lineHeight:"25px"}}}
+                                                    
+                                                />
 
-                                            <TextField
-                                                type="text"
-                                                name="phoneNumber"
-                                                
-                                                required 
-                                                multiline
-                                                placeholder='Phone Number'
-                                                sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                value={ourForm.objectName.phoneNumber}
-                                                onChange={handleChange}
-                                                style={{
-                                                //resize: 'both',
-                                                // fontSize:'50px',
-                                                //marginTop:"10px",
-                                                // marginBottom: '10px',
-                                                // border: 'none',
-                                                // padding: '0.5rem',
-                                                
-                                                width:'230px',
-                                                
-                                                // position: 'relative',
-                                                }}
-                                                InputProps={{style: {fontFamily:"Exo",fontSize:13, padding: '0.2rem', lineHeight:"15px"}, 
-                                                startAdornment: (
-                                                    <InputAdornment position='start'>
-                                                        <PhoneAndroidIcon sx={{fontSize:15}}/>
-                                                    </InputAdornment>
-                                                )
-                                                
-                                            }}/>
+                                                <TextField
+                                                    type="email"
+                                                    name="email"
+                                                    
+                                                    required 
+                                                    multiline
+                                                    placeholder='Email'
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                    value={ourForm.objectName.email}
+                                                    onChange={handleChange}
+                                                    style={{
+                                                    //resize: 'both',
+                                                    // fontSize:'50px',
+                                                    marginTop:"15px",
+                                                    // marginBottom: '10px',
+                                                    // border: 'none',
+                                                    // padding: '0.5rem',
+                                                    
+                                                    width:'230px',
+                                                    
+                                                    // position: 'relative',
+                                                    }}
+                                                    InputProps={{style: {fontFamily:"Exo",fontSize:13, padding: '0.2rem', lineHeight:"15px"}, 
+                                                    startAdornment: (
+                                                        <InputAdornment position='start'>
+                                                            <EmailIcon sx={{fontSize:15, color: "white"}}/>
+                                                        </InputAdornment>
+                                                    )
+                                                    
+                                                }}/>
 
-                                            
-                                            <TextField
-                                                type="text"
-                                                name="linkedinLink"
-                                                
-                                                required 
-                                                multiline
-                                                placeholder='Linkedin link'
-                                                sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                value={ourForm.objectName.linkedinLink}
-                                                onChange={handleChange}
-                                                style={{
-                                                //resize: 'both',
-                                                // fontSize:'50px',
-                                                //marginTop:"10px",
-                                                // marginBottom: '10px',
-                                                // border: 'none',
-                                                // padding: '0.5rem',
-                                                
-                                                width:'230px',
-                                                
-                                                // position: 'relative',
-                                                }}
-                                                InputProps={{style: {fontFamily:"Exo",fontSize:13, padding: '0.2rem', lineHeight:"15px"}, 
-                                                startAdornment: (
-                                                    <InputAdornment position='start'>
-                                                        <LinkedInIcon sx={{fontSize:15}}/>
-                                                    </InputAdornment>
-                                                )
-                                                
-                                            }}/>
+                                                <TextField
+                                                    type="text"
+                                                    name="phoneNumber"
+                                                    
+                                                    required 
+                                                    multiline
+                                                    placeholder='Phone Number'
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                    value={ourForm.objectName.phoneNumber}
+                                                    onChange={handleChange}
+                                                    style={{
+                                                    //resize: 'both',
+                                                    // fontSize:'50px',
+                                                    //marginTop:"10px",
+                                                    // marginBottom: '10px',
+                                                    // border: 'none',
+                                                    // padding: '0.5rem',
+                                                    
+                                                    width:'230px',
+                                                    
+                                                    // position: 'relative',
+                                                    }}
+                                                    InputProps={{style: {fontFamily:"Exo",fontSize:13, padding: '0.2rem', lineHeight:"15px"}, 
+                                                    startAdornment: (
+                                                        <InputAdornment position='start'>
+                                                            <PhoneAndroidIcon sx={{fontSize:15, color:"white"}}/>
+                                                        </InputAdornment>
+                                                    )
+                                                    
+                                                }}/>
 
-                                            
-                                            <TextField
-                                                type="text"
-                                                name="githubLink"
                                                 
-                                                required 
-                                                multiline
-                                                placeholder='Github'
-                                                sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                value={ourForm.objectName.githubLink}
-                                                onChange={handleChange}
-                                                style={{
-                                                //resize: 'both',
-                                                // fontSize:'50px',
-                                                //marginTop:"10px",
-                                                // marginBottom: '10px',
-                                                // border: 'none',
-                                                // padding: '0.5rem',
-                                                
-                                                width:'230px',
-                                                
-                                                // position: 'relative',
-                                                }}
-                                                InputProps={{style: {fontFamily:"Exo",fontSize:13, padding: '0.2rem', lineHeight:"15px"}, 
-                                                startAdornment: (
-                                                    <InputAdornment position='start'>
-                                                        <GitHubIcon sx={{fontSize:15}}/>
-                                                    </InputAdornment>
-                                                )
-                                                
-                                            }}/>
+                                                <TextField
+                                                    type="text"
+                                                    name="linkedinLink"
+                                                    
+                                                    required 
+                                                    multiline
+                                                    placeholder='Linkedin link'
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                    value={ourForm.objectName.linkedinLink}
+                                                    onChange={handleChange}
+                                                    style={{
+                                                    //resize: 'both',
+                                                    // fontSize:'50px',
+                                                    //marginTop:"10px",
+                                                    // marginBottom: '10px',
+                                                    // border: 'none',
+                                                    // padding: '0.5rem',
+                                                    
+                                                    width:'230px',
+                                                    
+                                                    // position: 'relative',
+                                                    }}
+                                                    InputProps={{style: {fontFamily:"Exo",fontSize:13, padding: '0.2rem', lineHeight:"15px"}, 
+                                                    startAdornment: (
+                                                        <InputAdornment position='start'>
+                                                            <LinkedInIcon sx={{fontSize:15, color:"white"}}/>
+                                                        </InputAdornment>
+                                                    )
+                                                    
+                                                }}/>
 
-                                            
-                                            <TextField
-                                                type="text"
-                                                name="portfolioLink"
                                                 
-                                                required 
-                                                multiline
-                                                placeholder='Portfolio'
-                                                sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                value={ourForm.objectName.portfolioLink}
-                                                onChange={handleChange}
-                                                style={{
-                                                //resize: 'both',
-                                                // fontSize:'50px',
-                                                //marginTop:"10px",
-                                                // marginBottom: '10px',
-                                                // border: 'none',
-                                                // padding: '0.5rem',
+                                                <TextField
+                                                    type="text"
+                                                    name="githubLink"
+                                                    
+                                                    required 
+                                                    multiline
+                                                    placeholder='Github'
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                    value={ourForm.objectName.githubLink}
+                                                    onChange={handleChange}
+                                                    style={{
+                                                    //resize: 'both',
+                                                    // fontSize:'50px',
+                                                    //marginTop:"10px",
+                                                    // marginBottom: '10px',
+                                                    // border: 'none',
+                                                    // padding: '0.5rem',
+                                                    
+                                                    width:'230px',
+                                                    
+                                                    // position: 'relative',
+                                                    }}
+                                                    InputProps={{style: {fontFamily:"Exo",fontSize:13, padding: '0.2rem', lineHeight:"15px"}, 
+                                                    startAdornment: (
+                                                        <InputAdornment position='start'>
+                                                            <GitHubIcon sx={{fontSize:15, color:"white"}}/>
+                                                        </InputAdornment>
+                                                    )
+                                                    
+                                                }}/>
+
                                                 
-                                                width:'230px',
-                                                
-                                                // position: 'relative',
-                                                }}
-                                                InputProps={{style: {fontFamily:"Exo",fontSize:13, padding: '0.2rem', lineHeight:"15px"}, 
-                                                startAdornment: (
-                                                    <InputAdornment position='start'>
-                                                        <FilePresentIcon sx={{fontSize:15}}/>
-                                                    </InputAdornment>
-                                                )
-                                                
-                                            }}/>
+                                                <TextField
+                                                    type="text"
+                                                    name="portfolioLink"
+                                                    
+                                                    required 
+                                                    multiline
+                                                    placeholder='Portfolio'
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                    value={ourForm.objectName.portfolioLink}
+                                                    onChange={handleChange}
+                                                    style={{
+                                                    //resize: 'both',
+                                                    // fontSize:'50px',
+                                                    //marginTop:"10px",
+                                                    // marginBottom: '10px',
+                                                    // border: 'none',
+                                                    // padding: '0.5rem',
+                                                    
+                                                    width:'230px',
+                                                    
+                                                    // position: 'relative',
+                                                    }}
+                                                    InputProps={{style: {fontFamily:"Exo",fontSize:13, padding: '0.2rem', lineHeight:"15px"}, 
+                                                    startAdornment: (
+                                                        <InputAdornment position='start'>
+                                                            <FilePresentIcon sx={{fontSize:15, color:"white"}}/>
+                                                        </InputAdornment>
+                                                    )
+                                                    
+                                                }}/>
                                                 
                                             </div>
 
@@ -345,9 +347,47 @@ const InputsForm = () => {
 
                                             {/* after square */}
 
-                                            <h4 style={{marginLeft:"10px"}}><SchoolIcon sx={{mr:1, height:"15px", width:"15px"}} /> EDUCATION</h4>
+                                            
+                                           
+                                                
+                                                
+                                            <div className='afterSquareGroup'>
+                                            
+                                                
+
+                                            <h4> 
+                                                {/* <SchoolIcon sx={{mr:1, height:"15px", width:"15px"}} />  */}
+                                            
+                                            EDUCATION</h4>
+
+                                            
+                                                <TextField
+                                                    type="text"
+                                                    name="degreeTypeAndname"
+                                                    
+                                                    required 
+                                                    multiline
+                                                    placeholder='Degree type & name'
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                    value={ourForm.objectName.degreeTypeAndname}
+                                                    onChange={handleChange}
+                                                    style={{
+                                                    //resize: 'both',
+                                                    // fontSize:'50px',
+                                                    // marginTop:"25px",
+                                                    // marginBottom: '10px',
+                                                    // border: 'none',
+                                                    // padding: '0.5rem',
+                                                    
+                                                    width:'230px',
+                                                    
+                                                    // position: 'relative',
+                                                    }}
+                                                    InputProps={{style: {fontFamily:"Lato",fontSize:18, padding: '0.2rem', lineHeight:"25px"}}}
+                                                    
+                                                />
                    
-                                            <TextField
+                                            {/* <TextField
                                                 type="text"
                                                 name="schoolNameAndlocation"
                                                 required 
@@ -359,9 +399,9 @@ const InputsForm = () => {
                                                 InputProps={{style: {fontSize:18, color:"black", fontFamily:"Exo", height:"9px", width:"7cm"}}}
                                                 sx={{border: 'none',"& fieldset": { border: 'none' }, display:"in" }}
                                                 onChange={handleChange.bind()} 
-                                            />
+                                            /> */}
 
-                                            <div
+                                            {/* <div
                                                 data-text="education"
                                                 suppressContentEditableWarning={true} 
                                                 contentEditable={true}
@@ -369,7 +409,9 @@ const InputsForm = () => {
                                                 style={{width:'6cm', fontSize:"20px"}}
                                                 onChange={(e) => { handleInputChange.bind(e); }}  
                                                 className="listBullet" > 
-                                            </div>
+                                            </div> */}
+                                            
+                                            </div>   
                                                                                                                                
 
                                         </div>
