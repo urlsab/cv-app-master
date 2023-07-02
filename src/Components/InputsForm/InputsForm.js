@@ -138,13 +138,14 @@ const InputsForm = () => {
                                                     placeholder='Full Name'
 
                                                     // for hide the border
-                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' } }}
                                                     value={ourForm.objectName.fullName.toUpperCase()}
                                                     onChange={handleChange}
                                                     style={{
                                                     //resize: 'both',
                                                     // fontSize:'50px',
                                                     marginTop:"25px",
+                                                
                                                     //marginBottom: '10px',
                                                     // border: 'none',
                                                     // padding: '0.5rem',
@@ -153,7 +154,7 @@ const InputsForm = () => {
                                                     
                                                     // position: 'relative',
                                                     }}
-                                                    InputProps={{style: {fontFamily:"Rubik",fontSize:24, padding: '0.2rem', lineHeight:"25px"}}}
+                                                    InputProps={{style: {fontFamily:"Rubik",fontSize:24 ,color:'white', padding: '0.2rem', lineHeight:"25px"}}}
                                                     
                                                 />
 
@@ -179,7 +180,7 @@ const InputsForm = () => {
                                                     
                                                     // position: 'relative',
                                                     }}
-                                                    InputProps={{style: {fontFamily:"Lato",fontSize:20, padding: '0.2rem', lineHeight:"25px"}}}
+                                                    InputProps={{style: {fontFamily:"Lato",fontSize:20, color:'white',  padding: '0.2rem', lineHeight:"25px"}}}
                                                     
                                                 />
 
@@ -205,7 +206,7 @@ const InputsForm = () => {
                                                     
                                                     // position: 'relative',
                                                     }}
-                                                    InputProps={{style: {fontFamily:"Exo",fontSize:13, padding: '0.2rem', lineHeight:"15px"}, 
+                                                    InputProps={{style: {fontFamily:"Exo",fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
                                                     startAdornment: (
                                                         <InputAdornment position='start'>
                                                             <EmailIcon sx={{fontSize:15, color: "white"}}/>
@@ -236,7 +237,7 @@ const InputsForm = () => {
                                                     
                                                     // position: 'relative',
                                                     }}
-                                                    InputProps={{style: {fontFamily:"Exo",fontSize:13, padding: '0.2rem', lineHeight:"15px"}, 
+                                                    InputProps={{style: {fontFamily:"Exo",fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
                                                     startAdornment: (
                                                         <InputAdornment position='start'>
                                                             <PhoneAndroidIcon sx={{fontSize:15, color:"white"}}/>
@@ -268,7 +269,7 @@ const InputsForm = () => {
                                                     
                                                     // position: 'relative',
                                                     }}
-                                                    InputProps={{style: {fontFamily:"Exo",fontSize:13, padding: '0.2rem', lineHeight:"15px"}, 
+                                                    InputProps={{style: {fontFamily:"Exo",fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
                                                     startAdornment: (
                                                         <InputAdornment position='start'>
                                                             <LinkedInIcon sx={{fontSize:15, color:"white"}}/>
@@ -300,7 +301,7 @@ const InputsForm = () => {
                                                     
                                                     // position: 'relative',
                                                     }}
-                                                    InputProps={{style: {fontFamily:"Exo",fontSize:13, padding: '0.2rem', lineHeight:"15px"}, 
+                                                    InputProps={{style: {fontFamily:"Exo",fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
                                                     startAdornment: (
                                                         <InputAdornment position='start'>
                                                             <GitHubIcon sx={{fontSize:15, color:"white"}}/>
@@ -332,7 +333,7 @@ const InputsForm = () => {
                                                     
                                                     // position: 'relative',
                                                     }}
-                                                    InputProps={{style: {fontFamily:"Exo",fontSize:13, padding: '0.2rem', lineHeight:"15px"}, 
+                                                    InputProps={{style: {fontFamily:"Exo",fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
                                                     startAdornment: (
                                                         <InputAdornment position='start'>
                                                             <FilePresentIcon sx={{fontSize:15, color:"white"}}/>
@@ -355,12 +356,10 @@ const InputsForm = () => {
                                             
                                                 
 
-                                            <h4> 
-                                                {/* <SchoolIcon sx={{mr:1, height:"15px", width:"15px"}} />  */}
-                                            
+                                            <h4 style={{marginLeft:'22px', marginBottom:'5px'}}> 
+                                                <SchoolIcon sx={{mr:1, height:"15px", width:"15px"}} /> 
                                             EDUCATION</h4>
 
-                                            
                                                 <TextField
                                                     type="text"
                                                     name="degreeTypeAndname"
@@ -378,7 +377,61 @@ const InputsForm = () => {
                                                     // marginBottom: '10px',
                                                     // border: 'none',
                                                     // padding: '0.5rem',
+                                                    marginLeft:'18px',
+                                                    width:'230px',
                                                     
+                                                    // position: 'relative',
+                                                    }}
+                                                    InputProps={{style: {fontFamily:"Lato",fontSize:18, padding: '0.2rem', lineHeight:"25px"}}}
+                                                    
+                                                />
+
+                                                
+                                                <TextField
+                                                    type="text"
+                                                    name="schoolNameAndlocation"
+                                                    
+                                                    required 
+                                                    multiline
+                                                    placeholder='School name & location'
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                    value={ourForm.objectName.schoolNameAndlocation}
+                                                    onChange={handleChange}
+                                                    style={{
+                                                    //resize: 'both',
+                                                    // fontSize:'50px',
+                                                    // marginTop:"25px",
+                                                    // marginBottom: '10px',
+                                                    // border: 'none',
+                                                    // padding: '0.5rem',
+                                                    marginLeft:'18px',
+                                                    width:'230px',
+                                                    
+                                                    // position: 'relative',
+                                                    }}
+                                                    InputProps={{style: {fontFamily:"Lato",fontSize:18, padding: '0.2rem', lineHeight:"25px"}}}
+                                                    
+                                                />
+
+                                                
+<TextField
+                                                    type="text"
+                                                    name="timeLearnedDegree"
+                                                    
+                                                    required 
+                                                    multiline
+                                                    placeholder='Time learned degree'
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                    value={ourForm.objectName.timeLearnedDegree}
+                                                    onChange={handleChange}
+                                                    style={{
+                                                    //resize: 'both',
+                                                    // fontSize:'50px',
+                                                    // marginTop:"25px",
+                                                    // marginBottom: '10px',
+                                                    // border: 'none',
+                                                    // padding: '0.5rem',
+                                                    marginLeft:'18px',
                                                     width:'230px',
                                                     
                                                     // position: 'relative',
