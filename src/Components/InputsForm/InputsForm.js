@@ -47,6 +47,9 @@ import Navbar from "../Navbar/Navbar";
 
 const arrState = arrInitialState;
 
+// name, contact, education, skill, optionial 
+// s(relevant courses, licens, certifictas), work experience, optional (side projects)
+
 const InputsForm = () => {
 
     const [user, loading, error] = useAuthState(auth);
@@ -255,7 +258,6 @@ const InputsForm = () => {
                                                 <TextField
                                                     type="text"
                                                     name="githubLink"
-                                                    
                                                     required 
                                                     multiline
                                                     placeholder='Github'
@@ -471,6 +473,50 @@ const InputsForm = () => {
                                                    
                                                     }}
                                                     InputProps={{style: {fontFamily:"Lato",fontSize:15, padding: '0.2rem', lineHeight:"25px"}}}
+                                                    
+                                                />
+
+                                                <TextField
+                                                    type="text"
+                                                    name="dynamicHeaderPartOne"
+                                                    
+                                                    required 
+                                                    multiline
+                                                    placeholder='Optional section'
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                    value={ourForm.objectName.dynamicHeaderPartOne}
+                                                    onChange={handleChange}
+                                                    defaultValue={'Languages:'}
+                                                    
+                                                    style={{
+                                                    marginTop:'20px',
+                                                    marginLeft:'18px',
+                                                    width:'230px',
+                                                   
+                                                    }}
+                                                    InputProps={{style: {fontFamily:"Rubik",fontSize:18, padding: '0.2rem', lineHeight:"25px"}}}
+                                                    
+                                                />
+
+                                                <TextField
+                                                    type="text"
+                                                    name="dynamicContentPartOne"
+                                                    
+                                                    required 
+                                                    multiline
+                                                    placeholder='Optional content'
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                    value={ourForm.objectName.dynamicContentPartOne}
+                                                    onChange={handleChange}
+                                                    // defaultValue={'Languages:'}
+                                                    
+                                                    style={{
+                                                    
+                                                    marginLeft:'18px',
+                                                    width:'230px',
+                                                   
+                                                    }}
+                                                    InputProps={{style: {fontFamily:"Rubik",fontSize:15, padding: '0.2rem', lineHeight:"25px"}}}
                                                     
                                                 />
                                       
