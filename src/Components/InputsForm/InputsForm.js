@@ -124,8 +124,8 @@ const InputsForm = () => {
             <div className='createResumeContainer'>
                 <Navbar/>
                     <Fade delay={400}>
-                        <PDFExport ref={pdfExportComponent}>
-                            <div ref={pdfExportComponent}>
+                        <PDFExport ref={pdfExportComponent}  >
+                            
                                 <div className="resume">
                                     <div className='grid-area name'>
 
@@ -311,7 +311,7 @@ const InputsForm = () => {
 
                                             <div className='afterSquareGroup'>
                                      
-                                            <h4 style={{marginLeft:'22px', marginBottom:'5px'}}> 
+                                            <h4 style={{marginLeft:'22px', marginBottom:'5px', fontFamily:'Lato'}}> 
                                                 {/* <SchoolIcon sx={{mr:1, height:"15px", width:"15px"}} />  */}
                                             EDUCATION</h4>
 
@@ -383,7 +383,7 @@ const InputsForm = () => {
                                                     
                                                 />
 
-                                            <h4 style={{marginLeft:'22px', marginBottom:'1px'}}> 
+                                            <h4 style={{marginLeft:'22px', marginBottom:'1px', fontFamily:"Lato"}}> 
                                                 {/* <PsychologyIcon sx={{mr:1, height:"15px", width:"15px"}} />  */}
                                             SKILLS</h4>
 
@@ -484,7 +484,7 @@ const InputsForm = () => {
                                                     multiline
                                                     placeholder='Optional section'
                                                     sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                    value={ourForm.objectName.dynamicHeaderPartOne}
+                                                    value={ourForm.objectName.dynamicHeaderPartOne.toUpperCase()}
                                                     onChange={handleChange}
                                                     defaultValue={'Languages:'}
                                                     
@@ -494,7 +494,7 @@ const InputsForm = () => {
                                                     width:'230px',
                                                    
                                                     }}
-                                                    InputProps={{style: {fontFamily:"Rubik",fontSize:18, padding: '0.2rem', lineHeight:"25px"}}}
+                                                    InputProps={{style: {fontFamily:"Lato",fontSize:20, fontWeight:'bold', padding: '0.2rem', lineHeight:"25px"}}}
                                                     
                                                 />
 
@@ -516,33 +516,9 @@ const InputsForm = () => {
                                                     width:'230px',
                                                    
                                                     }}
-                                                    InputProps={{style: {fontFamily:"Rubik",fontSize:15, padding: '0.2rem', lineHeight:"25px"}}}
+                                                    InputProps={{style: {fontFamily:"Lato",fontSize:15, padding: '0.2rem', lineHeight:"25px"}}}
                                                     
                                                 />
-                                      
-                                            {/* <TextField
-                                                type="text"
-                                                name="schoolNameAndlocation"
-                                                required 
-                                                placeholder='schoolNameAndlocation'
-                                                id="outlined-multiline-static"
-                                                multiline
-                                                inputProps={{maxLength:27}}
-                                                value={ourForm.objectName.schoolNameAndlocation}         
-                                                InputProps={{style: {fontSize:18, color:"black", fontFamily:"Exo", height:"9px", width:"7cm"}}}
-                                                sx={{border: 'none',"& fieldset": { border: 'none' }, display:"in" }}
-                                                onChange={handleChange.bind()} 
-                                            /> */}
-
-                                            {/* <div
-                                                data-text="education"
-                                                suppressContentEditableWarning={true} 
-                                                contentEditable={true}
-                                                name="schoolNameAndlocation"
-                                                style={{width:'6cm', fontSize:"20px"}}
-                                                onChange={(e) => { handleInputChange.bind(e); }}  
-                                                className="listBullet" > 
-                                            </div> */}
                                             
                                             </div>   
  
@@ -550,7 +526,7 @@ const InputsForm = () => {
 
                                             {/* rigth part */}
                                             <div className="grid-area work">
-                                                <h4> 
+                                                <h4 style={{fontFamily:"Lato"}}> 
                                                     {/* <WorkIcon sx={{mr:1, height:"15px", width:"15px"}} />  */}
                                                 WORK EXPERIENCE </h4>
                                                 <Todo/>
@@ -558,7 +534,7 @@ const InputsForm = () => {
 
                                     </div> 
 
-                                </div>
+                                
 
                             </PDFExport>
 
