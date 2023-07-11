@@ -124,7 +124,7 @@ const InputsForm = () => {
             <div className='createResumeContainer'>
                 <Navbar/>
                     <Fade delay={400}>
-                        <PDFExport ref={pdfExportComponent}  >
+                        <PDFExport ref={pdfExportComponent} >
                             
                                 <div className="resume">
                                     <div className='grid-area name'>
@@ -140,7 +140,7 @@ const InputsForm = () => {
                                                     required 
                                                     multiline
                                                     placeholder='Full Name'
-
+                                                    className='pdfFonts'
                                                     // for hide the border
                                                     sx={{border: 'none',"& fieldset": { border: 'none' } }}
                                                     value={ourForm.objectName.fullName.toUpperCase()}
@@ -158,7 +158,7 @@ const InputsForm = () => {
                                                     
                                                     // position: 'relative',
                                                     }}
-                                                    InputProps={{style: {fontFamily:"Rubik",fontSize:24 ,color:'white', padding: '0.2rem', lineHeight:"25px"}}}
+                                                    InputProps={{style: {fontSize:24 ,color:'white', padding: '0.2rem', lineHeight:"25px"}}}
                                                     
                                                 />
 
@@ -530,6 +530,52 @@ const InputsForm = () => {
                                                     {/* <WorkIcon sx={{mr:1, height:"15px", width:"15px"}} />  */}
                                                 WORK EXPERIENCE </h4>
                                                 <Todo/>
+
+                                                
+
+                                                <TextField
+                                                    type="text"
+                                                    name="dynamicHeaderPartTow"
+                                                    
+                                                    required 
+                                                    multiline
+                                                    placeholder='Optional section'
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                    value={ourForm.objectName.dynamicHeaderPartTow.toUpperCase()}
+                                                    onChange={handleChange}
+                                                    defaultValue={'Languages:'}
+                                                    
+                                                    style={{
+                                                    // marginTop:'20px',
+                                                    // marginLeft:'18px',
+                                                    width:'420px'
+                                                   
+                                                    }}
+                                                    InputProps={{style: {fontFamily:"Lato",fontSize:20, fontWeight:'bold', padding: '0.2rem', lineHeight:"25px"}}}
+                                                    
+                                                />
+
+                                                <TextField
+                                                    type="text"
+                                                    name="dynamicContentPartTow"
+                                                    
+                                                    required 
+                                                    multiline
+                                                    placeholder='Optional content'
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                    value={ourForm.objectName.dynamicContentPartTow}
+                                                    onChange={handleChange}
+                                                    // defaultValue={'Languages:'}
+                                                    
+                                                    style={{
+                                                    
+                                                    // marginLeft:'18px',
+                                                    width:'420px'
+                                                   
+                                                    }}
+                                                    InputProps={{style: {fontFamily:"Lato",fontSize:15, padding: '0.2rem', lineHeight:"25px"}}}
+                                                    
+                                                />
                                             </div>
 
                                     </div> 
