@@ -526,13 +526,12 @@ const InputsForm = () => {
 
                                             {/* rigth part */}
                                             <div className="grid-area work">
+                                                
                                                 <h4 style={{fontFamily:"Lato"}}> 
                                                     {/* <WorkIcon sx={{mr:1, height:"15px", width:"15px"}} />  */}
                                                 WORK EXPERIENCE </h4>
                                                 <Todo/>
-
-                                                
-
+  
                                                 <TextField
                                                     type="text"
                                                     name="dynamicHeaderPartTow"
