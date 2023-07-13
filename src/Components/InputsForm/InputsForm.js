@@ -5,10 +5,12 @@ import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 import WorkIcon from '@mui/icons-material/Work';
-import SchoolIcon from '@mui/icons-material/School';
+
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import FilePresentIcon from '@mui/icons-material/FilePresent';
+
+import CodeIcon from '@mui/icons-material/Code';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 
 import { addDoc, collection } from "firebase/firestore";
@@ -23,6 +25,10 @@ import EmailIcon from '@mui/icons-material/Email';
 import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import PrintIcon from '@mui/icons-material/Print';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import SchoolIcon from '@mui/icons-material/School';
+import StorageIcon from '@mui/icons-material/Storage';
+import BuildIcon from '@mui/icons-material/Build';
 
 import TextField from '@mui/material/TextField';
 import List from '@mui/material/List';
@@ -201,7 +207,10 @@ const InputsForm = () => {
                                                     InputProps={{style: {fontFamily:"Exo",fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
                                                     startAdornment: (
                                                         <InputAdornment position='start'>
-                                                            <EmailIcon sx={{fontSize:15, color: "gray"}}/>
+                                                           { ourForm.objectName.email ?
+                                                            
+                                                           <Fade><EmailIcon sx={{fontSize:15, color:"gray"}}/></Fade> : null }
+                                                            
                                                         </InputAdornment>
                                                     )
                                                     
@@ -225,7 +234,10 @@ const InputsForm = () => {
                                                     InputProps={{style: {fontFamily:"Exo",fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
                                                     startAdornment: (
                                                         <InputAdornment position='start'>
-                                                            <PhoneAndroidIcon sx={{fontSize:15, color:"gray"}}/>
+                                                           { ourForm.objectName.phoneNumber ?
+                                                            
+                                                           <Fade><PhoneAndroidIcon sx={{fontSize:15, color:"gray"}}/></Fade> : null }
+                                                            
                                                         </InputAdornment>
                                                     )
                                                     
@@ -249,7 +261,10 @@ const InputsForm = () => {
                                                     InputProps={{style: {fontFamily:"Exo",fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
                                                     startAdornment: (
                                                         <InputAdornment position='start'>
-                                                            <LinkedInIcon sx={{fontSize:15, color:"gray"}}/>
+                                                           { ourForm.objectName.linkedinLink ?
+                                                            
+                                                           <Fade><LinkedInIcon sx={{fontSize:15, color:"gray"}}/></Fade> : null }
+                                                            
                                                         </InputAdornment>
                                                     )
                                                     
@@ -272,7 +287,10 @@ const InputsForm = () => {
                                                     InputProps={{style: {fontFamily:"Exo",fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
                                                     startAdornment: (
                                                         <InputAdornment position='start'>
-                                                            <GitHubIcon sx={{fontSize:15, color:"gray"}}/>
+                                                           { ourForm.objectName.githubLink ?
+                                                            
+                                                           <Fade><GitHubIcon sx={{fontSize:15, color:"gray"}}/></Fade> : null }
+                                                            
                                                         </InputAdornment>
                                                     )
                                                     
@@ -297,7 +315,10 @@ const InputsForm = () => {
                                                     InputProps={{style: {fontFamily:"Exo",fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
                                                     startAdornment: (
                                                         <InputAdornment position='start'>
-                                                            <FilePresentIcon sx={{fontSize:15, color:"gray"}}/>
+                                                           { ourForm.objectName.portfolioLink ?
+                                                            
+                                                           <Fade><FilePresentIcon sx={{fontSize:15, color:"gray"}}/></Fade> : null }
+                                                            
                                                         </InputAdornment>
                                                     )
                                                     
@@ -331,8 +352,17 @@ const InputsForm = () => {
                                                     width:'230px',
                                                     
                                                     }}
-                                                    InputProps={{style: {fontFamily:"Lato",fontSize:18, padding: '0.2rem', lineHeight:"25px"}}}
-                                                    
+                                                    InputProps={{style: {fontFamily:"Lato",fontSize:18, padding: '0.2rem', lineHeight:"25px"}, 
+                                                    startAdornment: (
+                                                        <InputAdornment position='start'>
+                                                           { ourForm.objectName.degreeTypeAndname ?
+                                                            
+                                                           <Fade><SchoolIcon sx={{fontSize:15, color:"gray"}}/></Fade> : null }
+                                                            
+                                                        </InputAdornment>
+                                                    )
+                                                }}
+                                                    // 
                                                 />
 
                                                 
@@ -352,8 +382,16 @@ const InputsForm = () => {
                                                     width:'230px',
                                                     
                                                     }}
-                                                    InputProps={{style: {fontFamily:"Lato",fontSize:18,color:'orange', padding: '0.2rem', lineHeight:"25px"}}}
-                                                    
+                                                    InputProps={{style: {fontFamily:"Lato",fontSize:18,color:'gray', padding: '0.2rem', lineHeight:"25px"},
+                                                    startAdornment: (
+                                                        <InputAdornment position='start'>
+                                                           { ourForm.objectName.schoolNameAndlocation ?
+                                                            
+                                                           <Fade><LocationOnIcon sx={{fontSize:15, color:"gray"}}/></Fade> : null }
+                                                            
+                                                        </InputAdornment>
+                                                    )
+                                                }}
                                                 />
 
                                                 
@@ -376,7 +414,10 @@ const InputsForm = () => {
                                                     InputProps={{style: {fontFamily:"Lato",fontSize:18, padding: '0.2rem', lineHeight:"25px"},
                                                     startAdornment: (
                                                         <InputAdornment position='start'>
-                                                            <DateRangeIcon sx={{fontSize:15, color:"gray"}}/>
+                                                           { ourForm.objectName.timeLearnedDegree ?
+                                                            
+                                                           <Fade><DateRangeIcon sx={{fontSize:15, color:"gray"}}/></Fade> : null }
+                                                            
                                                         </InputAdornment>
                                                     )
                                                 }}
@@ -405,8 +446,17 @@ const InputsForm = () => {
                                                     width:'230px',
                                                     
                                                     }}
-                                                    InputProps={{style: {fontFamily:"Lato",fontSize:15, padding: '0.2rem', lineHeight:"25px"}}}
-                                                    
+                                                    InputProps={{style: {fontFamily:"Lato",fontSize:15, padding: '0.2rem', lineHeight:"25px"},
+                                                    startAdornment: (
+                                                        <InputAdornment position='start'>
+                                                           { ourForm.objectName.ProgrammingLanguages ?
+                                                            
+                                                           <Fade><CodeIcon sx={{fontSize:15, color:"gray"}}/></Fade> : null }
+                                                            
+                                                        </InputAdornment>
+                                                    )
+                                                }}
+                                                
                                                 />
 
                                                 <TextField
@@ -427,8 +477,16 @@ const InputsForm = () => {
                                                     width:'230px',
                                                    
                                                     }}
-                                                    InputProps={{style: {fontFamily:"Lato",fontSize:15, padding: '0.2rem', lineHeight:"25px"}}}
-                                                    
+                                                    InputProps={{style: {fontFamily:"Lato",fontSize:15, padding: '0.2rem', lineHeight:"25px"},
+                                                    startAdornment: (
+                                                        <InputAdornment position='start'>
+                                                           { ourForm.objectName.Databases ?
+                                                            
+                                                           <Fade><StorageIcon sx={{fontSize:15, color:"gray"}}/></Fade> : null }
+                                                            
+                                                        </InputAdornment>
+                                                    )
+                                                }}
                                                 />
 
                                                 
@@ -450,8 +508,17 @@ const InputsForm = () => {
                                                     width:'230px',
                                                    
                                                     }}
-                                                    InputProps={{style: {fontFamily:"Lato",fontSize:15, padding: '0.2rem', lineHeight:"25px"}}}
-                                                    
+                                                    InputProps={{style: {fontFamily:"Lato",fontSize:15, padding: '0.2rem', lineHeight:"25px"},
+                                                    startAdornment: (
+                                                        <InputAdornment position='start'>
+                                                           { ourForm.objectName.Frameworks ?
+                                                            
+                                                           <Fade><BuildIcon sx={{fontSize:15, color:"gray"}}/></Fade> : null }
+                                                            
+                                                        </InputAdornment>
+                                                    )
+                                                }}
+                                                    // 
                                                 />
 
                                                 <TextField
@@ -472,8 +539,17 @@ const InputsForm = () => {
                                                     width:'230px',
                                                    
                                                     }}
-                                                    InputProps={{style: {fontFamily:"Lato",fontSize:15, padding: '0.2rem', lineHeight:"25px"}}}
-                                                    
+                                                    InputProps={{style: {fontFamily:"Lato",fontSize:15, padding: '0.2rem', lineHeight:"25px"},
+                                                    startAdornment: (
+                                                        <InputAdornment position='start'>
+                                                           { ourForm.objectName.GeneralKnowledge ?
+                                                            
+                                                           <Fade><PsychologyIcon sx={{fontSize:15, color:"gray"}}/></Fade> : null }
+                                                            
+                                                        </InputAdornment>
+                                                    )
+                                                }}
+                                                    // 
                                                 />
 
                                                 <TextField
