@@ -6,12 +6,15 @@ import { useNavigate } from "react-router-dom";
 
 import WorkIcon from '@mui/icons-material/Work';
 
+
+
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import FilePresentIcon from '@mui/icons-material/FilePresent';
 
 import CodeIcon from '@mui/icons-material/Code';
 import PsychologyIcon from '@mui/icons-material/Psychology';
+import CoPresentIcon from '@mui/icons-material/CoPresent';
 
 import { addDoc, collection } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -50,6 +53,22 @@ import Fade from 'react-reveal/Fade';
 import DownloadIcon from '@mui/icons-material/Download';
 
 import Navbar from "../Navbar/Navbar";
+
+import { Icon } from "@progress/kendo-react-common";
+
+const themeColors = [
+  "inherit",
+  "primary",
+  "secondary",
+  "tertiary",
+  "info",
+  "success",
+  "warning",
+  "error",
+  "dark",
+  "light",
+  "inverse",
+];
 
 const arrState = arrInitialState;
 
@@ -130,15 +149,21 @@ const InputsForm = () => {
             <div className='createResumeContainer'>
                 <Navbar/>
                     <Fade delay={400}>
-                        <PDFExport ref={pdfExportComponent} >
+                        <PDFExport ref={pdfExportComponent}  >
                             
                                 <div className="resume">
                                     <div className='grid-area name'>
 
                                         <div className='square'>
 
+                                        <div className="text-center social-icons">
+                                            <div className="icon twitter">
+                                            <Icon name="twitter" />
+                                            </div>
+                                        </div>
+                                        
                                             <div className='firstGroup'> 
-
+                                            
                                                 <TextField
                                                     type="text"
                                                     name="fullName"
@@ -152,17 +177,11 @@ const InputsForm = () => {
                                                     value={ourForm.objectName.fullName.toUpperCase()}
                                                     onChange={handleChange}
                                                     style={{
-                                                    //resize: 'both',
-                                                    // fontSize:'50px',
+                                                   
                                                     marginTop:"25px",
                                                 
-                                                    //marginBottom: '10px',
-                                                    // border: 'none',
-                                                    // padding: '0.5rem',
-                                                    
                                                     width:'230px',
                                                     
-                                                    // position: 'relative',
                                                     }}
                                                     InputProps={{style: {fontSize:24 ,color:'white', padding: '0.2rem', lineHeight:"25px"}}}
                                                     
@@ -171,7 +190,7 @@ const InputsForm = () => {
                                                 <TextField
                                                     type="text"
                                                     name="jobTitle"
-                                                    
+                                                    className='pdfFonts'
                                                     required 
                                                     multiline
                                                     placeholder='Role'
@@ -183,16 +202,17 @@ const InputsForm = () => {
                                                     width:'230px',
                                                     
                                                     }}
-                                                    InputProps={{style: {fontFamily:"Lato",fontSize:20, color:'white',  padding: '0.2rem', lineHeight:"25px"}}}
+                                                    InputProps={{style: {fontSize:20, color:'white',  padding: '0.2rem', lineHeight:"25px"}}}
                                                     
                                                 />
 
                                                 <TextField
                                                     type="email"
                                                     name="email"
-                                                    
+                                                    className='pdfFonts'
                                                     required 
                                                     multiline
+                                                    
                                                     placeholder='Email'
                                                     sx={{border: 'none',"& fieldset": { border: 'none' }  }}
                                                     value={ourForm.objectName.email}
@@ -204,12 +224,12 @@ const InputsForm = () => {
                                                     width:'230px',
                                                    
                                                     }}
-                                                    InputProps={{style: {fontFamily:"Exo",fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
+                                                    InputProps={{style: {fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
                                                     startAdornment: (
-                                                        <InputAdornment position='start'>
+                                                        <InputAdornment  position='start'>
                                                            { ourForm.objectName.email ?
                                                             
-                                                           <Fade><EmailIcon sx={{fontSize:15, color:"gray"}}/></Fade> : null }
+                                                           <Fade><EmailIcon  color='error'  sx={{fontSize:15}}/></Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -219,7 +239,7 @@ const InputsForm = () => {
                                                 <TextField
                                                     type="text"
                                                     name="phoneNumber"
-                                                    
+                                                    className='pdfFonts'
                                                     required 
                                                     multiline
                                                     placeholder='Phone Number'
@@ -231,22 +251,22 @@ const InputsForm = () => {
                                                     width:'230px',
                                                    
                                                     }}
-                                                    InputProps={{style: {fontFamily:"Exo",fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
+                                                    InputProps={{style: {fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
                                                     startAdornment: (
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.phoneNumber ?
                                                             
-                                                           <Fade><PhoneAndroidIcon sx={{fontSize:15, color:"gray"}}/></Fade> : null }
+                                                           <Fade><PhoneAndroidIcon sx={{fontSize:15}}/></Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
                                                     
                                                 }}/>
-
+                                               
                                                 <TextField
                                                     type="text"
                                                     name="linkedinLink"
-                                                    
+                                                    className='pdfFonts'
                                                     required 
                                                     multiline
                                                     placeholder='Linkedin link'
@@ -258,12 +278,12 @@ const InputsForm = () => {
                                                     width:'230px',
                                                     
                                                     }}
-                                                    InputProps={{style: {fontFamily:"Exo",fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
+                                                    InputProps={{style: {fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
                                                     startAdornment: (
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.linkedinLink ?
                                                             
-                                                           <Fade><LinkedInIcon sx={{fontSize:15, color:"gray"}}/></Fade> : null }
+                                                           <Fade><LinkedInIcon sx={{fontSize:15}} color='error'/></Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -275,6 +295,7 @@ const InputsForm = () => {
                                                     name="githubLink"
                                                     required 
                                                     multiline
+                                                    className='pdfFonts'
                                                     placeholder='Github'
                                                     sx={{border: 'none',"& fieldset": { border: 'none' }  }}
                                                     value={ourForm.objectName.githubLink}
@@ -284,12 +305,12 @@ const InputsForm = () => {
                                                     width:'230px',
                                                     
                                                     }}
-                                                    InputProps={{style: {fontFamily:"Exo",fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
+                                                    InputProps={{style: {fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
                                                     startAdornment: (
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.githubLink ?
                                                             
-                                                           <Fade><GitHubIcon sx={{fontSize:15, color:"gray"}}/></Fade> : null }
+                                                           <Fade><GitHubIcon sx={{fontSize:15}}/></Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -300,7 +321,7 @@ const InputsForm = () => {
                                                 <TextField
                                                     type="text"
                                                     name="portfolioLink"
-                                                    
+                                                    className='pdfFonts'
                                                     required 
                                                     multiline
                                                     placeholder='Portfolio'
@@ -312,12 +333,12 @@ const InputsForm = () => {
                                                     width:'230px',
                                                     
                                                     }}
-                                                    InputProps={{style: {fontFamily:"Exo",fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
+                                                    InputProps={{style: {fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
                                                     startAdornment: (
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.portfolioLink ?
                                                             
-                                                           <Fade><FilePresentIcon sx={{fontSize:15, color:"gray"}}/></Fade> : null }
+                                                           <Fade><CoPresentIcon sx={{fontSize:15}}/></Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -339,7 +360,7 @@ const InputsForm = () => {
                                                 <TextField
                                                     type="text"
                                                     name="degreeTypeAndname"
-                                                    
+                                                    className='pdfFonts'
                                                     required 
                                                     multiline
                                                     placeholder='Degree name'
@@ -352,12 +373,12 @@ const InputsForm = () => {
                                                     width:'230px',
                                                     
                                                     }}
-                                                    InputProps={{style: {fontFamily:"Lato",fontSize:18, padding: '0.2rem', lineHeight:"25px"}, 
+                                                    InputProps={{style: {fontSize:18, padding: '0.2rem', lineHeight:"25px"}, 
                                                     startAdornment: (
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.degreeTypeAndname ?
                                                             
-                                                           <Fade><SchoolIcon sx={{fontSize:15, color:"gray"}}/></Fade> : null }
+                                                           <Fade><SchoolIcon sx={{fontSize:15}}/></Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -369,7 +390,7 @@ const InputsForm = () => {
                                                 <TextField
                                                     type="text"
                                                     name="schoolNameAndlocation"
-                                                    
+                                                    className='pdfFonts'
                                                     required 
                                                     multiline
                                                     placeholder='School name & location'
@@ -382,12 +403,12 @@ const InputsForm = () => {
                                                     width:'230px',
                                                     
                                                     }}
-                                                    InputProps={{style: {fontFamily:"Lato",fontSize:18,color:'gray', padding: '0.2rem', lineHeight:"25px"},
+                                                    InputProps={{style: {fontSize:18, padding: '0.2rem', lineHeight:"25px"},
                                                     startAdornment: (
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.schoolNameAndlocation ?
                                                             
-                                                           <Fade><LocationOnIcon sx={{fontSize:15, color:"gray"}}/></Fade> : null }
+                                                           <Fade><LocationOnIcon sx={{fontSize:15}}/></Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -398,7 +419,7 @@ const InputsForm = () => {
                                                 <TextField
                                                     type="text"
                                                     name="timeLearnedDegree"
-                                                    
+                                                    className='pdfFonts'
                                                     required 
                                                     multiline
                                                     placeholder='Time range'
@@ -411,12 +432,12 @@ const InputsForm = () => {
                                                     width:'230px',
                                                    
                                                     }}
-                                                    InputProps={{style: {fontFamily:"Lato",fontSize:18, padding: '0.2rem', lineHeight:"25px"},
+                                                    InputProps={{style: {fontSize:18, padding: '0.2rem', lineHeight:"25px"},
                                                     startAdornment: (
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.timeLearnedDegree ?
                                                             
-                                                           <Fade><DateRangeIcon sx={{fontSize:15, color:"gray"}}/></Fade> : null }
+                                                           <Fade><DateRangeIcon sx={{fontSize:15}}/></Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -431,7 +452,7 @@ const InputsForm = () => {
                                                 <TextField
                                                     type="text"
                                                     name="ProgrammingLanguages"
-                                                    
+                                                    className='pdfFonts'
                                                     required 
                                                     multiline
                                                     placeholder='Languages: JS, CSS e.g.'
@@ -446,12 +467,12 @@ const InputsForm = () => {
                                                     width:'230px',
                                                     
                                                     }}
-                                                    InputProps={{style: {fontFamily:"Lato",fontSize:15, padding: '0.2rem', lineHeight:"25px"},
+                                                    InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
                                                     startAdornment: (
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.ProgrammingLanguages ?
                                                             
-                                                           <Fade><CodeIcon sx={{fontSize:15, color:"gray"}}/></Fade> : null }
+                                                           <Fade><CodeIcon sx={{fontSize:15}}/></Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -462,7 +483,7 @@ const InputsForm = () => {
                                                 <TextField
                                                     type="text"
                                                     name="Databases"
-                                                    
+                                                    className='pdfFonts'
                                                     required 
                                                     multiline
                                                     placeholder='Databases: MongoDB e.g.'
@@ -477,12 +498,12 @@ const InputsForm = () => {
                                                     width:'230px',
                                                    
                                                     }}
-                                                    InputProps={{style: {fontFamily:"Lato",fontSize:15, padding: '0.2rem', lineHeight:"25px"},
+                                                    InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
                                                     startAdornment: (
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.Databases ?
                                                             
-                                                           <Fade><StorageIcon sx={{fontSize:15, color:"gray"}}/></Fade> : null }
+                                                           <Fade><StorageIcon sx={{fontSize:15}}/></Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -493,10 +514,10 @@ const InputsForm = () => {
                                                 <TextField
                                                     type="text"
                                                     name="Frameworks"
-                                                    
+                                                    className='pdfFonts'
                                                     required 
                                                     multiline
-                                                    placeholder='Frameworks: React, NodeJS e.g.'
+                                                    placeholder='Frameworks: React e.g.'
                                                     sx={{border: 'none',"& fieldset": { border: 'none' }  }}
                                                     value={ourForm.objectName.Frameworks}
                                                     onChange={handleChange}
@@ -508,12 +529,12 @@ const InputsForm = () => {
                                                     width:'230px',
                                                    
                                                     }}
-                                                    InputProps={{style: {fontFamily:"Lato",fontSize:15, padding: '0.2rem', lineHeight:"25px"},
+                                                    InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
                                                     startAdornment: (
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.Frameworks ?
                                                             
-                                                           <Fade><BuildIcon sx={{fontSize:15, color:"gray"}}/></Fade> : null }
+                                                           <Fade><BuildIcon sx={{fontSize:15}}/></Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -524,7 +545,7 @@ const InputsForm = () => {
                                                 <TextField
                                                     type="text"
                                                     name="GeneralKnowledge"
-                                                    
+                                                    className='pdfFonts'
                                                     required 
                                                     multiline
                                                     placeholder='Knowledge: React-hooks e.g.'
@@ -544,7 +565,7 @@ const InputsForm = () => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.GeneralKnowledge ?
                                                             
-                                                           <Fade><PsychologyIcon sx={{fontSize:15, color:"gray"}}/></Fade> : null }
+                                                           <Fade><PsychologyIcon sx={{fontSize:15}}/></Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -555,7 +576,7 @@ const InputsForm = () => {
                                                 <TextField
                                                     type="text"
                                                     name="dynamicHeaderPartOne"
-                                                    
+                                                    className='pdfFonts'
                                                     required 
                                                     multiline
                                                     placeholder='Optional section'
@@ -570,7 +591,7 @@ const InputsForm = () => {
                                                     width:'230px',
                                                    
                                                     }}
-                                                    InputProps={{style: {fontFamily:"Lato",fontSize:20, fontWeight:'bold', padding: '0.2rem', lineHeight:"25px"}}}
+                                                    InputProps={{style: {fontSize:20, fontWeight:'bold', padding: '0.2rem', lineHeight:"25px"}}}
                                                     
                                                 />
 
@@ -592,7 +613,7 @@ const InputsForm = () => {
                                                     width:'230px',
                                                    
                                                     }}
-                                                    InputProps={{style: {fontFamily:"Lato",fontSize:15, padding: '0.2rem', lineHeight:"25px"}}}
+                                                    InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"}}}
                                                     
                                                 />
                                             
