@@ -1,12 +1,12 @@
 import './InputsForm.css';
 
+
+
 import React, { useState, useRef } from "react";
 
 import { useNavigate } from "react-router-dom";
 
 import WorkIcon from '@mui/icons-material/Work';
-
-
 
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -83,6 +83,7 @@ const InputsForm = () => {
     const [inputList, setInputList] = useState([{ firstName: '', display: 'notdisplayed'}]);
 
     const navigate = useNavigate();
+    
     const pdfExportComponent = useRef(null);
 
     const handleExportWithComponent = (data) => {
@@ -156,12 +157,7 @@ const InputsForm = () => {
 
                                         <div className='square'>
 
-                                        <div className="text-center social-icons">
-                                            <div className="icon twitter">
-                                            <Icon name="twitter" />
-                                            </div>
-                                        </div>
-                                        
+                                                                                
                                             <div className='firstGroup'> 
                                             
                                                 <TextField
@@ -172,6 +168,7 @@ const InputsForm = () => {
                                                     multiline
                                                     placeholder='Full Name'
                                                     className='pdfFonts'
+
                                                     // for hide the border
                                                     sx={{border: 'none',"& fieldset": { border: 'none' } }}
                                                     value={ourForm.objectName.fullName.toUpperCase()}
@@ -229,7 +226,7 @@ const InputsForm = () => {
                                                         <InputAdornment  position='start'>
                                                            { ourForm.objectName.email ?
                                                             
-                                                           <Fade><EmailIcon  color='error'  sx={{fontSize:15}}/></Fade> : null }
+                                                           <Fade><EmailIcon    sx={{fontSize:15}}/></Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -283,7 +280,7 @@ const InputsForm = () => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.linkedinLink ?
                                                             
-                                                           <Fade><LinkedInIcon sx={{fontSize:15}} color='error'/></Fade> : null }
+                                                           <Fade><LinkedInIcon sx={{fontSize:15}} /></Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -353,7 +350,7 @@ const InputsForm = () => {
 
                                             <div className='afterSquareGroup'>
                                      
-                                            <h4 style={{marginLeft:'22px', marginBottom:'5px', fontFamily:'Lato'}}> 
+                                            <h4 style={{marginLeft:'22px', marginBottom:'5px'}} className='pdfFonts'> 
                                                 {/* <SchoolIcon sx={{mr:1, height:"15px", width:"15px"}} />  */}
                                             EDUCATION</h4>
 
@@ -445,7 +442,7 @@ const InputsForm = () => {
                                                     
                                                 />
 
-                                            <h4 style={{marginLeft:'22px', marginBottom:'1px', fontFamily:"Lato"}}> 
+                                            <h4 style={{marginLeft:'22px', marginBottom:'1px'}} className='pdfFonts'>
                                                 {/* <PsychologyIcon sx={{mr:1, height:"15px", width:"15px"}} />  */}
                                             SKILLS</h4>
 
@@ -560,7 +557,7 @@ const InputsForm = () => {
                                                     width:'230px',
                                                    
                                                     }}
-                                                    InputProps={{style: {fontFamily:"Lato",fontSize:15, padding: '0.2rem', lineHeight:"25px"},
+                                                    InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
                                                     startAdornment: (
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.GeneralKnowledge ?
@@ -570,7 +567,7 @@ const InputsForm = () => {
                                                         </InputAdornment>
                                                     )
                                                 }}
-                                                    // 
+                                                    
                                                 />
 
                                                 <TextField
@@ -591,7 +588,7 @@ const InputsForm = () => {
                                                     width:'230px',
                                                    
                                                     }}
-                                                    InputProps={{style: {fontSize:20, fontWeight:'bold', padding: '0.2rem', lineHeight:"25px"}}}
+                                                    InputProps={{style: {fontSize:20, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}}}
                                                     
                                                 />
 
