@@ -132,8 +132,6 @@ const Todo = () => {
                 onChange={(e) => handleInputChange(e, i)}
               />
 
-            
-
             {/* <input
               key={i}
               name="firstName"

@@ -350,9 +350,28 @@ const InputsForm = () => {
 
                                             <div className='afterSquareGroup'>
                                      
-                                            <h4 style={{marginLeft:'22px', marginBottom:'5px'}} className='pdfFonts'> 
-                                                {/* <SchoolIcon sx={{mr:1, height:"15px", width:"15px"}} />  */}
-                                            EDUCATION</h4>
+                       
+                                            <TextField
+                                                    type="text"
+                                                    name="educationHeader"
+                                                    className='pdfFonts'
+                                                    required 
+                                                    multiline
+                                                    placeholder='Optional section'
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                    value='EDUCATION'
+                                                    // onChange={handleChange}
+                                                    // defaultValue={'Languages:'}
+                                                    
+                                                    style={{
+                                                    marginTop:'20px',
+                                                    marginLeft:'18px',
+                                                    width:'230px',
+                                                   
+                                                    }}
+                                                    InputProps={{style: {fontSize:19, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}}}
+                                                    
+                                                />
 
                                                 <TextField
                                                     type="text"
@@ -370,7 +389,7 @@ const InputsForm = () => {
                                                     width:'230px',
                                                     
                                                     }}
-                                                    InputProps={{style: {fontSize:18, padding: '0.2rem', lineHeight:"25px"}, 
+                                                    InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"}, 
                                                     startAdornment: (
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.degreeTypeAndname ?
@@ -400,7 +419,7 @@ const InputsForm = () => {
                                                     width:'230px',
                                                     
                                                     }}
-                                                    InputProps={{style: {fontSize:18, padding: '0.2rem', lineHeight:"25px"},
+                                                    InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
                                                     startAdornment: (
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.schoolNameAndlocation ?
@@ -429,7 +448,7 @@ const InputsForm = () => {
                                                     width:'230px',
                                                    
                                                     }}
-                                                    InputProps={{style: {fontSize:18, padding: '0.2rem', lineHeight:"25px"},
+                                                    InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
                                                     startAdornment: (
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.timeLearnedDegree ?
@@ -442,9 +461,29 @@ const InputsForm = () => {
                                                     
                                                 />
 
-                                            <h4 style={{marginLeft:'22px', marginBottom:'1px'}} className='pdfFonts'>
-                                                {/* <PsychologyIcon sx={{mr:1, height:"15px", width:"15px"}} />  */}
-                                            SKILLS</h4>
+                                            
+
+                                            <TextField
+                                                    type="text"
+                                                    name="skillsHeader"
+                                                    className='pdfFonts'
+                                                    required 
+                                                    multiline
+                                                    placeholder='Optional section'
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                    value='SKILLS'
+                                                    // onChange={handleChange}
+                                                    // defaultValue={'Languages:'}
+                                                    
+                                                    style={{
+                                                    marginTop:'20px',
+                                                    marginLeft:'18px',
+                                                    width:'230px',
+                                                   
+                                                    }}
+                                                    InputProps={{style: {fontSize:19, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}}}
+                                                    
+                                                />
 
                                                 <TextField
                                                     type="text"
@@ -584,11 +623,11 @@ const InputsForm = () => {
                                                     
                                                     style={{
                                                     marginTop:'20px',
-                                                    marginLeft:'18px',
+                                                    marginLeft:'20px',
                                                     width:'230px',
                                                    
                                                     }}
-                                                    InputProps={{style: {fontSize:20, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}}}
+                                                    InputProps={{style: {fontSize:19, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}}}
                                                     
                                                 />
 
@@ -606,7 +645,7 @@ const InputsForm = () => {
                                                     
                                                     style={{
                                                     
-                                                    marginLeft:'18px',
+                                                    marginLeft:'22px',
                                                     width:'230px',
                                                    
                                                     }}
@@ -621,9 +660,33 @@ const InputsForm = () => {
                                             {/* rigth part */}
                                             <div className="grid-area work">
                                                 
-                                                <h4 style={{fontFamily:"Lato"}}> 
-                                                    {/* <WorkIcon sx={{mr:1, height:"15px", width:"15px"}} />  */}
-                                                WORK EXPERIENCE </h4>
+                                                
+
+                                                
+                                                <TextField
+                                                    type="text"
+                                                    name="workHeader"
+                                                    className='pdfFonts'
+                                                    required 
+                                                    multiline
+                                                    // placeholder='Optional section'
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                    value={'WORK EXPERIENCE'}
+                                                    // onChange={handleChange}
+                                                    defaultValue={'Languages:'}
+                                                    
+                                                    style={{
+                                                    marginTop:'20px',
+                                                    marginLeft:'18px',
+                                                    width:'230px',
+                                                   
+                                                    }}
+                                                    InputProps={{style: {fontSize:19, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}}}
+                                                    
+                                                />
+
+                                                {/* workHeader */}
+
                                                 <Todo/>
   
                                                 <TextField
