@@ -20,6 +20,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { PDFExport } from "@progress/kendo-react-pdf";
 
+
 import Todo from '../Todo/Todo';
 
 // import InputAdornment from '@mui/material/InputAdornment';
@@ -661,7 +662,29 @@ const InputsForm = () => {
                                             <div className="grid-area work">
                                                 
                                                 
+      <div className="social-icons ">
 
+        t
+        <PsychologyIcon sx={{fontSize:15}}/>
+        
+      </div>
+
+      <p> pio</p>
+
+      <style>{`
+  
+        .social-icons  {
+            
+            background-color: yellow;
+            color: blue;
+            
+            
+        }
+
+            `}</style>
+
+                                            <span style={{color:'red'}} >p</span>
+                                            <div className='social-icons icon'> <p>  <PsychologyIcon sx={{fontSize:15}}/> </p></div>
                                                 
                                                 <TextField
                                                     type="text"

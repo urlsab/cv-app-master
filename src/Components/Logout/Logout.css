@@ -1,3 +1,25 @@
-.logOutStyle {
-    margin: 10% 40%;
+.logoutContainer {
+    background: rgb(155,19,19);
+    background: linear-gradient(165deg, rgb(43, 178, 117) 0%, rgb(99, 175, 192) 100%);
+    /* 220 71 71 , 30 187 208*/
+    display: flex;
+    /* height: 100%; */
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    font-family: 'Itim', serif;
+    /* height: 601px; */
+    font-size: 28px;
+    padding: 110px;
+    text-align: center;
+  }
+
+  .goodBeyStyle {
+    background: -webkit-linear-gradient(80deg, rgb(255, 233, 107) 0%, white  100%);
+    /* font-size: 60px; */
+    /* color: #ed6c02; */
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
