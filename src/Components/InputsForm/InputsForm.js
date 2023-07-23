@@ -4,20 +4,14 @@ import React, { useState, useRef } from "react";
 
 import { useNavigate } from "react-router-dom";
 
-import WorkIcon from '@mui/icons-material/Work';
+import TodoLeft from '../TodoLeft/TodoLeft';
 
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import FilePresentIcon from '@mui/icons-material/FilePresent';
-import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
-import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 
 import CodeIcon from '@mui/icons-material/Code';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 import CoPresentIcon from '@mui/icons-material/CoPresent';
-import WhereToVoteIcon from '@mui/icons-material/WhereToVote';
-import TitleIcon from '@mui/icons-material/Title';
-import HdrAutoIcon from '@mui/icons-material/HdrAuto';
 
 import { addDoc, collection } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -38,10 +32,6 @@ import StorageIcon from '@mui/icons-material/Storage';
 import BuildIcon from '@mui/icons-material/Build';
 
 import TextField from '@mui/material/TextField';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-
 import ReactToPrint from 'react-to-print';
 
 import { firestoreDB, auth } from "../../firestoreConfig/firestoreConfig";
@@ -597,6 +587,7 @@ const InputsForm = () => {
                                                     style={{
                                                     
                                                     marginLeft:'18px',
+                                                    marginBottom:'10px',
                                                     width:'230px',
                                                    
                                                     }}
@@ -613,7 +604,9 @@ const InputsForm = () => {
                                                     
                                                 />
 
-                                                <TextField
+                                                <TodoLeft/>
+
+                                                {/* <TextField
                                                     type="text"
                                                     name="dynamicHeaderPartOne"
                                                     className='pdfFonts'
@@ -633,9 +626,9 @@ const InputsForm = () => {
                                                     }}
                                                     InputProps={{style: {fontSize:19, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}}}
                                                     
-                                                />
+                                                /> */}
 
-                                                <TextField
+                                                {/* <TextField
                                                     type="text"
                                                     name="dynamicContentPartOne"
                                                     
@@ -654,7 +647,7 @@ const InputsForm = () => {
                                                     }}
                                                     InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"}}}
                                                     
-                                                />
+                                                /> */}
                                             
                                             </div>   
  

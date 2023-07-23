@@ -178,7 +178,7 @@ const Todo = () => {
               className='pdfFonts'
               required 
               multiline
-              placeholder='Duration | Loaction'
+              placeholder='Duration | Location'
               sx={{border: 'none',"& fieldset": { border: 'none' }  }}
               value={x.durationAndLocation}
               onChange={(e) => handleInputChange(e, i)}
@@ -186,14 +186,45 @@ const Todo = () => {
               style={{
               
               marginLeft:'20px',
-              width:'420px',
-              marginBottom:'15px'
+              width:'420px'
+              
               
               }}
               InputProps={{style: {fontSize:18, padding: '0.2rem', lineHeight:"25px"},
               startAdornment: (
                   <InputAdornment position='start'>
                       { x.durationAndLocation ?
+                      
+                      <Fade><EventAvailableIcon sx={{fontSize:15}}/> | <WhereToVoteIcon sx={{fontSize:15}}/>  </Fade> : null }
+                      
+                  </InputAdornment>
+              )
+          }}
+
+          />
+
+            <TextField
+              type="text"
+              name="achievement"
+              className='pdfFonts'
+              required 
+              multiline
+              placeholder='Achievement'
+              sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+              value={x.achivments}
+              onChange={(e) => handleInputChange(e, i)}
+        
+              style={{
+              
+              marginLeft:'20px',
+              width:'420px',
+              marginBottom:'5px'
+              
+              }}
+              InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
+              startAdornment: (
+                  <InputAdornment position='start'>
+                      { x.achivments ?
                       
                       <Fade><EventAvailableIcon sx={{fontSize:15}}/> | <WhereToVoteIcon sx={{fontSize:15}}/>  </Fade> : null }
                       
