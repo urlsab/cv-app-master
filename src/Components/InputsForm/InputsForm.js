@@ -1,7 +1,5 @@
 import './InputsForm.css';
 
-
-
 import React, { useState, useRef } from "react";
 
 import { useNavigate } from "react-router-dom";
@@ -11,10 +9,15 @@ import WorkIcon from '@mui/icons-material/Work';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import FilePresentIcon from '@mui/icons-material/FilePresent';
+import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
+import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 
 import CodeIcon from '@mui/icons-material/Code';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 import CoPresentIcon from '@mui/icons-material/CoPresent';
+import WhereToVoteIcon from '@mui/icons-material/WhereToVote';
+import TitleIcon from '@mui/icons-material/Title';
+import HdrAutoIcon from '@mui/icons-material/HdrAuto';
 
 import { addDoc, collection } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -576,7 +579,7 @@ const InputsForm = () => {
                                                         </InputAdornment>
                                                     )
                                                 }}
-                                                    // 
+                                                    
                                                 />
 
                                                 <TextField
@@ -642,8 +645,7 @@ const InputsForm = () => {
                                                     sx={{border: 'none',"& fieldset": { border: 'none' }  }}
                                                     value={ourForm.objectName.dynamicContentPartOne}
                                                     onChange={handleChange}
-                                                    // defaultValue={'Languages:'}
-                                                    
+                                                   
                                                     style={{
                                                     
                                                     marginLeft:'22px',
@@ -664,12 +666,9 @@ const InputsForm = () => {
                                                 
       <div className="social-icons ">
 
-        t
         <PsychologyIcon sx={{fontSize:15}}/>
         
       </div>
-
-      <p> pio</p>
 
       <style>{`
   
@@ -681,10 +680,9 @@ const InputsForm = () => {
             
         }
 
-            `}</style>
+     `}</style>
 
-                                            <span style={{color:'red'}} >p</span>
-                                            <div className='social-icons icon'> <p>  <PsychologyIcon sx={{fontSize:15}}/> </p></div>
+                                           
                                                 
                                                 <TextField
                                                     type="text"
@@ -709,10 +707,72 @@ const InputsForm = () => {
                                                 />
 
                                                 {/* workHeader */}
+{/* 
+                                                <TextField
+                                                    type="text"
+                                                    name="roleAndCompanyName"
+                                                    className='pdfFonts'
+                                                    required 
+                                                    multiline
+                                                    placeholder='Role | Company Name'
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                    value={ourForm.objectName.roleAndCompanyName}
+                                                    onChange={handleChange}
+                                             
+                                                    style={{
+                                                    
+                                                    marginLeft:'20px',
+                                                    width:'420px'
+                                                   
+                                                    }}
+                                                    InputProps={{style: {fontSize:18, padding: '0.2rem', lineHeight:"25px"},
+                                                    startAdornment: (
+                                                        <InputAdornment position='start'>
+                                                           { ourForm.objectName.roleAndCompanyName ?
+                                                            
+                                                           <Fade> <WorkIcon sx={{fontSize:15}}/> | <HdrAutoIcon sx={{fontSize:15}}/> </Fade> : null }
+                                                            
+                                                        </InputAdornment>
+                                                    )
+                                                }}
+                                                    
+                                                />
+
+                                                <TextField
+                                                    type="text"
+                                                    name="locationAndDuration"
+                                                    className='pdfFonts'
+                                                    required 
+                                                    multiline
+                                                    placeholder='Duration | Loaction'
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                    value={ourForm.objectName.locationAndDuration}
+                                                    onChange={handleChange}
+                                             
+                                                    style={{
+                                                    
+                                                    marginLeft:'20px',
+                                                    width:'420px'
+                                                   
+                                                    }}
+                                                    InputProps={{style: {fontSize:18, padding: '0.2rem', lineHeight:"25px"},
+                                                    startAdornment: (
+                                                        <InputAdornment position='start'>
+                                                           { ourForm.objectName.locationAndDuration ?
+                                                            
+                                                           <Fade><EventAvailableIcon sx={{fontSize:15}}/> | <WhereToVoteIcon sx={{fontSize:15}}/>  </Fade> : null }
+                                                            
+                                                        </InputAdornment>
+                                                    )
+                                                }}
+                    
+                                                /> */}
+
+
 
                                                 <Todo/>
-  
-                                                <TextField
+
+                                                {/* <TextField
                                                     type="text"
                                                     name="dynamicHeaderPartTow"
                                                     
@@ -732,9 +792,9 @@ const InputsForm = () => {
                                                     }}
                                                     InputProps={{style: {fontFamily:"Lato",fontSize:20, fontWeight:'bold', padding: '0.2rem', lineHeight:"25px"}}}
                                                     
-                                                />
+                                                /> */}
 
-                                                <TextField
+                                                {/* <TextField
                                                     type="text"
                                                     name="dynamicContentPartTow"
                                                     
@@ -754,12 +814,11 @@ const InputsForm = () => {
                                                     }}
                                                     InputProps={{style: {fontFamily:"Lato",fontSize:15, padding: '0.2rem', lineHeight:"25px"}}}
                                                     
-                                                />
+                                                /> */}
+
                                             </div>
 
                                     </div> 
-
-                                
 
                             </PDFExport>
 

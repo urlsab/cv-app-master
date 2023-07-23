@@ -3,13 +3,34 @@ import React, { useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import { createRandomId } from '../../utils/randomId';
 
+
+import WorkIcon from '@mui/icons-material/Work';
+
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import FilePresentIcon from '@mui/icons-material/FilePresent';
+import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
+import EventAvailableIcon from '@mui/icons-material/EventAvailable';
+
+import CodeIcon from '@mui/icons-material/Code';
+import PsychologyIcon from '@mui/icons-material/Psychology';
+import CoPresentIcon from '@mui/icons-material/CoPresent';
+import WhereToVoteIcon from '@mui/icons-material/WhereToVote';
+import TitleIcon from '@mui/icons-material/Title';
+import HdrAutoIcon from '@mui/icons-material/HdrAuto';
+
+import { Button, InputAdornment } from "@mui/material";
+import SaveIcon from '@mui/icons-material/Save';
+
+import Fade from 'react-reveal/Fade';
+
 // '•'
 
 const Todo = () => {
 
   // const [display, setDisplay] = useState('notdisplayed');
    
-  const [inputList, setInputList] = useState([{ firstName: '', display: 'notdisplayed'}]);
+  const [inputList, setInputList] = useState([{ display: 'notdisplayed', roleAndCompanyName: '',  durationAndLocation: '', achivments: ''}]);
 
   const [text, setText] = useState('');
 
@@ -78,7 +99,7 @@ const Todo = () => {
 
     // inputRef[index].current.save();
 
-    list.splice(index + 1 , 0, { firstName: ''});
+    list.splice(index + 1 , 0, { roleAndCompanyName: '',  durationAndLocation: '', achivments: ''});
     console.log(list[index]);
     setInputList(list);
   };
@@ -118,30 +139,72 @@ const Todo = () => {
                 </button>
               )}
 
-            <div key={i  + 7}>
+            <div style={{marginTop:'10px', marginBottom:'10px'}} key={i  + 7}>
 
-              <input
-                // key={i + 9}
-                name="firstName"
-                height="100px"
-                width="420px"
-                maxLength="40"
-                className="inputStyle"
-                placeholder="Role | Company name"
-                value={x.firstName}
-                onChange={(e) => handleInputChange(e, i)}
-              />
-
-            {/* <input
-              key={i}
-              name="firstName"
-              className="inputStyle"
-              placeholder="Duration dates | Location"
-              value={x.firstName}
+            <TextField
+              type="text"
+              name="roleAndCompanyName"
+              className='pdfFonts'
+              required 
+              multiline
+              placeholder='Role | Company Name'
+              sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+              value={x.roleAndCompanyName}
               onChange={(e) => handleInputChange(e, i)}
-            /> */}
+        
+              style={{
+              
+              marginLeft:'20px',
+              width:'420px'
+              
+              }}
+              InputProps={{style: {fontSize:18, padding: '0.2rem', lineHeight:"25px"},
+              startAdornment: (
+                  <InputAdornment position='start'>
+                      { x.roleAndCompanyName ?
+                      
+                      <Fade><WorkIcon sx={{fontSize:15}}/> | <HdrAutoIcon sx={{fontSize:15}}/>  </Fade> : null }
+                      
+                  </InputAdornment>
+              )
+          }}
 
-              <div key={i + 6 }>
+          />
+
+          
+            <TextField
+              type="text"
+              name="durationAndLocation"
+              className='pdfFonts'
+              required 
+              multiline
+              placeholder='Duration | Loaction'
+              sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+              value={x.durationAndLocation}
+              onChange={(e) => handleInputChange(e, i)}
+        
+              style={{
+              
+              marginLeft:'20px',
+              width:'420px',
+              marginBottom:'15px'
+              
+              }}
+              InputProps={{style: {fontSize:18, padding: '0.2rem', lineHeight:"25px"},
+              startAdornment: (
+                  <InputAdornment position='start'>
+                      { x.durationAndLocation ?
+                      
+                      <Fade><EventAvailableIcon sx={{fontSize:15}}/> | <WhereToVoteIcon sx={{fontSize:15}}/>  </Fade> : null }
+                      
+                  </InputAdornment>
+              )
+          }}
+
+          />
+
+
+              {/* <div key={i + 6 }>
                 <div key={ i + 9}
             
                   // ref={inputRef[i]}
@@ -153,38 +216,10 @@ const Todo = () => {
                   className="listBulletRight" > 
                 </div>
 
-              </div>
+              </div> */}
               
             </div>
-
-
-              {/* suppressContentEditableWarning={true}  - aviod react warrnig*/}
-              {/* contentEditable={true} - aloow to write text inside this div */}
               
-  
-            {/* <TextField
-              key={i + 2}
-              size='small'
-              onKeyDown={(e) => handleKeyPress(e)}
-              
-              multiline
-              name="firstName"
-              className="inputStyle"
-              placeholder=""
-              color='primary'
-              
-              sx={{
-                "& fieldset": { border: 'none' },
-                width:"350px"
-              }}
-              
-              value={`${x.firstName}`}
-              onChange={(e) => { handleInputChange(e, i); }}
-            /> */}
-
-            {/* {short solution for bullet list} */}
-            {/* contenteditable - allow to write content like input tag */}
-                     
             </div>
           </div>
           </div>
@@ -195,3 +230,11 @@ const Todo = () => {
 };
 
 export default Todo;
+
+// ==============================
+
+{/* suppressContentEditableWarning={true}  - aviod react warrnig*/}
+{/* contentEditable={true} - aloow to write text inside this div */}
+
+{/* {short solution for bullet list} */}
+{/* contenteditable - allow to write content like input tag */}
