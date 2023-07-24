@@ -29,7 +29,7 @@ import { firestoreDB } from "../../firestoreConfig/firestoreConfig";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firestoreConfig/firestoreConfig";
 
-import Todo from "../Todo/Todo";
+// import Todo from "../Todo/Todo";
 import WorkIcon from '@mui/icons-material/Work';
 import SchoolIcon from '@mui/icons-material/School';
 
@@ -215,7 +215,7 @@ const AllResumes = () => {
                                             {/* rigth part */}
                                             <div className="grid-area work">
                                                 <h4> <WorkIcon sx={{mr:1, height:"15px", width:"15px"}} /> WORK EXPERIENCE </h4>
-                                                <Todo/>
+                                                {/* <Todo/> */}
                                                 {cv[i].info.fullName} 
                                             </div>
 

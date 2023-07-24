@@ -1,0 +1,134 @@
+
+
+.bulletStyle {
+    width: 420px;
+  }
+  
+  .listBulletRight {
+    margin-left : 1em;
+    outline: none;
+  
+    /* manipulate style here */
+    font-size: 15px;
+    font-family: 'Itim';
+    margin-bottom: 20px;
+  
+    /* limit the width */
+    width: 420px;
+  }
+  
+  /* when type enter and move line - will display bullet */
+  /* other css props not working here */
+  .listBulletRight div {
+    display: list-item;
+  }
+  
+  .box {
+    margin-bottom: 1px;
+    padding-right: 2px;
+    width: fit-content;
+  }
+  
+  .btn-box {
+    width: 20px;
+    display: inline;
+  }
+  
+  .notdisplayed {
+    display: none;
+  }
+  
+  .displayed {
+    display: inline-block;
+  }
+  
+  .inputStyle {
+    border: none;
+    resize: none;
+    overflow: hidden;
+    width: 420px;
+    font-size: 18px;
+    margin-left: 20px;
+    margin-top: 5px;
+  }
+  
+  .inputStyle:focus {
+    outline: none;
+    resize: none;
+    overflow: hidden;
+    width: 420px;
+    background-color: lightgray;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+  }
+  
+  .listBulletRight {
+    display: list-item;
+    margin-left: 1em;
+    outline: none;
+    border: none;
+  
+    /* manipulate style here */
+    font-size: 15px;
+    font-family: 'Itim';
+    margin-bottom: 20px;
+  
+    /* limit the width = limit chars */
+    width: 420px;
+  
+    margin-left: 40px;
+    /* margin-top: 10px; */
+  }
+  
+  .listBulletRight div {
+    display: list-item;
+    
+  }
+  
+  .bulletStyle {
+    width: 420px;
+  }
+  
+  /* allow to move line by enter and display bullet for every start line */
+  .listBullet {
+    /* display: list-item; */
+    margin-left: 1em;
+    outline: none;
+  
+    /* manipulate style here */
+    font-size: 15px;
+    font-family: 'Itim';
+    /* margin-bottom: 20px; */
+    margin-left: 17px;
+  
+    /* limit the width */
+    width: 420px;
+  }
+  
+  /* when type enter and move line - will display bullet */
+  .listBullet div {
+    /* display: list-item; */
+    font-size: 12px;
+  }
+  
+  
+  .pdfFonts {
+    font-family: "DejaVu Sans", "Arial", "Lato", "Rubik", "Exo" ,sans-serif,;
+  }
+  
+  @font-face {
+    font-family: "DejaVu Sans";
+    font-weight: bold;
+    color:white;
+    background-color: white;
+    src: url("https://kendo.cdn.telerik.com/2017.2.621/styles/fonts/DejaVu/DejaVuSans-Bold.ttf") format("truetype");
+  }
+  
+  @font-face {
+    font-family: "DejaVu Sans";
+    font-weight: bold;
+    color:white;
+    background-color: white ;
+    font-style: italic;
+    src: url("https://kendo.cdn.telerik.com/2017.2.621/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf") format("truetype");
+  }

@@ -5,6 +5,7 @@ import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 import TodoLeft from '../TodoLeft/TodoLeft';
+import TodoRight from '../TodoRight/TodoRight';
 
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -18,7 +19,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { PDFExport } from "@progress/kendo-react-pdf";
 
 
-import Todo from '../Todo/Todo';
+import TodoWork from '../TodoWork/TodoWork';
 
 // import InputAdornment from '@mui/material/InputAdornment';
 
@@ -455,8 +456,6 @@ const InputsForm = () => {
                                                     
                                                 />
 
-                                            
-
                                             <TextField
                                                     type="text"
                                                     name="skillsHeader"
@@ -539,8 +538,7 @@ const InputsForm = () => {
                                                     )
                                                 }}
                                                 />
-
-                                                
+ 
                                                 <TextField
                                                     type="text"
                                                     name="Frameworks"
@@ -763,7 +761,9 @@ const InputsForm = () => {
 
 
 
-                                                <Todo/>
+                                                <TodoWork/>
+
+                                                <TodoRight/>
 
                                                 {/* <TextField
                                                     type="text"

@@ -1,15 +1,10 @@
-.wrapTodo {
-  /* background-color: aqua; */
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
+
 
 .bulletStyle {
   width: 420px;
 }
 
-/* allow to move line by enter and display bullet for every start line */
-.listBullet {
-  display: list-item;
+.listBulletRight {
   margin-left : 1em;
   outline: none;
 
@@ -24,13 +19,12 @@
 
 /* when type enter and move line - will display bullet */
 /* other css props not working here */
-.listBullet div {
+.listBulletRight div {
   display: list-item;
 }
 
 .box {
   margin-bottom: 1px;
-  /* background-color: aqua; */
   padding-right: 2px;
   width: fit-content;
 }
@@ -38,10 +32,6 @@
 .btn-box {
   width: 20px;
   display: inline;
-  /* padding-left: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-right: 10px; */
 }
 
 .notdisplayed {
@@ -58,15 +48,21 @@
   overflow: hidden;
   width: 420px;
   font-size: 18px;
+  margin-left: 20px;
+  margin-top: 5px;
 }
 
 .inputStyle:focus {
   outline: none;
   resize: none;
   overflow: hidden;
+  width: 420px;
+  background-color: lightgray;
+  border: 1px solid lightgray;
+  border-radius: 10px;
 }
 
-.listBullet {
+.listBulletRight {
   display: list-item;
   margin-left: 1em;
   outline: none;
@@ -77,30 +73,32 @@
   font-family: 'Itim';
   margin-bottom: 20px;
 
-  /* limit the width */
+  /* limit the width = limit chars */
   width: 420px;
+
+  margin-left: 40px;
+  /* margin-top: 10px; */
 }
 
-.listBullet input {
+.listBulletRight div {
   display: list-item;
+  
 }
 
 .bulletStyle {
-  /* background-color: aqua; */
-
   width: 420px;
 }
 
 /* allow to move line by enter and display bullet for every start line */
 .listBullet {
-  display: list-item;
+  /* display: list-item; */
   margin-left: 1em;
   outline: none;
 
   /* manipulate style here */
   font-size: 15px;
   font-family: 'Itim';
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   margin-left: 17px;
 
   /* limit the width */
@@ -108,7 +106,29 @@
 }
 
 /* when type enter and move line - will display bullet */
-/* other css props not working here */
 .listBullet div {
-  display: list-item;
+  /* display: list-item; */
+  font-size: 12px;
+}
+
+
+.pdfFonts {
+  font-family: "DejaVu Sans", "Arial", "Lato", "Rubik", "Exo" ,sans-serif,;
+}
+
+@font-face {
+  font-family: "DejaVu Sans";
+  font-weight: bold;
+  color:white;
+  background-color: white;
+  src: url("https://kendo.cdn.telerik.com/2017.2.621/styles/fonts/DejaVu/DejaVuSans-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "DejaVu Sans";
+  font-weight: bold;
+  color:white;
+  background-color: white ;
+  font-style: italic;
+  src: url("https://kendo.cdn.telerik.com/2017.2.621/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf") format("truetype");
 }

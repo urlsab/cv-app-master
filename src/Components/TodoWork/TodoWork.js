@@ -1,4 +1,4 @@
-import './Todo.css';
+import './TodoWork.css';
 import React, { useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import { createRandomId } from '../../utils/randomId';
@@ -11,6 +11,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import FilePresentIcon from '@mui/icons-material/FilePresent';
 import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
+import ListIcon from '@mui/icons-material/List';
 
 import CodeIcon from '@mui/icons-material/Code';
 import PsychologyIcon from '@mui/icons-material/Psychology';
@@ -26,7 +27,7 @@ import Fade from 'react-reveal/Fade';
 
 // '•'
 
-const Todo = () => {
+const TodoWork = () => {
 
   // const [display, setDisplay] = useState('notdisplayed');
    
@@ -205,7 +206,7 @@ const Todo = () => {
 
             <TextField
               type="text"
-              name="achievement"
+              name="achivments"
               className='pdfFonts'
               required 
               multiline
@@ -226,7 +227,7 @@ const Todo = () => {
                   <InputAdornment position='start'>
                       { x.achivments ?
                       
-                      <Fade><EventAvailableIcon sx={{fontSize:15}}/> | <WhereToVoteIcon sx={{fontSize:15}}/>  </Fade> : null }
+                      <Fade> <ListIcon sx={{fontSize:15}}/>   </Fade> : null }
                       
                   </InputAdornment>
               )
@@ -260,7 +261,7 @@ const Todo = () => {
   );
 };
 
-export default Todo;
+export default TodoWork;
 
 // ==============================
 
