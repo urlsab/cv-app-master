@@ -1,6 +1,8 @@
 import './InputsForm.css';
 
 import React, { useState, useRef } from "react";
+import { BiAdjust } from "react-icons/bi";
+// BsDot, PiDotBold, PiDotOutlineFill, PiDotLight, PiDotThin
 
 import { useNavigate } from "react-router-dom";
 
@@ -50,22 +52,6 @@ import DownloadIcon from '@mui/icons-material/Download';
 import Navbar from "../Navbar/Navbar";
 
 import { Icon } from "@progress/kendo-react-common";
-
-const themeColors = [
-  "inherit",
-  "primary",
-  "secondary",
-  "tertiary",
-  "info",
-  "success",
-  "warning",
-  "error",
-  "dark",
-  "light",
-  "inverse",
-];
-
-const arrState = arrInitialState;
 
 // name, contact, education, skill, optionial 
 // s(relevant courses, licens, certifictas), work experience, optional (side projects)
@@ -179,6 +165,23 @@ const InputsForm = () => {
                                                     
                                                 />
 
+        
+          
+          {/* <div className="icon twitter">
+            <Icon name="twitter" />
+          </div> */}
+        
+        
+            {/* <style>{`   
+                
+                .icon.twitter  {
+                  color: #3cf;
+                }
+  
+            `}</style> */}
+
+            <BiAdjust style={{color:'green'}}/>
+
                                                 <TextField
                                                     type="text"
                                                     name="jobTitle"
@@ -221,7 +224,7 @@ const InputsForm = () => {
                                                         <InputAdornment  position='start'>
                                                            { ourForm.objectName.email ?
                                                             
-                                                           <Fade><EmailIcon    sx={{fontSize:15}}/></Fade> : null }
+                                                           <Fade><BiAdjust style={{fontSize:15, color:'white'}}/></Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -655,13 +658,13 @@ const InputsForm = () => {
                                             <div className="grid-area work">
                                                 
                                                 
-      <div className="social-icons ">
+      {/* <div className="social-icons ">
 
         <PsychologyIcon sx={{fontSize:15}}/>
         
-      </div>
+      </div> */}
 
-      <style>{`
+      {/* <style>{`
   
         .social-icons  {
             
@@ -671,7 +674,7 @@ const InputsForm = () => {
             
         }
 
-     `}</style>
+     `}</style> */}
 
                                            
                                                 
@@ -698,7 +701,8 @@ const InputsForm = () => {
                                                 />
 
                                                 {/* workHeader */}
-{/* 
+                                                
+                                                {/* 
                                                 <TextField
                                                     type="text"
                                                     name="roleAndCompanyName"
