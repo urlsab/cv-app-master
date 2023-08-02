@@ -2,6 +2,8 @@ import './InputsForm.css';
 
 import React, { useState, useRef } from "react";
 import { BiAdjust } from "react-icons/bi";
+import { PiDotBold } from "react-icons/pi";
+import * as MaterialDesign from "react-icons/md";
 // BsDot, PiDotBold, PiDotOutlineFill, PiDotLight, PiDotThin
 
 import { useNavigate } from "react-router-dom";
@@ -61,7 +63,7 @@ const InputsForm = () => {
     const [user, loading, error] = useAuthState(auth);
     const [ourForm, setOurForm] = useState(initialState);
     const [text, setText] = useState('');
-    const [inputList, setInputList] = useState([{ firstName: '', display: 'notdisplayed'}]);
+    const [inputList, setInputList] = useState([{ firstName: '', display: 'notdisplayed' }]);
 
     const navigate = useNavigate();
     
@@ -140,6 +142,8 @@ const InputsForm = () => {
 
                                                                                 
                                             <div className='firstGroup'> 
+
+                                            <MaterialDesign.MdHelp />
                                             
                                                 <TextField
                                                     type="text"
@@ -180,7 +184,7 @@ const InputsForm = () => {
   
             `}</style> */}
 
-            <BiAdjust style={{color:'green'}}/>
+            
 
                                                 <TextField
                                                     type="text"
@@ -224,7 +228,7 @@ const InputsForm = () => {
                                                         <InputAdornment  position='start'>
                                                            { ourForm.objectName.email ?
                                                             
-                                                           <Fade><BiAdjust style={{fontSize:15, color:'white'}}/></Fade> : null }
+                                                           <Fade> <PiDotBold style={{fontSize:15, color:'white'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -251,7 +255,7 @@ const InputsForm = () => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.phoneNumber ?
                                                             
-                                                           <Fade><PhoneAndroidIcon sx={{fontSize:15}}/></Fade> : null }
+                                                           <Fade> <BiAdjust style={{fontSize:15, color:'white'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -278,7 +282,7 @@ const InputsForm = () => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.linkedinLink ?
                                                             
-                                                           <Fade><LinkedInIcon sx={{fontSize:15}} /></Fade> : null }
+                                                           <Fade> <BiAdjust style={{fontSize:15, color:'white'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -305,7 +309,7 @@ const InputsForm = () => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.githubLink ?
                                                             
-                                                           <Fade><GitHubIcon sx={{fontSize:15}}/></Fade> : null }
+                                                           <Fade> <BiAdjust style={{fontSize:15, color:'white'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -333,7 +337,7 @@ const InputsForm = () => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.portfolioLink ?
                                                             
-                                                           <Fade><CoPresentIcon sx={{fontSize:15}}/></Fade> : null }
+                                                           <Fade> <BiAdjust style={{fontSize:15, color:'white'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -392,7 +396,7 @@ const InputsForm = () => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.degreeTypeAndname ?
                                                             
-                                                           <Fade><SchoolIcon sx={{fontSize:15}}/></Fade> : null }
+                                                           <Fade><BiAdjust style={{fontSize:15, color:'gray'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -422,7 +426,7 @@ const InputsForm = () => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.schoolNameAndlocation ?
                                                             
-                                                           <Fade><LocationOnIcon sx={{fontSize:15}}/></Fade> : null }
+                                                           <Fade> <BiAdjust style={{fontSize:15, color:'gray'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -451,7 +455,7 @@ const InputsForm = () => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.timeLearnedDegree ?
                                                             
-                                                           <Fade><DateRangeIcon sx={{fontSize:15}}/></Fade> : null }
+                                                           <Fade> <BiAdjust style={{fontSize:15, color:'gray'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -504,7 +508,7 @@ const InputsForm = () => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.ProgrammingLanguages ?
                                                             
-                                                           <Fade><CodeIcon sx={{fontSize:15}}/></Fade> : null }
+                                                           <Fade> <BiAdjust style={{fontSize:15, color:'gray'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -535,7 +539,7 @@ const InputsForm = () => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.Databases ?
                                                             
-                                                           <Fade><StorageIcon sx={{fontSize:15}}/></Fade> : null }
+                                                           <Fade> <BiAdjust style={{fontSize:15, color:'gray'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -565,7 +569,7 @@ const InputsForm = () => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.Frameworks ?
                                                             
-                                                           <Fade><BuildIcon sx={{fontSize:15}}/></Fade> : null }
+                                                           <Fade> <BiAdjust style={{fontSize:15, color:'gray'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -597,7 +601,7 @@ const InputsForm = () => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.GeneralKnowledge ?
                                                             
-                                                           <Fade><PsychologyIcon sx={{fontSize:15}}/></Fade> : null }
+                                                           <Fade> <BiAdjust style={{fontSize:15, color:'gray'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
