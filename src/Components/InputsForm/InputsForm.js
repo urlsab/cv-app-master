@@ -2,9 +2,21 @@ import './InputsForm.css';
 
 import React, { useState, useRef } from "react";
 import { BiAdjust } from "react-icons/bi";
-import { PiDotBold } from "react-icons/pi";
-import * as MaterialDesign from "react-icons/md";
-// BsDot, PiDotBold, PiDotOutlineFill, PiDotLight, PiDotThin
+// import { PiDotBold } from "react-icons/pi";
+import { MdAlternateEmail } from "react-icons/md";
+import { BsPhone } from "react-icons/bs";
+import { TiSocialLinkedin } from "react-icons/ti";
+import { FiGithub } from "react-icons/fi";
+import { BiLink } from "react-icons/bi";
+import { TbSchool } from "react-icons/tb";
+import { HiOutlineLocationMarker } from "react-icons/hi";
+import { RxCalendar } from "react-icons/rx";
+import { LiaProjectDiagramSolid } from "react-icons/lia";
+
+import { AiOutlineDatabase } from "react-icons/ai";
+import { AiOutlineTool } from "react-icons/ai";
+import { BsCode } from "react-icons/bs";
+// 
 
 import { useNavigate } from "react-router-dom";
 
@@ -136,14 +148,14 @@ const InputsForm = () => {
                         <PDFExport ref={pdfExportComponent}  >
                             
                                 <div className="resume">
+
                                     <div className='grid-area name'>
 
                                         <div className='square'>
-
-                                                                                
+                             
                                             <div className='firstGroup'> 
 
-                                            <MaterialDesign.MdHelp />
+                                            {/* <MaterialDesign.MdHelp /> */}
                                             
                                                 <TextField
                                                     type="text"
@@ -168,23 +180,6 @@ const InputsForm = () => {
                                                     InputProps={{style: {fontSize:24 ,color:'white', padding: '0.2rem', lineHeight:"25px"}}}
                                                     
                                                 />
-
-        
-          
-          {/* <div className="icon twitter">
-            <Icon name="twitter" />
-          </div> */}
-        
-        
-            {/* <style>{`   
-                
-                .icon.twitter  {
-                  color: #3cf;
-                }
-  
-            `}</style> */}
-
-            
 
                                                 <TextField
                                                     type="text"
@@ -228,7 +223,7 @@ const InputsForm = () => {
                                                         <InputAdornment  position='start'>
                                                            { ourForm.objectName.email ?
                                                             
-                                                           <Fade> <PiDotBold style={{fontSize:15, color:'white'}}/> </Fade> : null }
+                                                           <Fade> <MdAlternateEmail style={{fontSize:15, color:'white'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -255,7 +250,7 @@ const InputsForm = () => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.phoneNumber ?
                                                             
-                                                           <Fade> <BiAdjust style={{fontSize:15, color:'white'}}/> </Fade> : null }
+                                                           <Fade> <BsPhone style={{fontSize:15, color:'white'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -282,7 +277,7 @@ const InputsForm = () => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.linkedinLink ?
                                                             
-                                                           <Fade> <BiAdjust style={{fontSize:15, color:'white'}}/> </Fade> : null }
+                                                           <Fade> <TiSocialLinkedin style={{fontSize:15, color:'white'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -309,14 +304,13 @@ const InputsForm = () => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.githubLink ?
                                                             
-                                                           <Fade> <BiAdjust style={{fontSize:15, color:'white'}}/> </Fade> : null }
+                                                           <Fade> <FiGithub style={{fontSize:15, color:'white'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
                                                     
                                                 }}/>
 
-                                                
                                                 <TextField
                                                     type="text"
                                                     name="portfolioLink"
@@ -337,7 +331,7 @@ const InputsForm = () => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.portfolioLink ?
                                                             
-                                                           <Fade> <BiAdjust style={{fontSize:15, color:'white'}}/> </Fade> : null }
+                                                           <Fade> <BiLink style={{fontSize:15, color:'white'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -352,7 +346,6 @@ const InputsForm = () => {
 
                                             <div className='afterSquareGroup'>
                                      
-                       
                                             <TextField
                                                     type="text"
                                                     name="educationHeader"
@@ -362,9 +355,7 @@ const InputsForm = () => {
                                                     placeholder='Optional section'
                                                     sx={{border: 'none',"& fieldset": { border: 'none' }  }}
                                                     value='EDUCATION'
-                                                    // onChange={handleChange}
-                                                    // defaultValue={'Languages:'}
-                                                    
+                                               
                                                     style={{
                                                     marginTop:'20px',
                                                     marginLeft:'18px',
@@ -396,15 +387,14 @@ const InputsForm = () => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.degreeTypeAndname ?
                                                             
-                                                           <Fade><BiAdjust style={{fontSize:15, color:'gray'}}/> </Fade> : null }
+                                                           <Fade><TbSchool style={{fontSize:15, color:'gray'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
                                                 }}
-                                                    // 
+                                                    
                                                 />
 
-                                                
                                                 <TextField
                                                     type="text"
                                                     name="schoolNameAndlocation"
@@ -426,14 +416,13 @@ const InputsForm = () => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.schoolNameAndlocation ?
                                                             
-                                                           <Fade> <BiAdjust style={{fontSize:15, color:'gray'}}/> </Fade> : null }
+                                                           <Fade> <HiOutlineLocationMarker style={{fontSize:15, color:'gray'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
                                                 }}
                                                 />
 
-                                                
                                                 <TextField
                                                     type="text"
                                                     name="timeLearnedDegree"
@@ -455,7 +444,7 @@ const InputsForm = () => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.timeLearnedDegree ?
                                                             
-                                                           <Fade> <BiAdjust style={{fontSize:15, color:'gray'}}/> </Fade> : null }
+                                                           <Fade> <RxCalendar style={{fontSize:15, color:'gray'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -472,9 +461,7 @@ const InputsForm = () => {
                                                     placeholder='Optional section'
                                                     sx={{border: 'none',"& fieldset": { border: 'none' }  }}
                                                     value='SKILLS'
-                                                    // onChange={handleChange}
-                                                    // defaultValue={'Languages:'}
-                                                    
+                                                  
                                                     style={{
                                                     marginTop:'20px',
                                                     marginLeft:'18px',
@@ -495,7 +482,7 @@ const InputsForm = () => {
                                                     sx={{border: 'none',"& fieldset": { border: 'none' }  }}
                                                     value={ourForm.objectName.ProgrammingLanguages}
                                                     onChange={handleChange}
-                                                    defaultValue={'Languages:'}
+                                                    // defaultValue={'Languages:'}
                                                     
                                                     style={{
                                                     
@@ -508,7 +495,7 @@ const InputsForm = () => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.ProgrammingLanguages ?
                                                             
-                                                           <Fade> <BiAdjust style={{fontSize:15, color:'gray'}}/> </Fade> : null }
+                                                           <Fade> <BsCode style={{fontSize:15, color:'gray'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -526,7 +513,7 @@ const InputsForm = () => {
                                                     sx={{border: 'none',"& fieldset": { border: 'none' }  }}
                                                     value={ourForm.objectName.Databases}
                                                     onChange={handleChange}
-                                                    defaultValue={'Languages:'}
+                                                    
                                                     
                                                     style={{
                                                     
@@ -539,7 +526,7 @@ const InputsForm = () => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.Databases ?
                                                             
-                                                           <Fade> <BiAdjust style={{fontSize:15, color:'gray'}}/> </Fade> : null }
+                                                           <Fade> <AiOutlineDatabase style={{fontSize:15, color:'gray'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -569,7 +556,7 @@ const InputsForm = () => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.Frameworks ?
                                                             
-                                                           <Fade> <BiAdjust style={{fontSize:15, color:'gray'}}/> </Fade> : null }
+                                                           <Fade> <AiOutlineTool style={{fontSize:15, color:'gray'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -601,7 +588,7 @@ const InputsForm = () => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.GeneralKnowledge ?
                                                             
-                                                           <Fade> <BiAdjust style={{fontSize:15, color:'gray'}}/> </Fade> : null }
+                                                           <Fade> <LiaProjectDiagramSolid style={{fontSize:15, color:'gray'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -611,77 +598,13 @@ const InputsForm = () => {
 
                                                 <TodoLeft/>
 
-                                                {/* <TextField
-                                                    type="text"
-                                                    name="dynamicHeaderPartOne"
-                                                    className='pdfFonts'
-                                                    required 
-                                                    multiline
-                                                    placeholder='Optional section'
-                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                    value={ourForm.objectName.dynamicHeaderPartOne.toUpperCase()}
-                                                    onChange={handleChange}
-                                                    defaultValue={'Languages:'}
-                                                    
-                                                    style={{
-                                                    marginTop:'20px',
-                                                    marginLeft:'20px',
-                                                    width:'230px',
-                                                   
-                                                    }}
-                                                    InputProps={{style: {fontSize:19, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}}}
-                                                    
-                                                /> */}
-
-                                                {/* <TextField
-                                                    type="text"
-                                                    name="dynamicContentPartOne"
-                                                    
-                                                    required 
-                                                    multiline
-                                                    placeholder='Optional content'
-                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                    value={ourForm.objectName.dynamicContentPartOne}
-                                                    onChange={handleChange}
-                                                   
-                                                    style={{
-                                                    
-                                                    marginLeft:'22px',
-                                                    width:'230px',
-                                                   
-                                                    }}
-                                                    InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"}}}
-                                                    
-                                                /> */}
-                                            
                                             </div>   
  
                                         </div>
 
                                             {/* rigth part */}
                                             <div className="grid-area work">
-                                                
-                                                
-      {/* <div className="social-icons ">
-
-        <PsychologyIcon sx={{fontSize:15}}/>
-        
-      </div> */}
-
-      {/* <style>{`
-  
-        .social-icons  {
-            
-            background-color: yellow;
-            color: blue;
-            
-            
-        }
-
-     `}</style> */}
-
-                                           
-                                                
+                                            
                                                 <TextField
                                                     type="text"
                                                     name="workHeader"
@@ -704,118 +627,9 @@ const InputsForm = () => {
                                                     
                                                 />
 
-                                                {/* workHeader */}
-                                                
-                                                {/* 
-                                                <TextField
-                                                    type="text"
-                                                    name="roleAndCompanyName"
-                                                    className='pdfFonts'
-                                                    required 
-                                                    multiline
-                                                    placeholder='Role | Company Name'
-                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                    value={ourForm.objectName.roleAndCompanyName}
-                                                    onChange={handleChange}
-                                             
-                                                    style={{
-                                                    
-                                                    marginLeft:'20px',
-                                                    width:'420px'
-                                                   
-                                                    }}
-                                                    InputProps={{style: {fontSize:18, padding: '0.2rem', lineHeight:"25px"},
-                                                    startAdornment: (
-                                                        <InputAdornment position='start'>
-                                                           { ourForm.objectName.roleAndCompanyName ?
-                                                            
-                                                           <Fade> <WorkIcon sx={{fontSize:15}}/> | <HdrAutoIcon sx={{fontSize:15}}/> </Fade> : null }
-                                                            
-                                                        </InputAdornment>
-                                                    )
-                                                }}
-                                                    
-                                                />
-
-                                                <TextField
-                                                    type="text"
-                                                    name="locationAndDuration"
-                                                    className='pdfFonts'
-                                                    required 
-                                                    multiline
-                                                    placeholder='Duration | Loaction'
-                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                    value={ourForm.objectName.locationAndDuration}
-                                                    onChange={handleChange}
-                                             
-                                                    style={{
-                                                    
-                                                    marginLeft:'20px',
-                                                    width:'420px'
-                                                   
-                                                    }}
-                                                    InputProps={{style: {fontSize:18, padding: '0.2rem', lineHeight:"25px"},
-                                                    startAdornment: (
-                                                        <InputAdornment position='start'>
-                                                           { ourForm.objectName.locationAndDuration ?
-                                                            
-                                                           <Fade><EventAvailableIcon sx={{fontSize:15}}/> | <WhereToVoteIcon sx={{fontSize:15}}/>  </Fade> : null }
-                                                            
-                                                        </InputAdornment>
-                                                    )
-                                                }}
-                    
-                                                /> */}
-
-
-
                                                 <TodoWork/>
 
                                                 <TodoRight/>
-
-                                                {/* <TextField
-                                                    type="text"
-                                                    name="dynamicHeaderPartTow"
-                                                    
-                                                    required 
-                                                    multiline
-                                                    placeholder='Optional section'
-                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                    value={ourForm.objectName.dynamicHeaderPartTow.toUpperCase()}
-                                                    onChange={handleChange}
-                                                    defaultValue={'Languages:'}
-                                                    
-                                                    style={{
-                                                    // marginTop:'20px',
-                                                    // marginLeft:'18px',
-                                                    width:'420px'
-                                                   
-                                                    }}
-                                                    InputProps={{style: {fontFamily:"Lato",fontSize:20, fontWeight:'bold', padding: '0.2rem', lineHeight:"25px"}}}
-                                                    
-                                                /> */}
-
-                                                {/* <TextField
-                                                    type="text"
-                                                    name="dynamicContentPartTow"
-                                                    
-                                                    required 
-                                                    multiline
-                                                    placeholder='Optional content'
-                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                    value={ourForm.objectName.dynamicContentPartTow}
-                                                    onChange={handleChange}
-                                                    // defaultValue={'Languages:'}
-                                                    
-                                                    style={{
-                                                    
-                                                    // marginLeft:'18px',
-                                                    width:'420px'
-                                                   
-                                                    }}
-                                                    InputProps={{style: {fontFamily:"Lato",fontSize:15, padding: '0.2rem', lineHeight:"25px"}}}
-                                                    
-                                                /> */}
 
                                             </div>
 

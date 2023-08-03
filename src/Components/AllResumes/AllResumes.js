@@ -3,6 +3,7 @@ import React, { useState } from "react";
 
 import { collection, deleteDoc, getDocs, doc, updateDoc } from "firebase/firestore";
 import { useToggle } from "../../utils/useToggle";
+import { BiAdjust } from "react-icons/bi";
 
 import { PDFExport } from "@progress/kendo-react-pdf";
 import Navbar from "../Navbar/Navbar";
@@ -11,6 +12,8 @@ import ReactToPrint from 'react-to-print';
 import PrintIcon from '@mui/icons-material/Print';
 
 import TextField from '@mui/material/TextField';
+
+import InputsForm from '../InputsForm/InputsForm';
 
 import { Button } from "@mui/material";
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
@@ -22,24 +25,35 @@ import DownloadIcon from '@mui/icons-material/Download';
 
 import Fade from 'react-reveal/Fade';
 import LightSpeed from 'react-reveal/LightSpeed';
+import { InputAdornment } from "@mui/material";
+import * as MaterialDesign from "react-icons/md";
+import { PiDotBold } from "react-icons/pi";
 
-
+import TodoLeft from '../TodoLeft/TodoLeft';
+import TodoRight from '../TodoRight/TodoRight';
+import TodoWork from '../TodoWork/TodoWork';
 
 import { firestoreDB } from "../../firestoreConfig/firestoreConfig";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firestoreConfig/firestoreConfig";
+import { addDoc } from "firebase/firestore";
 
 // import Todo from "../Todo/Todo";
 import WorkIcon from '@mui/icons-material/Work';
 import SchoolIcon from '@mui/icons-material/School';
-
+import { initialState } from "../../utils/ourState";
+import SaveIcon from '@mui/icons-material/Save';
+import { useNavigate } from "react-router-dom";
 
 const AllResumes = () => {
 
     const [cv, setCv] = useState([]);
     const [toggle, setToggle] = useToggle();
+    const navigate = useNavigate();
     
     const [user] = useAuthState(auth);
+
+    const [ourForm, setOurForm] = useState(initialState);
 
     // React.createRef - avoid hooks rules
     const pdfExportComponent = cv.map((i) => React.createRef(i));
@@ -49,14 +63,38 @@ const AllResumes = () => {
         pdfExportComponent[i].current.save();
     };
 
-    const handleEditResume = (id) => {
-        updateDoc(doc(firestoreDB,`${user.email}`, id ), {address:16}).then(res => {
-            console.log(res);
+//     const handleEditResume = (id) => {
+//         updateDoc(doc(firestoreDB,`${user.email}`, id ), {address:16}).then(res => {
+//             console.log(res);
             
-            window.location.reload(false);
-        })
-        .catch(error => console.log(error)); 
-}
+//             window.location.reload(false);
+//         })
+//         .catch(error => console.log(error)); 
+// }
+
+const handleAddResume = (event) => {
+        
+    // firestoreDB making auto uid for any document in hte user.email collection
+    event.preventDefault();
+    // `${user.email}` - cretes new collection with the use email name !!!
+    const usersCollection = collection(firestoreDB, `${user.email}`);
+
+        addDoc(usersCollection, ourForm.objectName)
+        .then(response => {
+            console.log(ourForm.objectName);
+            console.log(response);
+            //mayby: we use the path for each user id
+            console.log(response.id);
+            //mayby: we use the path for each user resumes
+            console.log(response.path);
+            navigate("/allResumes")
+            
+        }).catch(error => {
+            console.log(error);
+            console.log("error from handleAddResume function");
+    })
+    
+};
 
     const handleDeleteDoc = (id) => {
         
@@ -83,7 +121,6 @@ const AllResumes = () => {
             console.log(displayResumes[0].info.userName);
             console.log("successfully set all cv's");
            
-            
         })
         .catch(error => console.log(error)); 
     }
@@ -96,7 +133,7 @@ const AllResumes = () => {
 
         return (
 
-            <div className="resumesShowStyle"> 
+            <div> 
 
                 <ol className="olStyle"> 
                 {/* el = cv[i] */}
@@ -114,113 +151,500 @@ const AllResumes = () => {
 
                                                 <div className='firstGroup'>
 
-                                                    <div
-                                                        data-text="Full name"
-                                                        data-value={cv[i].info.fullName} 
-                                                        
-                                                        style={{width:'6cm', fontSize:"20px", marginBottom:"7px"}}
-                                                        
-                                                        className="listBullet" > 
-                                                        {cv[i].info.fullName} 
-                                                    </div>
-
-                                                    <div
-                                                        data-text="Role"
-                                                        data-value={6}
-                                                         
-                                                        style={{width:'6cm', fontSize:"20px", fontFamily:"sans-serif"}}
-                                                         
-                                                        className="listBullet" > 
-                                                        {cv[i].info.fullName} 
-                                                    </div>
-
                                                 </div>
 
                                                 <TextField
                                                     type="text"
-                                                    name="email"
+                                                    name="fullName"
                                                     
                                                     required 
-                                                    placeholder='email'
-                                                    id="outlined-multiline-static"
                                                     multiline
-                                                    inputProps={{maxLength:27}}
-                                                    
-                                                    value={cv[i].info.fullName} 
-                                                    
-                                                    InputProps={{style: {fontSize:16, color:"black", fontFamily:"Exo", height:"9px", width:"7cm"}, readOnly: true}}
-                                                    sx={{border: 'none',"& fieldset": { border: 'none' }, mt:1  }}
-                                                    
+                                                    placeholder='Full Name'
+                                                    className='pdfFonts'
+
+                                                    // for hide the border
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' } }}
+                                                    //value={ourForm.objectName.fullName.toUpperCase()}
+                                                    defaultValue={cv[i].info.fullName}
+                                                    // 
+                                                    style={{
+                                                   
+                                                    marginTop:"25px",
                                                 
-                                                     
+                                                    width:'230px',
+                                                    
+                                                    }}
+                                                    InputProps={{style: {fontSize:24 ,color:'white', padding: '0.2rem', lineHeight:"25px"}}}
+                                                    
                                                 />
 
                                                 <TextField
                                                     type="text"
-                                                    name="phoneNumber"
-                                                    
+                                                    name="jobTitle"
+                                                    className='pdfFonts'
                                                     required 
-                                                    placeholder='phone number'
-                                                    id="outlined-multiline-static"
                                                     multiline
-                                                    inputProps={{maxLength:27}}
+                                                    placeholder='Role'
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
                                                     
-                                                    value={cv[i].info.fullName} 
+                                                    defaultValue={cv[i].info.jobTitle}
+                                                    style={{
+                                                  
+                                                    width:'230px',
                                                     
-                                                    InputProps={{style: {fontSize:16, color:"black", fontFamily:"Exo", height:"9px", width:"7cm"}, readOnly: true}}
-                                                    sx={{border: 'none',"& fieldset": { border: 'none' } }}
-                                                    
-                                                
+                                                    }}
+                                                    InputProps={{style: {fontSize:20, color:'white',  padding: '0.2rem', lineHeight:"25px"}}}
                                                     
                                                 />
 
+                                                <TextField
+                                                    type="email"
+                                                    name="email"
+                                                    className='pdfFonts'
+                                                    required 
+                                                    multiline
+                                                    
+                                                    placeholder='Email'
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                    
+                                                    defaultValue={cv[i].info.email}
+                                                    
+                                                    style={{
+                                                    
+                                                    marginTop:"15px",
+                                                  
+                                                    width:'230px',
+                                                   
+                                                    }}
+                                                    InputProps={{style: {fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
+                                                    startAdornment: (
+                                                        <InputAdornment  position='start'>
+                                                           { ourForm.objectName.email ?
+                                                            
+                                                           <Fade> <PiDotBold style={{fontSize:15, color:'white'}}/> </Fade> : null }
+                                                            
+                                                        </InputAdornment>
+                                                    )
+                                                    
+                                                }}/>
+
+                                                <TextField
+                                                    type="text"
+                                                    name="phoneNumber"
+                                                    className='pdfFonts'
+                                                    required 
+                                                    multiline
+                                                    placeholder='Phone Number'
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                    
+                                                    defaultValue={cv[i].info.phoneNumber}
+                                                    
+                                                    style={{
+                                                    
+                                                    width:'230px',
+                                                   
+                                                    }}
+                                                    InputProps={{style: {fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
+                                                    startAdornment: (
+                                                        <InputAdornment position='start'>
+                                                           { ourForm.objectName.phoneNumber ?
+                                                            
+                                                           <Fade> <BiAdjust style={{fontSize:15, color:'white'}}/> </Fade> : null }
+                                                            
+                                                        </InputAdornment>
+                                                    )
+                                                    
+                                                }}/>
+                                               
+                                                <TextField
+                                                    type="text"
+                                                    name="linkedinLink"
+                                                    className='pdfFonts'
+                                                    required 
+                                                    multiline
+                                                    placeholder='Linkedin link'
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                    
+                                                    defaultValue={cv[i].info.linkedinLink}
+                                                    style={{
+                                                    
+                                                    width:'230px',
+                                                    
+                                                    }}
+                                                    InputProps={{style: {fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
+                                                    startAdornment: (
+                                                        <InputAdornment position='start'>
+                                                           { ourForm.objectName.linkedinLink ?
+                                                            
+                                                           <Fade> <BiAdjust style={{fontSize:15, color:'white'}}/> </Fade> : null }
+                                                            
+                                                        </InputAdornment>
+                                                    )
+                                                    
+                                                }}/>
+
+                                                <TextField
+                                                    type="text"
+                                                    name="githubLink"
+                                                    required 
+                                                    multiline
+                                                    className='pdfFonts'
+                                                    placeholder='Github'
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                   
+                                                    defaultValue={cv[i].info.githubLink}
+                                                    
+                                                    style={{
+                                                  
+                                                    width:'230px',
+                                                    
+                                                    }}
+                                                    InputProps={{style: {fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
+                                                    startAdornment: (
+                                                        <InputAdornment position='start'>
+                                                           { ourForm.objectName.githubLink ?
+                                                            
+                                                           <Fade> <BiAdjust style={{fontSize:15, color:'white'}}/> </Fade> : null }
+                                                            
+                                                        </InputAdornment>
+                                                    )
+                                                    
+                                                }}/>
+
+                                                
+                                                <TextField
+                                                    type="text"
+                                                    name="portfolioLink"
+                                                    className='pdfFonts'
+                                                    required 
+                                                    multiline
+                                                    placeholder='Portfolio'
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                    
+                                                    defaultValue={cv[i].info.portfolioLink}
+                                                    
+                                                    style={{
+                                                   
+                                                    width:'230px',
+                                                    
+                                                    }}
+                                                    InputProps={{style: {fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
+                                                    startAdornment: (
+                                                        <InputAdornment position='start'>
+                                                           { ourForm.objectName.portfolioLink ?
+                                                            
+                                                           <Fade> <BiAdjust style={{fontSize:15, color:'white'}}/> </Fade> : null }
+                                                            
+                                                        </InputAdornment>
+                                                    )
+                                                    
+                                                }}/>
+                                                
                                             </div>
+
+                                        </div>
 
                                             {/* after square */}
 
-                                            <h4 style={{marginLeft:"10px"}}><SchoolIcon sx={{mr:1, height:"15px", width:"15px"}} /> EDUCATION</h4>
-                   
+                                            <div className='afterSquareGroup'>
+                                     
+                       
                                             <TextField
                                                     type="text"
-                                                    name="schoolNameAndlocation"
-                                                    
+                                                    name="educationHeader"
+                                                    className='pdfFonts'
                                                     required 
-                                                    placeholder='schoolNameAndlocation'
-                                                    id="outlined-multiline-static"
                                                     multiline
-                                                    inputProps={{maxLength:27}}
-                                                    defaultValue={cv[i].info.fullName}
-                                                    // value={cv[i].info.fullName} 
+                                                    placeholder='Optional section'
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                    value='EDUCATION'
+                                                    // 
+                                                    // defaultValue={'Languages:'}
                                                     
-                                                    InputProps={{style: {fontSize:16, color:"black", fontFamily:"Exo", height:"9px", width:"7cm"}, readOnly: true}}
-                                                    sx={{border: 'none',"& fieldset": { border: 'none' }, display:"in" }}
-                                                    
-                                                
+                                                    style={{
+                                                    marginTop:'20px',
+                                                    marginLeft:'18px',
+                                                    width:'230px',
+                                                   
+                                                    }}
+                                                    InputProps={{style: {fontSize:19, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}}}
                                                     
                                                 />
 
-                                            <div
-                                                data-text="education"
-                                                
-                                                name="schoolNameAndlocation"
-                                                style={{width:'6cm', fontSize:"20px"}}
-                                                  
-                                                className="listBullet" > 
-                                                {cv[i].info.fullName} 
-                                            </div>
-                                                                                                                               
+                                                <TextField
+                                                    type="text"
+                                                    name="degreeTypeAndname"
+                                                    className='pdfFonts'
+                                                    required 
+                                                    multiline
+                                                    placeholder='Degree name'
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                    
+                                                    defaultValue={cv[i].info.degreeTypeAndname}
+                                                    
+                                                    style={{
+                                                    
+                                                    marginLeft:'18px',
+                                                    width:'230px',
+                                                    
+                                                    }}
+                                                    InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"}, 
+                                                    startAdornment: (
+                                                        <InputAdornment position='start'>
+                                                           { ourForm.objectName.degreeTypeAndname ?
+                                                            
+                                                           <Fade><BiAdjust style={{fontSize:15, color:'gray'}}/> </Fade> : null }
+                                                            
+                                                        </InputAdornment>
+                                                    )
+                                                }}
+                                                    // 
+                                                />
 
+                                                <TextField
+                                                    type="text"
+                                                    name="schoolNameAndlocation"
+                                                    className='pdfFonts'
+                                                    required 
+                                                    multiline
+                                                    placeholder='School name & location'
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                    
+                                                    defaultValue={cv[i].info.schoolNameAndlocation}
+                                                    
+                                                    style={{
+                                                    
+                                                    marginLeft:'18px',
+                                                    width:'230px',
+                                                    
+                                                    }}
+                                                    InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
+                                                    startAdornment: (
+                                                        <InputAdornment position='start'>
+                                                           { ourForm.objectName.schoolNameAndlocation ?
+                                                            
+                                                           <Fade> <BiAdjust style={{fontSize:15, color:'gray'}}/> </Fade> : null }
+                                                            
+                                                        </InputAdornment>
+                                                    )
+                                                }}
+                                                />
+
+                                                <TextField
+                                                    type="text"
+                                                    name="timeLearnedDegree"
+                                                    className='pdfFonts'
+                                                    required 
+                                                    multiline
+                                                    placeholder='Time range'
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                    
+
+                                                    defaultValue={cv[i].info.timeLearnedDegree}
+                                                    
+                                                    style={{
+                                                    
+                                                    marginLeft:'18px',
+                                                    width:'230px',
+                                                   
+                                                    }}
+                                                    InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
+                                                    startAdornment: (
+                                                        <InputAdornment position='start'>
+                                                           { ourForm.objectName.timeLearnedDegree ?
+                                                            
+                                                           <Fade> <BiAdjust style={{fontSize:15, color:'gray'}}/> </Fade> : null }
+                                                            
+                                                        </InputAdornment>
+                                                    )
+                                                }}
+                                                    
+                                                />
+
+                                            <TextField
+                                                    type="text"
+                                                    name="skillsHeader"
+                                                    className='pdfFonts'
+                                                    required 
+                                                    multiline
+                                                    placeholder='Optional section'
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                    value='SKILLS'
+                                                    // 
+                                                    // defaultValue={'Languages:'}
+                                                    
+                                                    style={{
+                                                    marginTop:'20px',
+                                                    marginLeft:'18px',
+                                                    width:'230px',
+                                                   
+                                                    }}
+                                                    InputProps={{style: {fontSize:19, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}}}
+                                                    
+                                                />
+
+                                                <TextField
+                                                    type="text"
+                                                    name="ProgrammingLanguages"
+                                                    className='pdfFonts'
+                                                    required 
+                                                    multiline
+                                                    placeholder='Languages: JS, CSS e.g.'
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                    
+
+                                                    defaultValue={cv[i].info.ProgrammingLanguages}
+                                                    
+                                                   
+                                                    
+                                                    style={{
+                                                    
+                                                    marginLeft:'18px',
+                                                    width:'230px',
+                                                    
+                                                    }}
+                                                    InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
+                                                    startAdornment: (
+                                                        <InputAdornment position='start'>
+                                                           { ourForm.objectName.ProgrammingLanguages ?
+                                                            
+                                                           <Fade> <BiAdjust style={{fontSize:15, color:'gray'}}/> </Fade> : null }
+                                                            
+                                                        </InputAdornment>
+                                                    )
+                                                }}
+                                                
+                                                />
+
+                                                <TextField
+                                                    type="text"
+                                                    name="Databases"
+                                                    className='pdfFonts'
+                                                    required 
+                                                    multiline
+                                                    placeholder='Databases: MongoDB e.g.'
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                 
+                                                    defaultValue={cv[i].info.Databases}
+                                                    
+                                                
+                                                    
+                                                    style={{
+                                                    
+                                                    marginLeft:'18px',
+                                                    width:'230px',
+                                                   
+                                                    }}
+                                                    InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
+                                                    startAdornment: (
+                                                        <InputAdornment position='start'>
+                                                           { ourForm.objectName.Databases ?
+                                                            
+                                                           <Fade> <BiAdjust style={{fontSize:15, color:'gray'}}/> </Fade> : null }
+                                                            
+                                                        </InputAdornment>
+                                                    )
+                                                }}
+                                                />
+ 
+                                                <TextField
+                                                    type="text"
+                                                    name="Frameworks"
+                                                    className='pdfFonts'
+                                                    required 
+                                                    multiline
+                                                    placeholder='Frameworks: React e.g.'
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                    
+                                                    defaultValue={cv[i].info.Frameworks}
+                                                    
+                                                    style={{
+                                                    
+                                                    marginLeft:'18px',
+                                                    width:'230px',
+                                                   
+                                                    }}
+                                                    InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
+                                                    startAdornment: (
+                                                        <InputAdornment position='start'>
+                                                           { ourForm.objectName.Frameworks ?
+                                                            
+                                                           <Fade> <BiAdjust style={{fontSize:15, color:'gray'}}/> </Fade> : null }
+                                                            
+                                                        </InputAdornment>
+                                                    )
+                                                }}
+                                                    
+                                                />
+
+                                                <TextField
+                                                    type="text"
+                                                    name="GeneralKnowledge"
+                                                    className='pdfFonts'
+                                                    required 
+                                                    multiline
+                                                    placeholder='Knowledge: React-hooks e.g.'
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                   
+                                                    defaultValue={cv[i].info.GeneralKnowledge}
+                                                   
+                                                    style={{
+                                                    
+                                                    marginLeft:'18px',
+                                                    marginBottom:'10px',
+                                                    width:'230px',
+                                                   
+                                                    }}
+                                                    InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
+                                                    startAdornment: (
+                                                        <InputAdornment position='start'>
+                                                           { ourForm.objectName.GeneralKnowledge ?
+                                                            
+                                                           <Fade> <BiAdjust style={{fontSize:15, color:'gray'}}/> </Fade> : null }
+                                                            
+                                                        </InputAdornment>
+                                                    )
+                                                }}
+                                                    
+                                                />
+
+                                                <TodoLeft/>
+       
+                                            </div>   
+ 
                                         </div>
 
                                             {/* rigth part */}
                                             <div className="grid-area work">
-                                                <h4> <WorkIcon sx={{mr:1, height:"15px", width:"15px"}} /> WORK EXPERIENCE </h4>
-                                                {/* <Todo/> */}
-                                                {cv[i].info.fullName} 
-                                            </div>
+  
+                                                <TextField
+                                                    type="text"
+                                                    name="workHeader"
+                                                    className='pdfFonts'
+                                                    required 
+                                                    multiline
+                                                    // placeholder='Optional section'
+                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                                                    value={'WORK EXPERIENCE'}
+                                                    // 
+                                                    defaultValue={'Languages:'}
+                                                    
+                                                    style={{
+                                                    marginTop:'20px',
+                                                    marginLeft:'18px',
+                                                    width:'230px',
+                                                   
+                                                    }}
+                                                    InputProps={{style: {fontSize:19, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}}}
+                                                    
+                                                />
 
-                                    </div> 
-                                
+                                                {/* <TodoWork/>
+
+                                                <TodoRight/> */}
+
+                                            </div>
+     
                                 </PDFExport>
 
                                 <div className="threeButtonsStyle">
@@ -248,13 +672,21 @@ const AllResumes = () => {
                                             content={() => pdfExportComponent.current}
                                         />
                                     
-                                    <Button
+                                    {/* <Button
                                         color="inherit"
                                         sx={{m:1}}
                                         variant="contained"
                                         startIcon={<EditIcon/>}
                                         onClick={ () => { handleEditResume(el.id); }}>edit
-                                    </Button>
+                                    </Button> */}
+
+                                <Button 
+                                    startIcon={<SaveIcon/>}
+                                    color="success"
+                                    variant="contained"
+                                    sx={{m:1}}
+                                    onClick={handleAddResume}>Save Resume
+                                </Button>
 
                                     <Button
                                         startIcon={<DeleteIcon/>}
@@ -270,8 +702,10 @@ const AllResumes = () => {
                             </li>        
                         ) 
                     }
+
                 </ol>
     </div>
+
     )         
 }
         

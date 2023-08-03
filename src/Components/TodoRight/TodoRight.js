@@ -115,7 +115,7 @@ const TodoRight = () => {
                                     
                                         style={{
                                         
-                                        marginLeft:'20px',
+                                        marginLeft:'23px',
                                         width:'430px'
                                         
                                         }}
@@ -138,7 +138,7 @@ const TodoRight = () => {
                                     
                                         style={{
                                         
-                                        marginLeft:'20px',
+                                        marginLeft:'25px',
                                         width:'430px',
                                         marginBottom:'10px'
                                         
