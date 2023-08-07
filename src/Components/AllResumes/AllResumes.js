@@ -1,6 +1,23 @@
 import "./AllResumes.css";
 import React, { useState } from "react";
 
+import BorderColorIcon from '@mui/icons-material/BorderColor';
+import EditNoteIcon from '@mui/icons-material/EditNote';
+import SaveAsIcon from '@mui/icons-material/SaveAs';
+import { MdAlternateEmail } from "react-icons/md";
+import { BsPhone } from "react-icons/bs";
+import { TiSocialLinkedin } from "react-icons/ti";
+import { FiGithub } from "react-icons/fi";
+import { BiLink } from "react-icons/bi";
+import { TbSchool } from "react-icons/tb";
+
+import { HiOutlineLocationMarker } from "react-icons/hi";
+import { RxCalendar } from "react-icons/rx";
+import { LiaProjectDiagramSolid } from "react-icons/lia";
+import { AiOutlineDatabase } from "react-icons/ai";
+import { AiOutlineTool } from "react-icons/ai";
+import { BsCode } from "react-icons/bs";
+
 import { collection, deleteDoc, getDocs, doc, updateDoc } from "firebase/firestore";
 import { useToggle } from "../../utils/useToggle";
 import { BiAdjust } from "react-icons/bi";
@@ -45,6 +62,7 @@ import { initialState } from "../../utils/ourState";
 import SaveIcon from '@mui/icons-material/Save';
 import { useNavigate } from "react-router-dom";
 
+
 const AllResumes = () => {
 
     const [cv, setCv] = useState([]);
@@ -54,6 +72,16 @@ const AllResumes = () => {
     const [user] = useAuthState(auth);
 
     const [ourForm, setOurForm] = useState(initialState);
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setOurForm(prevState => ({
+            objectName: {
+                ...prevState.objectName,
+                [name]: value
+            },
+        }))
+    };
 
     // React.createRef - avoid hooks rules
     const pdfExportComponent = cv.map((i) => React.createRef(i));
@@ -72,6 +100,23 @@ const AllResumes = () => {
 //         .catch(error => console.log(error)); 
 // }
 
+const handleEditResume = (id) => {
+
+    // cv.map((el, i)
+
+    // )
+
+    updateDoc(doc(firestoreDB,`${user.email}`, id ), {fullName:{}}).then(res => {
+        console.log(res);
+//     const handleEditResume = (id) => {
+//         updateDoc(doc(firestoreDB,`${user.email}`, id ), {address:16}).then(res => {
+//             console.log(res);
+        
+        window.location.reload(false);
+    })
+    .catch(error => console.log(error)); 
+}
+
 const handleAddResume = (event) => {
         
     // firestoreDB making auto uid for any document in hte user.email collection
@@ -87,7 +132,10 @@ const handleAddResume = (event) => {
             console.log(response.id);
             //mayby: we use the path for each user resumes
             console.log(response.path);
-            navigate("/allResumes")
+
+            // window.location.reload(true);
+            window.location.reload(false);
+            // navigate("/allResumes");
             
         }).catch(error => {
             console.log(error);
@@ -145,13 +193,11 @@ const handleAddResume = (event) => {
 
                                 <div className="resume">
 
-                                        <div className='grid-area name'>
+                                    <div className='grid-area name'>
 
-                                            <div className='square'>
-
-                                                <div className='firstGroup'>
-
-                                                </div>
+                                        <div className='square'>
+                             
+                                            <div className='firstGroup'> 
 
                                                 <TextField
                                                     type="text"
@@ -164,9 +210,7 @@ const handleAddResume = (event) => {
 
                                                     // for hide the border
                                                     sx={{border: 'none',"& fieldset": { border: 'none' } }}
-                                                    //value={ourForm.objectName.fullName.toUpperCase()}
                                                     defaultValue={cv[i].info.fullName}
-                                                    // 
                                                     style={{
                                                    
                                                     marginTop:"25px",
@@ -186,7 +230,6 @@ const handleAddResume = (event) => {
                                                     multiline
                                                     placeholder='Role'
                                                     sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                    
                                                     defaultValue={cv[i].info.jobTitle}
                                                     style={{
                                                   
@@ -206,9 +249,8 @@ const handleAddResume = (event) => {
                                                     
                                                     placeholder='Email'
                                                     sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                    
+                                                    // onChange={handleChange}
                                                     defaultValue={cv[i].info.email}
-                                                    
                                                     style={{
                                                     
                                                     marginTop:"15px",
@@ -219,9 +261,9 @@ const handleAddResume = (event) => {
                                                     InputProps={{style: {fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
                                                     startAdornment: (
                                                         <InputAdornment  position='start'>
-                                                           { ourForm.objectName.email ?
+                                                           { cv[i].info.email ?
                                                             
-                                                           <Fade> <PiDotBold style={{fontSize:15, color:'white'}}/> </Fade> : null }
+                                                           <Fade> <MdAlternateEmail style={{fontSize:15, color:'white'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -236,9 +278,7 @@ const handleAddResume = (event) => {
                                                     multiline
                                                     placeholder='Phone Number'
                                                     sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                    
                                                     defaultValue={cv[i].info.phoneNumber}
-                                                    
                                                     style={{
                                                     
                                                     width:'230px',
@@ -249,7 +289,7 @@ const handleAddResume = (event) => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.phoneNumber ?
                                                             
-                                                           <Fade> <BiAdjust style={{fontSize:15, color:'white'}}/> </Fade> : null }
+                                                           <Fade> <BsPhone style={{fontSize:15, color:'white'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -264,7 +304,6 @@ const handleAddResume = (event) => {
                                                     multiline
                                                     placeholder='Linkedin link'
                                                     sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                    
                                                     defaultValue={cv[i].info.linkedinLink}
                                                     style={{
                                                     
@@ -276,7 +315,7 @@ const handleAddResume = (event) => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.linkedinLink ?
                                                             
-                                                           <Fade> <BiAdjust style={{fontSize:15, color:'white'}}/> </Fade> : null }
+                                                           <Fade> <TiSocialLinkedin style={{fontSize:15, color:'white'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -291,9 +330,7 @@ const handleAddResume = (event) => {
                                                     className='pdfFonts'
                                                     placeholder='Github'
                                                     sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                   
                                                     defaultValue={cv[i].info.githubLink}
-                                                    
                                                     style={{
                                                   
                                                     width:'230px',
@@ -304,14 +341,13 @@ const handleAddResume = (event) => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.githubLink ?
                                                             
-                                                           <Fade> <BiAdjust style={{fontSize:15, color:'white'}}/> </Fade> : null }
+                                                           <Fade> <FiGithub style={{fontSize:15, color:'white'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
                                                     
                                                 }}/>
 
-                                                
                                                 <TextField
                                                     type="text"
                                                     name="portfolioLink"
@@ -320,9 +356,7 @@ const handleAddResume = (event) => {
                                                     multiline
                                                     placeholder='Portfolio'
                                                     sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                    
                                                     defaultValue={cv[i].info.portfolioLink}
-                                                    
                                                     style={{
                                                    
                                                     width:'230px',
@@ -333,7 +367,7 @@ const handleAddResume = (event) => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.portfolioLink ?
                                                             
-                                                           <Fade> <BiAdjust style={{fontSize:15, color:'white'}}/> </Fade> : null }
+                                                           <Fade> <BiLink style={{fontSize:15, color:'white'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -346,9 +380,8 @@ const handleAddResume = (event) => {
 
                                             {/* after square */}
 
-                                            <div className='afterSquareGroup'>
+                                    <div className='afterSquareGroup'>
                                      
-                       
                                             <TextField
                                                     type="text"
                                                     name="educationHeader"
@@ -358,9 +391,7 @@ const handleAddResume = (event) => {
                                                     placeholder='Optional section'
                                                     sx={{border: 'none',"& fieldset": { border: 'none' }  }}
                                                     value='EDUCATION'
-                                                    // 
-                                                    // defaultValue={'Languages:'}
-                                                    
+                                               
                                                     style={{
                                                     marginTop:'20px',
                                                     marginLeft:'18px',
@@ -379,9 +410,7 @@ const handleAddResume = (event) => {
                                                     multiline
                                                     placeholder='Degree name'
                                                     sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                    
                                                     defaultValue={cv[i].info.degreeTypeAndname}
-                                                    
                                                     style={{
                                                     
                                                     marginLeft:'18px',
@@ -393,12 +422,12 @@ const handleAddResume = (event) => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.degreeTypeAndname ?
                                                             
-                                                           <Fade><BiAdjust style={{fontSize:15, color:'gray'}}/> </Fade> : null }
+                                                           <Fade><TbSchool style={{fontSize:15, color:'gray'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
                                                 }}
-                                                    // 
+                                                    
                                                 />
 
                                                 <TextField
@@ -409,9 +438,7 @@ const handleAddResume = (event) => {
                                                     multiline
                                                     placeholder='School name & location'
                                                     sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                    
                                                     defaultValue={cv[i].info.schoolNameAndlocation}
-                                                    
                                                     style={{
                                                     
                                                     marginLeft:'18px',
@@ -423,7 +450,7 @@ const handleAddResume = (event) => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.schoolNameAndlocation ?
                                                             
-                                                           <Fade> <BiAdjust style={{fontSize:15, color:'gray'}}/> </Fade> : null }
+                                                           <Fade> <HiOutlineLocationMarker style={{fontSize:15, color:'gray'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -438,10 +465,7 @@ const handleAddResume = (event) => {
                                                     multiline
                                                     placeholder='Time range'
                                                     sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                    
-
                                                     defaultValue={cv[i].info.timeLearnedDegree}
-                                                    
                                                     style={{
                                                     
                                                     marginLeft:'18px',
@@ -453,7 +477,7 @@ const handleAddResume = (event) => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.timeLearnedDegree ?
                                                             
-                                                           <Fade> <BiAdjust style={{fontSize:15, color:'gray'}}/> </Fade> : null }
+                                                           <Fade> <RxCalendar style={{fontSize:15, color:'gray'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -470,9 +494,7 @@ const handleAddResume = (event) => {
                                                     placeholder='Optional section'
                                                     sx={{border: 'none',"& fieldset": { border: 'none' }  }}
                                                     value='SKILLS'
-                                                    // 
-                                                    // defaultValue={'Languages:'}
-                                                    
+                                                  
                                                     style={{
                                                     marginTop:'20px',
                                                     marginLeft:'18px',
@@ -491,11 +513,8 @@ const handleAddResume = (event) => {
                                                     multiline
                                                     placeholder='Languages: JS, CSS e.g.'
                                                     sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                    
-
                                                     defaultValue={cv[i].info.ProgrammingLanguages}
-                                                    
-                                                   
+                                                    // defaultValue={'Languages:'}
                                                     
                                                     style={{
                                                     
@@ -508,7 +527,7 @@ const handleAddResume = (event) => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.ProgrammingLanguages ?
                                                             
-                                                           <Fade> <BiAdjust style={{fontSize:15, color:'gray'}}/> </Fade> : null }
+                                                           <Fade> <BsCode style={{fontSize:15, color:'gray'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -524,10 +543,8 @@ const handleAddResume = (event) => {
                                                     multiline
                                                     placeholder='Databases: MongoDB e.g.'
                                                     sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                 
                                                     defaultValue={cv[i].info.Databases}
                                                     
-                                                
                                                     
                                                     style={{
                                                     
@@ -540,7 +557,7 @@ const handleAddResume = (event) => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.Databases ?
                                                             
-                                                           <Fade> <BiAdjust style={{fontSize:15, color:'gray'}}/> </Fade> : null }
+                                                           <Fade> <AiOutlineDatabase style={{fontSize:15, color:'gray'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -555,8 +572,8 @@ const handleAddResume = (event) => {
                                                     multiline
                                                     placeholder='Frameworks: React e.g.'
                                                     sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                    
                                                     defaultValue={cv[i].info.Frameworks}
+                                                    
                                                     
                                                     style={{
                                                     
@@ -569,7 +586,7 @@ const handleAddResume = (event) => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.Frameworks ?
                                                             
-                                                           <Fade> <BiAdjust style={{fontSize:15, color:'gray'}}/> </Fade> : null }
+                                                           <Fade> <AiOutlineTool style={{fontSize:15, color:'gray'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -585,9 +602,8 @@ const handleAddResume = (event) => {
                                                     multiline
                                                     placeholder='Knowledge: React-hooks e.g.'
                                                     sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                   
                                                     defaultValue={cv[i].info.GeneralKnowledge}
-                                                   
+                                                    
                                                     style={{
                                                     
                                                     marginLeft:'18px',
@@ -600,7 +616,7 @@ const handleAddResume = (event) => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.GeneralKnowledge ?
                                                             
-                                                           <Fade> <BiAdjust style={{fontSize:15, color:'gray'}}/> </Fade> : null }
+                                                           <Fade> <LiaProjectDiagramSolid style={{fontSize:15, color:'gray'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -609,14 +625,16 @@ const handleAddResume = (event) => {
                                                 />
 
                                                 <TodoLeft/>
-       
-                                            </div>   
+
+                                        </div>   
  
-                                        </div>
+                                    </div>
+
+                                    
 
                                             {/* rigth part */}
                                             <div className="grid-area work">
-  
+                                            
                                                 <TextField
                                                     type="text"
                                                     name="workHeader"
@@ -626,7 +644,7 @@ const handleAddResume = (event) => {
                                                     // placeholder='Optional section'
                                                     sx={{border: 'none',"& fieldset": { border: 'none' }  }}
                                                     value={'WORK EXPERIENCE'}
-                                                    // 
+                                                    // onChange={handleChange}
                                                     defaultValue={'Languages:'}
                                                     
                                                     style={{
@@ -639,11 +657,14 @@ const handleAddResume = (event) => {
                                                     
                                                 />
 
-                                                {/* <TodoWork/>
+                                                <TodoWork/>
 
-                                                <TodoRight/> */}
+                                                <TodoRight/>
 
                                             </div>
+
+                                        </div>
+
      
                                 </PDFExport>
 
@@ -681,11 +702,12 @@ const handleAddResume = (event) => {
                                     </Button> */}
 
                                 <Button 
-                                    startIcon={<SaveIcon/>}
-                                    color="success"
+                                    startIcon={<BorderColorIcon/>}
+                                    
+                                    color="inherit"
                                     variant="contained"
                                     sx={{m:1}}
-                                    onClick={handleAddResume}>Save Resume
+                                    onClick={handleAddResume}>UPDATE
                                 </Button>
 
                                     <Button

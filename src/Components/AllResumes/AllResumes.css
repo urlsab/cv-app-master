@@ -10,7 +10,7 @@
     align-items:center;
     font-family: 'Itim', serif;
     font-size: 22px;
-
+    border: none;
     min-width: 710px;
 }
 
@@ -74,111 +74,34 @@
 }
 
 /* align cv to center of page */
-.wrapper {
-    padding       : 0;
-    display       : flex;
-    flex-direction: column;
-    align-items   : center;
-}
+
 
 .resume {
-    display: grid;
-    margin-top: 20px;
-
-    /* this is like 8.5in */
-    /* width: 1260px;  */
-
-    /* make width unChange able - fixed size */
-    width: 900px; 
-
-    /* make hieght grows with content added */
-    height: fit-content;
-
-    /* and this like 11in */
-    /* height: 1630.588px; */
+    display: inline-grid;
+    margin-top: 0.5px;
+    font-size: 20px;
+    background-color: rgb(246, 246, 249);
+    border: none;
+    flex-direction: column;
+    flex-wrap: wrap;
+    /* sizes exactly like beamjobs */
+    width: 790px;
+    min-height: 11.65in;
     
-
-    /* hardcoded purely for codepen example */
     grid-template-columns: 1fr 2fr;
-    grid-template-rows   : 1fr 1fr 1fr 1fr;
-    box-shadow           : 0 5px 9px 0 rgba(0, 0, 0, 0.35);
-
-    /* THIS IS THE SHAPE OF THE RESUME!!! */
-    grid-template-areas  : 
-        "name work"
-        "about work"
-        "community photo"
-        "education skills";
-}
-
-.grid-area {
-    /* padding: 1em 1em 1em 1em; */
-    padding: 0 0;
-    
-    border : 1px black solid;
+    grid-template-rows: 1fr;
+    box-shadow: 0 5px 9px 0 rgba(0, 0, 0, 0.35);
+    grid-template-areas:
+        "name work";
 }
 
 .name {
     grid-area: name;
-    background-color: white;
+    background-color: rgb(250, 245, 245);
 
-}
-
-.photo {
-    grid-area       : photo;
-    background-color: white;
-}
-
-.about {
-    grid-area       : about;
-    background-color: white;
 }
 
 .work {
     grid-area: work;
     background-color: white;
-}
-
-.skills {
-    grid-area:skills;
-    background-color: white;
-}
-
-.education {
-    grid-area       : education;
-    background-color: white;
-}
-
-.community {
-    grid-area: community;
-    background-color: white;
-}
-
-.articles {
-    color:gray;
-    size: 12px;
-}
-
-
-
-.spaceInline {
-    /* the size exactly as beamjobs resume */
-    font-size: 25.92px;
-
-    /* the font of the full name in beamjobs resume */
-    font-family: 'Exo 2';
-}
-
-.spaces {
-    margin-left: 7px;
-    margin-top: 5px;
-}
-
-.no-print {
-    /* display: none; */
-    background-color: blueviolet;
-}
-
-.showLi {
-    background-color: blue;
 }

@@ -25,7 +25,7 @@ const EditToFirestore = () => {
 
   return (
     <div>
-       <p className="styleLetters">Edit To Firestore</p>
+       <p className="styleLetters"> To Firestore</p>
        <form onSubmit={handleSubmit}>
         <label htmlFor="id">resume id</label>
         <input 
@@ -50,4 +50,4 @@ const EditToFirestore = () => {
 
 };
 
-export default EditToFirestore;
+export default ToFirestore;
