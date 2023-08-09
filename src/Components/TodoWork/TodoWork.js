@@ -1,57 +1,87 @@
 import './TodoWork.css';
+
 import React, { useState, useEffect } from 'react';
+
 import TextField from '@mui/material/TextField';
-import { createRandomId } from '../../utils/randomId';
+import ListItem from '@mui/material/ListItem';
+import { MdWorkOutline } from "react-icons/md";
+import { PiDotBold } from "react-icons/pi";
 
-
-import WorkIcon from '@mui/icons-material/Work';
-
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import FilePresentIcon from '@mui/icons-material/FilePresent';
-import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
-import EventAvailableIcon from '@mui/icons-material/EventAvailable';
-import ListIcon from '@mui/icons-material/List';
-
-import CodeIcon from '@mui/icons-material/Code';
-import PsychologyIcon from '@mui/icons-material/Psychology';
-import CoPresentIcon from '@mui/icons-material/CoPresent';
-import WhereToVoteIcon from '@mui/icons-material/WhereToVote';
-import TitleIcon from '@mui/icons-material/Title';
-import HdrAutoIcon from '@mui/icons-material/HdrAuto';
-
-import { Button, InputAdornment } from "@mui/material";
-import SaveIcon from '@mui/icons-material/Save';
-
+import { TbCircleLetterA } from "react-icons/tb";
+import { HiOutlineLocationMarker } from "react-icons/hi";
+import { RxCalendar } from "react-icons/rx";
+import { BsListUl } from "react-icons/bs";
+import { InputAdornment } from "@mui/material";
 import Fade from 'react-reveal/Fade';
+
+import { Icon } from '@iconify/react';
 
 // '•'
 
 const TodoWork = () => {
 
+  const [coords, setCoords] = useState({x: 0, y: 0});
+
+  // <Icon icon="ph:dot-thin" />
+
+  
+  useEffect(() => {
+    const handleWindowMouseMove = event => {
+      setCoords({
+        x: event.clientX,
+        y: event.clientY,
+      });
+    };
+    window.addEventListener('mousemove', handleWindowMouseMove);
+
+    return () => {
+      window.removeEventListener(
+        'mousemove',
+        handleWindowMouseMove,
+      );
+    };
+  }, []);
+
+  const { dotIcon } =  <PiDotBold/>  ;
   // const [display, setDisplay] = useState('notdisplayed');
    
-  const [inputList, setInputList] = useState([{ display: 'notdisplayed', roleAndCompanyName: '',  durationAndLocation: '', achivments: ''}]);
+  const [inputList, setInputList] = useState([{ display: 'notdisplayed', roleAndCompanyName: '',  durationAndLocation: '', achivements: '•'}]);
 
   const [text, setText] = useState('');
 
-//   const inputRef = inputList.map((i) => React.createRef(i));
+  // const handleChanges = (event, i) => {
+  //   setText(event.target.value);
+  // };
 
-//   const inputRefCurrent = (i) => {
-//     console.log(inputRef[i]);
-//     inputRef[i].current.save();
-// };
+  const renderDot = () => {
+    return (
+      <>
+        <PiDotBold />
+      </>
+    );
+  }
 
-// onClick={() => inputRefCurrent(i)}
+  const handleEnterPress = (event, i) => {
+    //DONT ADD THAT !!!! - event.preventDefault(); - with that - we can write no thing
 
-  const handleChanges = (event, i) => {
-    setText(event.target.value);
-  };
+    const char = '•';
 
-  const handleKeyPress = (event, index) => {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      setText((prevText) => prevText + '\n\u2022 ');
+    const list = [...inputList];
+
+    if (event.key === 'Enter' && list[i].achivements !== '•') {
+      
+      //DONT ADD THAT !!!! - event.preventDefault(); - with that - enter button will not jump line
+      // const list = [...inputList];
+
+      // point after list[i].achievements - will make line jump when enter
+      // + toString(dotIcon)
+      list[i].achivements += `${char}` + JSON.stringify(dotIcon, null, 2) ;
+
+      setInputList(list);
+    }
+
+    else{
+      setInputList(list);
     }
   };
 
@@ -72,14 +102,19 @@ const TodoWork = () => {
   // handle input change
   const handleInputChange = (e, index) => {
     const { name, value } = e.target;
-
-    handleKeyPress(e, index);
+    const list = [...inputList];
 
     // inputRef[index].current.save();
+    // if (e.key === 'Enter') { 
+    //   console.log('Enter key pressed');
+    //   list[index][name] =  '&';
+    //   setInputList(list);
+    // }
 
-    const list = [...inputList];
-    list[index][name] =  value;
-    setInputList(list);
+    // else {
+      list[index][name] =  value;
+      setInputList(list);
+    // }
   };
 
   // handle click event of the Remove button
@@ -100,16 +135,18 @@ const TodoWork = () => {
 
     // inputRef[index].current.save();
 
-    list.splice(index + 1 , 0, { roleAndCompanyName: '',  durationAndLocation: '', achivments: ''});
+    list.splice(index + 1 , 0, { roleAndCompanyName: '',  durationAndLocation: '', achivements: ''});
     console.log(list[index]);
     setInputList(list);
   };
 
   return (
     <div>
+      {/* ({coords.x}, {coords.y}) */}
       {inputList.map((x, i) => {
         return (
           <div>
+          
           <div
             key={i + 1}
             className="box"
@@ -141,7 +178,7 @@ const TodoWork = () => {
               )}
 
             <div style={{marginTop:'10px', marginBottom:'10px'}} key={i  + 7}>
-
+            {/* {dotIcon} */}
             <TextField
               type="text"
               name="roleAndCompanyName"
@@ -152,7 +189,7 @@ const TodoWork = () => {
               sx={{border: 'none',"& fieldset": { border: 'none' }  }}
               value={x.roleAndCompanyName}
               onChange={(e) => handleInputChange(e, i)}
-        
+
               style={{
               
               marginLeft:'20px',
@@ -164,7 +201,7 @@ const TodoWork = () => {
                   <InputAdornment position='start'>
                       { x.roleAndCompanyName ?
                       
-                      <Fade><WorkIcon sx={{fontSize:15}}/> | <HdrAutoIcon sx={{fontSize:15}}/>  </Fade> : null }
+                      <Fade> <MdWorkOutline style={{fontSize:15, color:'gray', marginRight:'3px'}}/> | <TbCircleLetterA style={{fontSize:15, color:'gray'}}/> </Fade> : null }
                       
                   </InputAdornment>
               )
@@ -172,7 +209,6 @@ const TodoWork = () => {
 
           />
 
-          
             <TextField
               type="text"
               name="durationAndLocation"
@@ -196,24 +232,29 @@ const TodoWork = () => {
                   <InputAdornment position='start'>
                       { x.durationAndLocation ?
                       
-                      <Fade><EventAvailableIcon sx={{fontSize:15}}/> | <WhereToVoteIcon sx={{fontSize:15}}/>  </Fade> : null }
+                      <Fade> <RxCalendar style={{fontSize:15, color:'gray', marginRight:'3px'}}/> | <HiOutlineLocationMarker style={{fontSize:15, color:'gray'}}/>  </Fade> : null }
                       
                   </InputAdornment>
               )
           }}
 
+          
+
           />
 
             <TextField
               type="text"
-              name="achivments"
+              name="achivements"
               className='pdfFonts'
               required 
               multiline
-              placeholder='Achievement'
+              placeholder='Achivements'
               sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-              value={x.achivments}
-              onChange={(e) => handleInputChange(e, i)}
+              value={x.achivements}
+
+              
+              onKeyDown={(e) => handleEnterPress(e, i) } 
+              onChange={(e) => handleInputChange(e, i) }
         
               style={{
               
@@ -225,13 +266,15 @@ const TodoWork = () => {
               InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
               startAdornment: (
                   <InputAdornment position='start'>
-                      { x.achivments ?
+                      { x.achivements ?
                       
-                      <Fade> <ListIcon sx={{fontSize:15}}/>   </Fade> : null }
+                      <Fade> <BsListUl style={{fontSize:15, color:'gray'}}/> </Fade> : null }
                       
                   </InputAdornment>
               )
           }}
+
+          
 
           />
 
@@ -257,6 +300,7 @@ const TodoWork = () => {
           </div>
         );
       })}
+      
     </div>
   );
 };
