@@ -67,17 +67,22 @@ const TodoWork = () => {
     const char = '•';
 
     const list = [...inputList];
-
-    if (event.key === 'Enter' && list[i].achivements !== '•') {
+// && list[i].achivements !== '•'
+    if (event.key === 'Enter') {
       
+      // + JSON.stringify(dotIcon, null, 2)
+      setTimeout(() => {
+        list[i].achivements += `${char}`  ;
+      }, 200);
+      
+      setInputList(list);
       //DONT ADD THAT !!!! - event.preventDefault(); - with that - enter button will not jump line
       // const list = [...inputList];
 
       // point after list[i].achievements - will make line jump when enter
       // + toString(dotIcon)
-      list[i].achivements += `${char}` + JSON.stringify(dotIcon, null, 2) ;
-
-      setInputList(list);
+    
+      
     }
 
     else{
