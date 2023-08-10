@@ -74,7 +74,7 @@ const TodoWork = () => {
       setTimeout(() => {
         list[i].achivements += `${char}`  ;
       }, 200);
-      
+
       setInputList(list);
       //DONT ADD THAT !!!! - event.preventDefault(); - with that - enter button will not jump line
       // const list = [...inputList];
