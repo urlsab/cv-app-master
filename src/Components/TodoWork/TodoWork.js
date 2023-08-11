@@ -64,30 +64,32 @@ const TodoWork = () => {
   const handleEnterPress = (event, i) => {
     //DONT ADD THAT !!!! - event.preventDefault(); - with that - we can write no thing
 
-    const char = '•';
+    const char = '-';
 
     const list = [...inputList];
-// && list[i].achivements !== '•'
+
+setTimeout(() => {
     if (event.key === 'Enter') {
       
       // + JSON.stringify(dotIcon, null, 2)
-      setTimeout(() => {
-        list[i].achivements += `${char}`  ;
-      }, 200);
+      
+        list[i].achivements += `${char}` + " "  ;
 
       setInputList(list);
       //DONT ADD THAT !!!! - event.preventDefault(); - with that - enter button will not jump line
       // const list = [...inputList];
 
       // point after list[i].achievements - will make line jump when enter
-      // + toString(dotIcon)
-    
       
     }
 
     else{
       setInputList(list);
     }
+
+    // mini
+  }, 0);
+
   };
 
   const showButton = (e, i) => {
