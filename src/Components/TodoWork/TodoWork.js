@@ -20,29 +20,35 @@ import { Icon } from '@iconify/react';
 
 const TodoWork = () => {
 
-  const [coords, setCoords] = useState({x: 0, y: 0});
-
   // <Icon icon="ph:dot-thin" />
 
-  
-  useEffect(() => {
-    const handleWindowMouseMove = event => {
-      setCoords({
-        x: event.clientX,
-        y: event.clientY,
-      });
-    };
-    window.addEventListener('mousemove', handleWindowMouseMove);
+  const useKeyDown = (targetKey) => {
+    // State for keeping track of whether key is pressed
+    const [keyPressed, setKeyPressed] = useState(false);
+    // If pressed key is our target key then set to true
+    function downHandler({ key }) {
+      if (key === targetKey) {
+        setKeyPressed(true);
+        
+      }
+    }
+    
+    // Add event listeners to those lines
+    useEffect( () => {
+      window.addEventListener("keydown", downHandler);
+      
+      return () => {
+        window.removeEventListener("keydown", downHandler);
+        
+      };
+    }, [] ); 
+    return keyPressed;
+  }
 
-    return () => {
-      window.removeEventListener(
-        'mousemove',
-        handleWindowMouseMove,
-      );
-    };
-  }, []);
+  const enterPress = useKeyDown("Enter");
 
-  const { dotIcon } =  <PiDotBold/>  ;
+
+  const dotIcon =  <PiDotBold/>  ;
   // const [display, setDisplay] = useState('notdisplayed');
    
   const [inputList, setInputList] = useState([{ display: 'notdisplayed', roleAndCompanyName: '',  durationAndLocation: '', achivements: '•'}]);
@@ -64,7 +70,8 @@ const TodoWork = () => {
   const handleEnterPress = (event, i) => {
     //DONT ADD THAT !!!! - event.preventDefault(); - with that - we can write no thing
 
-    const char = '-';
+    // '•'
+    const char = '•';
 
     const list = [...inputList];
 
@@ -73,7 +80,7 @@ setTimeout(() => {
       
       // + JSON.stringify(dotIcon, null, 2)
       
-        list[i].achivements += `${char}` + " "  ;
+        list[i].achivements += dotIcon + " "  ;
 
       setInputList(list);
       //DONT ADD THAT !!!! - event.preventDefault(); - with that - enter button will not jump line
@@ -149,11 +156,14 @@ setTimeout(() => {
 
   return (
     <div>
+      {/* {renderDot()} */}
+      {/* make this for ant enter + in achivement fieled */}
+      {enterPress ? <PiDotBold /> : null}
       {/* ({coords.x}, {coords.y}) */}
       {inputList.map((x, i) => {
         return (
           <div>
-          
+          {/* {enterPress ? inputList[i].achivements = <PiDotBold/> : null} */}
           <div
             key={i + 1}
             className="box"
@@ -248,6 +258,7 @@ setTimeout(() => {
           
 
           />
+          
 
             <TextField
               type="text"
@@ -259,8 +270,10 @@ setTimeout(() => {
               sx={{border: 'none',"& fieldset": { border: 'none' }  }}
               value={x.achivements}
 
-              
-              onKeyDown={(e) => handleEnterPress(e, i) } 
+
+              // onKeyDown={(e) => enterPress ? '-' : null }
+              // onKeyDown={(e) => enterPress ? <PiDotBold /> : null }
+              // onKeyDown={(e) => handleEnterPress(e, i) } 
               onChange={(e) => handleInputChange(e, i) }
         
               style={{
