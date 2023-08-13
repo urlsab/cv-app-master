@@ -113,8 +113,13 @@
 
 
 .pdfFonts {
-  font-family: "DejaVu Sans", "Arial", "Lato", "Rubik", "Exo" ,sans-serif,;
+  font-family: "DejaVu Sans", "Arial", "Lato", "Rubik", "Exo" ,sans-serif;
 }
+
+/* .k-pdf-export .achiveStyle{
+  display: list-item;
+  font-family: "DejaVu Sans", "Arial", "Lato", "Rubik", "Exo" ,sans-serif;
+} */
 
 @font-face {
   font-family: "DejaVu Sans";
@@ -132,3 +137,5 @@
   font-style: italic;
   src: url("https://kendo.cdn.telerik.com/2017.2.621/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf") format("truetype");
 }
+
+/* SAVED CLASS NAME -  KENDO REACT PDF */

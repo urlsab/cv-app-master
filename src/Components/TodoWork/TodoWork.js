@@ -3,7 +3,6 @@ import './TodoWork.css';
 import React, { useState, useEffect } from 'react';
 
 import TextField from '@mui/material/TextField';
-import ListItem from '@mui/material/ListItem';
 import { MdWorkOutline } from "react-icons/md";
 import { PiDotBold } from "react-icons/pi";
 
@@ -12,9 +11,8 @@ import { HiOutlineLocationMarker } from "react-icons/hi";
 import { RxCalendar } from "react-icons/rx";
 import { BsListUl } from "react-icons/bs";
 import { InputAdornment } from "@mui/material";
-import Fade from 'react-reveal/Fade';
 
-import { Icon } from '@iconify/react';
+import Fade from 'react-reveal/Fade';
 
 // '•'
 
@@ -22,14 +20,21 @@ const TodoWork = () => {
 
   // <Icon icon="ph:dot-thin" />
 
+  const [showIcon, setShowIcon] = useState(false);
+
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      setShowIcon(true);
+    }
+  };
+
   const useKeyDown = (targetKey) => {
     // State for keeping track of whether key is pressed
     const [keyPressed, setKeyPressed] = useState(false);
     // If pressed key is our target key then set to true
-    function downHandler({ key }) {
+    const downHandler = ({ key }) => {
       if (key === targetKey) {
         setKeyPressed(true);
-        
       }
     }
     
@@ -47,18 +52,6 @@ const TodoWork = () => {
 
   const enterPress = useKeyDown("Enter");
 
-
-  const dotIcon =  <PiDotBold/>  ;
-  // const [display, setDisplay] = useState('notdisplayed');
-   
-  const [inputList, setInputList] = useState([{ display: 'notdisplayed', roleAndCompanyName: '',  durationAndLocation: '', achivements: '•'}]);
-
-  const [text, setText] = useState('');
-
-  // const handleChanges = (event, i) => {
-  //   setText(event.target.value);
-  // };
-
   const renderDot = () => {
     return (
       <>
@@ -67,20 +60,29 @@ const TodoWork = () => {
     );
   }
 
+// •  • • ∙  ●
+// work at pdf kendo - · |  
+  const dotIcon =  <PiDotBold/>  ;
+
+  // const [display, setDisplay] = useState('notdisplayed');
+   
+  const [inputList, setInputList] = useState([{ display: 'notdisplayed', roleAndCompanyName: '',  durationAndLocation: '', achivements: '·'}]);
+
+  // const [text, setText] = useState('');
+
   const handleEnterPress = (event, i) => {
     //DONT ADD THAT !!!! - event.preventDefault(); - with that - we can write no thing
 
-    // '•'
-    const char = '•';
-
-    const list = [...inputList];
+   
+  
+  const list = [...inputList];
 
 setTimeout(() => {
     if (event.key === 'Enter') {
       
       // + JSON.stringify(dotIcon, null, 2)
       
-        list[i].achivements += dotIcon + " "  ;
+        list[i].achivements += '·' + " "  ;
 
       setInputList(list);
       //DONT ADD THAT !!!! - event.preventDefault(); - with that - enter button will not jump line
@@ -94,7 +96,6 @@ setTimeout(() => {
       setInputList(list);
     }
 
-    // mini
   }, 0);
 
   };
@@ -156,10 +157,10 @@ setTimeout(() => {
 
   return (
     <div>
-      {/* {renderDot()} */}
+     
       {/* make this for ant enter + in achivement fieled */}
-      {enterPress ? <PiDotBold /> : null}
-      {/* ({coords.x}, {coords.y}) */}
+      
+      
       {inputList.map((x, i) => {
         return (
           <div>
@@ -171,7 +172,6 @@ setTimeout(() => {
             onMouseEnter={(e) => showButton(e, i)}
             onMouseLeave={(e) => hideButton(e, i)}
           >
-
             <div className="btn-box">
               {/* {inputList.length - 1 === i && ( */}
               <button 
@@ -215,7 +215,7 @@ setTimeout(() => {
               }}
               InputProps={{style: {fontSize:18, padding: '0.2rem', lineHeight:"25px"},
               startAdornment: (
-                  <InputAdornment position='start'>
+                  <InputAdornment position="start">
                       { x.roleAndCompanyName ?
                       
                       <Fade> <MdWorkOutline style={{fontSize:15, color:'gray', marginRight:'3px'}}/> | <TbCircleLetterA style={{fontSize:15, color:'gray'}}/> </Fade> : null }
@@ -255,25 +255,21 @@ setTimeout(() => {
               )
           }}
 
-          
-
           />
           
-
             <TextField
               type="text"
               name="achivements"
-              className='pdfFonts'
+              className="pdfFonts"
               required 
               multiline
               placeholder='Achivements'
               sx={{border: 'none',"& fieldset": { border: 'none' }  }}
               value={x.achivements}
-
-
+              // onKeyDown={handleKeyPress}
               // onKeyDown={(e) => enterPress ? '-' : null }
               // onKeyDown={(e) => enterPress ? <PiDotBold /> : null }
-              // onKeyDown={(e) => handleEnterPress(e, i) } 
+              onKeyDown={(e) => handleEnterPress(e, i) } 
               onChange={(e) => handleInputChange(e, i) }
         
               style={{
@@ -286,18 +282,19 @@ setTimeout(() => {
               InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
               startAdornment: (
                   <InputAdornment position='start'>
-                      { x.achivements ?
-                      
+                      { x.achivements ?   
+                     
                       <Fade> <BsListUl style={{fontSize:15, color:'gray'}}/> </Fade> : null }
+                       
+                    
                       
                   </InputAdornment>
               )
           }}
 
-          
-
           />
 
+          {/* {showIcon && <TbCircleLetterA style={{fontSize:15, color:'red'}} /> } */}
 
               {/* <div key={i + 6 }>
                 <div key={ i + 9}
