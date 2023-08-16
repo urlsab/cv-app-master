@@ -1,77 +1,40 @@
 import './InputsForm.css';
-
 import React, { useState, useRef } from "react";
-import { BiAdjust } from "react-icons/bi";
-// import { PiDotBold } from "react-icons/pi";
 import { MdAlternateEmail } from "react-icons/md";
 import { BsPhone } from "react-icons/bs";
 import { TiSocialLinkedin } from "react-icons/ti";
 import { FiGithub } from "react-icons/fi";
 import { BiLink } from "react-icons/bi";
 import { TbSchool } from "react-icons/tb";
+
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { RxCalendar } from "react-icons/rx";
 import { LiaProjectDiagramSolid } from "react-icons/lia";
-
 import { AiOutlineDatabase } from "react-icons/ai";
 import { AiOutlineTool } from "react-icons/ai";
 import { BsCode } from "react-icons/bs";
-// 
-
 import { useNavigate } from "react-router-dom";
-
 import TodoLeft from '../TodoLeft/TodoLeft';
 import TodoRight from '../TodoRight/TodoRight';
-
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import GitHubIcon from '@mui/icons-material/GitHub';
-
-import CodeIcon from '@mui/icons-material/Code';
-import PsychologyIcon from '@mui/icons-material/Psychology';
-import CoPresentIcon from '@mui/icons-material/CoPresent';
-
 import { addDoc, collection } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { PDFExport } from "@progress/kendo-react-pdf";
 
-
 import TodoWork from '../TodoWork/TodoWork';
-
-// import InputAdornment from '@mui/material/InputAdornment';
-
-import EmailIcon from '@mui/icons-material/Email';
-import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
-import DateRangeIcon from '@mui/icons-material/DateRange';
 import PrintIcon from '@mui/icons-material/Print';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import SchoolIcon from '@mui/icons-material/School';
-import StorageIcon from '@mui/icons-material/Storage';
-import BuildIcon from '@mui/icons-material/Build';
-
 import TextField from '@mui/material/TextField';
 import ReactToPrint from 'react-to-print';
-
 import { firestoreDB, auth } from "../../firestoreConfig/firestoreConfig";
-import { arrInitialState } from '../../utils/arrOurState';
 import { initialState } from "../../utils/ourState";
-import { useToggle } from "../../utils/useToggle";
-
 import { Button, InputAdornment } from "@mui/material";
 import SaveIcon from '@mui/icons-material/Save';
-
 import Fade from 'react-reveal/Fade';
-
 import DownloadIcon from '@mui/icons-material/Download';
-
 import Navbar from "../Navbar/Navbar";
-
-import { Icon } from "@progress/kendo-react-common";
-
-// name, contact, education, skill, optionial 
-// s(relevant courses, licens, certifictas), work experience, optional (side projects)
 
 const InputsForm = () => {
 
+    // loading, error - check if false - render gif - if true - stop render
     const [user, loading, error] = useAuthState(auth);
     const [ourForm, setOurForm] = useState(initialState);
     const [text, setText] = useState('');
@@ -86,21 +49,9 @@ const InputsForm = () => {
         console.log(data);
     };
 
-    const handleKeyPress = (event, index) => {
-        if (event.key === 'Enter') {
-          event.preventDefault();
-          setText((prevText) => prevText + '\n\u2022 ');
-        }
-      };
-
     // handle input change
     const handleInputChange = (e, index) => {
         const { name, value } = e.target;
-
-        // handleKeyPress(e, index);
-
-        // inputRef[index].current.save();
-
         const list = [...inputList];
         list[index][name] =  value;
         setInputList(list);
@@ -145,7 +96,7 @@ const InputsForm = () => {
             <div className='createResumeContainer'>
                 <Navbar/>
                     <Fade delay={400}>
-                        <PDFExport ref={pdfExportComponent}  >
+                        <PDFExport ref={pdfExportComponent} >
                             
                                 <div className="resume">
 
@@ -155,8 +106,6 @@ const InputsForm = () => {
                              
                                             <div className='firstGroup'> 
 
-                                            {/* <MaterialDesign.MdHelp /> */}
-                                            
                                                 <TextField
                                                     type="text"
                                                     name="fullName"
@@ -310,7 +259,7 @@ const InputsForm = () => {
                                                     )
                                                     
                                                 }}/>
-
+{/* 
                                                 <TextField
                                                     type="text"
                                                     name="portfolioLink"
@@ -336,15 +285,15 @@ const InputsForm = () => {
                                                         </InputAdornment>
                                                     )
                                                     
-                                                }}/>
+                                                }}/> */}
                                                 
                                             </div>
 
                                         </div>
 
-                                            {/* after square */}
+                                            {/* after square //*/}
 
-                                            <div className='afterSquareGroup'>
+                                    <div className='afterSquareGroup'>
                                      
                                             <TextField
                                                     type="text"
@@ -372,7 +321,7 @@ const InputsForm = () => {
                                                     className='pdfFonts'
                                                     required 
                                                     multiline
-                                                    placeholder='Degree name'
+                                                    placeholder='Degree/course name'
                                                     sx={{border: 'none',"& fieldset": { border: 'none' }  }}
                                                     value={ourForm.objectName.degreeTypeAndname}
                                                     onChange={handleChange}
@@ -429,7 +378,7 @@ const InputsForm = () => {
                                                     className='pdfFonts'
                                                     required 
                                                     multiline
-                                                    placeholder='Time range'
+                                                    placeholder='Duration'
                                                     sx={{border: 'none',"& fieldset": { border: 'none' }  }}
                                                     value={ourForm.objectName.timeLearnedDegree}
                                                     onChange={handleChange}
@@ -598,9 +547,11 @@ const InputsForm = () => {
 
                                                 <TodoLeft/>
 
-                                            </div>   
+                                        </div>   
  
-                                        </div>
+                                    </div>
+
+                                    
 
                                             {/* rigth part */}
                                             <div className="grid-area work">
@@ -667,13 +618,13 @@ const InputsForm = () => {
                                         content={() => pdfExportComponent.current}
                                     />
 
-                                <Button 
+                                {/* <Button 
                                     startIcon={<SaveIcon/>}
                                     color="success"
                                     variant="contained"
                                     sx={{m:1, mt: 4}}
                                     onClick={handleAddResume}>Save Resume
-                                </Button>
+                                </Button> */}
 
                                 </div>
 
