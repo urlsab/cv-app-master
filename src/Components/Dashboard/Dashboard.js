@@ -98,12 +98,9 @@ const Dashboard = () => {
         <Conffeti className="conffetiStyle" />      
 
         <div className="wordsContainer">
-        
-        {/* {cv.map((el, i) => cv[0].info.userName !== '' ? <Flip bottom delay={1100}><h1 className="greetingStyle"> WELLCOME  <b className="styleName">{cv[0].info.userName} </b></h1></Flip>
-        :navigateToErrorNoAccount()
-        )} */}
 
-          <Flip bottom delay={1100}><h1 className="greetingStyle"> WELLCOME  {cv.map((el, i) => <b key={i} className="styleName"> {cv[i].info.userName} </b>)} </h1></Flip>
+        {/* {cv.map((el, i) => <b key={i} className="styleName"> {cv[i].info.userName} </b>)} */}
+          <Flip bottom delay={1100}><h1 className="greetingStyle"> WELLCOME </h1></Flip>
           <Flip bottom delay={2000}><h1> <b className="greetingStyle"> TO THE CVA </b> 📱 </h1></Flip>
                  
         </div>
@@ -113,7 +110,7 @@ const Dashboard = () => {
           <Fade top delay={2700}> <h1> <Jump delay={4000} duration={2000} forever={true}>👇</Jump>  </h1> </Fade>
             <div className="buttonsContainer">
               <Fade  delay={3400}> <Button startIcon={<NoteAddIcon/>} onClick={navigateToCreateResume} size="medium" sx={{m:2, width:"140px", height:"60px"}} variant="contained" color="primary">CREATE CV</Button> </Fade> 
-              <Fade  delay={3400}> <Button startIcon={<ManageAccountsIcon/>} onClick={navigateToShowResumes} size="medium" sx={{m:2, width:"140px", height:"60px"}} variant="contained" color="warning"> MY AREA</Button> </Fade>
+              {/* <Fade  delay={3400}> <Button startIcon={<ManageAccountsIcon/>} onClick={navigateToShowResumes} size="medium" sx={{m:2, width:"140px", height:"60px"}} variant="contained" color="warning"> MY AREA</Button> </Fade> */}
             </div> 
         </div>
           
