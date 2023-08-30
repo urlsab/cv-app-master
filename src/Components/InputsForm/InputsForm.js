@@ -32,7 +32,25 @@ import Fade from 'react-reveal/Fade';
 import DownloadIcon from '@mui/icons-material/Download';
 import Navbar from "../Navbar/Navbar";
 
+import { useQuill } from 'react-quilljs';
+
+import 'quill/dist/quill.snow.css';
+import 'quill/dist/quill.bubble.css';
+
 const InputsForm = () => {
+
+    const theme = 'bubble'; // options when hover
+
+    const modules = {
+        toolbar: ['bold', 'italic', 'underline', 'link'],
+    };
+
+    const formats = ['bold', 'italic', 'underline', 'strike'];
+
+    // const placeholder = 'type...';
+    // , placeholder
+
+    const { quillRef } = useQuill({ theme, modules, formats });
 
     // loading, error - check if false - render gif - if true - stop render
     const [user, loading, error] = useAuthState(auth);
@@ -96,14 +114,17 @@ const InputsForm = () => {
             <div className='createResumeContainer'>
                 <Navbar/>
                     <Fade delay={400}>
-                        <PDFExport ref={pdfExportComponent} >
-                            
-                                <div className="resume">
 
-                                    <div className='grid-area name'>
+                        <PDFExport ref={pdfExportComponent}>
 
-                                        <div className='square'>
-                             
+                            <div style={{backgroundColor:"gray", height:'700px', width:'650px'}} ref={quillRef}>
+
+                            <div className="resume">
+
+                                <div className='grid-area name'>
+
+                                    <div className='square'>
+
                                             <div className='firstGroup'> 
 
                                                 <TextField
@@ -586,6 +607,8 @@ const InputsForm = () => {
                                             </div>
 
                                     </div> 
+
+                                    </div>
 
                             </PDFExport>
 
