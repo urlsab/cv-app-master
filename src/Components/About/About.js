@@ -14,6 +14,8 @@ const About = () => {
 
   const navigate = useNavigate();
 
+  const [isShown, setIsShown] = useState(false);
+
   const [state, setValue] = useState({value: ""});
   const [isFocused, setIsFocused] = useState(false);
 
@@ -25,22 +27,40 @@ const About = () => {
     setIsFocused(false);
   };
 
-  const myRef = React.createRef()
+  const myRef = React.createRef();
 
   const inputsHandler = (e) =>{
-    var taxt = e.target.innerHTML
-    let textArray = taxt.split(/\n/gm)
-    console.log(textArray)
     setValue( {value: e.target.value} )
 }
 
-  const consoleText = () => {
+// if (event.key === 'q') {
+      
+// }
+
+
+// console.log(selectedText);
+  const consoleText = (event) => {
+    const txt = 'hi';
     const textVal = myRef.current;
     const cursorStart = textVal.selectionStart;
     const cursorEnd = textVal.selectionEnd;
-    const selectedText = state.value.substring(cursorStart,cursorEnd) 
-    console.log(selectedText)
-  }
+    const selectedText = state.value.substring(cursorStart,cursorEnd).bold(); 
+    const makestr = selectedText.toString();
+    console.log(makestr, txt);
+    setIsShown(current => !current);
+    
+};
+
+function Box() {
+
+  return (
+    <div>
+      <b>box </b>
+    </div>
+  );
+}
+
+
 
   return (
     <>
@@ -59,13 +79,24 @@ const About = () => {
 
           
 
-          {/* <TextField
+          <TextField
             type="text"
             placeholder="type" 
             inputRef={myRef}
             onChange={inputsHandler} 
             onClick={consoleText}
-          /> */}
+          />
+
+          {/* 👇️ show elements on click */}
+      {isShown && (
+        <div>
+          <b>some content</b>
+        </div>
+      )}
+
+      {/* 👇️ show component on click */}
+      {isShown && <Box />}
+    
 
           {/* <TextField
               label="Type here"
@@ -81,7 +112,7 @@ const About = () => {
               }}
             /> */}
 
-          <Quill/>
+          {/* <Quill/> */}
 
         </div>
     </>
