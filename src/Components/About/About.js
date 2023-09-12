@@ -1,5 +1,5 @@
 import './About.css';
-import React,{useState} from 'react';
+import React,{useState, useRef} from 'react';
 import Fade from 'react-reveal/Fade';
 import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
@@ -11,6 +11,85 @@ import Quill from '../Quill/Quill';
 import TextField from '@mui/material/TextField';
 
 const About = () => {
+
+  const contentRef = useRef(null);
+  const [isBold, setIsBold] = useState(false);
+  const [isLine, setIsline] = useState(false);
+  const [isLink, setIslink] = useState(false);
+
+  const toggleBold = () => {
+    const selection = window.getSelection();
+    const range = selection.getRangeAt(0);
+
+    if (range) {
+      const selectedText = range.toString();
+      const boldText = isBold ? selectedText : `<strong>${selectedText}</strong>`;
+      
+      // Create a DocumentFragment to hold the bold text
+      const fragment = document.createRange().createContextualFragment(boldText);
+
+      // Replace the selected text with the bold text
+      range.deleteContents();
+      range.insertNode(fragment);
+
+      setIsBold(!isBold);
+    }
+  };
+
+  const toggleLine = () => {
+    const selection = window.getSelection();
+    const range = selection.getRangeAt(0);
+
+    if (range) {
+      const selectedText = range.toString();
+      const lineText = isLine ? selectedText : `<u>${selectedText}</u>`;
+      
+      // Create a DocumentFragment to hold the bold text
+      const fragment = document.createRange().createContextualFragment(lineText);
+
+      // Replace the selected text with the bold text
+      range.deleteContents();
+      range.insertNode(fragment);
+
+      setIsline(!isLine);
+    }
+  };
+
+  const toggleLink = () => {
+    const selection = window.getSelection();
+    const range = selection.getRangeAt(0);
+
+    if (range) {
+      const selectedText = range.toString();
+      const linkText = isLink ? selectedText : `<a>${selectedText}</a>`;
+      
+      // Create a DocumentFragment to hold the bold text
+      const fragment = document.createRange().createContextualFragment(linkText);
+
+      // Replace the selected text with the bold text
+      range.deleteContents();
+      range.insertNode(fragment);
+
+      setIslink(!isLink);
+    }
+  };
+
+  
+
+  
+  const [content, setContent] = useState('Editable content goes here');
+
+  // const toggleBold = () => {
+  //   setIsBold(!isBold);
+  // };
+
+  const handleContentChange = (e) => {
+    setContent(e.target.innerHTML);
+  };
+
+  const contentStyle = {
+    fontWeight: isBold ? 'bold' : 'normal',
+  };
 
   const navigate = useNavigate();
 
@@ -44,7 +123,7 @@ const About = () => {
     const textVal = myRef.current;
     const cursorStart = textVal.selectionStart;
     const cursorEnd = textVal.selectionEnd;
-    const selectedText = state.value.substring(cursorStart,cursorEnd).bold(); 
+    const selectedText = state.value.substring(cursorStart,cursorEnd); 
     const makestr = selectedText.toString();
     console.log(makestr, txt);
     setIsShown(current => !current);
@@ -59,8 +138,6 @@ function Box() {
     </div>
   );
 }
-
-
 
   return (
     <>
@@ -77,6 +154,19 @@ function Box() {
             <Fade delay={1600} top> <Button startIcon={<ForwardToInboxIcon/>} sx={{m:4}} size="large" onClick={() => navigate("/contact")} color="primary" variant="contained"> TO CONTACT </Button> </Fade>
           </div>
 
+
+          
+          
+      <div
+        inputRef={contentRef}
+        onClick={toggleBold}
+        onDoubleClick={toggleLine}
+        // onClick={toggleLink}
+        contentEditable={true}
+        style={{ border: '1px solid #ccc', minHeight: '50px' }}
+      >
+        bold yu kj  ghg rt 
+      </div>
           
 
           <TextField
@@ -87,6 +177,10 @@ function Box() {
             onClick={consoleText}
           />
 
+
+
+          
+
           {/* 👇️ show elements on click */}
       {isShown && (
         <div>
@@ -96,6 +190,13 @@ function Box() {
 
       {/* 👇️ show component on click */}
       {isShown && <Box />}
+
+      
+
+      {/* <div contentEditable id="text">
+        The World Before the Flood is an oil-on-canvas painting
+      </div>
+      <button id="bold_button" onClick={handleBoldClick}>Bold</button> */}
     
 
           {/* <TextField
