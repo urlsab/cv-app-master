@@ -10,12 +10,40 @@ import Quill from '../Quill/Quill';
 
 import TextField from '@mui/material/TextField';
 
+import { useQuill } from 'react-quilljs';
+// import TextField from '@mui/material/TextField';
+
+import 'quill/dist/quill.snow.css';
+import 'quill/dist/quill.bubble.css';
+
 const About = () => {
+
+  const theme = 'bubble'; // options when hover
+
+  const modules = {
+    toolbar: ['bold', 'italic', 'underline', 'link'],
+  };
+
+  const formats = ['bold', 'italic', 'underline', 'strike'];
+
+  const placeholder = 'type...';
+
+  const { quillRef } = useQuill({ theme, modules, formats, placeholder });
 
   const contentRef = useRef(null);
   const [isBold, setIsBold] = useState(false);
   const [isLine, setIsline] = useState(false);
   const [isLink, setIslink] = useState(false);
+
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseOver = () => {
+    setIsHovering(true);
+  };
+
+  const handleMouseOut = () => {
+    setIsHovering(false);
+  };
 
   const toggleBold = () => {
     const selection = window.getSelection();
@@ -76,20 +104,14 @@ const About = () => {
 
   
 
-  
-  const [content, setContent] = useState('Editable content goes here');
-
-  // const toggleBold = () => {
-  //   setIsBold(!isBold);
-  // };
-
-  const handleContentChange = (e) => {
-    setContent(e.target.innerHTML);
-  };
-
   const contentStyle = {
     fontWeight: isBold ? 'bold' : 'normal',
   };
+
+  const contentLine = {
+    textDecoration: isBold ? 'underline' : 'none',
+  };
+
 
   const navigate = useNavigate();
 
@@ -97,6 +119,8 @@ const About = () => {
 
   const [state, setValue] = useState({value: ""});
   const [isFocused, setIsFocused] = useState(false);
+
+  
 
   const handleFocus = () => {
     setIsFocused(true);
@@ -106,16 +130,98 @@ const About = () => {
     setIsFocused(false);
   };
 
+  const textBoldRef = useRef(null);
+  const aRef = useRef(null);
+  const textUnderlineRef = useRef(null);
+
+  const [selectedText, setSelectedText] = useState('');
+  const [link, setLink] = useState('');
+  const [selectedBoldText, setSelectedBoldText] = useState('');
+
+  const handleLinkSelection = () => {
+    const selection = window.getSelection();
+    const range = selection.getRangeAt(0);
+    const text = range.toString();
+
+    // Check if the selected text is not empty and a link is provided
+    if (text && link) {
+      const linkElement = document.createElement('a');
+      linkElement.href = link;
+      linkElement.appendChild(document.createTextNode(text));
+      range.deleteContents();
+      range.insertNode(linkElement);
+    }
+  };
+
+  const handleLinkChange = (e) => {
+    setLink(e.target.value);
+  };
+
+  const handleboldChange = (e) => {
+    setSelectedBoldText(e.target.value);
+  };
+
+  const handleBoldSelection = () => {
+    const selection = window.getSelection();
+    const range = selection.getRangeAt(0);
+    const selectedText = range.toString();
+    const boldText = document.createElement('strong');
+    boldText.appendChild(document.createTextNode(selectedText));
+    range.deleteContents();
+    range.insertNode(boldText);
+  };
+
+  const handleTextSelection = () => {
+    const selection = window.getSelection();
+    setSelectedText(selection.toString());
+  };
+
+  const handleUnderlineSelection = () => {
+    const selection = window.getSelection();
+    const range = selection.getRangeAt(0);
+    const selectedText = range.toString();
+    const underlineText = document.createElement('u');
+    underlineText.appendChild(document.createTextNode(selectedText));
+    range.deleteContents();
+    range.insertNode(underlineText);
+  };
+
   const myRef = React.createRef();
 
   const inputsHandler = (e) =>{
     setValue( {value: e.target.value} )
 }
 
+const [inputValue, setInputValue] = useState('');
+  const [isBoldi, setIsBoldi] = useState(false);
+
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  const toggleBoldi = () => {
+    setIsBoldi(!isBoldi);
+  };
+
+  const renderText = () => {
+    if (isBoldi) {
+      return <strong>{inputValue}</strong>;
+    } else {
+      return inputValue;
+    }
+  };
+
 // if (event.key === 'q') {
       
 // }
 
+const handleFocusi = event => {
+  event.preventDefault();
+  const { target } = event;
+  const extensionStarts = target.value.lastIndexOf('.');
+  target.focus();
+  target.setSelectionRange(0, extensionStarts);
+}
 
 // console.log(selectedText);
   const consoleText = (event) => {
@@ -129,15 +235,6 @@ const About = () => {
     setIsShown(current => !current);
     
 };
-
-function Box() {
-
-  return (
-    <div>
-      <b>box </b>
-    </div>
-  );
-}
 
   return (
     <>
@@ -153,10 +250,23 @@ function Box() {
           <div className='aboutButton'>
             <Fade delay={1600} top> <Button startIcon={<ForwardToInboxIcon/>} sx={{m:4}} size="large" onClick={() => navigate("/contact")} color="primary" variant="contained"> TO CONTACT </Button> </Fade>
           </div>
-
-
-          
-          
+ 
+      <TextField
+        variant="outlined"
+        label="Type here"
+        value={inputValue}
+        onChange={handleInputChange}
+        onClick={toggleBoldi}
+        multiline
+        onMouseOver={handleMouseOver}
+        onMouseOut={handleMouseOut}
+        InputProps={{
+          style: {
+            fontWeight: isBoldi ? 'bold' : 'normal',
+          },
+        }}
+      />
+   
       <div
         inputRef={contentRef}
         onClick={toggleBold}
@@ -165,7 +275,7 @@ function Box() {
         contentEditable={true}
         style={{ border: '1px solid #ccc', minHeight: '50px' }}
       >
-        bold yu kj  ghg rt 
+        bold  
       </div>
           
 
@@ -177,43 +287,34 @@ function Box() {
             onClick={consoleText}
           />
 
+       <p ref={aRef} onMouseUp={handleTextSelection}>
+         {' '}
+         link that aa
+       </p>
 
+      <TextField
+        type="text"
+        placeholder="Enter a link"
+        value={link}
+        onChange={handleLinkChange}
+      />
+      <button onClick={handleLinkSelection} disabled={!selectedText}>
+        Link Selected Text
+      </button>
 
-          
+      {isHovering && (
+          <div>
+            <div
+              ref={quillRef}
+              className="bubble-editor"
+              style={{display:'flex', height: '100px', border: 'none' }}
+            />
+            <h1>hi</h1>
+            <Quill/>
+          </div>
+        )}
 
-          {/* 👇️ show elements on click */}
-      {isShown && (
-        <div>
-          <b>some content</b>
-        </div>
-      )}
-
-      {/* 👇️ show component on click */}
-      {isShown && <Box />}
-
-      
-
-      {/* <div contentEditable id="text">
-        The World Before the Flood is an oil-on-canvas painting
-      </div>
-      <button id="bold_button" onClick={handleBoldClick}>Bold</button> */}
-    
-
-          {/* <TextField
-              label="Type here"
-              variant="outlined"
-              fullWidth
-              onFocus={handleFocus}
-              onBlur={handleBlur}
-              InputProps={{
-                style: {
-                  // textDecoration: isFocused ? 'underline' : 'none',
-                  fontWeight:  isFocused ? 'bold' : 'normal'
-                },
-              }}
-            /> */}
-
-          {/* <Quill/> */}
+          <Quill/>
 
         </div>
     </>
@@ -221,166 +322,3 @@ function Box() {
 }
 
 export default About;
-
-// const textBoldRef = useRef(null);
-//   const aRef = useRef(null);
-//   const textUnderlineRef = useRef(null);
-
-//   const [selectedText, setSelectedText] = useState('');
-//   const [link, setLink] = useState('');
-//   const [selectedBoldText, setSelectedBoldText] = useState('');
-
-//   const handleLinkSelection = () => {
-//     const selection = window.getSelection();
-//     const range = selection.getRangeAt(0);
-//     const text = range.toString();
-
-//     // Check if the selected text is not empty and a link is provided
-//     if (text && link) {
-//       const linkElement = document.createElement('a');
-//       linkElement.href = link;
-//       linkElement.appendChild(document.createTextNode(text));
-//       range.deleteContents();
-//       range.insertNode(linkElement);
-//     }
-//   };
-
-//   const handleLinkChange = (e) => {
-//     setLink(e.target.value);
-//   };
-
-//   const handleboldChange = (e) => {
-//     setSelectedBoldText(e.target.value);
-//   };
-
-//   const handleBoldSelection = () => {
-//     const selection = window.getSelection();
-//     const range = selection.getRangeAt(0);
-//     const selectedText = range.toString();
-//     const boldText = document.createElement('strong');
-//     boldText.appendChild(document.createTextNode(selectedText));
-//     range.deleteContents();
-//     range.insertNode(boldText);
-//   };
-
-//   const handleTextSelection = () => {
-//     const selection = window.getSelection();
-//     setSelectedText(selection.toString());
-//   };
-
-//   const handleUnderlineSelection = () => {
-//     const selection = window.getSelection();
-//     const range = selection.getRangeAt(0);
-//     const selectedText = range.toString();
-//     const underlineText = document.createElement('u');
-//     underlineText.appendChild(document.createTextNode(selectedText));
-//     range.deleteContents();
-//     range.insertNode(underlineText);
-//   };
-
-//   return (
-//     <div>
-//       <div onMouseUp={handleBoldSelection} ref={textBoldRef}>
-//         pp
-//       </div>
-
-//       <p ref={aRef} onMouseUp={handleTextSelection}>
-//         {' '}
-//         link that aa
-//       </p>
-
-//       <TextField
-//         type="text"
-//         placeholder="Enter a link"
-//         value={link}
-//         onChange={handleLinkChange}
-//       />
-//       <button onClick={handleLinkSelection} disabled={!selectedText}>
-//         Link Selected Text
-//       </button>
-
-//       <p ref={textUnderlineRef} onMouseUp={handleUnderlineSelection}>
-//         Select some text and click here to underline it.
-//       </p>
-//     </div>
-//   );
-// };
-
-{/* <TextField
-value={this.state.fieldFirstName}
-onChange={(e: any) => this.onChangeFieldFirstName(e.target.value)}
-onFocus={() => this.onFocusFieldFirstName()}
-onBlur={() => this.onBlurField()}/> */}
-
-// handleFocus = event => {
-//     event.preventDefault();
-//     const { target } = event;
-//     const extensionStarts = target.value.lastIndexOf('.');
-//     target.focus();
-//     target.setSelectionRange(0, extensionStarts);
-//   }
-
-// const Form = ({handleChange, handleFocus, handleBlur, handleSubmit}) => {
-//     return(
-//       <form onSubmit={handleSubmit}>
-//         <TextField
-//           fullWidth
-//           select
-//           onChange={handleChange}
-//           onFocus={handleFocus}
-//           onBlur={handleBlur}
-//          />
-//          <Button variant="contained" type="submit">Submit<Button>
-//       </form>
-//    )
-//   }
-
-// const [isFocused, setIsFocused] = useState(false);
-
-//   const handleFocus = () => {
-//     setIsFocused(true);
-//   };
-
-//   const handleBlur = () => {
-//     setIsFocused(false);
-//   };
-
-// <TextField
-//         label="Type here"
-//         variant="outlined"
-//         fullWidth
-//         onFocus={handleFocus}
-//         onBlur={handleBlur}
-//         InputProps={{
-//           style: {
-//             fontWeight: isFocused ? 'bold' : 'normal',
-//           },
-//         }}
-//       />
-
-
-// working !!!
-
-// const [isFocused, setIsFocused] = useState(false);
-
-//   const handleFocus = () => {
-//     setIsFocused(true);
-//   };
-
-//   const handleBlur = () => {
-//     setIsFocused(false);
-//   };
-
-//  <TextField
-//         label="Type here"
-//         variant="outlined"
-//         fullWidth
-//         onFocus={handleBlur}
-//         onDoubleClick={handleFocus}
-//         InputProps={{
-//           style: {
-//             fontWeight: isFocused ? 'bold' : 'normal',
-//             textdecoration: isFocused ? 'underline' : 'normal'
-//           },
-//         }}
-//       />
