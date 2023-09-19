@@ -5,13 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import ForwardToInboxIcon from '@mui/icons-material/ForwardToInbox';
 import EntryNavbar from '../EntryNavbar/EntryNavbar';
-
 import Quill from '../Quill/Quill';
-
 import TextField from '@mui/material/TextField';
-
 import { useQuill } from 'react-quilljs';
-
 import 'quill/dist/quill.snow.css';
 import 'quill/dist/quill.bubble.css';
 
@@ -21,13 +17,65 @@ const About = () => {
   const [txt,setTxt] = useState('');
   const [isShown, setIsShown] = useState(false);
 
-  const handleClick = event => { 
-    setIsShown(current => !current);
+  
+
+  const selection = window.getSelection().toString();
+ 
+
+  const styleFont = (event) => {
+    event.target.style.fontWeight = 'bold';
+  }
+
+  const boldTextParser = (text) => {
+    let i = 0;
+    let l = 0;
+    let renderables = [];
+    let boldtext = '';
+  
+    for (i = 0; i < text.length; i += 1) {
+      if (text[i] === ' ') {
+        renderables.push(text[i]);
+  
+        if (text[i + 1] === '(') {
+        // hold boldtext in a variable
+          let isBoldTextFound = false;
+          while (!isBoldTextFound) {
+            for (l = i + 2; l < text.length; l += 1) {
+              if (text[l] !== ')') {
+                boldtext = boldtext.concat(text[l]);
+              } else if (text[l] === ')') {
+                isBoldTextFound = true;
+                break;
+              }
+            }
+          }
+          // put bold text in rendables and update position in string
+          renderables.push(
+            <strong>
+              {boldtext}
+            </strong>,
+          );
+          // reset variables
+          boldtext = '';
+          i = l + 1;
+        }
+      }
+      renderables.push(text[i]);
+    }
+    return renderables;
   };
 
+  const handleClick = (event) => {
+    const selection = window.getSelection().toString();
+    
+    
+    event.target.style.fontWeight = 'bold';
+    console.log(selection);
+   
+    setIsShown(current => !current);
+  };
+    
   
-  const selection = window.getSelection();
-  const selected = selection.toString();
 
   const navigate = useNavigate();
 
@@ -39,10 +87,22 @@ const About = () => {
   const placeholder = 'type...';
   const { quillRef } = useQuill({ theme, modules, formats, placeholder });
 
-  
   const Box = () => {
     return (
-        <b>{selected}</b>  
+      <TextField
+        type="text"
+        required 
+        multiline
+        // disabled
+        className='pdfFonts'
+        onDoubleClick={handleClick}
+        InputProps={{style: {fontWeight:'bolder'}}}
+        
+        value={selection}
+        onChange={(e)=> setTxt(e.target.value + selection)}
+      // value={ourForm.objectName.fullName.toUpperCase()}
+      // onChange={handleChange}
+    />  
     );
   }
 
@@ -72,22 +132,24 @@ const About = () => {
             multiline
             placeholder='Full Name'
             className='pdfFonts'
-            onClick={handleClick}
-            style={ txt ? { fontWeight:'bold'} : {}}
-            value={txt + selected}
-            onChange={(e)=> setTxt(e.target.value.replace(selected) + selected)}
+            onDoubleClick={handleClick}
+            
+            // style={ txt ? { fontWeight:'bolder'} : {}}
+            value={txt}
+            onChange={(e)=> setTxt(e.target.value + selection)}
             // value={ourForm.objectName.fullName.toUpperCase()}
             // onChange={handleChange}
           />
+
+          <TextField onChange={(e)=> setTxt(e.target.value)} value={boldTextParser(selection)} />
+
+          {/* <Quill/> */}
        </div>
     </>
   )
 }
 
 export default About;
-
-
-
 
 {/* 👇️ show elements on click */}
       {/* {isShown && (
