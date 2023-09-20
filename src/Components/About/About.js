@@ -1,12 +1,13 @@
 import './About.css';
-import React,{useState, useRef} from 'react';
+import React, { useState, useRef } from 'react';
 import Fade from 'react-reveal/Fade';
 import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import ForwardToInboxIcon from '@mui/icons-material/ForwardToInbox';
 import EntryNavbar from '../EntryNavbar/EntryNavbar';
-import Quill from '../Quill/Quill';
+
 import TextField from '@mui/material/TextField';
+
 import { useQuill } from 'react-quilljs';
 import 'quill/dist/quill.snow.css';
 import 'quill/dist/quill.bubble.css';
@@ -14,19 +15,22 @@ import 'quill/dist/quill.bubble.css';
 
 const About = () => {
 
+  const theme = 'bubble';
+  const modules = {
+    toolbar: ['bold', 'italic', 'underline', 'link'],
+  };
+  const formats = ['bold', 'italic', 'underline', 'strike'];
+  const placeholder = 'type...';
+  const { quillRef } = useQuill({ theme, modules, formats, placeholder });
+
   const [txt,setTxt] = useState('');
   const [isShown, setIsShown] = useState(false);
-
-  
-
   const selection = window.getSelection().toString();
- 
+  const navigate = useNavigate();
 
-  const styleFont = (event) => {
-    event.target.style.fontWeight = 'bold';
-  }
-
+  // bold only label text that we choose before
   const boldTextParser = (text) => {
+    const choose = window.getSelection().toString();
     let i = 0;
     let l = 0;
     let renderables = [];
@@ -66,95 +70,53 @@ const About = () => {
   };
 
   const handleClick = (event) => {
+    // How to bring those line to work together ?
     const selection = window.getSelection().toString();
-    
-    
     event.target.style.fontWeight = 'bold';
     console.log(selection);
-   
     setIsShown(current => !current);
   };
     
   
-
-  const navigate = useNavigate();
-
-  const theme = 'bubble';
-  const modules = {
-    toolbar: ['bold', 'italic', 'underline', 'link'],
-  };
-  const formats = ['bold', 'italic', 'underline', 'strike'];
-  const placeholder = 'type...';
-  const { quillRef } = useQuill({ theme, modules, formats, placeholder });
-
-  const Box = () => {
-    return (
-      <TextField
-        type="text"
-        required 
-        multiline
-        // disabled
-        className='pdfFonts'
-        onDoubleClick={handleClick}
-        InputProps={{style: {fontWeight:'bolder'}}}
-        
-        value={selection}
-        onChange={(e)=> setTxt(e.target.value + selection)}
-      // value={ourForm.objectName.fullName.toUpperCase()}
-      // onChange={handleChange}
-    />  
-    );
-  }
-
-  
   return (
     <>
-        
+  
         <div className='aboutContainer'>
         <EntryNavbar/>
           <div className='allText'>
-            <Fade delay={400} top><h1 className='symbolAndText'>  <b className='textStyle'> CVA IS A FREE APP FOR BUILD AND DESIGN CV </b></h1></Fade>
-            <Fade delay={800} top><h1 className='symbolAndText'>  <b className='textStyle'> INCLUDES FEATURES WITH FRIENDLY USE </b></h1></Fade>
-            <Fade delay={1200} top> <h1 className='symbolAndText' >  <b className='textStyle'> CONTACT US FOR ANY PURPOSE </b> 📞 </h1></Fade>  
+            <Fade delay={400} top><h1 className='symbolAndText'> <b className='textStyle'> CVA IS A FREE APP FOR BUILD AND DESIGN CV </b></h1></Fade>
+            <Fade delay={800} top><h1 className='symbolAndText'> <b className='textStyle'> INCLUDES FEATURES WITH FRIENDLY USE </b></h1></Fade>
+            <Fade delay={1200} top> <h1 className='symbolAndText'> <b className='textStyle'> CONTACT US FOR ANY PURPOSE </b> 📞 </h1></Fade>  
           </div>
 
           <div className='aboutButton'>
             <Fade delay={1600} top> <Button startIcon={<ForwardToInboxIcon/>} sx={{m:4}} size="large" onClick={() => navigate("/contact")} color="primary" variant="contained"> TO CONTACT </Button> </Fade>
           </div>
 
-          {/* 👇️ show component on click */}
-          {isShown && <Box />}
           <TextField
             type="text"
             name="fullName"
-            
             required 
             multiline
             placeholder='Full Name'
             className='pdfFonts'
             onDoubleClick={handleClick}
-            
-            // style={ txt ? { fontWeight:'bolder'} : {}}
             value={txt}
             onChange={(e)=> setTxt(e.target.value + selection)}
-            // value={ourForm.objectName.fullName.toUpperCase()}
-            // onChange={handleChange}
           />
 
-          <TextField onChange={(e)=> setTxt(e.target.value)} value={boldTextParser(selection)} />
+          <TextField 
+          // onChange={(e)=> setTxt(e.target.value)} 
+            label={boldTextParser(selection)} 
+          />
 
-          {/* <Quill/> */}
+          <TextField 
+            label={boldTextParser('use (label) and (not) defaultValue')} 
+          />
+
        </div>
     </>
   )
 }
 
 export default About;
-
-{/* 👇️ show elements on click */}
-      {/* {isShown && (
-        <div>
-          
-          <b>{selected}</b>
-        </div>
-      )} */}
