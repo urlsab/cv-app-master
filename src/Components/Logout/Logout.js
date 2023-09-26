@@ -15,7 +15,7 @@ const Logout = () => {
   const navigateToHome = () => {
 
     // avoid user name index in local storage + memory waste
-    localStorage.clear();
+    // localStorage.clear();
 
     navigate("/");
   }

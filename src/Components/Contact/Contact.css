@@ -5,7 +5,7 @@
     align-content: center;
     justify-content: space-evenly;
     align-items: center;
-    height: 537px;
+    /* height: 537px; */
     text-align: center;
     font-family: 'Itim';
     background: rgb(251,173,63);
@@ -15,19 +15,22 @@
 
 .textsContainerContact{
     /* background-color: brown; */
-    font-size: 14px;
-    background: -webkit-linear-gradient(80deg, rgb(255, 233, 107) 0%, white  100%);
-    /* color: #ed6c02; */
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-size: 25px;
 }
 
 .textBoxContainer{
-    background-color: chartreuse;
+    text-align: center;
+    height: 507px;
+    margin-top: 30px;
+    /* background-color: chartreuse; */
 }
 
 .shortText{
     /* background-color: aqua; */
     /* color: blue; */
     font-size: 30px;
+    background: -webkit-linear-gradient(80deg, rgb(255, 233, 107) 0%, white  100%);
+    /* color: #ed6c02; */
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }

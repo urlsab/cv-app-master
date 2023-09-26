@@ -1,10 +1,79 @@
 body {
-  background-color: rgb(231, 216, 216);
-  color: rgb(21, 2, 39);
+  
+  background-color: red; 
+  
 }
 
-.styleItem {
-  color: chartreuse;
-  font-size: 25px;
-  background-color: chocolate;
+
+
+@media screen and (max-width: 1240px) {
+  .engine   
+
+  {
+    background: red;
+  };
+  
 }
+@media screen and (max-width: 860px) {
+  .engine   
+
+  {
+    background: green;
+  };
+  
+}
+@media screen and (max-width: 640px) {
+  .engine   
+
+  {
+    background: blue;
+  };
+  
+}
+@media screen and (max-width: 1240px) {
+  .engine   
+
+  {
+    background-color: red;
+  };
+  
+}
+@media screen and (max-width: 1240px) {
+  .engine   
+
+  {
+    background-color: red;
+  };
+  
+}
+@media screen and (max-width: 1240px) {
+  .engine   
+
+  {
+    background-color: red;
+  };
+  
+}
+@media screen and (max-width: 1240px) {
+  .engine   
+
+  {
+    background-color: red;
+  };
+  
+}
+@media screen and (max-width: 1240px) {
+  .engine   
+
+  {
+    background-color: red;
+  };
+  
+}
+  
+/* .fake {
+  color: red;
+  , 480, 640, 860, 1240, 
+} */
+
+

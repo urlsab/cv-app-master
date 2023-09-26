@@ -3,6 +3,10 @@ import "./LoginApp.css";
 import TextField from '@mui/material/TextField';
 import { Button } from "@mui/material";
 
+import EntryNavbar from '../EntryNavbar/EntryNavbar';
+
+import { getAuth } from "firebase/auth";
+
 import React, { useState } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 
@@ -13,6 +17,9 @@ import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 import Fade from 'react-reveal/Fade';
 
+import HomeIcon from '@mui/icons-material/Home';
+
+import LockOpenIcon from '@mui/icons-material/LockOpen';
 import PasswordIcon from '@mui/icons-material/Password';
 import InputAdornment from '@mui/material/InputAdornment';
 import Box from '@mui/material/Box';
@@ -22,12 +29,17 @@ import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import GoogleIcon from '@mui/icons-material/Google';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 
+import { useAuthState } from "react-firebase-hooks/auth";
+
 const LoginApp = () => {
 
     const navigate = useNavigate();
 
+    const curAuth = getAuth();
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [user, loading, error] = useAuthState(auth);
     // const [user, loading, error] = useAuthState(auth);
 
     const googleSignIn = () => {
@@ -52,15 +64,18 @@ const LoginApp = () => {
         }
     };
 
-    const onLogin = (e) => {
+    const onLogin = async (e) => {
 
         e.preventDefault();
 
-        signInWithEmailAndPassword(auth, email, password)
+        console.log(curAuth, email, password);
+
+        await signInWithEmailAndPassword(curAuth, email, password)
 
         .then((userCredential) => {
-            const user = userCredential.user;
-            console.log(user);
+            const userInfo = userCredential.user;
+            console.log(userInfo);
+            console.log(curAuth);
             console.log(password);
             navigate("/dashboard");    
         })
@@ -69,7 +84,8 @@ const LoginApp = () => {
             const errorCode = error.code;
             const errorMessage = error.message;
             console.log(errorCode, errorMessage);
-            alert(errorCode);
+            console.log(curAuth);
+            alert("Fix email/password or disconnect your google account if you tried to log in with google");
         });
 
     }
@@ -78,15 +94,20 @@ const LoginApp = () => {
 
         <>
 
+        
+
+        {/* <Fade><a className="homeStyle" href="/"><HomeIcon/></a></Fade> */}
+
             <div className="mainContainer">
+
+            <EntryNavbar/>
 
                 <div className="loginForm">
 
                     <Fade top delay={300}>
                                           
                         <form className="loginFormContainer"> 
-
-                            
+ 
                             {/* <EmailIcon/> */}
                             <TextField
                                 id="email"
@@ -112,15 +133,15 @@ const LoginApp = () => {
                                 required 
                                 InputProps={{startAdornment: (
                                     <InputAdornment position="start">
-                                        <PasswordIcon />
+                                        <LockOpenIcon />
                                     </InputAdornment>
                                 )}}                                             
                                 onChange={(e)=>setPassword(e.target.value)}
                             />
                     
-                            <Button size="large" startIcon={<VpnKeyIcon/>} variant="contained" color="inherit" onClick={onLogin}> Login </Button>
-                        
-                            <Button size="large" startIcon={<GoogleIcon/>} variant="contained" color="error" onClick={handleGoogleSignIn}>  Login by google</Button>
+                            <Button size="large" startIcon={<VpnKeyIcon/>} variant="contained" color="inherit" onClick={onLogin}> Login  </Button>
+                            {/* <p> OR </p> */}
+                            <Button size="large" startIcon={<GoogleIcon/>} variant="contained" color="error" onClick={handleGoogleSignIn}>  google login</Button>
                                            
                             <Button onClick={navigateToRegister} size="large" startIcon={<PersonAddIcon/>} variant="outlined" color="primary">  Sign up  </Button>
                                      
@@ -132,9 +153,10 @@ const LoginApp = () => {
                     
                     {/* skin color: &#127996; */}
                 <div className="textContainer">
-                    <Fade left delay={1200}> <h1> <b className="textStyle"> LOGIN</b> </h1> </Fade>
-                    <Fade left delay={2100}> <h1> <b className="textStyle"> YOUR CV </b> </h1> </Fade>
-                    <Fade left delay={3000}> <h1> <b className="textStyle">TO CAREER</b>   </h1> </Fade>
+                    {/* 💼 */}
+                    <Fade left delay={600}> <h1> <b className="textStyle"> LOGIN</b> </h1> </Fade>
+                    <Fade left delay={900}> <h1> <b className="textStyle"> YOUR CV </b> </h1> </Fade>
+                    <Fade left delay={1200}> <h1> <b className="textStyle">TO CAREER</b> 👨‍💻 </h1> </Fade>
                 </div>
                 
             </div>

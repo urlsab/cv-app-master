@@ -10,4 +10,4 @@ const NotUser = () => {
 
 }
 
-export default NotUser;;
+export default NotUser;

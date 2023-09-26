@@ -13,7 +13,7 @@ const GotNewPassword = () => {
       <h1>you Got New Password !</h1>
       <h2> check your email now </h2>
       {/* <p> your password is {initialPassword.objectPassword}</p> */}
-      <Link to="/">Sing in </Link>
+      <Link to="/login">Sing in </Link>
     </div>
 
   )

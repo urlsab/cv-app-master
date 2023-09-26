@@ -1,26 +1,40 @@
 export const arrInitialState = [
-    'firstName', 
-    'lastName',  
-    'email',  
-    'age',
-    'country',
-    'city', 
-    'phoneNumber', 
+    'fullName', 
     'jobTitle', 
+     
+    'phoneNumber',
+    'githubLink', 
     'linkedinLink',
-    'facebookLink',
+    'email', 
     'portfolioLink',
-    'githubLink',
-    'experience',
-    'sideProjects', 
-    'skills',
-    'schoolName', 
+     
+    'educationHeader',
+    'degreeTypeAndname', 
+    'schoolNameAndlocation',
+    'timeLearnedDegree',
     'relevantCourses', 
-    'degree', 
-    'gpa',
-    'certificates',
-    'gender'
-]
+    
+    'workHeader',
+    'position',
+    'companyName',
+    'locationAndDuration',
 
-// const resumeArticlesAreas = [' ','EDUCATION', 'CERTIFICATES', 'IMPORTANT LINKS', 'EXPERIENCE', 'SIDEPROJECTS', 'SKILLS']
-// const arrClassName = ['name', 'photo', 'about', 'work', 'education', 'skills', 'community'];
+    'projectName',
+    'buildDuration',
+    'shortProjectDescription',
+    'techUsed',
+    'githubCodeLink',
+
+    'skillsHeader',
+    'ProgrammingLanguages',
+    'Databases',
+    'Frameworks',
+    'GeneralKnowledge',
+
+    'dynamicHeaderPartOne',
+    'dynamicContentPartOne',
+
+    'dynamicHeaderPartTow',
+    'dynamicContentPartTow'
+
+]

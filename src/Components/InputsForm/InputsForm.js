@@ -36,6 +36,7 @@ import { useQuill } from 'react-quilljs';
 
 import 'quill/dist/quill.snow.css';
 import 'quill/dist/quill.bubble.css';
+import { Quill } from 'react-quill';
 
 const InputsForm = () => {
 
@@ -55,7 +56,6 @@ const InputsForm = () => {
     // loading, error - check if false - render gif - if true - stop render
     const [user, loading, error] = useAuthState(auth);
     const [ourForm, setOurForm] = useState(initialState);
-    const [text, setText] = useState('');
     const [inputList, setInputList] = useState([{ firstName: '', display: 'notdisplayed' }]);
 
     const navigate = useNavigate();
@@ -127,21 +127,17 @@ const InputsForm = () => {
 
                                             <div className='firstGroup'> 
 
-                                            
-                                            
-                                                
-
                                                 <TextField
                                                     type="text"
                                                     name="fullName"
-                                                    onFocusCapture={()=> alert('focused')}
-                                                    onDoubleClick={()=> alert('doubleClicked')}
+                                                    // onFocusCapture={()=> alert('focused')}
+                                                    // onDoubleClick={()=> alert('doubleClicked')}
                                                     // onBlurCapture={()=> alert ('blured')}
                                                     required 
                                                     multiline
                                                     placeholder='Full Name'
                                                     className='pdfFonts'
-                                                    onm
+                                                  
                                                     // for hide the border
                                                     sx={{border: 'none',"& fieldset": { border: 'none' } }}
                                                     value={ourForm.objectName.fullName.toUpperCase()}
@@ -157,13 +153,7 @@ const InputsForm = () => {
                                                     
                                                 />
                                            
-                                           <div  ref={quillRef} >
-
-                                            </div>
-
-                                            <div ref={quillRef} >
-
-                                            </div>
+                                           
 
                                                 <TextField
                                                     type="text"
@@ -478,10 +468,12 @@ const InputsForm = () => {
                                                     }}
                                                     InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
                                                     startAdornment: (
-                                                        <InputAdornment position='start'>
+                                                        <InputAdornment  position='start'>
                                                            { ourForm.objectName.ProgrammingLanguages ?
                                                             
-                                                           <Fade> <BsCode style={{fontSize:15, color:'gray'}}/> </Fade> : null }
+                                                           <Fade> 
+                                                                <BsCode style={{fontSize:15, color:'gray'}}/> 
+                                                            </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -681,168 +673,3 @@ const InputsForm = () => {
 }
 
 export default InputsForm;   
-
-
-
-// const textBoldRef = useRef(null);
-//   const aRef = useRef(null);
-//   const textUnderlineRef = useRef(null);
-
-//   const [selectedText, setSelectedText] = useState('');
-//   const [link, setLink] = useState('');
-//   const [selectedBoldText, setSelectedBoldText] = useState('');
-
-//   const handleLinkSelection = () => {
-//     const selection = window.getSelection();
-//     const range = selection.getRangeAt(0);
-//     const text = range.toString();
-
-//     // Check if the selected text is not empty and a link is provided
-//     if (text && link) {
-//       const linkElement = document.createElement('a');
-//       linkElement.href = link;
-//       linkElement.appendChild(document.createTextNode(text));
-//       range.deleteContents();
-//       range.insertNode(linkElement);
-//     }
-//   };
-
-//   const handleLinkChange = (e) => {
-//     setLink(e.target.value);
-//   };
-
-//   const handleboldChange = (e) => {
-//     setSelectedBoldText(e.target.value);
-//   };
-
-//   const handleBoldSelection = () => {
-//     const selection = window.getSelection();
-//     const range = selection.getRangeAt(0);
-//     const selectedText = range.toString();
-//     const boldText = document.createElement('strong');
-//     boldText.appendChild(document.createTextNode(selectedText));
-//     range.deleteContents();
-//     range.insertNode(boldText);
-//   };
-
-//   const handleTextSelection = () => {
-//     const selection = window.getSelection();
-//     setSelectedText(selection.toString());
-//   };
-
-//   const handleUnderlineSelection = () => {
-//     const selection = window.getSelection();
-//     const range = selection.getRangeAt(0);
-//     const selectedText = range.toString();
-//     const underlineText = document.createElement('u');
-//     underlineText.appendChild(document.createTextNode(selectedText));
-//     range.deleteContents();
-//     range.insertNode(underlineText);
-//   };
-
-//   return (
-//     <div>
-//       <div onMouseUp={handleBoldSelection} ref={textBoldRef}>
-//         pp
-//       </div>
-
-//       <p ref={aRef} onMouseUp={handleTextSelection}>
-//         {' '}
-//         link that aa
-//       </p>
-
-//       <TextField
-//         type="text"
-//         placeholder="Enter a link"
-//         value={link}
-//         onChange={handleLinkChange}
-//       />
-//       <button onClick={handleLinkSelection} disabled={!selectedText}>
-//         Link Selected Text
-//       </button>
-
-//       <p ref={textUnderlineRef} onMouseUp={handleUnderlineSelection}>
-//         Select some text and click here to underline it.
-//       </p>
-//     </div>
-//   );
-// };
-
-{/* <TextField
-value={this.state.fieldFirstName}
-onChange={(e: any) => this.onChangeFieldFirstName(e.target.value)}
-onFocus={() => this.onFocusFieldFirstName()}
-onBlur={() => this.onBlurField()}/> */}
-
-// handleFocus = event => {
-//     event.preventDefault();
-//     const { target } = event;
-//     const extensionStarts = target.value.lastIndexOf('.');
-//     target.focus();
-//     target.setSelectionRange(0, extensionStarts);
-//   }
-
-// const Form = ({handleChange, handleFocus, handleBlur, handleSubmit}) => {
-//     return(
-//       <form onSubmit={handleSubmit}>
-//         <TextField
-//           fullWidth
-//           select
-//           onChange={handleChange}
-//           onFocus={handleFocus}
-//           onBlur={handleBlur}
-//          />
-//          <Button variant="contained" type="submit">Submit<Button>
-//       </form>
-//    )
-//   }
-
-// const [isFocused, setIsFocused] = useState(false);
-
-//   const handleFocus = () => {
-//     setIsFocused(true);
-//   };
-
-//   const handleBlur = () => {
-//     setIsFocused(false);
-//   };
-
-// <TextField
-//         label="Type here"
-//         variant="outlined"
-//         fullWidth
-//         onFocus={handleFocus}
-//         onBlur={handleBlur}
-//         InputProps={{
-//           style: {
-//             fontWeight: isFocused ? 'bold' : 'normal',
-//           },
-//         }}
-//       />
-
-
-// working !!!
-
-// const [isFocused, setIsFocused] = useState(false);
-
-//   const handleFocus = () => {
-//     setIsFocused(true);
-//   };
-
-//   const handleBlur = () => {
-//     setIsFocused(false);
-//   };
-
-//  <TextField
-//         label="Type here"
-//         variant="outlined"
-//         fullWidth
-//         onFocus={handleBlur}
-//         onDoubleClick={handleFocus}
-//         InputProps={{
-//           style: {
-//             fontWeight: isFocused ? 'bold' : 'normal',
-//             textdecoration: isFocused ? 'underline' : 'normal'
-//           },
-//         }}
-//       />

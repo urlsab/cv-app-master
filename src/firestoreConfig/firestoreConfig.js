@@ -1,9 +1,9 @@
-import { getAuth } from 'firebase/auth';
+import { getAuth } from "firebase/auth";
 import { initializeApp } from "firebase/app";
-import { getFirestore } from 'firebase/firestore';
+import { initializeFirestore } from "firebase/firestore";
 
-const firebaseConfig = {
-  
+// config of resume-builder app on firbase console
+const firebaseConfig = {  
   apiKey: `${process.env.REACT_APP_API_KEY}`,
   authDomain: `${process.env.REACT_APP_AUTH_DOMAIN}`,
   databaseURL: `${process.env.REACT_APP_DB_URL}`,
@@ -12,29 +12,21 @@ const firebaseConfig = {
   messagingSenderId: `${process.env.REACT_APP_SENDER_ID}`,
   appId: `${process.env.REACT_APP_API_ID}`
 };
-  
+
 export const app = initializeApp(firebaseConfig); 
-export const firestoreDB = getFirestore(app);
 export const auth = getAuth(app);
 
-// const googleProvider = new GoogleAuthProvider();
+// UPDATE METHOD FOR AVOID CONNECTION FIRESTORE PROBLEMS
+export const firestoreDB = initializeFirestore(app, {
+  experimentalForceLongPolling: true
+})
 
-// const signInWithGoogle = async () => {
-//   try {
-//     const res = await signInWithPopup(auth, googleProvider);
-//     const user = res.user;
-//     const q = query(collection(firestoreDB, "resumes"), where("uid", "==", user.uid));
-//     const docs = await getDocs(q);
-//     if (docs.docs.length === 0) {
-//       await addDoc(collection(firestoreDB, "resumes"), {
-//         uid: user.uid,
-//         name: user.displayName,
-//         authProvider: "google",
-//         email: user.email,
-//       });
-//     }
-//   } catch (err) {
-//     console.error(err);
-//     alert(err.message);
-//   }
-// };
+/* 
+
+TO DEPLOY COMMAND:
+
+  firebase login
+  firebase init
+  firebase deploy
+
+*/

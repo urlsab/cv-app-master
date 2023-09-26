@@ -11,13 +11,20 @@ import TextField from '@mui/material/TextField';
 import { useQuill } from 'react-quilljs';
 import 'quill/dist/quill.snow.css';
 import 'quill/dist/quill.bubble.css';
+// import { input } from '@testing-library/user-event/dist/types/event';
 
 
 const About = () => {
 
+  // const contentEditableRef = useRef(null);
+
+  // Function to toggle bold formatting on selected text
+  
+    
+
   const theme = 'bubble';
   const modules = {
-    toolbar: ['bold', 'italic', 'underline', 'link'],
+    toolbar: ['bold', 'italic', 'underline', 'link']
   };
   const formats = ['bold', 'italic', 'underline', 'strike'];
   const placeholder = 'type...';
@@ -69,6 +76,32 @@ const About = () => {
     return renderables;
   };
 
+  const boldi = (event) => {
+    const input = document.getElementById('myInput');
+    console.log(input);
+
+
+    input.addEventListener('select', () => {
+      const selection = window.getSelection();
+      const range = selection.getRangeAt(0);
+      const span = document.createElement('b');
+      console.log('selection' ,selection);
+      console.log('range',range);
+      console.log('span',span);
+      console.log('hi', selection.toString());
+      span.style.fontWeight ='bold';
+      span.innerHTML = selection.toString();
+
+      // range.surroundContents(span);
+      // selection.removeAllRanges();
+      // selection.addRange(range);
+      return span;
+    })
+    input.innerHTML = '';
+   
+  }
+
+  
   const handleClick = (event) => {
     // How to bring those line to work together ?
     const selection = window.getSelection().toString();
@@ -76,11 +109,13 @@ const About = () => {
     console.log(selection);
     setIsShown(current => !current);
   };
+
+  const str = 'use (bbbb) and (tttt) defaultValue' ;
     
   
+
   return (
     <>
-  
         <div className='aboutContainer'>
         <EntryNavbar/>
           <div className='allText'>
@@ -96,11 +131,13 @@ const About = () => {
           <TextField
             type="text"
             name="fullName"
+            id='myInput'
             required 
             multiline
             placeholder='Full Name'
             className='pdfFonts'
-            onDoubleClick={handleClick}
+            onClick={boldi}
+            //onDoubleClick={handleClick}
             value={txt}
             onChange={(e)=> setTxt(e.target.value + selection)}
           />
@@ -111,8 +148,10 @@ const About = () => {
           />
 
           <TextField 
-            label={boldTextParser('use (label) and (not) defaultValue')} 
+            label={boldTextParser(str)} 
           />
+
+    
 
        </div>
     </>

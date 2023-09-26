@@ -19,23 +19,73 @@ import IntegrationInstructionsIcon from '@mui/icons-material/IntegrationInstruct
 import StorageIcon from '@mui/icons-material/Storage';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 
+import LanguageIcon from '@mui/icons-material/Language';
+import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+
+import PercentIcon from '@mui/icons-material/Percent';
+
+import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
+import DomainAddIcon from '@mui/icons-material/DomainAdd';
+import AbcIcon from '@mui/icons-material/Abc';
+
+import CodeIcon from '@mui/icons-material/Code';
+
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+
+import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
+import EngineeringIcon from '@mui/icons-material/Engineering';
+import HandymanIcon from '@mui/icons-material/Handyman';
+import DescriptionIcon from '@mui/icons-material/Description';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+import AppsIcon from '@mui/icons-material/Apps';
+import FontDownloadIcon from '@mui/icons-material/FontDownload';
+
 export const arrIcons = [
-    <PersonIcon color='disabled'/>,
-    <PhoneIcon color="primary"/>,
-    <GitHubIcon color='secondary'/>,
-    <LinkedInIcon color='success'/>,
-    <EmailIcon color='action'/>,
-    <TwitterIcon/>,
-    <FacebookIcon/>,
-    <InstagramIcon/>,
-    <PublicIcon/>,
-    <LocationOnIcon/>,
-    <CalendarMonthIcon/>,
+    <PersonIcon/>,
     <WorkIcon/>,
-    <TaskIcon/>,
+    <LocationOnIcon/>,
+    <PhoneIcon/>,
+    <GitHubIcon/>,
+    <LinkedInIcon/>,
+    <EmailIcon/>,
+    <LanguageIcon/>,
+
     <SchoolIcon/>,
-    <LinkIcon/>,
-    <IntegrationInstructionsIcon/>,
-    <StorageIcon/>,
-    <PsychologyIcon/>
+
+    
+    <ApartmentIcon/>,
+
+    <CalendarMonthIcon/>,
+
+    <PercentIcon/>,
+
+    <MenuBookIcon/>,
+
+    
+    <PsychologyIcon/>,
+
+    <EngineeringIcon/>,
+    
+
+    <AbcIcon/>,
+
+    <AssignmentIndIcon/>,
+    <WorkHistoryIcon/>,
+    <AppsIcon/>,
+    <FontDownloadIcon/>,
+    
+
+
+    <AccessTimeIcon/>,
+    // <SchoolIcon/>,
+    <DescriptionIcon/>,
+    <HandymanIcon/>,
+    // <QueryBuilderIcon/>,
+    
+    <CodeIcon/>
+    // <StorageIcon/>,
+     
+    // <LinkIcon/>
+    
 ]               

@@ -1,9 +1,9 @@
 import "./RegisterApp.css";
 
 import React, { useState, useRef } from "react";
-import { useNavigate, NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-import { collection, doc, setDoc, addDoc } from "firebase/firestore";
+import { collection, doc, setDoc } from "firebase/firestore";
 import {  createUserWithEmailAndPassword  } from 'firebase/auth';
 
 import { auth } from "../../firestoreConfig/firestoreConfig"
@@ -11,7 +11,6 @@ import { firestoreDB } from "../../firestoreConfig/firestoreConfig";
 
 import { getAuth } from "firebase/auth";
 
-import { initialPassword } from "../../utils/passwordsObject";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 import EntryNavbar from '../EntryNavbar/EntryNavbar';
@@ -24,12 +23,9 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
 import LoginIcon from '@mui/icons-material/Login';
 import Fade from 'react-reveal/Fade';
-import GradingIcon from '@mui/icons-material/Grading';
+
 import InputAdornment from '@mui/material/InputAdornment';
 import EmailIcon from '@mui/icons-material/Email';
-import PasswordIcon from '@mui/icons-material/Password';
-
-import HomeIcon from '@mui/icons-material/Home';
 
 import emailjs from '@emailjs/browser';
 
@@ -49,45 +45,6 @@ const RegisterApp = () => {
         navigate("/login");
     }
 
-    // const sendToEmail = (e) => {
-
-    //     e.preventDefault();
-
-    //     emailjs.send(
-    //         process.env.REACT_APP_SERVICE_ID,
-    //         process.env.REACT_APP_TEMPLATE_ID, {
-    //             user_name: firstName,
-    //             message: rePassword,
-    //             user_email: emailAdd
-    //         },
-    //         process.env.REACT_APP_PUBLIC_KEY
-
-    //         // process.env.REACT_APP_SERVICE_ID, 
-    //         // process.env.REACT_APP_TEMPLATE_ID, 
-    //         // form.current, 
-    //         // 'nTckRns0_Iv6mZOUS'
-    //         // process.env.REACT_APP_PUBLIC_KEY
-    //     //     , {
-    //     //     user_name: firstName,
-    //     //     message: rePassword,
-    //     //     user_email: emailAdd
-    //     // }
-    //     )
-
-    //     .then((result) => {
-    //         console.log(`email js send the password ${rePassword} to ${emailAdd}  `)
-    //         console.log(result.text);
-    //         console.log(result.status);
-    //         console.log(result);
-    //         navigate("/");
-    //     })
-
-    //     .catch((error) => {
-    //         console.log(error.text);
-    //         console.log("error from emailjs function")
-    //     });
-    // }
-
     // add await key word = function will run any req one after one
     const onSubmitHandler = async (e) => {
 
@@ -97,11 +54,8 @@ const RegisterApp = () => {
 
         await createUserWithEmailAndPassword(curAuth, emailAdd, rePassword)
 
-        // hash of "hesed2emet1" = 'UkVEQUNURUQ=' , UkVEQUNURUQ=
         .then((userCredential) => {
             let userData = userCredential.user;
-
-            
 
             userData.displayName = firstName;
             userData.phoneNumber = firstName;
@@ -120,23 +74,17 @@ const RegisterApp = () => {
             console.log(errorCode, errorMessage);
             console.log("error from createUserWithEmailAndPassword function")
         })
-
-      // save user password in new collection
-      
-    //   console.log(rePassword);
-    //   initialPassword.objectPassword.thePassword = rePassword;
     
     //   e.preventDefault();
       const usersCollection = collection(firestoreDB, `${emailAdd}`);
       
-      // add AAA to aviod render user name at /dashboard from cv[0] array 
+      // add 00000 to render user name at /dashboard from cv[0] array 
       await setDoc(doc(usersCollection, "00000Data"), {thePassword: rePassword, userName: firstName})
         .then(() => {
             // console.log(initialPassword.objectPassword.thePassword);
             console.log("set password as a collection successfully");
-            
+
             // navigate("/");
-            
         })
 
         .catch(error => {
@@ -168,29 +116,18 @@ const RegisterApp = () => {
             console.log("error from emailjs function")
         });
 
-        const userArray = [firstName];
-
-        const users = localStorage.setItem('userName', JSON.stringify(userArray));
-        console.log(users);
-
-        const userData = JSON.parse(localStorage.getItem('userName'));
-        console.log(userData);
-
-        const saveUserNameLoacl = localStorage.setItem(emailAdd, JSON.stringify(firstName));
-        console.log(saveUserNameLoacl);
-        
     }
 
     return (
 
         <>
 
-        <EntryNavbar/>
+        
 
         {/* <Fade><a className="homeStyle" href="/"><HomeIcon/></a></Fade> */}
     
             <div className="containerRegiter">
-
+            <EntryNavbar/>
                 <div className="loginForm">
 
                     <Fade top dalay={300}>

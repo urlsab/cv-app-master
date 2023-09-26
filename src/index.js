@@ -46,9 +46,9 @@ root.render(
   
   //<React.Fragment>
   // remember that it was <React.strictMode> component
-  <React.Fragment>
+  <React.StrictMode>
     <RouterProvider router={router} />
-  </React.Fragment>
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

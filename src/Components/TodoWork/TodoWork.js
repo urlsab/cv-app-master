@@ -1,9 +1,15 @@
 import './TodoWork.css';
 
+import 'quill/dist/quill.snow.css';
+import 'react-quill/dist/quill.bubble.css';
+import ReactQuill from 'react-quill';
+
 import React, { useState, useEffect } from 'react';
 
 import TextField from '@mui/material/TextField';
 import { MdWorkOutline } from "react-icons/md";
+import * as Icons from "react-icons/pi";
+
 import { PiDotBold } from "react-icons/pi";
 
 import { TbCircleLetterA } from "react-icons/tb";
@@ -18,14 +24,85 @@ import Fade from 'react-reveal/Fade';
 
 const TodoWork = () => {
 
-  // <Icon icon="ph:dot-thin" />
+  const modules = {
+    toolbar: [
+      [{ size: ['small', false, 'large', 'huge'] }],
+      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      ['link', 'image'],
+      [
+        { list: 'ordered' },
+        { list: 'bullet' },
+        { indent: '-1' },
+        { indent: '+1' },
+        { align: [] },
+      ],
+      
+      [
+        {
+          color: [
+            '#000000',
+            '#e60000',
+            '#ff9900',
+            '#ffff00',
+            '#008a00',
+            '#0066cc',
+            '#9933ff',
+            '#ffffff',
+            '#facccc',
+            '#ffebcc',
+            '#ffffcc',
+            '#cce8cc',
+            '#cce0f5',
+            '#ebd6ff',
+            '#bbbbbb',
+            '#f06666',
+            '#ffc266',
+            '#ffff66',
+            '#66b966',
+            '#66a3e0',
+            '#c285ff',
+            '#888888',
+            '#a10000',
+            '#b26b00',
+            '#b2b200',
+            '#006100',
+            '#0047b2',
+            '#6b24b2',
+            '#444444',
+            '#5c0000',
+            '#663d00',
+            '#666600',
+            '#003700',
+            '#002966',
+            '#3d1466',
+            'custom-color',
+          ],
+        },
+      ],
+    ],
+  };
 
-  const [showIcon, setShowIcon] = useState(false);
+  const formats = [
+    'header',
+    'height',
+    'bold',
+    'italic',
+    'underline',
+    'strike',
+    'blockquote',
+    'list',
+    'color',
+    'bullet',
+    'indent',
+    'link',
+    'image',
+    'align',
+    'size',
+  ];
 
-  const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      setShowIcon(true);
-    }
+  const handleProcedureContentChange = (content) => {
+    console.log('content---->', content);
   };
 
   const useKeyDown = (targetKey) => {
@@ -52,6 +129,9 @@ const TodoWork = () => {
 
   const enterPress = useKeyDown("Enter");
 
+  const iconOb = <PiDotBold/>;
+
+
   const renderDot = () => {
     return (
       <>
@@ -60,39 +140,25 @@ const TodoWork = () => {
     );
   }
 
-// •  • • ∙  ●
+// •  • • ∙  ● • · · | . |
 // work at pdf kendo - · |  
   const dotIcon =  <PiDotBold/>  ;
-
-  // const [display, setDisplay] = useState('notdisplayed');
-   
-  const [inputList, setInputList] = useState([{ display: 'notdisplayed', roleAndCompanyName: '',  durationAndLocation: '', achivements: '·'}]);
-
-  // const [text, setText] = useState('');
+  const [inputList, setInputList] = useState([{ display: 'notdisplayed', roleAndCompanyName: '',  durationAndLocation: '', achivements: '-'}]);
 
   const handleEnterPress = (event, i) => {
-    //DONT ADD THAT !!!! - event.preventDefault(); - with that - we can write no thing
 
-   
-  
   const list = [...inputList];
 
-setTimeout(() => {
+  setTimeout(() => {
     if (event.key === 'Enter') {
-      
-      // + JSON.stringify(dotIcon, null, 2)
-      
-        list[i].achivements += '·' + " "  ;
 
+      list[i].achivements += '-' + " "  ;
+
+      // list[i].achivements += '·' + " "  ;
       setInputList(list);
-      //DONT ADD THAT !!!! - event.preventDefault(); - with that - enter button will not jump line
-      // const list = [...inputList];
-
-      // point after list[i].achievements - will make line jump when enter
-      
     }
 
-    else{
+    else {
       setInputList(list);
     }
 
@@ -160,7 +226,6 @@ setTimeout(() => {
      
       {/* make this for ant enter + in achivement fieled */}
       
-      
       {inputList.map((x, i) => {
         return (
           <div>
@@ -210,7 +275,7 @@ setTimeout(() => {
               style={{
               
               marginLeft:'20px',
-              width:'420px'
+              width:'490px'
               
               }}
               InputProps={{style: {fontSize:18, padding: '0.2rem', lineHeight:"25px"},
@@ -218,7 +283,7 @@ setTimeout(() => {
                   <InputAdornment position="start">
                       { x.roleAndCompanyName ?
                       
-                      <Fade> <MdWorkOutline style={{fontSize:15, color:'gray', marginRight:'3px'}}/> | <TbCircleLetterA style={{fontSize:15, color:'gray'}}/> </Fade> : null }
+                      <Fade>  <MdWorkOutline style={{fontSize:15, color:'gray', marginRight:'3px'}}/> | <TbCircleLetterA style={{fontSize:15, color:'gray'}}/> </Fade> : null }
                       
                   </InputAdornment>
               )
@@ -240,16 +305,16 @@ setTimeout(() => {
               style={{
               
               marginLeft:'20px',
-              width:'420px'
+              width:'490px'
               
               
               }}
-              InputProps={{style: {fontSize:18, padding: '0.2rem', lineHeight:"25px"},
+              InputProps={{style: {fontSize:14, padding: '0.2rem', lineHeight:"25px"},
               startAdornment: (
                   <InputAdornment position='start'>
                       { x.durationAndLocation ?
                       
-                      <Fade> <RxCalendar style={{fontSize:15, color:'gray', marginRight:'3px'}}/> | <HiOutlineLocationMarker style={{fontSize:15, color:'gray'}}/>  </Fade> : null }
+                      <Fade> <RxCalendar style={{fontSize:11, color:'gray', marginRight:'3px'}}/> | <HiOutlineLocationMarker style={{fontSize:11, color:'gray'}}/>  </Fade> : null }
                       
                   </InputAdornment>
               )
@@ -275,19 +340,17 @@ setTimeout(() => {
               style={{
               
               marginLeft:'20px',
-              width:'420px',
+              width:'490px',
               marginBottom:'5px'
               
               }}
               InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
               startAdornment: (
                   <InputAdornment position='start'>
-                      { x.achivements ?   
+                      { x.achivements ?
                      
                       <Fade> <BsListUl style={{fontSize:15, color:'gray'}}/> </Fade> : null }
-                       
-                    
-                      
+
                   </InputAdornment>
               )
           }}
@@ -295,20 +358,6 @@ setTimeout(() => {
           />
 
           {/* {showIcon && <TbCircleLetterA style={{fontSize:15, color:'red'}} /> } */}
-
-              {/* <div key={i + 6 }>
-                <div key={ i + 9}
-            
-                  // ref={inputRef[i]}
-                  // placeholder="content list"
-                  suppressContentEditableWarning={true} 
-                  contentEditable={true} 
-                  
-                  onChange={(e) => { handleInputChange(e, i); }}  
-                  className="listBulletRight" > 
-                </div>
-
-              </div> */}
               
             </div>
               
@@ -323,11 +372,3 @@ setTimeout(() => {
 };
 
 export default TodoWork;
-
-// ==============================
-
-{/* suppressContentEditableWarning={true}  - aviod react warrnig*/}
-{/* contentEditable={true} - aloow to write text inside this div */}
-
-{/* {short solution for bullet list} */}
-{/* contenteditable - allow to write content like input tag */}

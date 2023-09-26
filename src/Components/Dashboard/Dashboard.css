@@ -1,18 +1,73 @@
-.dashboard__container {
+.dasboardContainer{
+  display: grid;
+  flex-flow: column wrap;
+  place-content: center space-evenly;
+  align-items: center;
+  text-align: center;
+  /* background-color: blueviolet; */
+  background: rgb(0,254,127);
+  background: linear-gradient(172deg, rgb(28, 232, 130) 0%, rgba(0,132,251,1) 100%);
+  font-family: Itim, serif;
+  /* margin: 30px; */
+  height: 601px;
+  font-size: 25px;
+  flex-direction: row;
+  align-content: center;
+  /* margin: 20px; */
+  /* height: 100%; */
+  /* width: 100%; */
+}
+
+.styleName {
+  font-family: 'poppins', serif;
+  margin-left: 15px;
+  font-size: 50px;
+  text-shadow: 0 0 rgb(19, 103, 205);
+}
+
+
+
+.wordsContainer {
+  /* background-color: rgb(55, 255, 0); */
+  display: flex;
+  /* width: 200px; */
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.optionsContainer {
+  /* background-color: red; */
   display: flex;
   flex-direction: column;
-  text-align: center;
-  background-color: #dcdcdc;
-  padding: 30px;
+  flex-wrap: wrap;
+  align-content: stretch;
+  justify-content: space-evenly;
+  align-items: stretch;
 }
-.dashboard__btn {
-  padding: 10px;
-  font-size: 18px;
-  margin-top: 10px;
-  border: none;
-  color: white;
-  background-color: black;
+
+.buttonsContainer {
+  /* background-color: green; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
 }
-.dashboard div {
-  margin-top: 7px;
+
+.greetingStyle {
+  background: -webkit-linear-gradient(80deg, rgb(255, 233, 107) 0%, white  100%);
+  font-size: 60px;
+  /* color: #ed6c02; */
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.conffetiStyle {
+  /* background-color: red; */
+  width: 100%;
+  height: 601px;
 }

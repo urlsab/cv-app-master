@@ -1,8 +1,12 @@
 // /*
 
+// !!!!!!!!!!! make text editor functions in cv shell (bold, hyper link, etc)
+
+// input inside inpuidorement
+
 // solve: undefined issue at dashboard.js
 
-// solve: undefined issue at logo.js
+// solve: undefined issue at logot.js
 
 // ------------------------------------------------------------------------------------------------
 
@@ -28,6 +32,7 @@
 //  ---------------------
  
 // GIF
+// // event for gifs - onLoad
 
 // ! create loading gif component for: 
 
@@ -57,6 +62,6 @@
 
 // ---------------------------
 
-// deploy to firebase
+
 
 // */
