@@ -1,12 +1,13 @@
 // /*
+// set PERFETC ENV FILE WITH ALL VARS OF FIREBASE AND EMAILJS
+
+//1. qoutes issue of env vars at : registerApp.js --> emailjs functino + config.js
+//2. fix: register issues : apikey, auth, password as collection
 
 // !!!!!!!!!!! make text editor functions in cv shell (bold, hyper link, etc)
+// dolev: try send data with div's and make all text editor functions on it
 
-// input inside inpuidorement
-
-// solve: undefined issue at dashboard.js
-
-// solve: undefined issue at logot.js
+// add localstorage vars as usernames when login and logout
 
 // ------------------------------------------------------------------------------------------------
 

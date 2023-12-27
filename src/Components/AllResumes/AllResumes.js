@@ -50,9 +50,9 @@ import TodoLeft from '../TodoLeft/TodoLeft';
 import TodoRight from '../TodoRight/TodoRight';
 import TodoWork from '../TodoWork/TodoWork';
 
-import { firestoreDB } from "../../firestoreConfig/firestoreConfig";
+import { firestoreDB } from "../../config/firebase.config";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../../firestoreConfig/firestoreConfig";
+import { auth } from "../../config/firebase.config";
 import { addDoc } from "firebase/firestore";
 
 // import Todo from "../Todo/Todo";

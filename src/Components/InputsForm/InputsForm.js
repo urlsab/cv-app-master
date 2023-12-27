@@ -24,7 +24,7 @@ import TodoWork from '../TodoWork/TodoWork';
 import PrintIcon from '@mui/icons-material/Print';
 import TextField from '@mui/material/TextField';
 import ReactToPrint from 'react-to-print';
-import { firestoreDB, auth } from "../../firestoreConfig/firestoreConfig";
+import { firestoreDB, auth } from "../../config/firebase.config";
 import { initialState } from "../../utils/ourState";
 import { Button, InputAdornment } from "@mui/material";
 import SaveIcon from '@mui/icons-material/Save';
@@ -127,7 +127,9 @@ const InputsForm = () => {
 
                                             <div className='firstGroup'> 
 
-                                                <TextField
+                                            
+
+                                                {/* <TextField
                                                     type="text"
                                                     name="fullName"
                                                     // onFocusCapture={()=> alert('focused')}
@@ -151,10 +153,16 @@ const InputsForm = () => {
                                                     }}
                                                     InputProps={{style: {fontSize:24 ,color:'white', padding: '0.2rem', lineHeight:"25px"}}}
                                                     
-                                                />
-                                           
-                                           
+                                                /> */}
 
+                                                <div 
+                                                    contentEditable={true}
+                                                    onChange={handleChange}
+                                                    value={ourForm.objectName.fullName}
+                                                >
+
+                                                </div>
+                                           
                                                 <TextField
                                                     type="text"
                                                     name="jobTitle"
@@ -197,7 +205,8 @@ const InputsForm = () => {
                                                         <InputAdornment  position='start'>
                                                            { ourForm.objectName.email ?
                                                             
-                                                           <Fade> <MdAlternateEmail style={{fontSize:15, color:'white'}}/> </Fade> : null }
+                                                            // <MdAlternateEmail style={{fontSize:15, color:'white'}}/>
+                                                           <Fade> <b>hi</b> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -650,13 +659,13 @@ const InputsForm = () => {
                                         content={() => pdfExportComponent.current}
                                     />
 
-                                {/* <Button 
+                                <Button 
                                     startIcon={<SaveIcon/>}
                                     color="success"
                                     variant="contained"
                                     sx={{m:1, mt: 4}}
                                     onClick={handleAddResume}>Save Resume
-                                </Button> */}
+                                </Button>
 
                                 </div>
 

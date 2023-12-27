@@ -10,7 +10,7 @@ import { getAuth } from "firebase/auth";
 import React, { useState } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 
-import { auth } from "../../../src/firestoreConfig/firestoreConfig";
+import { auth } from "../../../src/config/firebase.config";
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
@@ -94,8 +94,6 @@ const LoginApp = () => {
 
         <>
 
-        
-
         {/* <Fade><a className="homeStyle" href="/"><HomeIcon/></a></Fade> */}
 
             <div className="mainContainer">
@@ -141,7 +139,7 @@ const LoginApp = () => {
                     
                             <Button size="large" startIcon={<VpnKeyIcon/>} variant="contained" color="inherit" onClick={onLogin}> Login  </Button>
                             {/* <p> OR </p> */}
-                            <Button size="large" startIcon={<GoogleIcon/>} variant="contained" color="error" onClick={handleGoogleSignIn}>  google login</Button>
+                            <Button size="large" startIcon={<GoogleIcon/>} variant="contained" color="error" onClick={handleGoogleSignIn}>  google login </Button>
                                            
                             <Button onClick={navigateToRegister} size="large" startIcon={<PersonAddIcon/>} variant="outlined" color="primary">  Sign up  </Button>
                                      

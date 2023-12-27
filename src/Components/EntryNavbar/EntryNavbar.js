@@ -33,7 +33,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 
 import {  signOut } from "firebase/auth";
-import { auth } from '../../firestoreConfig/firestoreConfig';
+import { auth } from '../../config/firebase.config';
 
 const EntryNavbar = () => {
   return (

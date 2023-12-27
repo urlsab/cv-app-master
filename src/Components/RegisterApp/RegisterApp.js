@@ -1,32 +1,22 @@
 import "./RegisterApp.css";
-
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { collection, doc, setDoc } from "firebase/firestore";
 import {  createUserWithEmailAndPassword  } from 'firebase/auth';
-
-import { auth } from "../../firestoreConfig/firestoreConfig"
-import { firestoreDB } from "../../firestoreConfig/firestoreConfig";
-
+import { auth } from "../../config/firebase.config"
+import { firestoreDB } from "../../config/firebase.config";
 import { getAuth } from "firebase/auth";
-
 import { useAuthState } from "react-firebase-hooks/auth";
-
 import EntryNavbar from '../EntryNavbar/EntryNavbar';
-
 import TextField from '@mui/material/TextField';
 import { Button } from "@mui/material";
-
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
 import LoginIcon from '@mui/icons-material/Login';
 import Fade from 'react-reveal/Fade';
-
 import InputAdornment from '@mui/material/InputAdornment';
 import EmailIcon from '@mui/icons-material/Email';
-
 import emailjs from '@emailjs/browser';
 
 const RegisterApp = () => {
@@ -50,8 +40,9 @@ const RegisterApp = () => {
 
         e.preventDefault();
 
-        console.log(curAuth, emailAdd, rePassword);
+        // console.log(curAuth, emailAdd, rePassword);
 
+        // maybe add `await`
         await createUserWithEmailAndPassword(curAuth, emailAdd, rePassword)
 
         .then((userCredential) => {
@@ -75,16 +66,18 @@ const RegisterApp = () => {
             console.log("error from createUserWithEmailAndPassword function")
         })
     
-    //   e.preventDefault();
+    // e.preventDefault();
       const usersCollection = collection(firestoreDB, `${emailAdd}`);
       
       // add 00000 to render user name at /dashboard from cv[0] array 
+
+      // maybe add 'await' before 'setdoc'
       await setDoc(doc(usersCollection, "00000Data"), {thePassword: rePassword, userName: firstName})
         .then(() => {
             // console.log(initialPassword.objectPassword.thePassword);
             console.log("set password as a collection successfully");
 
-            // navigate("/");
+            navigate("/");
         })
 
         .catch(error => {
@@ -93,14 +86,40 @@ const RegisterApp = () => {
         })
         
         emailjs.send(
-            process.env.REACT_APP_SERVICE_ID, 
-            process.env.REACT_APP_TEMPLATE_ID, 
+
+            /*
+                REACT_APP_PRIVATE_KEY=gSp_5keFwxk_LBDq2bMn_
+
+                REACT_APP_PUBLIC_KEY=PQvbLu2V8kmXnVj-c
+
+                REACT_APP_SERVICE_ID=service_wexx65q
+
+                REACT_APP_TEMPLATE_ID=template_a2f6uf1
+
+                REACT_APP_PUBLIC_KEY_CONTACT=PQvbLu2V8kmXnVj-c
+
+                REACT_APP_SERVICE_ID_CONTACT=service_wexx65q
+
+                REACT_APP_TEMPLATE_ID_CONTACT=template_xszf3ev
+            */
+
+            // process.env.REACT_APP_SERVICE_ID
+            "service_wexx65q"
+            , 
+
+
+            //process.env.REACT_APP_TEMPLATE_ID
+            "template_a2f6uf1"
+            , 
             {
             user_name: firstName,
             message: rePassword,
             user_email: emailAdd
             },
-            process.env.REACT_APP_PUBLIC_KEY,
+
+            "PQvbLu2V8kmXnVj-c"
+            //process.env.REACT_APP_PUBLIC_KEY
+            ,
         )
 
         .then((result) => {
@@ -122,8 +141,6 @@ const RegisterApp = () => {
 
         <>
 
-        
-
         {/* <Fade><a className="homeStyle" href="/"><HomeIcon/></a></Fade> */}
     
             <div className="containerRegiter">
@@ -138,6 +155,7 @@ const RegisterApp = () => {
                                 name="user_name"
                                 type="text"                                    
                                 required 
+                                
                                 // placeholder="Full name"
                                 // all fields stretch to this width
                                 sx={{width:"280px"}}
@@ -171,6 +189,7 @@ const RegisterApp = () => {
                                 name="message"
                                 label="Password"
                                 required  
+                                autoComplete="on"
                                 InputProps={{startAdornment: (
                                     <InputAdornment position="start">
                                         <LockOpenIcon />

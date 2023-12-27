@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import { collection, query, where } from "firebase/firestore";
 
-import { firestoreDB, auth } from "../../firestoreConfig/firestoreConfig";
+import { firestoreDB, auth } from "../../config/firebase.config";
 
 import { getAuth, deleteUser } from "firebase/auth";
 

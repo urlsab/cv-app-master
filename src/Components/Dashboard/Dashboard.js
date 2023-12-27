@@ -5,8 +5,8 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 
-import { firestoreDB } from "../../firestoreConfig/firestoreConfig";
-import { auth } from "../../firestoreConfig/firestoreConfig";
+import { firestoreDB } from "../../config/firebase.config";
+import { auth } from "../../config/firebase.config";
 
 import { query, collection, getDocs, where } from "firebase/firestore";
 

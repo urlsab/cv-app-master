@@ -15,7 +15,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 
-import { auth } from '../../firestoreConfig/firestoreConfig';
+import { auth } from '../../config/firebase.config';
 import { createContext } from 'react';
 
 // import { useUserAuth } from '../../Context/UserAuthContext';

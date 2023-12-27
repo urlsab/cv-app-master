@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import { useNavigate } from "react-router-dom";
 import SendIcon from '@mui/icons-material/Send';
 import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
-import { auth } from "../../firestoreConfig/firestoreConfig"
+import { auth } from "../../config/firebase.config"
 import { getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Button } from "@mui/material";
