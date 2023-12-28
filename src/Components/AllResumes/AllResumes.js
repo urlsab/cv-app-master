@@ -222,6 +222,16 @@ const handleAddResume = (event) => {
                                                     
                                                 />
 
+                                                {/* <div 
+                                                    name="fullName"
+                                                    contentEditable={true}
+                                                    onChange={handleChange}
+                                                    value={ourForm.objectName.fullName}
+                                                    
+                                                    try below
+                                                    // defaultValue={cv[i].info.fullName}
+                                                > */}
+
                                                 <TextField
                                                     type="text"
                                                     name="jobTitle"

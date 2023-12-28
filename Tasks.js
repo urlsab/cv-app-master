@@ -1,11 +1,11 @@
 // /*
-// set PERFETC ENV FILE WITH ALL VARS OF FIREBASE AND EMAILJS
 
-//1. qoutes issue of env vars at : registerApp.js --> emailjs functino + config.js
-//2. fix: register issues : apikey, auth, password as collection
+// dolev+amir: try send data with div's and make all text editor functions on it
+
+// 1. div value render on allresumes.js
+// 2. same at firebase db
 
 // !!!!!!!!!!! make text editor functions in cv shell (bold, hyper link, etc)
-// dolev: try send data with div's and make all text editor functions on it
 
 // add localstorage vars as usernames when login and logout
 
@@ -60,9 +60,5 @@
 // add: options for fonts on <resumetable>
 // add: options for colors on <resumetable>
 // fix: display the wanted favicon
-
-// ---------------------------
-
-
 
 // */

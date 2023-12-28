@@ -156,6 +156,7 @@ const InputsForm = () => {
                                                 /> */}
 
                                                 <div 
+                                                    name="fullName"
                                                     contentEditable={true}
                                                     onChange={handleChange}
                                                     value={ourForm.objectName.fullName}

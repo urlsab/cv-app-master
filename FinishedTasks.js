@@ -147,6 +147,14 @@ make textField mui component work with onchange - when type - will reneder text 
 
 70. // deploy to firebase
 
-71. 
+71. // set PERFETC ENV FILE WITH ALL VARS OF FIREBASE AND EMAILJS
+
+//1. qoutes issue of env vars at : registerApp.js --> emailjs functino + config.js
+//2. fix: register issues : apikey, auth, password as collection
+
+solution: put env at top top top root dir project, even out of src dir !!!
++ use the match config app of this firebase poroject (i had 2 apps - delete one)
+
+72.
 
 */

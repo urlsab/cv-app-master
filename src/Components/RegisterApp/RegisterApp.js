@@ -85,41 +85,19 @@ const RegisterApp = () => {
             console.log("error from set password as a collection function")
         })
         
+        // and not 'sendjs'
         emailjs.send(
 
-            /*
-                REACT_APP_PRIVATE_KEY=gSp_5keFwxk_LBDq2bMn_
-
-                REACT_APP_PUBLIC_KEY=PQvbLu2V8kmXnVj-c
-
-                REACT_APP_SERVICE_ID=service_wexx65q
-
-                REACT_APP_TEMPLATE_ID=template_a2f6uf1
-
-                REACT_APP_PUBLIC_KEY_CONTACT=PQvbLu2V8kmXnVj-c
-
-                REACT_APP_SERVICE_ID_CONTACT=service_wexx65q
-
-                REACT_APP_TEMPLATE_ID_CONTACT=template_xszf3ev
-            */
-
-            // process.env.REACT_APP_SERVICE_ID
-            "service_wexx65q"
-            , 
+            `${process.env.REACT_APP_SERVICE_ID}`, 
 
 
-            //process.env.REACT_APP_TEMPLATE_ID
-            "template_a2f6uf1"
-            , 
+            `${process.env.REACT_APP_TEMPLATE_ID}`, 
             {
             user_name: firstName,
             message: rePassword,
             user_email: emailAdd
             },
-
-            "PQvbLu2V8kmXnVj-c"
-            //process.env.REACT_APP_PUBLIC_KEY
-            ,
+            `${process.env.REACT_APP_PUBLIC_KEY}`,
         )
 
         .then((result) => {
