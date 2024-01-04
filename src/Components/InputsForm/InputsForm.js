@@ -32,11 +32,11 @@ import Fade from 'react-reveal/Fade';
 import DownloadIcon from '@mui/icons-material/Download';
 import Navbar from "../Navbar/Navbar";
 
-import { useQuill } from 'react-quilljs';
+// import { useQuill } from 'react-quilljs';
 
-import 'quill/dist/quill.snow.css';
-import 'quill/dist/quill.bubble.css';
-import { Quill } from 'react-quill';
+// import 'quill/dist/quill.snow.css';
+// import 'quill/dist/quill.bubble.css';
+// import { Quill } from 'react-quill';
 
 const InputsForm = () => {
 
@@ -51,7 +51,7 @@ const InputsForm = () => {
     // const placeholder = 'type...';
     // , placeholder
 
-    const { quillRef } = useQuill({ theme, modules, formats });
+    //const { quillRef } = use({ theme, modules, formats });
     
     // loading, error - check if false - render gif - if true - stop render
     const [user, loading, error] = useAuthState(auth);
@@ -155,14 +155,21 @@ const InputsForm = () => {
                                                     
                                                 /> */}
 
+                                                {/* use chatgpt history chats for bold etc */}
                                                 <div 
                                                     name="fullName"
                                                     contentEditable={true}
+                                                    
+                                                    className='pdfFonts'
+                                                    //value={ourForm.objectName.fullName}
                                                     onChange={handleChange}
-                                                    value={ourForm.objectName.fullName}
-                                                >
-
-                                                </div>
+                                                    // onInput={handleChange}
+                                                    // dangerouslySetInnerHTML={ourForm.objectName.fullName}
+                                                    // dangerouslySetInnerHTML={`{_html: ourForm.objectName.fullName}`}
+                                                    suppresscontenteditablewarning={true}
+                                                    content={ourForm.objectName.fullName}
+                                                /> 
+                                                {/* </div> */}
                                            
                                                 <TextField
                                                     type="text"

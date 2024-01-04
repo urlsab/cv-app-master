@@ -199,7 +199,7 @@ const handleAddResume = (event) => {
                              
                                             <div className='firstGroup'> 
 
-                                                <TextField
+                                                {/* <TextField
                                                     type="text"
                                                     name="fullName"
                                                     
@@ -220,18 +220,22 @@ const handleAddResume = (event) => {
                                                     }}
                                                     InputProps={{style: {fontSize:24 ,color:'white', padding: '0.2rem', lineHeight:"25px"}}}
                                                     
-                                                />
+                                                /> */}
 
-                                                {/* <div 
+                                                <div 
                                                     name="fullName"
-                                                    contentEditable={true}
-                                                    onChange={handleChange}
-                                                    value={ourForm.objectName.fullName}
-                                                    
-                                                    try below
-                                                    // defaultValue={cv[i].info.fullName}
-                                                > */}
-
+                                                    className='pdfFonts'
+                                                    contentEditable={cv[i].info.fullName}
+                                                    onChange={handleChange} 
+                                                    suppresscontenteditablewarning={true} 
+                                                    content={ourForm.objectName.fullName}  
+                                                    //defaultValue={cv[i].info.fullName}
+                                                    //dangerouslySetInnerHTML={ourForm.objectName.fullName}
+                                                    // dangerouslySetInnerHTML={{_html: ourForm.objectName.fullName}}
+                                                > 
+                                            
+                                                </div>
+                                                
                                                 <TextField
                                                     type="text"
                                                     name="jobTitle"

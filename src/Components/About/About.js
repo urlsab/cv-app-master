@@ -8,12 +8,6 @@ import EntryNavbar from '../EntryNavbar/EntryNavbar';
 
 import TextField from '@mui/material/TextField';
 
-import { useQuill } from 'react-quilljs';
-import 'quill/dist/quill.snow.css';
-import 'quill/dist/quill.bubble.css';
-// import { input } from '@testing-library/user-event/dist/types/event';
-
-
 const About = () => {
 
   // const contentEditableRef = useRef(null);
@@ -28,8 +22,7 @@ const About = () => {
   };
   const formats = ['bold', 'italic', 'underline', 'strike'];
   const placeholder = 'type...';
-  const { quillRef } = useQuill({ theme, modules, formats, placeholder });
-
+  
   const [txt,setTxt] = useState('');
   const [isShown, setIsShown] = useState(false);
   const selection = window.getSelection().toString();

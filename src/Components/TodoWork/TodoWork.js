@@ -1,8 +1,8 @@
 import './TodoWork.css';
 
-import 'quill/dist/quill.snow.css';
-import 'react-quill/dist/quill.bubble.css';
-import ReactQuill from 'react-quill';
+// import 'quill/dist/quill.snow.css';
+// import 'react-quill/dist/quill.bubble.css';
+// import ReactQuill from 'react-quill';
 
 import React, { useState, useEffect } from 'react';
 
