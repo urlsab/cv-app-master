@@ -1,5 +1,5 @@
 import './InputsForm.css';
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { MdAlternateEmail } from "react-icons/md";
 import { BsPhone } from "react-icons/bs";
 import { TiSocialLinkedin } from "react-icons/ti";
@@ -32,31 +32,21 @@ import Fade from 'react-reveal/Fade';
 import DownloadIcon from '@mui/icons-material/Download';
 import Navbar from "../Navbar/Navbar";
 
-// import { useQuill } from 'react-quilljs';
 
-// import 'quill/dist/quill.snow.css';
-// import 'quill/dist/quill.bubble.css';
-// import { Quill } from 'react-quill';
 
 const InputsForm = () => {
 
-    const theme = 'bubble'; // options when hover
-
-    const modules = {
-        toolbar: ['bold', 'italic', 'underline', 'link']
-    };
-
-    const formats = ['bold', 'italic', 'underline', 'strike'];
-
-    // const placeholder = 'type...';
-    // , placeholder
-
-    //const { quillRef } = use({ theme, modules, formats });
+   
     
     // loading, error - check if false - render gif - if true - stop render
     const [user, loading, error] = useAuthState(auth);
     const [ourForm, setOurForm] = useState(initialState);
+    let [name, setName] = useState(ourForm.objectName.fullName);
+    // const [name, setName] = useState(ourForm.objectName.fullName);
+
     const [inputList, setInputList] = useState([{ firstName: '', display: 'notdisplayed' }]);
+
+    const [text, setText] = useState('Hallo');
 
     const navigate = useNavigate();
     
@@ -74,6 +64,8 @@ const InputsForm = () => {
         list[index][name] =  value;
         setInputList(list);
     };
+
+    
 
     const handleAddResume = (event) => {
         
@@ -108,6 +100,16 @@ const InputsForm = () => {
             },
         }))
     };
+
+    const handleCustomChange = (field, data) => {
+        setOurForm({
+            ...ourForm,
+            objectName: {
+                ...ourForm.objectName,
+                [field]: data,
+            }
+        })
+    }
 
     return (
         <>
@@ -156,20 +158,36 @@ const InputsForm = () => {
                                                 /> */}
 
                                                 {/* use chatgpt history chats for bold etc */}
-                                                <div 
+                                                {/* <div 
                                                     name="fullName"
                                                     contentEditable={true}
                                                     
                                                     className='pdfFonts'
-                                                    //value={ourForm.objectName.fullName}
-                                                    onChange={handleChange}
-                                                    // onInput={handleChange}
-                                                    // dangerouslySetInnerHTML={ourForm.objectName.fullName}
-                                                    // dangerouslySetInnerHTML={`{_html: ourForm.objectName.fullName}`}
+                                                    // value={ourForm.objectName.fullName}
+                                                    // onChange={handleChange}
+                                                    onInput={e => setOurForm(ourForm.objectName.fullName) }
+                                                    // defaultValue={ourForm.objectName.fullName}
                                                     suppresscontenteditablewarning={true}
-                                                    content={ourForm.objectName.fullName}
-                                                /> 
+                                                    // content={ourForm.objectName.fullName}
+                                                > 
+                                                </div> */}
+
+                                                
                                                 {/* </div> */}
+
+                                                <div
+                                                    name="fullName"
+                                                    suppressContentEditableWarning={true}
+                                                    contentEditable={true}
+                                                    content={ourForm.objectName.fullName}
+                                                    onInput={(event) => {
+                                                        const nameFull = event.target.textContent;
+                                                        console.log(nameFull);
+                                                        console.log(event.target.textContent);
+
+                                                        handleCustomChange('fullName', nameFull);
+                                                    }}
+                                                />
                                            
                                                 <TextField
                                                     type="text"

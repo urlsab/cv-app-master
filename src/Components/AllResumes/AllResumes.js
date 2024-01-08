@@ -225,15 +225,16 @@ const handleAddResume = (event) => {
                                                 <div 
                                                     name="fullName"
                                                     className='pdfFonts'
-                                                    contentEditable={cv[i].info.fullName}
-                                                    onChange={handleChange} 
+                                                    contentEditable={true}
+                                                    // onChange={handleChange} 
                                                     suppresscontenteditablewarning={true} 
-                                                    content={ourForm.objectName.fullName}  
+                                                    // content={ourForm.objectName.fullName}  
+                                                    defaultValue={cv[i].info.fullName}
                                                     //defaultValue={cv[i].info.fullName}
                                                     //dangerouslySetInnerHTML={ourForm.objectName.fullName}
                                                     // dangerouslySetInnerHTML={{_html: ourForm.objectName.fullName}}
                                                 > 
-                                            
+                                                {cv[i].info.fullName} - p
                                                 </div>
                                                 
                                                 <TextField

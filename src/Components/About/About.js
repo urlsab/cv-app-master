@@ -130,7 +130,7 @@ const About = () => {
             placeholder='Full Name'
             className='pdfFonts'
             onClick={boldi}
-            //onDoubleClick={handleClick}
+            onDoubleClick={handleClick}
             value={txt}
             onChange={(e)=> setTxt(e.target.value + selection)}
           />
