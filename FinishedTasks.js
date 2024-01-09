@@ -155,6 +155,12 @@ make textField mui component work with onchange - when type - will reneder text 
 solution: put env at top top top root dir project, even out of src dir !!!
 + use the match config app of this firebase poroject (i had 2 apps - delete one)
 
-72.
+72. // dolev+amir: try send data with div's and make all text editor functions on it
+
+// 1. div value render on allresumes.js
+// 2. same at firebase db
+SOLVED BY GABI BALKO - created handleCustomChange function
+
+73. 
 
 */

@@ -32,12 +32,8 @@ import Fade from 'react-reveal/Fade';
 import DownloadIcon from '@mui/icons-material/Download';
 import Navbar from "../Navbar/Navbar";
 
-
-
 const InputsForm = () => {
 
-   
-    
     // loading, error - check if false - render gif - if true - stop render
     const [user, loading, error] = useAuthState(auth);
     const [ourForm, setOurForm] = useState(initialState);
@@ -64,8 +60,6 @@ const InputsForm = () => {
         list[index][name] =  value;
         setInputList(list);
     };
-
-    
 
     const handleAddResume = (event) => {
         
@@ -111,15 +105,35 @@ const InputsForm = () => {
         })
     }
 
+    let count = 0;
+  
+  const handleClick = (event) => {
+    // How to bring those line to work together ?
+    const selection = window.getSelection().toString();
+    count++;
+    if (count % 2 === 0){
+        event.target.style.fontWeight = 'normal';
+    }
+    if( count % 3 === 0 ){
+        event.target.style.textDecoration = 'underline';
+    }
+    else {
+        event.target.style.fontWeight = 'bold';
+    }
+    console.log(selection);
+    console.log(count);
+    
+  };
+
     return (
         <>
             <div className='createResumeContainer'>
                 <Navbar/>
-                    <Fade delay={400}>
+                    {/* <Fade delay={400}> */}
 
                         <PDFExport ref={pdfExportComponent}>
 
-                            <div style={{backgroundColor:"gray", height:'700px', width:'650px'}} >
+                        <div style={{backgroundColor:"gray", width:'650px'}} >
 
                             <div className="resume">
 
@@ -177,6 +191,7 @@ const InputsForm = () => {
 
                                                 <div
                                                     name="fullName"
+                                                    onClick={handleClick}
                                                     suppressContentEditableWarning={true}
                                                     contentEditable={true}
                                                     content={ourForm.objectName.fullName}
@@ -184,7 +199,6 @@ const InputsForm = () => {
                                                         const nameFull = event.target.textContent;
                                                         console.log(nameFull);
                                                         console.log(event.target.textContent);
-
                                                         handleCustomChange('fullName', nameFull);
                                                     }}
                                                 />
@@ -655,50 +669,51 @@ const InputsForm = () => {
 
                             </PDFExport>
 
-                            <Fade delay={800}>
-                                <div className='buttonsStyle'>
+                            {/* <Fade delay={800}> */}
+                            {/* </Fade> */}
 
-                                    {/* <a href='' download=''> DOWNLOAD TO PC </a> */}
+                    {/* </Fade> */}
 
-                                    <Button 
-                                        sx={{m:1, mt:4}}
-                                        color="error"
-                                        variant="contained"
-                                        // startIcon={<PictureAsPdfIcon/>}
-                                        startIcon={<DownloadIcon/>}
-                                        onClick={handleExportWithComponent}>pdf 
-                                    </Button>
+                    
+                    <div className='buttonsStyle'>
 
-                                    <ReactToPrint 
-                                        trigger={() => 
-                                        <Button 
-                                            sx={
-                                                    [{m:1,mt:4, backgroundColor:"rgb(250, 204, 0)",
-                                                },
-                                                {'&:hover': {backgroundColor: "rgb(250, 184, 0)"}}
-                                            ]}
-                                                variant="contained" 
-                                                color="inherit"
-                                                startIcon={<PrintIcon/>}>PRINT
-                                        </Button>
-                                        } 
-                                        content={() => pdfExportComponent.current}
-                                    />
+                        {/* <a href='' download=''> DOWNLOAD TO PC </a> */}
 
-                                <Button 
-                                    startIcon={<SaveIcon/>}
-                                    color="success"
-                                    variant="contained"
-                                    sx={{m:1, mt: 4}}
-                                    onClick={handleAddResume}>Save Resume
-                                </Button>
+                        <Button 
+                            sx={{m:1, mt:4}}
+                            color="error"
+                            variant="contained"
+                            // startIcon={<PictureAsPdfIcon/>}
+                            startIcon={<DownloadIcon/>}
+                            onClick={handleExportWithComponent}>pdf 
+                        </Button>
 
-                                </div>
+                        <ReactToPrint 
+                            trigger={() => 
+                            <Button 
+                                sx={
+                                        [{m:1,mt:4, backgroundColor:"rgb(250, 204, 0)",
+                                    },
+                                    {'&:hover': {backgroundColor: "rgb(250, 184, 0)"}}
+                                ]}
+                                    variant="contained" 
+                                    color="inherit"
+                                    startIcon={<PrintIcon/>}>PRINT
+                            </Button>
+                            } 
+                            content={() => pdfExportComponent.current}
+                        />
 
-                            </Fade>
+                            <Button 
+                                startIcon={<SaveIcon/>}
+                                color="success"
+                                variant="contained"
+                                sx={{m:1, mt: 4}}
+                                onClick={handleAddResume}>Save Resume
+                            </Button>
 
-                    </Fade>
-                
+                    </div>
+
             </div>
 
         </>

@@ -1,9 +1,9 @@
 // /*
+// תיקצוב זמן למשימות ולפרוייקט
+// ארגון וסדר והיררכיה בקוד
+// פרוייקטים קטנים מסודרים ושעובדים ופחות פיטצ'רים
 
-// dolev+amir: try send data with div's and make all text editor functions on it
-
-// 1. div value render on allresumes.js
-// 2. same at firebase db
+// center buttons at inputsform.js file at development
 
 // !!!!!!!!!!! make text editor functions in cv shell (bold, hyper link, etc)
 
