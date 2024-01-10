@@ -3,7 +3,7 @@
 // ארגון וסדר והיררכיה בקוד
 // פרוייקטים קטנים מסודרים ושעובדים ופחות פיטצ'רים
 
-// center buttons at inputsform.js file at development
+
 
 // !!!!!!!!!!! make text editor functions in cv shell (bold, hyper link, etc)
 

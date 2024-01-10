@@ -31,6 +31,7 @@ import SaveIcon from '@mui/icons-material/Save';
 import Fade from 'react-reveal/Fade';
 import DownloadIcon from '@mui/icons-material/Download';
 import Navbar from "../Navbar/Navbar";
+import { createRandomId } from '../../utils/randomId';
 
 const InputsForm = () => {
 
@@ -38,12 +39,8 @@ const InputsForm = () => {
     const [user, loading, error] = useAuthState(auth);
     const [ourForm, setOurForm] = useState(initialState);
     let [name, setName] = useState(ourForm.objectName.fullName);
-    // const [name, setName] = useState(ourForm.objectName.fullName);
-
+    
     const [inputList, setInputList] = useState([{ firstName: '', display: 'notdisplayed' }]);
-
-    const [text, setText] = useState('Hallo');
-
     const navigate = useNavigate();
     
     const pdfExportComponent = useRef(null);
@@ -71,10 +68,8 @@ const InputsForm = () => {
             addDoc(usersCollection, ourForm.objectName)
             .then(response => {
                 console.log(ourForm.objectName);
-                console.log(response);
-                //mayby: we use the path for each user id
+                console.log(response);               
                 console.log(response.id);
-                //mayby: we use the path for each user resumes
                 console.log(response.path);
                 navigate("/allResumes")
                 
@@ -107,33 +102,61 @@ const InputsForm = () => {
 
     let count = 0;
   
-  const handleClick = (event) => {
-    // How to bring those line to work together ?
-    const selection = window.getSelection().toString();
-    count++;
-    if (count % 2 === 0){
-        event.target.style.fontWeight = 'normal';
-    }
-    if( count % 3 === 0 ){
-        event.target.style.textDecoration = 'underline';
-    }
-    else {
-        event.target.style.fontWeight = 'bold';
-    }
-    console.log(selection);
-    console.log(count);
+    const [flag, setFlag] = useState(false);
+
+    const handleBold = () => {
+        if (window.getSelection && !flag) {
+          const selection = window.getSelection();
+          const range = selection.getRangeAt(0);
+          const span = document.createElement('b');
+          span.setAttribute('id', 'bb');
+          span.appendChild(range.extractContents());
+          range.insertNode(span);
+          setFlag(!flag);
+        }
+        if (window.getSelection && flag) {
+          const selection = window.getSelection();
+          const range = selection.getRangeAt(0);
+          const span = document.getElementById('bb');
+          span.replaceWith(...span.childNodes);
+          // span.parentElement.remove();
+          range.insertNode(span);
+          setFlag(!flag);
+        }
+      };
     
-  };
+      const handleUnderline = () => {
+        if (window.getSelection && !flag) {
+          const selection = window.getSelection();
+          const range = selection.getRangeAt(0);
+          const span = document.createElement('u');
+          
+          span.setAttribute('id', 'bb');
+          span.appendChild(range.extractContents());
+          range.insertNode(span);
+          setFlag(!flag);
+        }
+        if (window.getSelection && flag) {
+          const selection = window.getSelection();
+          const range = selection.getRangeAt(0);
+          const span = document.getElementById('bb');
+          span.replaceWith(...span.childNodes);
+          // span.parentElement.remove();
+          range.insertNode(span);
+          setFlag(!flag);
+        }
+      };
 
     return (
         <>
             <div className='createResumeContainer'>
                 <Navbar/>
-                    {/* <Fade delay={400}> */}
+                    <Fade delay={400}>
+
+                    <button onClick={handleBold}>Toggle Bold</button>
+                    <button onClick={handleUnderline}>Toggle underline</button>
 
                         <PDFExport ref={pdfExportComponent}>
-
-                        <div style={{backgroundColor:"gray", width:'650px'}} >
 
                             <div className="resume">
 
@@ -142,8 +165,6 @@ const InputsForm = () => {
                                     <div className='square'>
 
                                             <div className='firstGroup'> 
-
-                                            
 
                                                 {/* <TextField
                                                     type="text"
@@ -170,28 +191,12 @@ const InputsForm = () => {
                                                     InputProps={{style: {fontSize:24 ,color:'white', padding: '0.2rem', lineHeight:"25px"}}}
                                                     
                                                 /> */}
-
-                                                {/* use chatgpt history chats for bold etc */}
-                                                {/* <div 
-                                                    name="fullName"
-                                                    contentEditable={true}
-                                                    
-                                                    className='pdfFonts'
-                                                    // value={ourForm.objectName.fullName}
-                                                    // onChange={handleChange}
-                                                    onInput={e => setOurForm(ourForm.objectName.fullName) }
-                                                    // defaultValue={ourForm.objectName.fullName}
-                                                    suppresscontenteditablewarning={true}
-                                                    // content={ourForm.objectName.fullName}
-                                                > 
-                                                </div> */}
-
-                                                
+                 
                                                 {/* </div> */}
 
                                                 <div
                                                     name="fullName"
-                                                    onClick={handleClick}
+                                                    
                                                     suppressContentEditableWarning={true}
                                                     contentEditable={true}
                                                     content={ourForm.objectName.fullName}
@@ -665,16 +670,16 @@ const InputsForm = () => {
 
                                     </div> 
 
-                                    </div>
+                                
 
                             </PDFExport>
 
-                            {/* <Fade delay={800}> */}
-                            {/* </Fade> */}
+                            
+                        </Fade>
 
-                    {/* </Fade> */}
+                   
 
-                    
+                <Fade delay={800}>
                     <div className='buttonsStyle'>
 
                         {/* <a href='' download=''> DOWNLOAD TO PC </a> */}
@@ -713,6 +718,8 @@ const InputsForm = () => {
                             </Button>
 
                     </div>
+
+                </Fade>
 
             </div>
 

@@ -161,6 +161,8 @@ solution: put env at top top top root dir project, even out of src dir !!!
 // 2. same at firebase db
 SOLVED BY GABI BALKO - created handleCustomChange function
 
-73. 
+73. // center buttons at inputsform.js file at development
+
+74. 
 
 */

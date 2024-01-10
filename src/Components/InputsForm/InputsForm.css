@@ -13,7 +13,7 @@
 }
 
 .resume {
-    display: inline-grid;
+    /* display: inline-grid; */
     margin-top: 0.5px;
     font-size: 20px;
     background-color: rgb(246, 246, 249);
@@ -23,7 +23,7 @@
     /* sizes exactly like beamjobs */
     width: 790px;
     min-height: 11.65in;
-    
+    /* margin: 20px auto; */
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr;
     box-shadow: 0 5px 9px 0 rgba(0, 0, 0, 0.35);
