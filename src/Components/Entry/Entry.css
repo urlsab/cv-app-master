@@ -12,7 +12,7 @@
 }
 
 
-  @media screen and (max-width: 1240px) {
+  /* @media screen and (max-width: 1240px) {
     .engine   
   
     {
@@ -36,7 +36,7 @@
     {
       background: blue;
     };
-}
+} */
 
 .styleHeader{
     font-family: 'Itim';

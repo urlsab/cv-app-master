@@ -32,6 +32,11 @@
 // 2. make paths correct
 // 3. be sure files exist in build>static directory
 
+//=========
+
+
+//https://stackoverflow.com/questions/52177222/blank-page-after-successful-firebase-deployment
+
 
 // =========
 
