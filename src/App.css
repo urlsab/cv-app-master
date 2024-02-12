@@ -1,12 +1,12 @@
-body {
+/* body {
   
   background-color: red; 
   
-}
+} */
 
 
 
-@media screen and (max-width: 1240px) {
+/* @media screen and (max-width: 1240px) {
   .engine   
 
   {
@@ -69,11 +69,9 @@ body {
     background-color: red;
   };
   
-}
+} */
   
 /* .fake {
   color: red;
   , 480, 640, 860, 1240, 
 } */
-
-
