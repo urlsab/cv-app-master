@@ -24,8 +24,10 @@ export const firestoreDB = initializeFirestore(app, {
 
 TO DEPLOY COMMAND:
 
-  firebase login
-  firebase init
+  firebase login -- allready loged in as yairsbag213@gmail.com
+
+  [not neccary allways - only if i want to init things : firebase init -- proceed ? Y , choose: firestore, storage, hosting1, hosting2 ]
+
   firebase deploy
 
 */
