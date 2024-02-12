@@ -114,8 +114,9 @@
 /* allow fonts of pdfexport kendu react */
 
 .pdfFonts {
-    font-family: "DejaVu Sans", "Arial", "Lato", "Rubik", "Exo" ,sans-serif,;
+    font-family: "Arial", "Lato", "Rubik", "Exo", "DejaVu Sans" ,sans-serif;
 }
+/* "DejaVu Sans" */
 
 @font-face {
     font-family: "DejaVu Sans";
@@ -141,8 +142,6 @@
 
 
 /* SAVED CLASS NAME -  KENDO REACT PDF */
-/* .k-pdf-export p{
-   color:red;
-   border: 2px solid green;
-   background-color: blue;
-} */
+.k-pdf-export {
+   font-weight: normal;
+}

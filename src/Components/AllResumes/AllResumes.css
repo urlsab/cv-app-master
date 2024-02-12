@@ -14,7 +14,7 @@
     min-width: 710px;
 }
 
-.liStyle {
+.liStStyle {
     /* background-color: aqua; */
     display: flex;
     flex-direction: column;

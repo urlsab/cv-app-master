@@ -105,43 +105,82 @@ const InputsForm = () => {
     const [flag, setFlag] = useState(false);
 
     const handleBold = () => {
-        if (window.getSelection && !flag) {
+        if (window.getSelection() && !flag) {
           const selection = window.getSelection();
           const range = selection.getRangeAt(0);
           const span = document.createElement('b');
-          span.setAttribute('id', 'bb');
-          span.appendChild(range.extractContents());
+          span.setAttribute('id', 'bb' || 'cc');
+          span?.appendChild(range.extractContents());
           range.insertNode(span);
           setFlag(!flag);
         }
-        if (window.getSelection && flag) {
+        if (window.getSelection() && flag) {
           const selection = window.getSelection();
           const range = selection.getRangeAt(0);
-          const span = document.getElementById('bb');
-          span.replaceWith(...span.childNodes);
-          // span.parentElement.remove();
+          const span = document.getElementById('bb' || 'cc');
+          console.log(selection);
+          span?.replaceWith(...span.childNodes);
           range.insertNode(span);
           setFlag(!flag);
         }
       };
     
       const handleUnderline = () => {
-        if (window.getSelection && !flag) {
+        if (window.getSelection() && !flag) {
           const selection = window.getSelection();
           const range = selection.getRangeAt(0);
           const span = document.createElement('u');
           
-          span.setAttribute('id', 'bb');
-          span.appendChild(range.extractContents());
+          span.setAttribute('id', 'bb' ||'dd');
+          span?.appendChild(range.extractContents());
           range.insertNode(span);
           setFlag(!flag);
         }
-        if (window.getSelection && flag) {
+        if (window.getSelection() && flag) {
           const selection = window.getSelection();
           const range = selection.getRangeAt(0);
-          const span = document.getElementById('bb');
-          span.replaceWith(...span.childNodes);
-          // span.parentElement.remove();
+          const span = document.getElementById('bb' || 'dd');
+          span?.replaceWith(...span.childNodes);
+          range.insertNode(span);
+          setFlag(!flag);
+        }
+      };
+
+      const handlePopoverForlink = () => {
+        console.log(window.getSelection().toString());
+        if(window.getSelection()) {
+            return (
+                <div>
+                    <input type="text" placeholder='type here url'></input>
+                </div>
+                
+            );
+        }
+             else {
+                return null;
+
+      };
+    }
+
+      const href = 'google.com';
+
+      const handleHyperlink = () => {
+        if (window.getSelection() && !flag) {
+          const selection = window.getSelection();
+          const range = selection.getRangeAt(0);
+          const span = document.createElement('a');
+          
+          span.setAttribute('id', 'bb' ||'aa');
+          span.setAttribute('href', href);
+          span?.appendChild(range.extractContents());
+          range.insertNode(span);
+          setFlag(!flag);
+        }
+        if (window.getSelection() && flag) {
+          const selection = window.getSelection();
+          const range = selection.getRangeAt(0);
+          const span = document.getElementById('bb' || 'aa');
+          span?.replaceWith(...span.childNodes);
           range.insertNode(span);
           setFlag(!flag);
         }
@@ -153,8 +192,10 @@ const InputsForm = () => {
                 <Navbar/>
                     <Fade delay={400}>
 
-                    <button onClick={handleBold}>Toggle Bold</button>
+                    {/* <button onClick={handleBold}>Toggle Bold</button>
                     <button onClick={handleUnderline}>Toggle underline</button>
+                    <button onClick={handlePopoverForlink}>Toggle hyperlink</button> */}
+                    {/* {handlePopoverForlink()} */}
 
                         <PDFExport ref={pdfExportComponent}>
 
@@ -166,7 +207,7 @@ const InputsForm = () => {
 
                                             <div className='firstGroup'> 
 
-                                                {/* <TextField
+                                                <TextField
                                                     type="text"
                                                     name="fullName"
                                                     // onFocusCapture={()=> alert('focused')}
@@ -185,16 +226,16 @@ const InputsForm = () => {
                                                    
                                                     marginTop:"25px",
                                                 
-                                                    width:'230px',
+                                                    width:'235px',
                                                     
                                                     }}
                                                     InputProps={{style: {fontSize:24 ,color:'white', padding: '0.2rem', lineHeight:"25px"}}}
                                                     
-                                                /> */}
+                                                /> 
                  
                                                 {/* </div> */}
 
-                                                <div
+                                                {/* <div
                                                     name="fullName"
                                                     
                                                     suppressContentEditableWarning={true}
@@ -202,11 +243,11 @@ const InputsForm = () => {
                                                     content={ourForm.objectName.fullName}
                                                     onInput={(event) => {
                                                         const nameFull = event.target.textContent;
-                                                        console.log(nameFull);
-                                                        console.log(event.target.textContent);
+                                                        // console.log(nameFull);
+                                                        // console.log(event.target.textContent);
                                                         handleCustomChange('fullName', nameFull);
                                                     }}
-                                                />
+                                                /> */}
                                            
                                                 <TextField
                                                     type="text"
@@ -220,7 +261,7 @@ const InputsForm = () => {
                                                     onChange={handleChange}
                                                     style={{
                                                   
-                                                    width:'230px',
+                                                    width:'235px',
                                                     
                                                     }}
                                                     InputProps={{style: {fontSize:20, color:'white',  padding: '0.2rem', lineHeight:"25px"}}}
@@ -242,7 +283,7 @@ const InputsForm = () => {
                                                     
                                                     marginTop:"15px",
                                                   
-                                                    width:'230px',
+                                                    width:'235px',
                                                    
                                                     }}
                                                     InputProps={{style: {fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
@@ -250,8 +291,8 @@ const InputsForm = () => {
                                                         <InputAdornment  position='start'>
                                                            { ourForm.objectName.email ?
                                                             
-                                                            // <MdAlternateEmail style={{fontSize:15, color:'white'}}/>
-                                                           <Fade> <b>hi</b> </Fade> : null }
+                                                            <Fade> <MdAlternateEmail style={{fontSize:13, color:'white'}}/>
+                                                             </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -270,7 +311,7 @@ const InputsForm = () => {
                                                     onChange={handleChange}
                                                     style={{
                                                     
-                                                    width:'230px',
+                                                    width:'235px',
                                                    
                                                     }}
                                                     InputProps={{style: {fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
@@ -278,7 +319,7 @@ const InputsForm = () => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.phoneNumber ?
                                                             
-                                                           <Fade> <BsPhone style={{fontSize:15, color:'white'}}/> </Fade> : null }
+                                                           <Fade> <BsPhone style={{fontSize:13, color:'white'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -297,7 +338,7 @@ const InputsForm = () => {
                                                     onChange={handleChange}
                                                     style={{
                                                     
-                                                    width:'230px',
+                                                    width:'235px',
                                                     
                                                     }}
                                                     InputProps={{style: {fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
@@ -305,7 +346,7 @@ const InputsForm = () => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.linkedinLink ?
                                                             
-                                                           <Fade> <TiSocialLinkedin style={{fontSize:15, color:'white'}}/> </Fade> : null }
+                                                           <Fade> <TiSocialLinkedin style={{fontSize:13, color:'white'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -324,7 +365,7 @@ const InputsForm = () => {
                                                     onChange={handleChange}
                                                     style={{
                                                   
-                                                    width:'230px',
+                                                    width:'235px',
                                                     
                                                     }}
                                                     InputProps={{style: {fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
@@ -332,14 +373,14 @@ const InputsForm = () => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.githubLink ?
                                                             
-                                                           <Fade> <FiGithub style={{fontSize:15, color:'white'}}/> </Fade> : null }
+                                                           <Fade> <FiGithub style={{fontSize:13, color:'white'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
                                                     
                                                 }}/>
                                                 
-                                            {/* 
+                                            
                                                 <TextField
                                                     type="text"
                                                     name="portfolioLink"
@@ -352,7 +393,7 @@ const InputsForm = () => {
                                                     onChange={handleChange}
                                                     style={{
                                                    
-                                                    width:'230px',
+                                                    width:'235px',
                                                     
                                                     }}
                                                     InputProps={{style: {fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
@@ -360,12 +401,12 @@ const InputsForm = () => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.portfolioLink ?
                                                             
-                                                           <Fade> <BiLink style={{fontSize:15, color:'white'}}/> </Fade> : null }
+                                                           <Fade> <BiLink style={{fontSize:13, color:'white'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
                                                     
-                                                }}/> */}
+                                                }}/> 
                                                 
                                             </div>
 
@@ -388,7 +429,7 @@ const InputsForm = () => {
                                                     style={{
                                                     marginTop:'20px',
                                                     marginLeft:'18px',
-                                                    width:'230px',
+                                                    width:'235px',
                                                    
                                                     }}
                                                     InputProps={{style: {fontSize:19, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}}}
@@ -408,7 +449,7 @@ const InputsForm = () => {
                                                     style={{
                                                     
                                                     marginLeft:'18px',
-                                                    width:'230px',
+                                                    width:'235px',
                                                     
                                                     }}
                                                     InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"}, 
@@ -416,7 +457,7 @@ const InputsForm = () => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.degreeTypeAndname ?
                                                             
-                                                           <Fade><TbSchool style={{fontSize:15, color:'gray'}}/> </Fade> : null }
+                                                           <Fade><TbSchool style={{fontSize:13, color:'gray'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -437,7 +478,7 @@ const InputsForm = () => {
                                                     style={{
                                                     
                                                     marginLeft:'18px',
-                                                    width:'230px',
+                                                    width:'235px',
                                                     
                                                     }}
                                                     InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
@@ -445,7 +486,7 @@ const InputsForm = () => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.schoolNameAndlocation ?
                                                             
-                                                           <Fade> <HiOutlineLocationMarker style={{fontSize:15, color:'gray'}}/> </Fade> : null }
+                                                           <Fade> <HiOutlineLocationMarker style={{fontSize:13, color:'gray'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -466,7 +507,7 @@ const InputsForm = () => {
                                                     style={{
                                                     
                                                     marginLeft:'18px',
-                                                    width:'230px',
+                                                    width:'235px',
                                                    
                                                     }}
                                                     InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
@@ -474,7 +515,7 @@ const InputsForm = () => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.timeLearnedDegree ?
                                                             
-                                                           <Fade> <RxCalendar style={{fontSize:15, color:'gray'}}/> </Fade> : null }
+                                                           <Fade> <RxCalendar style={{fontSize:13, color:'gray'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -495,7 +536,7 @@ const InputsForm = () => {
                                                     style={{
                                                     marginTop:'20px',
                                                     marginLeft:'18px',
-                                                    width:'230px',
+                                                    width:'235px',
                                                    
                                                     }}
                                                     InputProps={{style: {fontSize:19, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}}}
@@ -517,7 +558,7 @@ const InputsForm = () => {
                                                     style={{
                                                     
                                                     marginLeft:'18px',
-                                                    width:'230px',
+                                                    width:'235px',
                                                     
                                                     }}
                                                     InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
@@ -526,7 +567,7 @@ const InputsForm = () => {
                                                            { ourForm.objectName.ProgrammingLanguages ?
                                                             
                                                            <Fade> 
-                                                                <BsCode style={{fontSize:15, color:'gray'}}/> 
+                                                                <BsCode style={{fontSize:13, color:'gray'}}/> 
                                                             </Fade> : null }
                                                             
                                                         </InputAdornment>
@@ -550,7 +591,7 @@ const InputsForm = () => {
                                                     style={{
                                                     
                                                     marginLeft:'18px',
-                                                    width:'230px',
+                                                    width:'235px',
                                                    
                                                     }}
                                                     InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
@@ -558,7 +599,7 @@ const InputsForm = () => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.Databases ?
                                                             
-                                                           <Fade> <AiOutlineDatabase style={{fontSize:15, color:'gray'}}/> </Fade> : null }
+                                                           <Fade> <AiOutlineDatabase style={{fontSize:13, color:'gray'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -580,7 +621,7 @@ const InputsForm = () => {
                                                     style={{
                                                     
                                                     marginLeft:'18px',
-                                                    width:'230px',
+                                                    width:'235px',
                                                    
                                                     }}
                                                     InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
@@ -588,7 +629,7 @@ const InputsForm = () => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.Frameworks ?
                                                             
-                                                           <Fade> <AiOutlineTool style={{fontSize:15, color:'gray'}}/> </Fade> : null }
+                                                           <Fade> <AiOutlineTool style={{fontSize:13, color:'gray'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -612,7 +653,7 @@ const InputsForm = () => {
                                                     
                                                     marginLeft:'18px',
                                                     marginBottom:'10px',
-                                                    width:'230px',
+                                                    width:'235px',
                                                    
                                                     }}
                                                     InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
@@ -620,7 +661,7 @@ const InputsForm = () => {
                                                         <InputAdornment position='start'>
                                                            { ourForm.objectName.GeneralKnowledge ?
                                                             
-                                                           <Fade> <LiaProjectDiagramSolid style={{fontSize:15, color:'gray'}}/> </Fade> : null }
+                                                           <Fade> <LiaProjectDiagramSolid style={{fontSize:13, color:'gray'}}/> </Fade> : null }
                                                             
                                                         </InputAdornment>
                                                     )
@@ -655,7 +696,7 @@ const InputsForm = () => {
                                                     style={{
                                                     marginTop:'20px',
                                                     marginLeft:'18px',
-                                                    width:'230px',
+                                                    width:'235px',
                                                    
                                                     }}
                                                     InputProps={{style: {fontSize:19, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}}}
@@ -709,13 +750,13 @@ const InputsForm = () => {
                             content={() => pdfExportComponent.current}
                         />
 
-                            <Button 
+                            {/* <Button 
                                 startIcon={<SaveIcon/>}
                                 color="success"
                                 variant="contained"
                                 sx={{m:1, mt: 4}}
                                 onClick={handleAddResume}>Save Resume
-                            </Button>
+                            </Button> */}
 
                     </div>
 

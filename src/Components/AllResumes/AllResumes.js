@@ -188,7 +188,7 @@ const handleAddResume = (event) => {
                     {
                         cv.map((el, i) => 
                         
-                            <li className="liStyle" key={el.id}>
+                            <li className="liStStyle" key={el.id}>
                                 <PDFExport key={el.id} ref={pdfExportComponent[i]}>
 
                                 <div className="resume">

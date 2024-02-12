@@ -35,7 +35,7 @@ const App = () => {
             <Route path='/notUser' element={<NotUser/>} exact="true" />
             <Route path='/gotNewPassword' element={<GotNewPassword/>} exact="true" />
             <Route path='/postInputs' element={<InputsForm/>} exact="true" />
-            <Route path='/allResumes' element={<AllResumes/> } exact="true" />
+            {/* <Route path='/allResumes' element={<AllResumes/> } exact="true" /> */}
             <Route path='/dashboard' element={<Dashboard/> } exact="true" />
             <Route path='/examples' element={<Examples/> } exact="true" />
             <Route path='/logout' element={<Logout/> } exact="true" />
