@@ -12,7 +12,6 @@ import LoginApp from './Components/LoginApp/LoginApp';
 import RegisterApp from './Components/RegisterApp/RegisterApp';
 
 import Dashboard from './Components/Dashboard/Dashboard';
-import NotUser from './Components/NotUser/NotUser';
 import Logout from './Components/Logout/Logout';
 import GotNewPassword from './Components/GotNewPassword/GotNewPassword';
 
@@ -32,7 +31,6 @@ const App = () => {
           <Routes>
             <Route path='/login' element={<LoginApp/>} exact="true" />
             <Route path='/register' element={<RegisterApp/>} exact="true" />
-            <Route path='/notUser' element={<NotUser/>} exact="true" />
             <Route path='/gotNewPassword' element={<GotNewPassword/>} exact="true" />
             <Route path='/postInputs' element={<InputsForm/>} exact="true" />
             <Route path='/allResumes' element={<AllResumes/> } exact="true" />

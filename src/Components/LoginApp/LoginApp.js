@@ -151,7 +151,6 @@ const LoginApp = () => {
                     
                     {/* skin color: &#127996; */}
                 <div className="textContainer">
-                    {/* 💼 */}
                     <Fade left delay={600}> <h1> <b className="textStyle"> LOGIN</b> </h1> </Fade>
                     <Fade left delay={900}> <h1> <b className="textStyle"> YOUR CV </b> </h1> </Fade>
                     <Fade left delay={1200}> <h1> <b className="textStyle">TO CAREER</b> 👨‍💻 </h1> </Fade>

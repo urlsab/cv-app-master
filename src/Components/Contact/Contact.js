@@ -64,7 +64,6 @@ const Contact = () => {
     <>
         <div className='contactContainer'>
         <EntryNavbar/>    
-            {/* ❔ ☎️ */}
           <div className='textsContainerContact'>
             <Fade delay={300} top> <h1>  <b className='shortText'>FOR ANY ISSUE </b> </h1> </Fade>
             <Fade delay={600} top> <h1>  <b className='shortText'>  LEAVE A MESSAGE HERE </b> </h1> </Fade>
