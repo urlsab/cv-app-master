@@ -1,9 +1,6 @@
 import './Entry.css';
-
 import React from 'react';
-
 import { Fade } from 'react-reveal';
-
 import EntryNavbar from '../EntryNavbar/EntryNavbar';
 
 const Entry = () => {
@@ -34,7 +31,6 @@ const Entry = () => {
 
                 </div>
                 
-
             </div>
         </>
         

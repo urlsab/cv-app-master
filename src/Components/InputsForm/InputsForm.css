@@ -145,3 +145,20 @@
 .k-pdf-export {
    font-weight: normal;
 }
+
+/* a {
+    
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    margin: 0px;
+    display:none;
+    
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content:normal;
+    justify-content: normal;
+    align-items: normal;
+    padding: 0px;
+    text-decoration: none;
+    border:none;
+} */

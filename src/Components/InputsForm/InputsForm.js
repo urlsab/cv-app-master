@@ -33,7 +33,58 @@ import DownloadIcon from '@mui/icons-material/Download';
 import Navbar from "../Navbar/Navbar";
 import { createRandomId } from '../../utils/randomId';
 
+//import Popover from "react-text-selection-popover";
+// import placeRightBelow from "react-text-selection-popover/lib/placeRightBelow";
+
 const InputsForm = () => {
+
+const [selectedText, setSelectedText] = useState('');
+  const [linkUrl, setLinkUrl] = useState('');
+  // const [popoverPosition, setPopoverPosition] = useState({ x: 0, y: 0 });
+  const [isPopoverVisible, setIsPopoverVisible] = useState(false);
+  const [linkApplied, setLinkApplied] = useState(false);
+
+  const handleSelect = () => {
+    const selection = window.getSelection();
+    if (selection.toString()) {
+      setSelectedText(selection.toString());
+      const range = selection.getRangeAt(0).getBoundingClientRect();
+      // setPopoverPosition({ x: range.left, y: range.top - 40 }); 
+      setIsPopoverVisible(true);
+      setLinkApplied(false);
+    } else {
+      setSelectedText('');
+      setIsPopoverVisible(false);
+    }
+  };
+
+  const handleLinkInputChange = (event) => {
+    setLinkUrl(event.target.value);
+  };
+
+  const handleApplyLink = () => {
+    applyLink();
+    setIsPopoverVisible(false);
+  };
+
+  const applyLink = () => {
+    if (linkUrl && selectedText) {
+      const newNode = document.createElement('a');
+      newNode.setAttribute("style", 
+      "color:red; text-decoration: none; margin: 0px; padding: 0px; border:none; display: inline;"
+      
+      );
+      newNode.href = linkUrl;
+      newNode.textContent = selectedText;
+
+      const selection = window.getSelection();
+      const range = selection.getRangeAt(0);
+      range.deleteContents();
+      range.insertNode(newNode);
+
+      setLinkApplied(true);
+    }
+  };
 
     // loading, error - check if false - render gif - if true - stop render
     const [user, loading, error] = useAuthState(auth);
@@ -109,7 +160,7 @@ const InputsForm = () => {
           const selection = window.getSelection();
           const range = selection.getRangeAt(0);
           const span = document.createElement('b');
-          span.setAttribute('id', 'bb' || 'cc');
+          span.setAttribute('id', 'bb');
           span?.appendChild(range.extractContents());
           range.insertNode(span);
           setFlag(!flag);
@@ -117,7 +168,7 @@ const InputsForm = () => {
         if (window.getSelection() && flag) {
           const selection = window.getSelection();
           const range = selection.getRangeAt(0);
-          const span = document.getElementById('bb' || 'cc');
+          const span = document.getElementById('bb');
           console.log(selection);
           span?.replaceWith(...span.childNodes);
           range.insertNode(span);
@@ -131,7 +182,7 @@ const InputsForm = () => {
           const range = selection.getRangeAt(0);
           const span = document.createElement('u');
           
-          span.setAttribute('id', 'bb' ||'dd');
+          span.setAttribute('id','bb');
           span?.appendChild(range.extractContents());
           range.insertNode(span);
           setFlag(!flag);
@@ -139,7 +190,7 @@ const InputsForm = () => {
         if (window.getSelection() && flag) {
           const selection = window.getSelection();
           const range = selection.getRangeAt(0);
-          const span = document.getElementById('bb' || 'dd');
+          const span = document.getElementById('bb');
           span?.replaceWith(...span.childNodes);
           range.insertNode(span);
           setFlag(!flag);
@@ -147,19 +198,25 @@ const InputsForm = () => {
       };
 
       const handlePopoverForlink = () => {
-        console.log(window.getSelection().toString());
-        if(window.getSelection()) {
-            return (
-                <div>
-                    <input type="text" placeholder='type here url'></input>
-                </div>
-                
-            );
+        // console.log(window.getSelection().toString());
+        if (window.getSelection() && !flag) {
+          const selection = window.getSelection();
+          const range = selection.getRangeAt(0);
+          const span = document.createElement('u');
+          
+          span.setAttribute('id','bb');
+          span?.appendChild(range.extractContents());
+          range.insertNode(span);
+          setFlag(!flag);
         }
-             else {
-                return null;
-
-      };
+        if (window.getSelection() && flag) {
+          const selection = window.getSelection();
+          const range = selection.getRangeAt(0);
+          const span = document.getElementById('bb');
+          span?.replaceWith(...span.childNodes);
+          range.insertNode(span);
+          setFlag(!flag);
+        }
     }
 
       const href = 'google.com';
@@ -170,7 +227,7 @@ const InputsForm = () => {
           const range = selection.getRangeAt(0);
           const span = document.createElement('a');
           
-          span.setAttribute('id', 'bb' ||'aa');
+          span.setAttribute('id', 'bb');
           span.setAttribute('href', href);
           span?.appendChild(range.extractContents());
           range.insertNode(span);
@@ -179,12 +236,14 @@ const InputsForm = () => {
         if (window.getSelection() && flag) {
           const selection = window.getSelection();
           const range = selection.getRangeAt(0);
-          const span = document.getElementById('bb' || 'aa');
+          const span = document.getElementById('bb');
           span?.replaceWith(...span.childNodes);
           range.insertNode(span);
           setFlag(!flag);
         }
       };
+
+      const ref = React.createRef();
 
     return (
         <>
@@ -192,9 +251,11 @@ const InputsForm = () => {
                 <Navbar/>
                     <Fade delay={400}>
 
-                    {/* <button onClick={handleBold}>Toggle Bold</button>
+                        
+
+                    <button onClick={handleBold}>Toggle Bold</button>
                     <button onClick={handleUnderline}>Toggle underline</button>
-                    <button onClick={handlePopoverForlink}>Toggle hyperlink</button> */}
+                    <button onClick={handleHyperlink}>Toggle hyperlink</button> 
                     {/* {handlePopoverForlink()} */}
 
                         <PDFExport ref={pdfExportComponent}>
@@ -207,7 +268,7 @@ const InputsForm = () => {
 
                                             <div className='firstGroup'> 
 
-                                                <TextField
+                                                {/* <TextField
                                                     type="text"
                                                     name="fullName"
                                                     // onFocusCapture={()=> alert('focused')}
@@ -231,11 +292,11 @@ const InputsForm = () => {
                                                     }}
                                                     InputProps={{style: {fontSize:24 ,color:'white', padding: '0.2rem', lineHeight:"25px"}}}
                                                     
-                                                /> 
+                                                />  */}
                  
                                                 {/* </div> */}
 
-                                                {/* <div
+                                                <div
                                                     name="fullName"
                                                     
                                                     suppressContentEditableWarning={true}
@@ -247,7 +308,27 @@ const InputsForm = () => {
                                                         // console.log(event.target.textContent);
                                                         handleCustomChange('fullName', nameFull);
                                                     }}
-                                                /> */}
+                                                /> 
+                                        
+
+<div onMouseUp={handleSelect}>
+      {isPopoverVisible && !linkApplied && (
+        <div style={{  backgroundColor: '#f9f9f9', padding: '10px', border: '1px solid #ccc', borderRadius: '5px' }}>
+          <input
+            type="text"
+            value={linkUrl}
+            onChange={handleLinkInputChange}
+            placeholder="Enter URL"
+            onMouseUp={(e) => e.stopPropagation()}
+            style={{ width: '100%', marginBottom: '5px', boxSizing: 'border-box' }}
+          />
+          <button onClick={handleApplyLink} style={{ width: '100%', backgroundColor: '#4CAF50', color: 'white', padding: '10px', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>Apply</button>
+        </div>
+      )}
+      <p>
+        Please select some text and a popover bubble will appear allowing you to set a clickable link on that selected text.
+      </p>
+    </div>
                                            
                                                 <TextField
                                                     type="text"
