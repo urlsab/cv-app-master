@@ -38,25 +38,13 @@ import { createRandomId } from '../../utils/randomId';
 
 const InputsForm = () => {
 
-const [selectedText, setSelectedText] = useState('');
-  const [linkUrl, setLinkUrl] = useState('');
-  // const [popoverPosition, setPopoverPosition] = useState({ x: 0, y: 0 });
-  const [isPopoverVisible, setIsPopoverVisible] = useState(false);
-  const [linkApplied, setLinkApplied] = useState(false);
-
-  const handleSelect = () => {
-    const selection = window.getSelection();
-    if (selection.toString()) {
-      setSelectedText(selection.toString());
-      const range = selection.getRangeAt(0).getBoundingClientRect();
-      // setPopoverPosition({ x: range.left, y: range.top - 40 }); 
-      setIsPopoverVisible(true);
-      setLinkApplied(false);
-    } else {
-      setSelectedText('');
-      setIsPopoverVisible(false);
-    }
-  };
+    const [selectedText, setSelectedText] = useState('');
+    const [linkUrl, setLinkUrl] = useState('');
+    // const [popoverPosition, setPopoverPosition] = useState({ x: 0, y: 0 });
+    const [isPopoverVisible, setIsPopoverVisible] = useState(false);
+    const [linkApplied, setLinkApplied] = useState(false);
+    const [boldEnabled, setBoldEnabled] = useState(false);
+    const [underlineEnabled, setUnderlineEnabled] = useState(false);
 
   const handleLinkInputChange = (event) => {
     setLinkUrl(event.target.value);
@@ -71,7 +59,7 @@ const [selectedText, setSelectedText] = useState('');
     if (linkUrl && selectedText) {
       const newNode = document.createElement('a');
       newNode.setAttribute("style", 
-      "color:red; text-decoration: none; margin: 0px; padding: 0px; border:none; display: inline;"
+      "color:red; text-decoration: none; margin: 0px; padding: 0px; border:none; display: inline; cursor: pointer;"
       
       );
       newNode.href = linkUrl;
@@ -89,8 +77,6 @@ const [selectedText, setSelectedText] = useState('');
     // loading, error - check if false - render gif - if true - stop render
     const [user, loading, error] = useAuthState(auth);
     const [ourForm, setOurForm] = useState(initialState);
-    let [name, setName] = useState(ourForm.objectName.fullName);
-    
     const [inputList, setInputList] = useState([{ firstName: '', display: 'notdisplayed' }]);
     const navigate = useNavigate();
     
@@ -150,117 +136,116 @@ const [selectedText, setSelectedText] = useState('');
             }
         })
     }
-
-    let count = 0;
-  
-    const [flag, setFlag] = useState(false);
-
-    const handleBold = () => {
-        if (window.getSelection() && !flag) {
-          const selection = window.getSelection();
-          const range = selection.getRangeAt(0);
-          const span = document.createElement('b');
-          span.setAttribute('id', 'bb');
-          span?.appendChild(range.extractContents());
-          range.insertNode(span);
-          setFlag(!flag);
-        }
-        if (window.getSelection() && flag) {
-          const selection = window.getSelection();
-          const range = selection.getRangeAt(0);
-          const span = document.getElementById('bb');
-          console.log(selection);
-          span?.replaceWith(...span.childNodes);
-          range.insertNode(span);
-          setFlag(!flag);
-        }
-      };
     
-      const handleUnderline = () => {
-        if (window.getSelection() && !flag) {
-          const selection = window.getSelection();
-          const range = selection.getRangeAt(0);
-          const span = document.createElement('u');
-          
-          span.setAttribute('id','bb');
-          span?.appendChild(range.extractContents());
-          range.insertNode(span);
-          setFlag(!flag);
-        }
-        if (window.getSelection() && flag) {
-          const selection = window.getSelection();
-          const range = selection.getRangeAt(0);
-          const span = document.getElementById('bb');
-          span?.replaceWith(...span.childNodes);
-          range.insertNode(span);
-          setFlag(!flag);
-        }
-      };
-
-      const handlePopoverForlink = () => {
-        // console.log(window.getSelection().toString());
-        if (window.getSelection() && !flag) {
-          const selection = window.getSelection();
-          const range = selection.getRangeAt(0);
-          const span = document.createElement('u');
-          
-          span.setAttribute('id','bb');
-          span?.appendChild(range.extractContents());
-          range.insertNode(span);
-          setFlag(!flag);
-        }
-        if (window.getSelection() && flag) {
-          const selection = window.getSelection();
-          const range = selection.getRangeAt(0);
-          const span = document.getElementById('bb');
-          span?.replaceWith(...span.childNodes);
-          range.insertNode(span);
-          setFlag(!flag);
-        }
+  const handleSelect = () => {
+    const selection = window.getSelection();
+    if (selection.toString()) {
+      const selectedText = selection.toString();
+      setSelectedText(selectedText);
+      setIsPopoverVisible(true);
+    } else {
+      setSelectedText('');
+      setIsPopoverVisible(false);
     }
+  };
 
-      const href = 'google.com';
+  const [flag, setFlag] = useState(false);
 
-      const handleHyperlink = () => {
-        if (window.getSelection() && !flag) {
-          const selection = window.getSelection();
-          const range = selection.getRangeAt(0);
-          const span = document.createElement('a');
-          
-          span.setAttribute('id', 'bb');
-          span.setAttribute('href', href);
-          span?.appendChild(range.extractContents());
-          range.insertNode(span);
-          setFlag(!flag);
-        }
-        if (window.getSelection() && flag) {
-          const selection = window.getSelection();
-          const range = selection.getRangeAt(0);
-          const span = document.getElementById('bb');
-          span?.replaceWith(...span.childNodes);
-          range.insertNode(span);
-          setFlag(!flag);
-        }
-      };
+  const handleBold = () => {
+      if (window.getSelection() && !flag) {
+        const selection = window.getSelection();
+        const range = selection.getRangeAt(0);
+        const span = document.createElement('b');
+        span.setAttribute('id', 'bb');
+        span?.appendChild(range.extractContents());
+        range.insertNode(span);
+        setFlag(!flag);
+      }
+      if (window.getSelection() && flag) {
+        const selection = window.getSelection();
+        const range = selection.getRangeAt(0);
+        const span = document.getElementById('bb');
+        console.log(selection);
+        span?.replaceWith(...span.childNodes);
+        range.insertNode(span);
+        setFlag(!flag);
+      }
+    };
+  
+    const handleUnderline = () => {
+      if (window.getSelection() && !flag) {
+        const selection = window.getSelection();
+        const range = selection.getRangeAt(0);
+        const span = document.createElement('u');
+        
+        span.setAttribute('id','bb');
+        span?.appendChild(range.extractContents());
+        range.insertNode(span);
+        setFlag(!flag);
+      }
+      if (window.getSelection() && flag) {
+        const selection = window.getSelection();
+        const range = selection.getRangeAt(0);
+        const span = document.getElementById('bb');
+        span?.replaceWith(...span.childNodes);
+        range.insertNode(span);
+        setFlag(!flag);
+      }
+    };
 
-      const ref = React.createRef();
+  const boldSelectedText = () => {
+    const range = window.getSelection().getRangeAt(0);
+    const boldElement = document.createElement('strong');
+    if (boldEnabled) {
+      boldElement.appendChild(range.extractContents());
+      range.insertNode(boldElement);
+    } else {
+      const parentElement = range.commonAncestorContainer.parentElement;
+      if (parentElement.nodeName === 'STRONG') {
+        const textNode = document.createTextNode(parentElement.textContent);
+        parentElement.parentNode.replaceChild(textNode, parentElement);
+      }
+    }
+  };
 
+  const underlineSelectedText = () => {
+    const range = window.getSelection().getRangeAt(0);
+    const underlineElement = document.createElement('u');
+    if (underlineEnabled) {
+      underlineElement.appendChild(range.extractContents());
+      range.insertNode(underlineElement);
+    } else {
+      const parentElement = range.commonAncestorContainer.parentElement;
+      if (parentElement.nodeName === 'U') {
+        const textNode = document.createTextNode(parentElement.textContent);
+        parentElement.parentNode.replaceChild(textNode, parentElement);
+      }
+    }
+  };
+      
     return (
         <>
             <div className='createResumeContainer'>
                 <Navbar/>
                     <Fade delay={400}>
 
-                        
-
-                    <button onClick={handleBold}>Toggle Bold</button>
-                    <button onClick={handleUnderline}>Toggle underline</button>
-                    <button onClick={handleHyperlink}>Toggle hyperlink</button> 
-                    {/* {handlePopoverForlink()} */}
+                    <div style={{  backgroundColor: '#f9f9f9', padding: '10px', border: '1px solid #ccc', borderRadius: '5px' }}>
+                        <input
+                            type="text"
+                            value={linkUrl}
+                            onChange={handleLinkInputChange}
+                            placeholder="Enter URL"
+                            onMouseUp={(e) => e.stopPropagation()}
+                            style={{ width: '100%', marginBottom: '5px', boxSizing: 'border-box' }}
+                        />
+                        <button onClick={handleBold}>Toggle Bold</button>
+                        <button onClick={handleUnderline}>Toggle Underline</button>
+                        <button onClick={handleApplyLink} style={{ width: '100%', backgroundColor: '#4CAF50', color: 'white', padding: '10px', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>Apply</button>
+                    </div>
 
                         <PDFExport ref={pdfExportComponent}>
 
-                            <div className="resume">
+                            <div onMouseUp={handleSelect} className="resume">
 
                                 <div className='grid-area name'>
 
@@ -271,9 +256,7 @@ const [selectedText, setSelectedText] = useState('');
                                                 {/* <TextField
                                                     type="text"
                                                     name="fullName"
-                                                    // onFocusCapture={()=> alert('focused')}
-                                                    // onDoubleClick={()=> alert('doubleClicked')}
-                                                    // onBlurCapture={()=> alert ('blured')}
+                                                    
                                                     required 
                                                     multiline
                                                     placeholder='Full Name'
@@ -298,7 +281,7 @@ const [selectedText, setSelectedText] = useState('');
 
                                                 <div
                                                     name="fullName"
-                                                    
+                                                    onMouseUp={handleSelect}
                                                     suppressContentEditableWarning={true}
                                                     contentEditable={true}
                                                     content={ourForm.objectName.fullName}
@@ -309,33 +292,16 @@ const [selectedText, setSelectedText] = useState('');
                                                         handleCustomChange('fullName', nameFull);
                                                     }}
                                                 /> 
-                                        
 
-<div onMouseUp={handleSelect}>
-      {isPopoverVisible && !linkApplied && (
-        <div style={{  backgroundColor: '#f9f9f9', padding: '10px', border: '1px solid #ccc', borderRadius: '5px' }}>
-          <input
-            type="text"
-            value={linkUrl}
-            onChange={handleLinkInputChange}
-            placeholder="Enter URL"
-            onMouseUp={(e) => e.stopPropagation()}
-            style={{ width: '100%', marginBottom: '5px', boxSizing: 'border-box' }}
-          />
-          <button onClick={handleApplyLink} style={{ width: '100%', backgroundColor: '#4CAF50', color: 'white', padding: '10px', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>Apply</button>
-        </div>
-      )}
-      <p>
-        Please select some text and a popover bubble will appear allowing you to set a clickable link on that selected text.
-      </p>
-    </div>
-                                           
+                                                <p onMouseUp={handleSelect}>ppp pp </p>
+                                        
                                                 <TextField
                                                     type="text"
                                                     name="jobTitle"
                                                     className='pdfFonts'
                                                     required 
                                                     multiline
+                                                    onMouseUp={handleSelect}
                                                     placeholder='Role'
                                                     sx={{border: 'none',"& fieldset": { border: 'none' }  }}
                                                     value={ourForm.objectName.jobTitle}
