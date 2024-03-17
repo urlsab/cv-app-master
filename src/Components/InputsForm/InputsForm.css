@@ -143,8 +143,22 @@
 
 /* SAVED CLASS NAME -  KENDO REACT PDF */
 .k-pdf-export {
-   font-weight: normal;
-   
+   font-weight: normal; 
+}
+
+[contenteditable][placeholder]:empty:before {
+    content: attr(placeholder);
+    color: whitesmoke;
+    opacity: 50%;
+}
+
+  [contenteditable]:focus {
+    outline: 0px solid transparent;
+}
+
+input:focus{
+    outline: none;
+    
 }
 
 /* a {

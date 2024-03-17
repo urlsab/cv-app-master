@@ -4,7 +4,6 @@ import { MdAlternateEmail } from "react-icons/md";
 import { BsPhone } from "react-icons/bs";
 import { TiSocialLinkedin } from "react-icons/ti";
 import { FiGithub } from "react-icons/fi";
-import { BiLink } from "react-icons/bi";
 import { TbSchool } from "react-icons/tb";
 
 import { HiOutlineLocationMarker } from "react-icons/hi";
@@ -33,8 +32,10 @@ import DownloadIcon from '@mui/icons-material/Download';
 import Navbar from "../Navbar/Navbar";
 import { createRandomId } from '../../utils/randomId';
 
-//import Popover from "react-text-selection-popover";
-// import placeRightBelow from "react-text-selection-popover/lib/placeRightBelow";
+import { FaBold } from "react-icons/fa";
+import { TfiUnderline } from "react-icons/tfi";
+import { CgProfile } from "react-icons/cg";
+import { MdAddLink } from "react-icons/md";
 
 const InputsForm = () => {
 
@@ -59,7 +60,7 @@ const InputsForm = () => {
     if (linkUrl && selectedText) {
       const newNode = document.createElement('a');
       newNode.setAttribute("style", 
-      "color:red; text-decoration: none; margin: 0px; padding: 0px; border:none; display: inline; cursor: pointer;"
+      "color:blue; font-size: inherit; text-decoration: none; margin: 0px; padding: 0px; border:none; display: inline; cursor: pointer;"
       
       );
       newNode.href = linkUrl;
@@ -225,538 +226,552 @@ const InputsForm = () => {
       
     return (
         <>
-            <div className='createResumeContainer'>
-                <Navbar/>
-                    <Fade delay={400}>
+        <div  className='createResumeContainer'>
+        <Navbar/>
+        <Fade delay={400}>
 
-                    <div style={{  backgroundColor: '#f9f9f9', padding: '10px', border: '1px solid #ccc', borderRadius: '5px' }}>
-                        <input
-                            type="text"
-                            value={linkUrl}
-                            onChange={handleLinkInputChange}
-                            placeholder="Enter URL"
-                            onMouseUp={(e) => e.stopPropagation()}
-                            style={{ width: '100%', marginBottom: '5px', boxSizing: 'border-box' }}
-                        />
-                        <button onClick={handleBold}>Toggle Bold</button>
-                        <button onClick={handleUnderline}>Toggle Underline</button>
-                        <button onClick={handleApplyLink} style={{ width: '100%', backgroundColor: '#4CAF50', color: 'white', padding: '10px', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>Apply</button>
-                    </div>
+    <div className='buttonsStyle' style={{  padding: '10px', border: '1px solid transparent', borderRadius: '5px' }}>
+        
+        <Button 
+            sx={{mr:1}}
+            // center icon inside the button - justifyContent:  'flex-end' - becasue there is some default margin
+            style={{display: 'flex', justifyContent:  'flex-end'}}
+            color='inherit'
+            variant="contained"
+            startIcon={<FaBold/>}
+            onClick={handleBold}>
+        </Button>
+        <Button 
+            sx={{mr:1}}
+            style={{display: 'flex', justifyContent:  'flex-end'}}
+            color='inherit'
+            variant="contained"
+            startIcon={<TfiUnderline/>}
+            onClick={handleUnderline}>
+        </Button>
+        <input
+            type="text"
+            value={linkUrl}
+            onChange={handleLinkInputChange}
+            placeholder="Enter URL"
+            onMouseUp={(e) => e.stopPropagation()}
+            style={{ width: '300px', padding:'6.5px', borderRadius:'5px', borderColor:'transparent', marginRight:'2px' }}
+        />
+        <Button     
+            style={{display: 'flex', justifyContent:  'flex-end'}}
+            color='inherit'
+            variant="contained"
+            startIcon={<MdAddLink/>}
+            onClick={handleApplyLink}>
+        </Button> 
+        
+    </div>
 
-                        <PDFExport ref={pdfExportComponent}>
+        <PDFExport ref={pdfExportComponent}>
 
-                            <div onMouseUp={handleSelect} className="resume">
+            <div style={{marginTop:'20px'}} onMouseUp={handleSelect} className="resume">
 
-                                <div className='grid-area name'>
+                <div className='grid-area name'>
 
-                                    <div className='square'>
+    <div className='square'>
 
-                                            <div className='firstGroup'> 
+            <div className='firstGroup'> 
 
-                                                {/* <TextField
-                                                    type="text"
-                                                    name="fullName"
-                                                    
-                                                    required 
-                                                    multiline
-                                                    placeholder='Full Name'
-                                                    className='pdfFonts'
-                                                  
-                                                    // for hide the border
-                                                    sx={{border: 'none',"& fieldset": { border: 'none' } }}
-                                                    value={ourForm.objectName.fullName.toUpperCase()}
-                                                    onChange={handleChange}
-                                                    style={{
-                                                   
-                                                    marginTop:"25px",
-                                                
-                                                    width:'235px',
-                                                    
-                                                    }}
-                                                    InputProps={{style: {fontSize:24 ,color:'white', padding: '0.2rem', lineHeight:"25px"}}}
-                                                    
-                                                />  */}
+                <div
+                    name="fullName"
+                    required 
+                    multiline
+                    style={{marginTop:"25px",width:'235px',fontSize:24 ,color:'white', padding: '0.2rem', lineHeight:"25px"}}
+                    //className='pdfFonts'
+                    onMouseUp={handleSelect}
+                    suppressContentEditableWarning={true}
+                    contentEditable={true}
+                    placeholder="Full Name"
+                    content={ourForm.objectName.fullName}
+                    onInput={(event) => {
+                        const nameFull = event.target.textContent;
+                        handleCustomChange('fullName', nameFull);
+                    }}
+                /> 
+
+                <div
+                    name="jobTitle"
+                    required 
+                    multiline
+                    style={{marginTop:"25px",width:'235px',fontSize:20, marginTop:'0px' ,color:'white', padding: '0.2rem', lineHeight:"25px"}}
+                    //className='pdfFonts'
+                    onMouseUp={handleSelect}
+                    suppressContentEditableWarning={true}
+                    contentEditable={true}
+                    placeholder='Role'
+                    content={ourForm.objectName.jobTitle}
+                    onInput={(event) => {
+                        const nameFull = event.target.textContent;
+                        handleCustomChange('fullName', nameFull);
+                    }}
+                /> 
+
+                <div
+                    name="email"
+                    required 
+                    multiline
+                    style={{marginTop:"10px",width:'235px',fontSize:13 ,color:'white', padding: '0.2rem', lineHeight:"15px"}}
+                    //className='pdfFonts'
+                    onMouseUp={handleSelect}
+                    suppressContentEditableWarning={true}
+                    contentEditable={true}
+                    placeholder='Email'
+                    
+                    content={ourForm.objectName.email}
+                    onInput={(event) => {
+                        const nameFull = event.target.textContent + `p`;
+                        handleCustomChange('fullName', nameFull);
+                    }}
+                />
+
+                {/* {Object(`${<MdAlternateEmail style={{fontSize:13, color:'white'}}/>}`).toString()} */}
+                   
+                   
+
+                
                  
-                                                {/* </div> */}
 
-                                                <div
-                                                    name="fullName"
-                                                    onMouseUp={handleSelect}
-                                                    suppressContentEditableWarning={true}
-                                                    contentEditable={true}
-                                                    content={ourForm.objectName.fullName}
-                                                    onInput={(event) => {
-                                                        const nameFull = event.target.textContent;
-                                                        // console.log(nameFull);
-                                                        // console.log(event.target.textContent);
-                                                        handleCustomChange('fullName', nameFull);
-                                                    }}
-                                                /> 
+                {/* <TextField
+                    type="email"
+                    
+                    
+                    
+                    style={{
+                    
+                    marginTop:"15px",
+                    
+                    
+                    
+                    }}
+                    
+                    startAdornment: (
+                        <InputAdornment  position='start'>
+                            { ourForm.objectName.email ?
+                            
+                            <Fade> <MdAlternateEmail style={{fontSize:13, color:'white'}}/>
+                                </Fade> : null }
+                            
+                        </InputAdornment>
+                    )
+                    
+                }}/> */}
 
-                                                <p onMouseUp={handleSelect}>ppp pp </p>
-                                        
-                                                <TextField
-                                                    type="text"
-                                                    name="jobTitle"
-                                                    className='pdfFonts'
-                                                    required 
-                                                    multiline
-                                                    onMouseUp={handleSelect}
-                                                    placeholder='Role'
-                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                    value={ourForm.objectName.jobTitle}
-                                                    onChange={handleChange}
-                                                    style={{
-                                                  
-                                                    width:'235px',
-                                                    
-                                                    }}
-                                                    InputProps={{style: {fontSize:20, color:'white',  padding: '0.2rem', lineHeight:"25px"}}}
-                                                    
-                                                />
+                <TextField
+                    type="text"
+                    name="phoneNumber"
+                    className='pdfFonts'
+                    required 
+                    multiline
+                    placeholder='Phone Number'
+                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                    value={ourForm.objectName.phoneNumber}
+                    onChange={handleChange}
+                    style={{
+                    
+                    width:'235px',
+                    
+                    }}
+                    InputProps={{style: {fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
+                    startAdornment: (
+                        <InputAdornment position='start'>
+                            { ourForm.objectName.phoneNumber ?
+                            
+                            <Fade> <BsPhone style={{fontSize:13, color:'white'}}/> </Fade> : null }
+                            
+                        </InputAdornment>
+                    )
+                    
+                }}/>
+                
+                <TextField
+                    type="text"
+                    name="linkedinLink"
+                    className='pdfFonts'
+                    required 
+                    multiline
+                    placeholder='Linkedin link'
+                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                    value={ourForm.objectName.linkedinLink}
+                    onChange={handleChange}
+                    style={{
+                    
+                    width:'235px',
+                    
+                    }}
+                    InputProps={{style: {fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
+                    startAdornment: (
+                        <InputAdornment position='start'>
+                            { ourForm.objectName.linkedinLink ?
+                            
+                            <Fade> <TiSocialLinkedin style={{fontSize:13, color:'white'}}/> </Fade> : null }
+                            
+                        </InputAdornment>
+                    )
+                    
+                }}/>
 
-                                                <TextField
-                                                    type="email"
-                                                    name="email"
-                                                    className='pdfFonts'
-                                                    required 
-                                                    multiline
-                                                    
-                                                    placeholder='Email'
-                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                    value={ourForm.objectName.email}
-                                                    onChange={handleChange}
-                                                    style={{
-                                                    
-                                                    marginTop:"15px",
-                                                  
-                                                    width:'235px',
-                                                   
-                                                    }}
-                                                    InputProps={{style: {fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
-                                                    startAdornment: (
-                                                        <InputAdornment  position='start'>
-                                                           { ourForm.objectName.email ?
-                                                            
-                                                            <Fade> <MdAlternateEmail style={{fontSize:13, color:'white'}}/>
-                                                             </Fade> : null }
-                                                            
-                                                        </InputAdornment>
-                                                    )
-                                                    
-                                                }}/>
+                <TextField
+                    type="text"
+                    name="githubLink"
+                    required 
+                    multiline
+                    className='pdfFonts'
+                    placeholder='Github'
+                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                    value={ourForm.objectName.githubLink}
+                    onChange={handleChange}
+                    style={{
+                    
+                    width:'235px',
+                    
+                    }}
+                    InputProps={{style: {fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
+                    startAdornment: (
+                        <InputAdornment position='start'>
+                            { ourForm.objectName.githubLink ?
+                            
+                            <Fade> <FiGithub style={{fontSize:13, color:'white'}}/> </Fade> : null }
+                            
+                        </InputAdornment>
+                    )
+                    
+                }}/>
+                
+            
+                <TextField
+                    type="text"
+                    name="portfolioLink"
+                    className='pdfFonts'
+                    required 
+                    multiline
+                    placeholder='Portfolio'
+                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                    value={ourForm.objectName.portfolioLink}
+                    onChange={handleChange}
+                    style={{
+                    
+                    width:'235px',
+                    
+                    }}
+                    InputProps={{style: {fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
+                    startAdornment: (
+                        <InputAdornment position='start'>
+                            { ourForm.objectName.portfolioLink ?
+                            
+                            <Fade> <CgProfile style={{fontSize:13, color:'white'}}/> </Fade> : null }
+                            
+                        </InputAdornment>
+                    )
+                    
+                }}/> 
+                
+            </div>
 
-                                                <TextField
-                                                    type="text"
-                                                    name="phoneNumber"
-                                                    className='pdfFonts'
-                                                    required 
-                                                    multiline
-                                                    placeholder='Phone Number'
-                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                    value={ourForm.objectName.phoneNumber}
-                                                    onChange={handleChange}
-                                                    style={{
-                                                    
-                                                    width:'235px',
-                                                   
-                                                    }}
-                                                    InputProps={{style: {fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
-                                                    startAdornment: (
-                                                        <InputAdornment position='start'>
-                                                           { ourForm.objectName.phoneNumber ?
-                                                            
-                                                           <Fade> <BsPhone style={{fontSize:13, color:'white'}}/> </Fade> : null }
-                                                            
-                                                        </InputAdornment>
-                                                    )
-                                                    
-                                                }}/>
-                                               
-                                                <TextField
-                                                    type="text"
-                                                    name="linkedinLink"
-                                                    className='pdfFonts'
-                                                    required 
-                                                    multiline
-                                                    placeholder='Linkedin link'
-                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                    value={ourForm.objectName.linkedinLink}
-                                                    onChange={handleChange}
-                                                    style={{
-                                                    
-                                                    width:'235px',
-                                                    
-                                                    }}
-                                                    InputProps={{style: {fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
-                                                    startAdornment: (
-                                                        <InputAdornment position='start'>
-                                                           { ourForm.objectName.linkedinLink ?
-                                                            
-                                                           <Fade> <TiSocialLinkedin style={{fontSize:13, color:'white'}}/> </Fade> : null }
-                                                            
-                                                        </InputAdornment>
-                                                    )
-                                                    
-                                                }}/>
+        </div>
 
-                                                <TextField
-                                                    type="text"
-                                                    name="githubLink"
-                                                    required 
-                                                    multiline
-                                                    className='pdfFonts'
-                                                    placeholder='Github'
-                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                    value={ourForm.objectName.githubLink}
-                                                    onChange={handleChange}
-                                                    style={{
-                                                  
-                                                    width:'235px',
-                                                    
-                                                    }}
-                                                    InputProps={{style: {fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
-                                                    startAdornment: (
-                                                        <InputAdornment position='start'>
-                                                           { ourForm.objectName.githubLink ?
-                                                            
-                                                           <Fade> <FiGithub style={{fontSize:13, color:'white'}}/> </Fade> : null }
-                                                            
-                                                        </InputAdornment>
-                                                    )
-                                                    
-                                                }}/>
-                                                
-                                            
-                                                <TextField
-                                                    type="text"
-                                                    name="portfolioLink"
-                                                    className='pdfFonts'
-                                                    required 
-                                                    multiline
-                                                    placeholder='Portfolio'
-                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                    value={ourForm.objectName.portfolioLink}
-                                                    onChange={handleChange}
-                                                    style={{
-                                                   
-                                                    width:'235px',
-                                                    
-                                                    }}
-                                                    InputProps={{style: {fontSize:13, color:'white',  padding: '0.2rem', lineHeight:"15px"}, 
-                                                    startAdornment: (
-                                                        <InputAdornment position='start'>
-                                                           { ourForm.objectName.portfolioLink ?
-                                                            
-                                                           <Fade> <BiLink style={{fontSize:13, color:'white'}}/> </Fade> : null }
-                                                            
-                                                        </InputAdornment>
-                                                    )
-                                                    
-                                                }}/> 
-                                                
-                                            </div>
+            {/* after square //*/}
 
-                                        </div>
+    <div className='afterSquareGroup'>
+        
+            <TextField
+                    type="text"
+                    name="educationHeader"
+                    className='pdfFonts'
+                    required 
+                    multiline
+                    placeholder='Optional section'
+                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                    value='EDUCATION'
+                
+                    style={{
+                    marginTop:'20px',
+                    marginLeft:'18px',
+                    width:'235px',
+                    
+                    }}
+                    InputProps={{style: {fontSize:19, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}}}
+                    
+                />
 
-                                            {/* after square //*/}
+                <TextField
+                    type="text"
+                    name="degreeTypeAndname"
+                    className='pdfFonts'
+                    required 
+                    multiline
+                    placeholder='Degree/course name'
+                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                    value={ourForm.objectName.degreeTypeAndname}
+                    onChange={handleChange}
+                    style={{
+                    
+                    marginLeft:'18px',
+                    width:'235px',
+                    
+                    }}
+                    InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"}, 
+                    startAdornment: (
+                        <InputAdornment position='start'>
+                            { ourForm.objectName.degreeTypeAndname ?
+                            
+                            <Fade><TbSchool style={{fontSize:13, color:'gray'}}/> </Fade> : null }
+                            
+                        </InputAdornment>
+                    )
+                }}
+                    
+                />
 
-                                    <div className='afterSquareGroup'>
-                                     
-                                            <TextField
-                                                    type="text"
-                                                    name="educationHeader"
-                                                    className='pdfFonts'
-                                                    required 
-                                                    multiline
-                                                    placeholder='Optional section'
-                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                    value='EDUCATION'
-                                               
-                                                    style={{
-                                                    marginTop:'20px',
-                                                    marginLeft:'18px',
-                                                    width:'235px',
-                                                   
-                                                    }}
-                                                    InputProps={{style: {fontSize:19, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}}}
-                                                    
-                                                />
+                <TextField
+                    type="text"
+                    name="schoolNameAndlocation"
+                    className='pdfFonts'
+                    required 
+                    multiline
+                    placeholder='School name & location'
+                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                    value={ourForm.objectName.schoolNameAndlocation}
+                    onChange={handleChange}
+                    style={{
+                    
+                    marginLeft:'18px',
+                    width:'235px',
+                    
+                    }}
+                    InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
+                    startAdornment: (
+                        <InputAdornment position='start'>
+                            { ourForm.objectName.schoolNameAndlocation ?
+                            
+                            <Fade> <HiOutlineLocationMarker style={{fontSize:13, color:'gray'}}/> </Fade> : null }
+                            
+                        </InputAdornment>
+                    )
+                }}
+                />
 
-                                                <TextField
-                                                    type="text"
-                                                    name="degreeTypeAndname"
-                                                    className='pdfFonts'
-                                                    required 
-                                                    multiline
-                                                    placeholder='Degree/course name'
-                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                    value={ourForm.objectName.degreeTypeAndname}
-                                                    onChange={handleChange}
-                                                    style={{
-                                                    
-                                                    marginLeft:'18px',
-                                                    width:'235px',
-                                                    
-                                                    }}
-                                                    InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"}, 
-                                                    startAdornment: (
-                                                        <InputAdornment position='start'>
-                                                           { ourForm.objectName.degreeTypeAndname ?
-                                                            
-                                                           <Fade><TbSchool style={{fontSize:13, color:'gray'}}/> </Fade> : null }
-                                                            
-                                                        </InputAdornment>
-                                                    )
-                                                }}
-                                                    
-                                                />
+                <TextField
+                    type="text"
+                    name="timeLearnedDegree"
+                    className='pdfFonts'
+                    required 
+                    
+                    multiline
+                    placeholder='Duration'
+                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                    value={ourForm.objectName.timeLearnedDegree}
+                    onChange={handleChange}
+                    style={{
+                    
+                    marginLeft:'18px',
+                    width:'235px',
+                    
+                    }}
+                    InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
+                    startAdornment: (
+                        <InputAdornment position='start'>
+                            { ourForm.objectName.timeLearnedDegree ?
+                            
+                            <Fade> <RxCalendar style={{fontSize:13, color:'gray'}}/> </Fade> : null }
+                            
+                        </InputAdornment>
+                    )
+                }}
+                    
+                />
 
-                                                <TextField
-                                                    type="text"
-                                                    name="schoolNameAndlocation"
-                                                    className='pdfFonts'
-                                                    required 
-                                                    multiline
-                                                    placeholder='School name & location'
-                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                    value={ourForm.objectName.schoolNameAndlocation}
-                                                    onChange={handleChange}
-                                                    style={{
-                                                    
-                                                    marginLeft:'18px',
-                                                    width:'235px',
-                                                    
-                                                    }}
-                                                    InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
-                                                    startAdornment: (
-                                                        <InputAdornment position='start'>
-                                                           { ourForm.objectName.schoolNameAndlocation ?
-                                                            
-                                                           <Fade> <HiOutlineLocationMarker style={{fontSize:13, color:'gray'}}/> </Fade> : null }
-                                                            
-                                                        </InputAdornment>
-                                                    )
-                                                }}
-                                                />
+            <TextField
+                    type="text"
+                    name="skillsHeader"
+                    className='pdfFonts'
+                    required 
+                    multiline
+                    placeholder='Optional section'
+                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                    value='SKILLS'
+                    
+                    style={{
+                    marginTop:'20px',
+                    marginLeft:'18px',
+                    width:'235px',
+                    
+                    }}
+                    InputProps={{style: {fontSize:19, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}}}
+                    
+                />
 
-                                                <TextField
-                                                    type="text"
-                                                    name="timeLearnedDegree"
-                                                    className='pdfFonts'
-                                                    required 
-                                                    
-                                                    multiline
-                                                    placeholder='Duration'
-                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                    value={ourForm.objectName.timeLearnedDegree}
-                                                    onChange={handleChange}
-                                                    style={{
-                                                    
-                                                    marginLeft:'18px',
-                                                    width:'235px',
-                                                   
-                                                    }}
-                                                    InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
-                                                    startAdornment: (
-                                                        <InputAdornment position='start'>
-                                                           { ourForm.objectName.timeLearnedDegree ?
-                                                            
-                                                           <Fade> <RxCalendar style={{fontSize:13, color:'gray'}}/> </Fade> : null }
-                                                            
-                                                        </InputAdornment>
-                                                    )
-                                                }}
-                                                    
-                                                />
+                <TextField
+                    type="text"
+                    name="ProgrammingLanguages"
+                    className='pdfFonts'
+                    required 
+                    multiline
+                    placeholder='Languages: JS, CSS e.g.'
+                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                    value={ourForm.objectName.ProgrammingLanguages}
+                    onChange={handleChange}
+                    // defaultValue={'Languages:'}
+                    
+                    style={{
+                    
+                    marginLeft:'18px',
+                    width:'235px',
+                    
+                    }}
+                    InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
+                    startAdornment: (
+                        <InputAdornment  position='start'>
+                            { ourForm.objectName.ProgrammingLanguages ?
+                            
+                            <Fade> 
+                                <BsCode style={{fontSize:13, color:'gray'}}/> 
+                            </Fade> : null }
+                            
+                        </InputAdornment>
+                    )
+                }}
+                
+                />
 
-                                            <TextField
-                                                    type="text"
-                                                    name="skillsHeader"
-                                                    className='pdfFonts'
-                                                    required 
-                                                    multiline
-                                                    placeholder='Optional section'
-                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                    value='SKILLS'
-                                                  
-                                                    style={{
-                                                    marginTop:'20px',
-                                                    marginLeft:'18px',
-                                                    width:'235px',
-                                                   
-                                                    }}
-                                                    InputProps={{style: {fontSize:19, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}}}
-                                                    
-                                                />
+                <TextField
+                    type="text"
+                    name="Databases"
+                    className='pdfFonts'
+                    required 
+                    multiline
+                    placeholder='Databases: MongoDB e.g.'
+                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                    value={ourForm.objectName.Databases}
+                    onChange={handleChange}
+                    
+                    
+                    style={{
+                    
+                    marginLeft:'18px',
+                    width:'235px',
+                    
+                    }}
+                    InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
+                    startAdornment: (
+                        <InputAdornment position='start'>
+                            { ourForm.objectName.Databases ?
+                            
+                            <Fade> <AiOutlineDatabase style={{fontSize:13, color:'gray'}}/> </Fade> : null }
+                            
+                        </InputAdornment>
+                    )
+                }}
+                />
 
-                                                <TextField
-                                                    type="text"
-                                                    name="ProgrammingLanguages"
-                                                    className='pdfFonts'
-                                                    required 
-                                                    multiline
-                                                    placeholder='Languages: JS, CSS e.g.'
-                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                    value={ourForm.objectName.ProgrammingLanguages}
-                                                    onChange={handleChange}
-                                                    // defaultValue={'Languages:'}
-                                                    
-                                                    style={{
-                                                    
-                                                    marginLeft:'18px',
-                                                    width:'235px',
-                                                    
-                                                    }}
-                                                    InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
-                                                    startAdornment: (
-                                                        <InputAdornment  position='start'>
-                                                           { ourForm.objectName.ProgrammingLanguages ?
-                                                            
-                                                           <Fade> 
-                                                                <BsCode style={{fontSize:13, color:'gray'}}/> 
-                                                            </Fade> : null }
-                                                            
-                                                        </InputAdornment>
-                                                    )
-                                                }}
-                                                
-                                                />
+                <TextField
+                    type="text"
+                    name="Frameworks"
+                    className='pdfFonts'
+                    required 
+                    multiline
+                    placeholder='Frameworks: React e.g.'
+                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                    value={ourForm.objectName.Frameworks}
+                    onChange={handleChange}
+                    defaultValue={'Languages:'}
+                    
+                    style={{
+                    
+                    marginLeft:'18px',
+                    width:'235px',
+                    
+                    }}
+                    InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
+                    startAdornment: (
+                        <InputAdornment position='start'>
+                            { ourForm.objectName.Frameworks ?
+                            
+                            <Fade> <AiOutlineTool style={{fontSize:13, color:'gray'}}/> </Fade> : null }
+                            
+                        </InputAdornment>
+                    )
+                }}
+                    
+                />
 
-                                                <TextField
-                                                    type="text"
-                                                    name="Databases"
-                                                    className='pdfFonts'
-                                                    required 
-                                                    multiline
-                                                    placeholder='Databases: MongoDB e.g.'
-                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                    value={ourForm.objectName.Databases}
-                                                    onChange={handleChange}
-                                                    
-                                                    
-                                                    style={{
-                                                    
-                                                    marginLeft:'18px',
-                                                    width:'235px',
-                                                   
-                                                    }}
-                                                    InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
-                                                    startAdornment: (
-                                                        <InputAdornment position='start'>
-                                                           { ourForm.objectName.Databases ?
-                                                            
-                                                           <Fade> <AiOutlineDatabase style={{fontSize:13, color:'gray'}}/> </Fade> : null }
-                                                            
-                                                        </InputAdornment>
-                                                    )
-                                                }}
-                                                />
- 
-                                                <TextField
-                                                    type="text"
-                                                    name="Frameworks"
-                                                    className='pdfFonts'
-                                                    required 
-                                                    multiline
-                                                    placeholder='Frameworks: React e.g.'
-                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                    value={ourForm.objectName.Frameworks}
-                                                    onChange={handleChange}
-                                                    defaultValue={'Languages:'}
-                                                    
-                                                    style={{
-                                                    
-                                                    marginLeft:'18px',
-                                                    width:'235px',
-                                                   
-                                                    }}
-                                                    InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
-                                                    startAdornment: (
-                                                        <InputAdornment position='start'>
-                                                           { ourForm.objectName.Frameworks ?
-                                                            
-                                                           <Fade> <AiOutlineTool style={{fontSize:13, color:'gray'}}/> </Fade> : null }
-                                                            
-                                                        </InputAdornment>
-                                                    )
-                                                }}
-                                                    
-                                                />
+                <TextField
+                    type="text"
+                    name="GeneralKnowledge"
+                    className='pdfFonts'
+                    required 
+                    multiline
+                    placeholder='Knowledge: React-hooks e.g.'
+                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                    value={ourForm.objectName.GeneralKnowledge}
+                    onChange={handleChange}
+                    defaultValue={'Languages:'}
+                    
+                    style={{
+                    
+                    marginLeft:'18px',
+                    marginBottom:'10px',
+                    width:'235px',
+                    
+                    }}
+                    InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
+                    startAdornment: (
+                        <InputAdornment position='start'>
+                            { ourForm.objectName.GeneralKnowledge ?
+                            
+                            <Fade> <LiaProjectDiagramSolid style={{fontSize:13, color:'gray'}}/> </Fade> : null }
+                            
+                        </InputAdornment>
+                    )
+                }}
+                    
+                />
 
-                                                <TextField
-                                                    type="text"
-                                                    name="GeneralKnowledge"
-                                                    className='pdfFonts'
-                                                    required 
-                                                    multiline
-                                                    placeholder='Knowledge: React-hooks e.g.'
-                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                    value={ourForm.objectName.GeneralKnowledge}
-                                                    onChange={handleChange}
-                                                    defaultValue={'Languages:'}
-                                                    
-                                                    style={{
-                                                    
-                                                    marginLeft:'18px',
-                                                    marginBottom:'10px',
-                                                    width:'235px',
-                                                   
-                                                    }}
-                                                    InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
-                                                    startAdornment: (
-                                                        <InputAdornment position='start'>
-                                                           { ourForm.objectName.GeneralKnowledge ?
-                                                            
-                                                           <Fade> <LiaProjectDiagramSolid style={{fontSize:13, color:'gray'}}/> </Fade> : null }
-                                                            
-                                                        </InputAdornment>
-                                                    )
-                                                }}
-                                                    
-                                                />
+                <TodoLeft/>
 
-                                                <TodoLeft/>
+        </div>   
 
-                                        </div>   
- 
-                                    </div>
+    </div>
 
-                                    
+    
 
-                                            {/* rigth part */}
-                                            <div className="grid-area work">
-                                            
-                                                <TextField
-                                                    type="text"
-                                                    name="workHeader"
-                                                    className='pdfFonts'
-                                                    required 
-                                                    
-                                                    multiline
-                                                    // placeholder='Optional section'
-                                                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                                                    value={'WORK EXPERIENCE'}
-                                                    // onChange={handleChange}
-                                                    defaultValue={'Languages:'}
-                                                    
-                                                    style={{
-                                                    marginTop:'20px',
-                                                    marginLeft:'18px',
-                                                    width:'235px',
-                                                   
-                                                    }}
-                                                    InputProps={{style: {fontSize:19, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}}}
-                                                    
-                                                />
+            {/* rigth part */}
+            <div className="grid-area work">
+            
+                <TextField
+                    type="text"
+                    name="workHeader"
+                    className='pdfFonts'
+                    required 
+                    
+                    multiline
+                    // placeholder='Optional section'
+                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                    value={'WORK EXPERIENCE'}
+                    // onChange={handleChange}
+                    defaultValue={'Languages:'}
+                    
+                    style={{
+                    marginTop:'20px',
+                    marginLeft:'18px',
+                    width:'235px',
+                    
+                    }}
+                    InputProps={{style: {fontSize:19, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}}}
+                    
+                />
 
-                                                <TodoWork/>
+                <TodoWork/>
 
-                                                <TodoRight/>
+                <TodoRight/>
 
-                                            </div>
+            </div>
 
-                                    </div> 
+    </div> 
 
                                 
 
@@ -802,7 +817,7 @@ const InputsForm = () => {
                                 color="success"
                                 variant="contained"
                                 sx={{m:1, mt: 4}}
-                                onClick={handleAddResume}>Save Resume
+                                onClick={handleAddResume}>SAVE
                             </Button> */}
 
                     </div>
