@@ -32,12 +32,16 @@ import DownloadIcon from '@mui/icons-material/Download';
 import Navbar from "../Navbar/Navbar";
 import { createRandomId } from '../../utils/randomId';
 
+import { MdEmail } from 'react-icons/md'; 
 import { FaBold } from "react-icons/fa";
 import { TfiUnderline } from "react-icons/tfi";
 import { CgProfile } from "react-icons/cg";
 import { MdAddLink } from "react-icons/md";
 
 const InputsForm = () => {
+
+    const emailIcon = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="white" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg>';
+    const arrowRight = <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00000" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg>;
 
     const [selectedText, setSelectedText] = useState('');
     const [linkUrl, setLinkUrl] = useState('');
@@ -315,7 +319,7 @@ const InputsForm = () => {
                     name="email"
                     required 
                     multiline
-                    style={{marginTop:"10px",width:'235px',fontSize:13 ,color:'white', padding: '0.2rem', lineHeight:"15px"}}
+                    style={{marginTop:"10px",width:'235px',padding: '0.2rem 0.2rem 0.2rem 30px', fontSize:13 ,color:'white', padding: '0.2rem', lineHeight:"15px", position:'relative' }}
                     //className='pdfFonts'
                     onMouseUp={handleSelect}
                     suppressContentEditableWarning={true}
@@ -324,42 +328,24 @@ const InputsForm = () => {
                     
                     content={ourForm.objectName.email}
                     onInput={(event) => {
-                        const nameFull = event.target.textContent + `p`;
+                        const nameFull = event.target.textContent;
                         handleCustomChange('fullName', nameFull);
                     }}
+                >
+                    
+                  
+                {/* <MdAlternateEmail style={{fontSize:13, color:'white'}}/>  */}  
+                <img 
+                src="equilateral.svg"
+                // src='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14"><path fill="white" d="M12,12c3.314,0,6-2.686,6-6c0-3.314-2.686-6-6-6s-6,2.686-6,6C6,9.314,8.686,12,12,12z M12,16.5c-2.207,0-4-1.793-4-4.001c0-2.207,1.793-4.001,4-4.001c2.208,0,4,1.794,4,4.001C16,14.707,14.207,16.5,12,16.5z"/></svg>'
+                //src='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="white" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg>'
                 />
-
-                {/* {Object(`${<MdAlternateEmail style={{fontSize:13, color:'white'}}/>}`).toString()} */}
-                   
-                   
-
-                
-                 
-
+                </div>
+           
                 {/* <TextField
-                    type="email"
-                    
-                    
-                    
-                    style={{
-                    
-                    marginTop:"15px",
-                    
-                    
-                    
-                    }}
-                    
-                    startAdornment: (
-                        <InputAdornment  position='start'>
-                            { ourForm.objectName.email ?
-                            
-                            <Fade> <MdAlternateEmail style={{fontSize:13, color:'white'}}/>
-                                </Fade> : null }
-                            
-                        </InputAdornment>
-                    )
-                    
-                }}/> */}
+                    type="email"        
+                    { ourForm.objectName.email ?<Fade> <MdAlternateEmail/></Fade> : null })}}/> 
+                */}
 
                 <TextField
                     type="text"
