@@ -22,7 +22,10 @@
     flex-wrap: wrap;
     /* sizes exactly like beamjobs */
     width: 790px;
-    min-height: 11.65in;
+
+    /* min height effects the footer part of the paper before print */
+    min-height: 11.6in;
+
     /* margin: 20px auto; */
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr;

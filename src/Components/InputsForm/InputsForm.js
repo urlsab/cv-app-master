@@ -227,6 +227,18 @@ const InputsForm = () => {
       }
     }
   };
+
+  const validateEmail = (email) => {
+    // Regular expression for validating email addresses
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailPattern.test(email);
+};
+
+const isValidEmail = (email) => {
+    // Define a regular expression pattern for email validation.
+    const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return pattern.test(email);
+  }
       
     return (
         <>
@@ -273,7 +285,8 @@ const InputsForm = () => {
 
         <PDFExport ref={pdfExportComponent}>
 
-            <div style={{marginTop:'20px'}} onMouseUp={handleSelect} className="resume">
+            {/* margin top effects the head part of the paper before print */}
+            <div style={{marginTop:'3px'}} onMouseUp={handleSelect} className="resume">
 
                 <div className='grid-area name'>
 
@@ -283,7 +296,7 @@ const InputsForm = () => {
 
                 <div
                     name="fullName"
-                    required 
+                    aria-required="true"
                     multiline
                     style={{marginTop:"25px",width:'235px',fontSize:24 ,color:'white', padding: '0.2rem', lineHeight:"25px"}}
                     //className='pdfFonts'
@@ -300,7 +313,8 @@ const InputsForm = () => {
 
                 <div
                     name="jobTitle"
-                    required 
+                    aria-required="true"
+                   
                     multiline
                     style={{marginTop:"25px",width:'235px',fontSize:20, marginTop:'0px' ,color:'white', padding: '0.2rem', lineHeight:"25px"}}
                     //className='pdfFonts'
@@ -311,42 +325,39 @@ const InputsForm = () => {
                     content={ourForm.objectName.jobTitle}
                     onInput={(event) => {
                         const nameFull = event.target.textContent;
-                        handleCustomChange('fullName', nameFull);
+                        handleCustomChange('jobTitle', nameFull);
                     }}
                 /> 
 
+                {/*add: verify it's legal email adrres + exist */}
                 <div
                     name="email"
+                    aria-required="true"
                     required 
-                    multiline
-                    style={{marginTop:"10px",width:'235px',padding: '0.2rem 0.2rem 0.2rem 30px', fontSize:13 ,color:'white', padding: '0.2rem', lineHeight:"15px", position:'relative' }}
-                    //className='pdfFonts'
+                    style={{marginTop:"10px", width:'235px', fontSize:13 ,color:'white', padding: '0.2rem', lineHeight:"15px", position:'relative' }}
                     onMouseUp={handleSelect}
                     suppressContentEditableWarning={true}
                     contentEditable={true}
                     placeholder='Email'
-                    
                     content={ourForm.objectName.email}
                     onInput={(event) => {
                         const nameFull = event.target.textContent;
-                        handleCustomChange('fullName', nameFull);
+                        handleCustomChange('email', nameFull);
                     }}
                 >
-                    
-                  
-                {/* <MdAlternateEmail style={{fontSize:13, color:'white'}}/>  */}  
-                <img 
-                src="equilateral.svg"
-                // src='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14"><path fill="white" d="M12,12c3.314,0,6-2.686,6-6c0-3.314-2.686-6-6-6s-6,2.686-6,6C6,9.314,8.686,12,12,12z M12,16.5c-2.207,0-4-1.793-4-4.001c0-2.207,1.793-4.001,4-4.001c2.208,0,4,1.794,4,4.001C16,14.707,14.207,16.5,12,16.5z"/></svg>'
-                //src='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="white" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg>'
-                />
-                </div>
-           
-                {/* <TextField
-                    type="email"        
-                    { ourForm.objectName.email ?<Fade> <MdAlternateEmail/></Fade> : null })}}/> 
-                */}
 
+                {ourForm.objectName.email && <Fade> <img 
+                    src='data:image/svg+xml;utf8,
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24">
+                            <path stroke="white" stroke-linecap="round" stroke-width="1.5" d="m3.5 5.5 7.893 6.036a1 1 0 0 0 1.214 0L20.5 5.5M4 19h16a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Z"/>
+                        </svg>'
+                /> </Fade> }
+                
+                
+                </div>
+
+                
+           
                 <TextField
                     type="text"
                     name="phoneNumber"
