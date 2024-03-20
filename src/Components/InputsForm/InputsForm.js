@@ -329,12 +329,20 @@ const isValidEmail = (email) => {
                     }}
                 /> 
 
+            <div className="iconAndInputs" style={{marginTop:"10px"}}>
+                {ourForm.objectName.email !=='' && (<Fade> <img 
+                    src='data:image/svg+xml;utf8,
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24">
+                            <path stroke="white" stroke-linecap="round" stroke-width="1.5" d="m3.5 5.5 7.893 6.036a1 1 0 0 0 1.214 0L20.5 5.5M4 19h16a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Z"/>
+                        </svg>'
+                /> </Fade>)}
+
                 {/*add: verify it's legal email adrres + exist */}
                 <div
                     name="email"
                     aria-required="true"
                     required 
-                    style={{marginTop:"10px", width:'235px', fontSize:13 ,color:'white', padding: '0.2rem', lineHeight:"15px", position:'relative' }}
+                    style={{width:'210px', fontSize:13 ,color:'white', padding: '0.2rem', lineHeight:"15px", position:'relative' }}
                     onMouseUp={handleSelect}
                     suppressContentEditableWarning={true}
                     contentEditable={true}
@@ -344,20 +352,11 @@ const isValidEmail = (email) => {
                         const nameFull = event.target.textContent;
                         handleCustomChange('email', nameFull);
                     }}
-                >
+                />
 
-                {ourForm.objectName.email && <Fade> <img 
-                    src='data:image/svg+xml;utf8,
-                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24">
-                            <path stroke="white" stroke-linecap="round" stroke-width="1.5" d="m3.5 5.5 7.893 6.036a1 1 0 0 0 1.214 0L20.5 5.5M4 19h16a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Z"/>
-                        </svg>'
-                /> </Fade> }
-                
-                
-                </div>
+            </div>
 
-                
-           
+
                 <TextField
                     type="text"
                     name="phoneNumber"

@@ -12,6 +12,7 @@
     min-width: 800px;
 }
 
+
 .resume {
     /* display: inline-grid; */
     margin-top: 0.5px;
@@ -162,6 +163,12 @@
 input:focus{
     outline: none;
     
+}
+
+.iconAndInputs {
+    /* background-color: blue; */
+    display: flex;
+    align-content: center;
 }
 
 /* a {
