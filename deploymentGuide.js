@@ -8,8 +8,10 @@
 
 //https://stackoverflow.com/questions/52177222/blank-page-after-successful-firebase-deployment
 
-// to deploy - 1. run: npm run build. 
-// 2. fix any thing in hte app ('' at style tag at google font in index.html and more)
-// 3. run: firebase deploy
+// to deploy :
+// 1. run npm run build 
+// 3. fix any thing in the app (add '' at style tag at google font in index.html and more)
+// - and you will see the changes immediately
+// 4. run: firebase deploy
 
 // =========

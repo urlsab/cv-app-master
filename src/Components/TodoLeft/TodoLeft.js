@@ -1,10 +1,82 @@
 import './TodoLeft.css';
 import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
+import { initialState } from "../../utils/ourState";
 
 const TodoLeft = () => {
 
   const [inputList, setInputList] = useState([{ display: 'notdisplayed'}]);
+  const [selectedText, setSelectedText] = useState('');
+  const [isPopoverVisible, setIsPopoverVisible] = useState(false);
+  const [ourForm, setOurForm] = useState(initialState);
+
+  const [flag, setFlag] = useState(false);
+
+  // maybe just toggle font-weight: bold/normal;
+  const handleBold = () => {
+      if (window.getSelection() && !flag) {
+        const selection = window.getSelection();
+        const range = selection.getRangeAt(0);
+        const span = document.createElement('b');
+        span.setAttribute('id', 'bb');
+        span?.appendChild(range.extractContents());
+        range.insertNode(span);
+        setFlag(!flag);
+      }
+      if (window.getSelection() && flag) {
+        const selection = window.getSelection();
+        const range = selection.getRangeAt(0);
+        const span = document.getElementById('bb');
+        console.log(selection);
+        span?.replaceWith(...span.childNodes);
+        range.insertNode(span);
+        setFlag(!flag);
+      }
+    };
+  
+    // maybe just toggle text-decoration: underline/none
+    const handleUnderline = () => {
+      if (window.getSelection() && !flag) {
+        const selection = window.getSelection();
+        const range = selection.getRangeAt(0);
+        const span = document.createElement('u');
+        
+        span.setAttribute('id','bb');
+        span?.appendChild(range.extractContents());
+        range.insertNode(span);
+        setFlag(!flag);
+      }
+      if (window.getSelection() && flag) {
+        const selection = window.getSelection();
+        const range = selection.getRangeAt(0);
+        const span = document.getElementById('bb');
+        span?.replaceWith(...span.childNodes);
+        range.insertNode(span);
+        setFlag(!flag);
+      }
+    };
+
+  const handleCustomChange = (field, data) => {
+    setOurForm({
+        ...ourForm,
+        objectName: {
+            ...ourForm.objectName,
+            [field]: data,
+        }
+    })
+}
+
+  const handleSelect = () => {
+    const selection = window.getSelection();
+    if (selection.toString()) {
+      const selectedText = selection.toString();
+      setSelectedText(selectedText);
+      setIsPopoverVisible(true);
+    } else {
+      setSelectedText('');
+      setIsPopoverVisible(false);
+    }
+  };
 
   const showButton = (e, i) => {
     e.preventDefault();
@@ -48,7 +120,7 @@ const TodoLeft = () => {
     <div>
       {inputList.map((x, i) => {
         return (
-          <div>
+          <div style={{marginTop:'15px'}}>
             <div
               key={i + 1}
               className="box"
@@ -78,34 +150,46 @@ const TodoLeft = () => {
                   </button>
                 )}
 
-                <div style={{marginTop:'10px', marginBottom:'10px'}} key={i  + 7}>
-                  <TextField
-                    type="text"
-                    name="optionalSectionHeader"
-                    className='pdfFonts'
-                    required 
-                    multiline
-                    placeholder='Optional Header'
-                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                    value={x.optionalSectionHeader}
-                    onChange={(e) => handleInputChange(e, i)}
-                    style={{ marginLeft:'27px',width:'230px',display:'flex'}}
-                    InputProps={{style: {fontSize:19, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"},}}
-                  />
+                <div className='forSecondGroup' style={{marginTop:'10px', marginBottom:'5px', marginLeft:'18px', width:'235px'}} key={i  + 7}>
 
-                  <TextField
-                    type="text"
-                    name="optionalSectionContent"
-                    className='pdfFonts'
-                    required 
-                    multiline
-                    placeholder='Optional Content'
-                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-                    value={x.optionalSectionContent}
+                  <div
+                    name="optionalSectionHeader"
+                    key={i  + 7}
+                    aria-required="true"
+                    style={{ textTransform:"uppercase", fontSize:19, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px", marginLeft:'3px'}}
+                    onMouseUp={handleSelect}
+                    suppressContentEditableWarning={true}
+                    contentEditable={true}
+                    placeholder='Optional Header'
+                    content={x.optionalSectionHeader}
                     onChange={(e) => handleInputChange(e, i)}
-                    style={{marginLeft:'28px',width:'230px',marginBottom:'10px',display:'flex'}}
-                    InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"}, }}
-                  />
+                    // onInput={(event) => {
+                    //     const nameFull = event.target.textContent;
+                    //     handleCustomChange('optionalSectionHeader', nameFull);
+                    // }}
+                />
+
+                  {/* <TextField
+                    className='pdfFonts'
+                  /> */}
+
+                  <div
+                    name="optionalSectionContent"
+                    key={i  + 7}
+                    aria-required="true"
+                    style={{ fontSize:19, padding: '0.2rem', lineHeight:"30px", marginLeft:'5px' }}
+                    onMouseUp={handleSelect}
+                    suppressContentEditableWarning={true}
+                    contentEditable={true}
+                    placeholder='Optional Content'
+                    content={x.optionalSectionContent}
+                    onChange={(e) => handleInputChange(e, i)}
+                    // onInput={(event) => {
+                    //     const nameFull = event.target.textContent;
+                    //     handleCustomChange('optionalSectionContent', nameFull);
+                    // }}
+                />
+
                 </div>
               </div>
             </div>

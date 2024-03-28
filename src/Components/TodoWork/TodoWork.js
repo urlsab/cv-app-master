@@ -13,6 +13,7 @@ import { HiOutlineLocationMarker } from "react-icons/hi";
 import { RxCalendar } from "react-icons/rx";
 import { BsListUl } from "react-icons/bs";
 import { InputAdornment } from "@mui/material";
+import { initialState } from "../../utils/ourState";
 
 import Fade from 'react-reveal/Fade';
 
@@ -20,8 +21,24 @@ import Fade from 'react-reveal/Fade';
 
 const TodoWork = () => {
 
+  const [selectedText, setSelectedText] = useState('');
+  const [isPopoverVisible, setIsPopoverVisible] = useState(false);
+  const [ourForm, setOurForm] = useState(initialState);
+
   const handleProcedureContentChange = (content) => {
     console.log('content---->', content);
+  };
+
+  const handleSelect = () => {
+    const selection = window.getSelection();
+    if (selection.toString()) {
+      const selectedText = selection.toString();
+      setSelectedText(selectedText);
+      setIsPopoverVisible(true);
+    } else {
+      setSelectedText('');
+      setIsPopoverVisible(false);
+    }
   };
 
   const useKeyDown = (targetKey) => {
@@ -178,105 +195,85 @@ const TodoWork = () => {
                 </button>
               )}
 
-            <div style={{marginTop:'10px', marginBottom:'10px'}} key={i  + 7}>
+            <div className='forSecondGroup' style={{marginTop:'10px', marginBottom:'10px'}} key={i  + 7}>
             {/* {dotIcon} */}
-            <TextField
-              type="text"
+
+{/* x.roleAndCompanyName!=='' && */}
+          <div className="iconAndInputs">
+            { (<Fade> <img 
+                    style={{marginRight:"1px", marginLeft:'20px'}}
+                    src='data:image/svg+xml;utf8,
+                      <svg class="w-[12px] h-[12px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" stroke-width="1.5" d="M10 2a3 3 0 0 0-3 3v1H5a3 3 0 0 0-3 3v2.382l1.447.723.005.003.027.013.12.056c.108.05.272.123.486.212.429.177 1.056.416 1.834.655C7.481 13.524 9.63 14 12 14c2.372 0 4.52-.475 6.08-.956.78-.24 1.406-.478 1.835-.655a14.028 14.028 0 0 0 .606-.268l.027-.013.005-.002L22 11.381V9a3 3 0 0 0-3-3h-2V5a3 3 0 0 0-3-3h-4Zm5 4V5a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v1h6Zm6.447 7.894.553-.276V19a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-5.382l.553.276.002.002.004.002.013.006.041.02.151.07c.13.06.318.144.557.242.478.198 1.163.46 2.01.72C7.019 15.476 9.37 16 12 16c2.628 0 4.98-.525 6.67-1.044a22.95 22.95 0 0 0 2.01-.72 15.994 15.994 0 0 0 .707-.312l.041-.02.013-.006.004-.002.001-.001-.431-.866.432.865ZM12 10a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H12Z" clip-rule="evenodd"/>
+                      </svg>'
+                /> </Fade>)}
+            <div
               name="roleAndCompanyName"
-              className='pdfFonts'
-              required 
-              multiline
+              aria-required="true"
+              onMouseUp={handleSelect}
+              suppressContentEditableWarning={true}
+              contentEditable={true}
               placeholder='Role | Company Name'
-              sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-              value={x.roleAndCompanyName}
+              content={x.roleAndCompanyName}
               onChange={(e) => handleInputChange(e, i)}
+              style={{marginLeft:'5px',width:'490px',fontSize:18, padding: '0.2rem', lineHeight:"25px"}}
+              // onInput={(event) => {
+              //     const nameFull = event.target.textContent;
+              //     handleCustomChange('GeneralKnowledge', nameFull);
+              // }}
+                />
+          </div>
 
-              style={{
-              
-              marginLeft:'20px',
-              width:'490px'
-              
-              }}
-              InputProps={{style: {fontSize:18, padding: '0.2rem', lineHeight:"25px"},
-              startAdornment: (
-                  <InputAdornment position="start">
-                      { x.roleAndCompanyName ?
-                      
-                      <Fade>  <MdWorkOutline style={{fontSize:15, color:'gray', marginRight:'3px'}}/> | <TbCircleLetterA style={{fontSize:15, color:'gray'}}/> </Fade> : null }
-                      
-                  </InputAdornment>
-              )
-          }}
-
-          />
-
-            <TextField
-              type="text"
+{/* x.durationAndLocation!=='' && */}
+          <div className="iconAndInputs">
+                { (<Fade> <img 
+                    style={{marginRight:"1px", marginLeft:'20px'}}
+                    src='data:image/svg+xml;utf8,
+                      <svg class="w-[12px] h-[12px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" stroke-width="1.5" d="M5 5a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1h1a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1h1a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1 2 2 0 0 1 2 2v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a2 2 0 0 1 2-2ZM3 19v-7a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Zm6.01-6a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm2 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm6 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm-10 4a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm6 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm2 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z" clip-rule="evenodd"/>
+                      </svg>'
+                /> </Fade>)}
+            <div
               name="durationAndLocation"
-              className='pdfFonts'
-              required 
-              multiline
+              aria-required="true"
+              onMouseUp={handleSelect}
+              suppressContentEditableWarning={true}
+              contentEditable={true}
               placeholder='Duration | Location'
-              sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-              value={x.durationAndLocation}
+              content={x.durationAndLocation}
               onChange={(e) => handleInputChange(e, i)}
-        
-              style={{
-              
-              marginLeft:'20px',
-              width:'490px'
-              
-              
-              }}
-              InputProps={{style: {fontSize:14, padding: '0.2rem', lineHeight:"25px"},
-              startAdornment: (
-                  <InputAdornment position='start'>
-                      { x.durationAndLocation ?
-                      
-                      <Fade> <RxCalendar style={{fontSize:11, color:'gray', marginRight:'3px'}}/> | <HiOutlineLocationMarker style={{fontSize:11, color:'gray'}}/>  </Fade> : null }
-                      
-                  </InputAdornment>
-              )
-          }}
+              style={{marginLeft:'5px',width:'490px',fontSize:14, padding: '0.2rem', lineHeight:"25px"}}
+              // onInput={(event) => {
+              //     const nameFull = event.target.textContent;
+              //     handleCustomChange('GeneralKnowledge', nameFull);
+              // }}
+            />
+          </div>
 
-          />
+{/* x.achivements!=='' && */}
+          <div className="iconAndInputs">
+            { (<Fade> <img 
+                style={{marginRight:"1px", marginLeft:'20px'}}
+                src='data:image/svg+xml;utf8,
+                  <svg class="w-[12px] h-[12px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24">
+                    <path stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 9a3 3 0 0 1 3-3m-2 15h4m0-3c0-4.1 4-4.9 4-9A6 6 0 1 0 6 9c0 4 4 5 4 9h4Z"/>
+                  </svg>'
+            /> </Fade>)}
           
-            <TextField
-              type="text"
+            <div
               name="achivements"
-              className="pdfFonts"
-              required 
-              multiline
+              aria-required="true"
+              onMouseUp={handleSelect}
+              suppressContentEditableWarning={true}
+              contentEditable={true}
               placeholder='Achivements'
-              sx={{border: 'none',"& fieldset": { border: 'none' }  }}
-              value={x.achivements}
-              // onKeyDown={handleKeyPress}
-              // onKeyDown={(e) => enterPress ? '-' : null }
-              // onKeyDown={(e) => enterPress ? <PiDotBold /> : null }
+              content={x.achivements}
               onKeyDown={(e) => handleEnterPress(e, i) } 
               onChange={(e) => handleInputChange(e, i) }
-        
-              style={{
-              
-              marginLeft:'20px',
-              width:'490px',
-              marginBottom:'5px'
-              
-              }}
-              InputProps={{style: {fontSize:15, padding: '0.2rem', lineHeight:"25px"},
-              startAdornment: (
-                  <InputAdornment position='start'>
-                      { x.achivements ?
-                     
-                      <Fade> <BsListUl style={{fontSize:15, color:'gray'}}/> </Fade> : null }
+              style={{fontSize:17,marginLeft:'5px', width:'497px', marginBottom:'5px', lineHeight:'25px'}}
+            />
 
-                  </InputAdornment>
-              )
-          }}
-
-          />
-
-          {/* {showIcon && <TbCircleLetterA style={{fontSize:15, color:'red'}} /> } */}
+          </div>
               
             </div>
               

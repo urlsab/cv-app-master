@@ -14,7 +14,7 @@ const Entry = () => {
                 <div className='both'>
                     
                     <div className='headersStyle'>
-                        <Fade delay={300} bottom><h1>  <b className='styleHeader'> WELL COME TO THE CV APP WEBSITE </b>  </h1> </Fade>
+                        <Fade delay={300} bottom><h1>  <b className='styleHeader'> WELCOME TO THE CV APP WEBSITE </b>  </h1> </Fade>
                         <Fade delay={600} bottom> <h1>  <b className='styleHeader'>  HERE YOU WILL BUILD CV FOR FREE </b> </h1> </Fade>
                         <Fade delay={900} bottom> <h1>  <b className='styleHeader'>  FASTER THAN YOU THINK </b> 🚀 </h1> </Fade>
                     </div>

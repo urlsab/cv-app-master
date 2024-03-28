@@ -7,6 +7,20 @@ const TodoRight = () => {
   const [inputList, setInputList] = useState([{ display: 'notdisplayed', roleAndCompanyName: '',  durationAndLocation: '', achivments: ''}]);
 
   const [text, setText] = useState('');
+  const [selectedText, setSelectedText] = useState('');
+  const [isPopoverVisible, setIsPopoverVisible] = useState(false);
+
+  const handleSelect = () => {
+    const selection = window.getSelection();
+    if (selection.toString()) {
+      const selectedText = selection.toString();
+      setSelectedText(selectedText);
+      setIsPopoverVisible(true);
+    } else {
+      setSelectedText('');
+      setIsPopoverVisible(false);
+    }
+  };
 
   const handleKeyPress = (event, index) => {
     if (event.key === 'Enter') {
@@ -100,9 +114,47 @@ const TodoRight = () => {
                             </button>
                         )}
 
-                        <div style={{marginTop:'10px', marginBottom:'10px'}} key={i  + 7}>
+                        <div className='forSecondGroup' style={{marginTop:'10px', marginBottom:'10px'}} key={i  + 7}>
 
-                                    <TextField
+                  <div
+                    name="optionalSectionHeader"
+                    key={i  + 7}
+                    aria-required="true"
+                    style={{ marginLeft:'20px',width:'500px',textTransform:"uppercase", fontSize:19, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px" }}
+                    onMouseUp={handleSelect}
+                    suppressContentEditableWarning={true}
+                    contentEditable={true}
+                    placeholder='Optional Header'
+                    content={x.optionalSectionHeader}
+                    onChange={(e) => handleInputChange(e, i)}
+                    // onInput={(event) => {
+                    //     const nameFull = event.target.textContent;
+                    //     handleCustomChange('optionalSectionHeader', nameFull);
+                    // }}
+                />
+
+                  {/* <TextField
+                    className='pdfFonts'
+                  /> */}
+
+                  <div
+                    name="optionalSectionContent"
+                    key={i  + 7}
+                    aria-required="true"
+                    style={{  marginLeft:'20px',width:'505px',marginBottom:'10px',fontSize:19, padding: '0.2rem', lineHeight:"25px" }}
+                    onMouseUp={handleSelect}
+                    suppressContentEditableWarning={true}
+                    contentEditable={true}
+                    placeholder='Optional Content'
+                    content={x.optionalSectionContent}
+                    onChange={(e) => handleInputChange(e, i)}
+                    // onInput={(event) => {
+                    //     const nameFull = event.target.textContent;
+                    //     handleCustomChange('optionalSectionContent', nameFull);
+                    // }}
+                />
+
+                                    {/* <TextField
                                         type="text"
                                         name="optionalSectionHeader"
                                         className='pdfFonts'
@@ -123,9 +175,9 @@ const TodoRight = () => {
                                         
                                         }}
 
-                                    />
+                                    /> */}
                         
-                                    <TextField
+                                    {/* <TextField
                                         type="text"
                                         name="optionalSectionContent"
                                         className='pdfFonts'
@@ -147,7 +199,7 @@ const TodoRight = () => {
                                         
                                         }}
 
-                                    />
+                                    /> */}
 
                             </div>
                         </div>
