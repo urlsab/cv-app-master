@@ -64,7 +64,7 @@ const TodoLeft = () => {
             [field]: data,
         }
     })
-}
+  }
 
   const handleSelect = () => {
     const selection = window.getSelection();
@@ -169,9 +169,7 @@ const TodoLeft = () => {
                     // }}
                 />
 
-                  {/* <TextField
-                    className='pdfFonts'
-                  /> */}
+                  {/*className='pdfFonts'*/}
 
                   <div
                     name="optionalSectionContent"

@@ -1,5 +1,4 @@
 import React from 'react';
-
 import PersonIcon from '@mui/icons-material/Person';
 import PhoneIcon from '@mui/icons-material/Phone';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -18,21 +17,15 @@ import LinkIcon from '@mui/icons-material/Link';
 import IntegrationInstructionsIcon from '@mui/icons-material/IntegrationInstructions';
 import StorageIcon from '@mui/icons-material/Storage';
 import PsychologyIcon from '@mui/icons-material/Psychology';
-
 import LanguageIcon from '@mui/icons-material/Language';
 import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
 import ApartmentIcon from '@mui/icons-material/Apartment';
-
 import PercentIcon from '@mui/icons-material/Percent';
-
 import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
 import DomainAddIcon from '@mui/icons-material/DomainAdd';
 import AbcIcon from '@mui/icons-material/Abc';
-
 import CodeIcon from '@mui/icons-material/Code';
-
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import EngineeringIcon from '@mui/icons-material/Engineering';
 import HandymanIcon from '@mui/icons-material/Handyman';
@@ -50,42 +43,24 @@ export const arrIcons = [
     <LinkedInIcon/>,
     <EmailIcon/>,
     <LanguageIcon/>,
-
     <SchoolIcon/>,
-
-    
     <ApartmentIcon/>,
-
     <CalendarMonthIcon/>,
-
     <PercentIcon/>,
-
     <MenuBookIcon/>,
-
-    
     <PsychologyIcon/>,
-
     <EngineeringIcon/>,
-    
-
     <AbcIcon/>,
-
     <AssignmentIndIcon/>,
     <WorkHistoryIcon/>,
     <AppsIcon/>,
     <FontDownloadIcon/>,
-    
-
-
     <AccessTimeIcon/>,
     // <SchoolIcon/>,
     <DescriptionIcon/>,
     <HandymanIcon/>,
     // <QueryBuilderIcon/>,
-    
     <CodeIcon/>
     // <StorageIcon/>,
-     
     // <LinkIcon/>
-    
 ]               

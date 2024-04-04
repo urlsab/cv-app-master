@@ -1,20 +1,12 @@
 import React from 'react';
-
 import './DeleteAccount.css';
-
 import { useNavigate } from "react-router-dom";
-
 import { collection, query, where } from "firebase/firestore";
-
 import { firestoreDB, auth } from "../../config/firebase.config";
-
 import { getAuth, deleteUser } from "firebase/auth";
-
 import { useAuthState, DeleteUserHook, useDeleteUser } from "react-firebase-hooks/auth";
 import Navbar from  "../Navbar/Navbar";
-
 //import { firebase_tools } from "firebase-tools";
-
 import { httpsCallable, getFunctions } from 'firebase/functions';
 
 const DeleteAccount = () => {

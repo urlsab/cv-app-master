@@ -23,9 +23,7 @@ const RegisterApp = () => {
 
     const form = useRef();
     const navigate = useNavigate();
-
     const curAuth = getAuth();
-
     const [user] = useAuthState(auth);
     const [firstName, setFirstName] = useState('');
     const [emailAdd, setEmailAdd] = useState('');

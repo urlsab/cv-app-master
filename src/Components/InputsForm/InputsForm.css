@@ -1,5 +1,4 @@
 .createResumeContainer {
-    /* background-color: blue; */
     background: linear-gradient(90deg, rgb(131, 99, 206) 50%, rgb(132, 193, 233) 100%);
     display: flex;
     flex-direction: column;
@@ -7,25 +6,26 @@
     align-content: center;
     align-items: center;
     justify-content: space-evenly;
-    
     border: none;
     min-width: 800px;
+        
 }
-
-
+   
 .resume {
-    /* display: inline-grid; */
-    margin-top: 0.5px;
+    display: grid;
+    justify-content: center;
+    /* margin-top: 0.5px; */
     font-size: 20px;
     background-color: rgb(246, 246, 249);
     border: none;
     flex-direction: column;
     flex-wrap: wrap;
-    /* sizes exactly like beamjobs */
+    /* sizes exactly like beamjobs = 790px*/
     width: 790px;
-
+    /* margin-right: 2px; */
+    
     /* min height effects the footer part of the paper before print */
-    min-height: 11.7in;
+    min-height: 11.65in;
 
     /* margin: 20px auto; */
     grid-template-columns: 1fr 2fr;
@@ -37,28 +37,22 @@
 
 .name {
     grid-area: name;
-    
     background-color: rgb(250, 245, 245);
     text-align: center;
-
     border: none;
-   
     flex-direction: column;
     justify-content: flex-start;
     /* align-content: center; */
     flex-wrap: wrap;
     align-items: flex-start;
     text-align: inherit;
-
     /* margin-left: 18px; */
 }
 
 
 .work {
     grid-area: work;
-    /* background-color: greenyellow; */
     text-align: center;
-    
     border: none;
     display: flex;
     flex-direction: column;
@@ -169,26 +163,8 @@ input:focus{
 }
 
 .iconAndInputs {
-    /* background-color: blue; */
     display: flex;
     align-content: center;
     flex-direction: row;
     flex-wrap: nowrap;
 }
-
-/* a {
-    
-    color: rgb(255, 255, 255);
-    text-decoration: none;
-    margin: 0px;
-    display:none;
-    
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-content:normal;
-    justify-content: normal;
-    align-items: normal;
-    padding: 0px;
-    text-decoration: none;
-    border:none;
-} */

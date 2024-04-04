@@ -1,24 +1,15 @@
 import "./LoginApp.css";
-
 import TextField from '@mui/material/TextField';
 import { Button } from "@mui/material";
-
 import EntryNavbar from '../EntryNavbar/EntryNavbar';
-
 import { getAuth } from "firebase/auth";
-
 import React, { useState } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
-
 import { auth } from "../../../src/config/firebase.config";
 import { signInWithEmailAndPassword } from 'firebase/auth';
-
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-
 import Fade from 'react-reveal/Fade';
-
 import HomeIcon from '@mui/icons-material/Home';
-
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import PasswordIcon from '@mui/icons-material/Password';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -28,7 +19,6 @@ import GradingIcon from '@mui/icons-material/Grading';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import GoogleIcon from '@mui/icons-material/Google';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
-
 import { useAuthState } from "react-firebase-hooks/auth";
 
 const LoginApp = () => {

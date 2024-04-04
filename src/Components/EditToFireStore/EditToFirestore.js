@@ -1,8 +1,6 @@
 import React from 'react';
 import "./EditToFirestore.css";
-
 import { useState } from "react";
-
 // setDoc = update the whole document - even delete what we didn't change
 import { doc, updateDoc } from 'firebase/firestore';
 import { firestoreDB } from '../../config/firebase.config';
@@ -50,4 +48,4 @@ const EditToFirestore = () => {
 
 };
 
-export default ToFirestore;
+export default EditToFirestore;

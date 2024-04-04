@@ -1,20 +1,15 @@
 import './TodoWork.css';
-
 import React, { useState, useEffect } from 'react';
-
 import TextField from '@mui/material/TextField';
 import { MdWorkOutline } from "react-icons/md";
 import * as Icons from "react-icons/pi";
-
 import { PiDotBold } from "react-icons/pi";
-
 import { TbCircleLetterA } from "react-icons/tb";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { RxCalendar } from "react-icons/rx";
 import { BsListUl } from "react-icons/bs";
 import { InputAdornment } from "@mui/material";
 import { initialState } from "../../utils/ourState";
-
 import Fade from 'react-reveal/Fade';
 
 // '•'
@@ -64,9 +59,7 @@ const TodoWork = () => {
   }
 
   const enterPress = useKeyDown("Enter");
-
   const iconOb = <PiDotBold/>;
-
 
   const renderDot = () => {
     return (
@@ -198,7 +191,7 @@ const TodoWork = () => {
             <div className='forSecondGroup' style={{marginTop:'10px', marginBottom:'10px'}} key={i  + 7}>
             {/* {dotIcon} */}
 
-{/* x.roleAndCompanyName!=='' && */}
+        {/* x.roleAndCompanyName!=='' && */}
           <div className="iconAndInputs">
             { (<Fade> <img 
                     style={{marginRight:"1px", marginLeft:'20px'}}
@@ -224,7 +217,7 @@ const TodoWork = () => {
                 />
           </div>
 
-{/* x.durationAndLocation!=='' && */}
+        {/* x.durationAndLocation!=='' && */}
           <div className="iconAndInputs">
                 { (<Fade> <img 
                     style={{marginRight:"1px", marginLeft:'20px'}}
@@ -250,7 +243,7 @@ const TodoWork = () => {
             />
           </div>
 
-{/* x.achivements!=='' && */}
+        {/* x.achivements!=='' && */}
           <div className="iconAndInputs">
             { (<Fade> <img 
                 style={{marginRight:"1px", marginLeft:'20px'}}

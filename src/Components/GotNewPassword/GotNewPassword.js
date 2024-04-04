@@ -1,7 +1,5 @@
 import './GotNewPassword.css';
-
 import React from 'react';
-
 import { Link } from "react-router-dom";
 // import { initialPassword } from '../../utils/passwordsObject';
 

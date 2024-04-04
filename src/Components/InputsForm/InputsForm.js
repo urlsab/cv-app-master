@@ -5,7 +5,6 @@ import { BsPhone } from "react-icons/bs";
 import { TiSocialLinkedin } from "react-icons/ti";
 import { FiGithub } from "react-icons/fi";
 import { TbSchool } from "react-icons/tb";
-
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { RxCalendar } from "react-icons/rx";
 import { LiaProjectDiagramSolid } from "react-icons/lia";
@@ -18,7 +17,6 @@ import TodoRight from '../TodoRight/TodoRight';
 import { addDoc, collection } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { PDFExport } from "@progress/kendo-react-pdf";
-
 import TodoWork from '../TodoWork/TodoWork';
 import PrintIcon from '@mui/icons-material/Print';
 import TextField from '@mui/material/TextField';
@@ -31,7 +29,6 @@ import Fade from 'react-reveal/Fade';
 import DownloadIcon from '@mui/icons-material/Download';
 import Navbar from "../Navbar/Navbar";
 import { createRandomId } from '../../utils/randomId';
-
 import { MdEmail } from 'react-icons/md'; 
 import { FaBold } from "react-icons/fa";
 import { TfiUnderline } from "react-icons/tfi";
@@ -268,17 +265,17 @@ const InputsForm = () => {
     }
   };
 
-  const validateEmail = (email) => {
-    // Regular expression for validating email addresses
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailPattern.test(email);
-};
+//   const validateEmail = (email) => {
+//     // Regular expression for validating email addresses
+//     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+//     return emailPattern.test(email);
+// };
 
-const isValidEmail = (email) => {
-    // Define a regular expression pattern for email validation.
-    const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return pattern.test(email);
-  }
+// const isValidEmail = (email) => {
+//     // Define a regular expression pattern for email validation.
+//     const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+//     return pattern.test(email);
+//   }
       
     return (
         <>
@@ -286,7 +283,7 @@ const isValidEmail = (email) => {
         <Navbar/>
         <Fade delay={400}>
 
-    <div className='buttonsStyle' style={{  padding: '10px', border: '1px solid transparent', borderRadius: '5px' }}>
+    <div className='buttonsStyle' style={{  marginTop:'50px',marginBottom:'50px',padding: '10px', border: '1px solid transparent', borderRadius: '5px' }}>
         
         <Button 
             sx={{mr:1}}
@@ -326,7 +323,7 @@ const isValidEmail = (email) => {
         <PDFExport ref={pdfExportComponent}>
 
             {/* margin top effects the head part of the paper before print */}
-            <div style={{marginTop:'1px'}} onMouseUp={handleSelect} className="resume">
+            <div onMouseUp={handleSelect} className="resume">
 
                 <div className='grid-area name'>
 
@@ -775,26 +772,26 @@ const isValidEmail = (email) => {
 
                         {/* <a href='' download=''> DOWNLOAD TO PC </a> */}
 
-                        <Button 
+                        {/* <Button 
                             sx={{m:1, mt:4}}
                             color="error"
                             variant="contained"
                             // startIcon={<PictureAsPdfIcon/>}
                             startIcon={<DownloadIcon/>}
                             onClick={handleExportWithComponent}>pdf 
-                        </Button>
+                        </Button> */}
 
                         <ReactToPrint 
                             trigger={() => 
                             <Button 
                                 sx={
-                                        [{m:1,mt:4, backgroundColor:"rgb(250, 204, 0)",
+                                        [{m:1,mt:12,mb:12, height:'100px',width:'200px',fontSize:'22px', backgroundColor:"rgb(250, 204, 0)",
                                     },
                                     {'&:hover': {backgroundColor: "rgb(250, 184, 0)"}}
                                 ]}
                                     variant="contained" 
                                     color="inherit"
-                                    startIcon={<PrintIcon/>}>PRINT
+                                    startIcon={<PrintIcon/>}>PRINT & PDF
                             </Button>
                             } 
                             content={() => pdfExportComponent.current}

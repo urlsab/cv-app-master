@@ -2,13 +2,6 @@
 
 // delete deployments from console firebase
 
-// תיקצוב זמן למשימות ולפרוייקט
-// ארגון וסדר והיררכיה בקוד
-// פרוייקטים קטנים מסודרים ושעובדים ופחות פיטצ'רים
-// לשקול אפשרות של רק כפתור הדפסה (שמרדנר הכל מושלם) ודרכו יש אפשרות של פי-די-אף
-// בינתיים להתעלם מרידנור באול רזומה - של אמרנדר אקסא מודגש או מקווקו - העיקר שיעבוד ביאנפוטספורסמ קודם
-
-// !!!!!!!!!!! make text editor functions in cv shell hyperlink with toggle
 
 // add localstorage vars as usernames when login and logout
 

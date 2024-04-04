@@ -4,12 +4,11 @@
   place-content: center space-evenly;
   align-items: center;
   text-align: center;
-  /* background-color: blueviolet; */
   background: rgb(0,254,127);
   background: linear-gradient(172deg, rgb(28, 232, 130) 0%, rgba(0,132,251,1) 100%);
   font-family: Itim, serif;
   /* margin: 30px; */
-  height: 601px;
+  
   font-size: 25px;
   flex-direction: row;
   align-content: center;
@@ -18,14 +17,26 @@
   /* width: 100%; */
 }
 
+/* @media screen and (max-width: 425px) {
+  .dasboardContainer  
+  {
+    width: 520px;
+  };
+} 
+
+@media screen and (max-width: 255px) {
+  .dasboardContainer  
+  {
+    width: 425px;
+  };
+}  */
+
 .styleName {
   font-family: 'poppins', serif;
   margin-left: 15px;
   font-size: 50px;
   text-shadow: 0 0 rgb(19, 103, 205);
 }
-
-
 
 .wordsContainer {
   /* background-color: rgb(55, 255, 0); */
@@ -36,10 +47,10 @@
   align-content: center;
   justify-content: center;
   align-items: center;
+  margin-top: 80px;
 }
 
 .optionsContainer {
-  /* background-color: red; */
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -49,7 +60,6 @@
 }
 
 .buttonsContainer {
-  /* background-color: green; */
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -67,7 +77,6 @@
 }
 
 .conffetiStyle {
-  /* background-color: red; */
   width: 100%;
   height: 601px;
 }

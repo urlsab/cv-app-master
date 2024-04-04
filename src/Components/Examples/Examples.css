@@ -9,7 +9,6 @@
 }
 
 .imgContainer {
-    /* background-color: aqua; */
     display: inline-grid;
     flex-direction:column;
     flex-wrap: wrap;

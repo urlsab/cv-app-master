@@ -1,5 +1,4 @@
 .mainContainer {
-  /* background-color: blue; */
   /* height: 100%; */
   background: linear-gradient(170deg, rgb(80, 114, 181) 65%, rgb(17, 189, 205) 100%);
   display: flex;
@@ -11,15 +10,27 @@
   /* margin: 60.5px; */
 }
 
+@media screen and (max-width: 425px) {
+  .mainContainer  
+  {
+    width: 520px;
+  }; 
+} 
+
+@media screen and (max-width: 255px) {
+  .mainContainer  
+  {
+    width: 425px;
+  };
+} 
+
 .loginForm {
-  /* background-color: #771442; */
   display: flex;
   align-content: center;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-
   height: 527px;
   margin-top: 10px;
 }
@@ -40,7 +51,6 @@
 }
 
 .textContainer {
-  /* background-color: aqua; */
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -60,7 +70,6 @@
 }
 
 .homeStyle {
-  /* background-color: blue; */
   display: flow-root;
   border-bottom: none;
   width: 23px;
@@ -71,5 +80,4 @@
   color: rgb(255, 238, 0);
   display: flow-root;
   border-bottom: none;
-
 }

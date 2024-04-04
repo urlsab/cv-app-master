@@ -23,11 +23,13 @@ export const firestoreDB = initializeFirestore(app, {
 /* 
 
 TO DEPLOY COMMAND:
-
-  firebase login -- allready loged in as yairsbag213@gmail.com
-
-  [not neccary allways - only if i want to init things : firebase init -- proceed ? Y , choose: firestore, storage, hosting1, hosting2 ]
-
-  firebase deploy
+npm start
+change any code
+exit npm start
+npm run build
+change code
+verify index.html of build dir is ok - add ' ' to index.html of build dir inside the url of fonts..
+firebase deploy
+check url if code changed
 
 */
