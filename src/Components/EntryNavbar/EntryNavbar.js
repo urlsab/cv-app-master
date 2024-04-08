@@ -1,28 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './EntryNavbar.css';
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import ForwardToInboxIcon from '@mui/icons-material/ForwardToInbox';
 import Toolbar from '@mui/material/Toolbar';
 import AppBar from '@mui/material/AppBar';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import Menu from '@mui/material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import FingerprintIcon from '@mui/icons-material/Fingerprint';
 import HomeIcon from '@mui/icons-material/Home';
-import { useSpring, animated } from "@react-spring/web";
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import LogoutIcon from '@mui/icons-material/Logout';
-import NoteAddIcon from '@mui/icons-material/NoteAdd';
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import LoginIcon from '@mui/icons-material/Login';
-import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
-import { signOut } from "firebase/auth";
-import { auth } from '../../config/firebase.config';
 
 const EntryNavbar = () => {
   return (

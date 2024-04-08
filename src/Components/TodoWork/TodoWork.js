@@ -1,14 +1,6 @@
 import './TodoWork.css';
 import React, { useState, useEffect } from 'react';
-import TextField from '@mui/material/TextField';
-import { MdWorkOutline } from "react-icons/md";
-import * as Icons from "react-icons/pi";
 import { PiDotBold } from "react-icons/pi";
-import { TbCircleLetterA } from "react-icons/tb";
-import { HiOutlineLocationMarker } from "react-icons/hi";
-import { RxCalendar } from "react-icons/rx";
-import { BsListUl } from "react-icons/bs";
-import { InputAdornment } from "@mui/material";
 import { initialState } from "../../utils/ourState";
 import Fade from 'react-reveal/Fade';
 

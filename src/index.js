@@ -15,8 +15,7 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   
-  //<React.Fragment>
-  // remember that it was <React.strictMode> component
+  //<React.Fragment> was <React.strictMode> component
   <React.StrictMode>
     <RouterProvider router={router} />
   </React.StrictMode>

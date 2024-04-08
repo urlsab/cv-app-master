@@ -7,8 +7,7 @@
     align-items: center;
     justify-content: space-evenly;
     border: none;
-    min-width: 800px;
-        
+    min-width: 800px;     
 }
    
 .resume {
@@ -48,7 +47,6 @@
     text-align: inherit;
     /* margin-left: 18px; */
 }
-
 
 .work {
     grid-area: work;
@@ -108,11 +106,9 @@
 }
 
 /* allow fonts of pdfexport kendu react */
-
 .pdfFonts {
     font-family: "Arial", "Lato", "Rubik", "Exo", "DejaVu Sans" ,sans-serif;
 }
-/* "DejaVu Sans" */
 
 @font-face {
     font-family: "DejaVu Sans";
@@ -154,7 +150,7 @@
     opacity: 70%;
 }
 
-  [contenteditable]:focus {
+[contenteditable]:focus {
     outline: 0px solid transparent;
 }
 

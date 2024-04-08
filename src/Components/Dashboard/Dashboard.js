@@ -10,7 +10,6 @@ import Jump from 'react-reveal/Jump';
 import Fade from 'react-reveal/Fade';
 import { Button } from "@mui/material";
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import Conffeti from 'react-confetti';
 
 const Dashboard = () => {

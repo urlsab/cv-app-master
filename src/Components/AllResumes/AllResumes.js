@@ -1,67 +1,43 @@
 import "./AllResumes.css";
 import React, { useState } from "react";
-
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import EditNoteIcon from '@mui/icons-material/EditNote';
-import SaveAsIcon from '@mui/icons-material/SaveAs';
 import { MdAlternateEmail } from "react-icons/md";
 import { BsPhone } from "react-icons/bs";
 import { TiSocialLinkedin } from "react-icons/ti";
 import { FiGithub } from "react-icons/fi";
 import { BiLink } from "react-icons/bi";
 import { TbSchool } from "react-icons/tb";
-
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { RxCalendar } from "react-icons/rx";
 import { LiaProjectDiagramSolid } from "react-icons/lia";
 import { AiOutlineDatabase } from "react-icons/ai";
 import { AiOutlineTool } from "react-icons/ai";
 import { BsCode } from "react-icons/bs";
-
 import { collection, deleteDoc, getDocs, doc, updateDoc } from "firebase/firestore";
 import { useToggle } from "../../utils/useToggle";
-import { BiAdjust } from "react-icons/bi";
-
 import { PDFExport } from "@progress/kendo-react-pdf";
 import Navbar from "../Navbar/Navbar";
-
 import ReactToPrint from 'react-to-print';
 import PrintIcon from '@mui/icons-material/Print';
-
 import TextField from '@mui/material/TextField';
-
-import InputsForm from '../InputsForm/InputsForm';
-
 import { Button } from "@mui/material";
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import DeleteIcon from '@mui/icons-material/Delete';
-
-import EditIcon from '@mui/icons-material/Edit';
 import DownloadIcon from '@mui/icons-material/Download';
-
 import Fade from 'react-reveal/Fade';
 import LightSpeed from 'react-reveal/LightSpeed';
 import { InputAdornment } from "@mui/material";
-import * as MaterialDesign from "react-icons/md";
-import { PiDotBold } from "react-icons/pi";
-
 import TodoLeft from '../TodoLeft/TodoLeft';
 import TodoRight from '../TodoRight/TodoRight';
 import TodoWork from '../TodoWork/TodoWork';
-
 import { firestoreDB } from "../../config/firebase.config";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../config/firebase.config";
 import { addDoc } from "firebase/firestore";
-
 // import Todo from "../Todo/Todo";
-import WorkIcon from '@mui/icons-material/Work';
-import SchoolIcon from '@mui/icons-material/School';
 import { initialState } from "../../utils/ourState";
-import SaveIcon from '@mui/icons-material/Save';
 import { useNavigate } from "react-router-dom";
-
 
 const AllResumes = () => {
 

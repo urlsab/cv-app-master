@@ -1,25 +1,15 @@
 import './Navbar.css';
-
-import React, { useState } from 'react';
-
+import React from 'react';
 import { NavLink, useNavigate } from "react-router-dom";
-
 import Toolbar from '@mui/material/Toolbar';
 import AppBar from '@mui/material/AppBar';
 import Container from '@mui/material/Container';
-
 import { useAuthState } from "react-firebase-hooks/auth";
-
-import CollectionsIcon from '@mui/icons-material/Collections';
 import LogoutIcon from '@mui/icons-material/Logout';
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
-
 import { auth } from '../../config/firebase.config';
-import { createContext } from 'react';
-
 // import { useUserAuth } from '../../Context/UserAuthContext';
-import {  signOut } from "firebase/auth";
+import { signOut } from "firebase/auth";
 
 const Navbar = () => {
 

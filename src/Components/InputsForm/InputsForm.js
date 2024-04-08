@@ -1,16 +1,5 @@
 import './InputsForm.css';
-import React, { useState, useRef, useEffect } from "react";
-import { MdAlternateEmail } from "react-icons/md";
-import { BsPhone } from "react-icons/bs";
-import { TiSocialLinkedin } from "react-icons/ti";
-import { FiGithub } from "react-icons/fi";
-import { TbSchool } from "react-icons/tb";
-import { HiOutlineLocationMarker } from "react-icons/hi";
-import { RxCalendar } from "react-icons/rx";
-import { LiaProjectDiagramSolid } from "react-icons/lia";
-import { AiOutlineDatabase } from "react-icons/ai";
-import { AiOutlineTool } from "react-icons/ai";
-import { BsCode } from "react-icons/bs";
+import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import TodoLeft from '../TodoLeft/TodoLeft';
 import TodoRight from '../TodoRight/TodoRight';
@@ -23,16 +12,11 @@ import TextField from '@mui/material/TextField';
 import ReactToPrint from 'react-to-print';
 import { firestoreDB, auth } from "../../config/firebase.config";
 import { initialState } from "../../utils/ourState";
-import { Button, InputAdornment } from "@mui/material";
-import SaveIcon from '@mui/icons-material/Save';
+import { Button } from "@mui/material";
 import Fade from 'react-reveal/Fade';
-import DownloadIcon from '@mui/icons-material/Download';
 import Navbar from "../Navbar/Navbar";
-import { createRandomId } from '../../utils/randomId';
-import { MdEmail } from 'react-icons/md'; 
 import { FaBold } from "react-icons/fa";
 import { TfiUnderline } from "react-icons/tfi";
-import { CgProfile } from "react-icons/cg";
 import { MdAddLink } from "react-icons/md";
 
 const InputsForm = () => {
@@ -372,7 +356,8 @@ const InputsForm = () => {
                         </svg>'
                 /> </Fade>)}
 
-                {/*add: verify it's legal email adrres + exist */}
+                {/*add: verify if it's legal email adrres + exist */}
+                {/* add: option for clickable email - href="mailto:'someemailaddress'@gmail.com" */}
                 <div
                     name="email"
                     aria-required="true"
@@ -400,8 +385,12 @@ const InputsForm = () => {
                         </svg>'
                 /> </Fade>)}
 
+
+                {/* add option for clickable phonenumber */}
                 <div
                     name="phoneNumber"
+                    // onMouseDown={window.location.href}
+                    // href={`tel:+972${ourForm.objectName.phoneNumber}`}
                     aria-required="true"
                     style={{width:'210px', fontSize:13 ,color:'white', padding: '0.2rem', lineHeight:"15px", position:'relative' }}
                     onMouseUp={handleSelect}

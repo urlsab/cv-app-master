@@ -5,13 +5,9 @@
   .listBulletRight {
     margin-left : 1em;
     outline: none;
-  
-    /* manipulate style here */
     font-size: 15px;
     font-family: 'Itim';
     margin-bottom: 20px;
-  
-    /* limit the width */
     width: 420px;
   }
   
@@ -65,17 +61,11 @@
     margin-left: 1em;
     outline: none;
     border: none;
-  
-    /* manipulate style here */
     font-size: 15px;
     font-family: 'Itim';
     margin-bottom: 20px;
-  
-    /* limit the width = limit chars */
     width: 420px;
-  
     margin-left: 40px;
-    /* margin-top: 10px; */
   }
   
   .listBulletRight div {
@@ -91,14 +81,9 @@
     /* display: list-item; */
     margin-left: 1em;
     outline: none;
-  
-    /* manipulate style here */
     font-size: 15px;
     font-family: 'Itim';
-    /* margin-bottom: 20px; */
     margin-left: 17px;
-  
-    /* limit the width */
     width: 420px;
   }
   

@@ -7,14 +7,9 @@
   background: rgb(0,254,127);
   background: linear-gradient(172deg, rgb(28, 232, 130) 0%, rgba(0,132,251,1) 100%);
   font-family: Itim, serif;
-  /* margin: 30px; */
-  
   font-size: 25px;
   flex-direction: row;
   align-content: center;
-  /* margin: 20px; */
-  /* height: 100%; */
-  /* width: 100%; */
 }
 
 /* @media screen and (max-width: 425px) {
@@ -39,9 +34,7 @@
 }
 
 .wordsContainer {
-  /* background-color: rgb(55, 255, 0); */
   display: flex;
-  /* width: 200px; */
   flex-direction: column;
   flex-wrap: wrap;
   align-content: center;
@@ -71,7 +64,6 @@
 .greetingStyle {
   background: -webkit-linear-gradient(80deg, rgb(255, 233, 107) 0%, white  100%);
   font-size: 60px;
-  /* color: #ed6c02; */
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
