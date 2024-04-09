@@ -156,7 +156,8 @@ const TodoLeft = () => {
                     name="optionalSectionHeader"
                     key={i  + 7}
                     aria-required="true"
-                    style={{ textTransform:"uppercase", fontSize:19, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px", marginLeft:'3px'}}
+                    // fontSize:16.5 = 14 font size in word = the best header size for resumes
+                    style={{ textTransform:"uppercase", fontSize:16.5, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px", marginLeft:'3px'}}
                     onMouseUp={handleSelect}
                     suppressContentEditableWarning={true}
                     contentEditable={true}
@@ -175,7 +176,8 @@ const TodoLeft = () => {
                     name="optionalSectionContent"
                     key={i  + 7}
                     aria-required="true"
-                    style={{ fontSize:19, padding: '0.2rem', lineHeight:"30px", marginLeft:'5px' }}
+                    // fontSize:14.5 = 12 font size in word = best content font size for resumes
+                    style={{ fontSize:14.5, padding: '0.2rem', lineHeight:"30px", marginLeft:'5px' }}
                     onMouseUp={handleSelect}
                     suppressContentEditableWarning={true}
                     contentEditable={true}

@@ -92,8 +92,8 @@ const Dashboard = () => {
         <div className="wordsContainer">
 
         {/* {cv.map((el, i) => <b key={i} className="styleName"> {cv[i].info.userName} </b>)} */}
-          <Flip bottom delay={1100}><h1 style={{marginTop:'80px'}} className="greetingStyle"> WELLCOME </h1></Flip>
-          <Flip bottom delay={2000}><h1> <b className="greetingStyle"> TO THE CVA </b> 📱 </h1></Flip>
+          <Flip bottom delay={1100}><h1 style={{marginTop:'80px'}} className="greetingStyle"> WELCOME TO THE </h1></Flip>
+          <Flip bottom delay={2000}><h1> <b className="greetingStyle">  RESUME BUILDER APP  </b> 📱 </h1></Flip>
                  
         </div>
 

@@ -153,6 +153,7 @@ const TodoWork = () => {
           {/* {enterPress ? inputList[i].achivements = <PiDotBold/> : null} */}
           <div
             key={i + 1}
+            style={{marginBottom:'15px'}}
             className="box"
             // onMouseOver={(e) => showButton(e, i)}
             onMouseEnter={(e) => showButton(e, i)}
@@ -201,7 +202,7 @@ const TodoWork = () => {
               placeholder='Role | Company Name'
               content={x.roleAndCompanyName}
               onChange={(e) => handleInputChange(e, i)}
-              style={{marginLeft:'5px',width:'490px',fontSize:18, padding: '0.2rem', lineHeight:"25px"}}
+              style={{marginLeft:'5px',width:'490px',fontSize:16.5, padding: '0.2rem', lineHeight:"25px"}}
               // onInput={(event) => {
               //     const nameFull = event.target.textContent;
               //     handleCustomChange('GeneralKnowledge', nameFull);
@@ -227,7 +228,7 @@ const TodoWork = () => {
               placeholder='Duration | Location'
               content={x.durationAndLocation}
               onChange={(e) => handleInputChange(e, i)}
-              style={{marginLeft:'5px',width:'490px',fontSize:14, padding: '0.2rem', lineHeight:"25px"}}
+              style={{marginLeft:'5px',width:'490px',fontSize:13, padding: '0.2rem', lineHeight:"25px"}}
               // onInput={(event) => {
               //     const nameFull = event.target.textContent;
               //     handleCustomChange('GeneralKnowledge', nameFull);
@@ -255,7 +256,7 @@ const TodoWork = () => {
               content={x.achivements}
               onKeyDown={(e) => handleEnterPress(e, i) } 
               onChange={(e) => handleInputChange(e, i) }
-              style={{fontSize:17,marginLeft:'5px', width:'497px', marginBottom:'5px', lineHeight:'25px'}}
+              style={{fontSize:14.5,marginLeft:'5px', width:'497px', lineHeight:'25px'}}
             />
 
           </div>

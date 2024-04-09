@@ -86,6 +86,7 @@ const TodoRight = () => {
                 <div
                     key={i + 1}
                     className="box"
+                    style={{marginBottom:'10px'}}
                     // onMouseOver={(e) => showButton(e, i)}
                     onMouseEnter={(e) => showButton(e, i)}
                     onMouseLeave={(e) => hideButton(e, i)}
@@ -94,10 +95,10 @@ const TodoRight = () => {
                     <div className="btn-box">
                         {/* {inputList.length - 1 === i && ( */}
                         <button 
-                            style={{backgroundColor:"transparent",color:"green", width:"20px", height:"20px", border:"none"}} 
-                            key={i + 3} className={x.display} 
-                            onClick={() => handleAddClick(i)}
-                            // onClick={() => inputRefCurrent(i)}
+                          style={{backgroundColor:"transparent",color:"green", width:"20px", height:"20px", border:"none"}} 
+                          key={i + 3} className={x.display} 
+                          onClick={() => handleAddClick(i)}
+                          // onClick={() => inputRefCurrent(i)}
                         >
                         +
                         </button>
@@ -113,13 +114,14 @@ const TodoRight = () => {
                             </button>
                         )}
 
-                        <div className='forSecondGroup' style={{marginTop:'10px', marginBottom:'10px'}} key={i  + 7}>
+                        <div className='forSecondGroup' style={{ marginBottom:'1px'}} key={i  + 7}>
 
                   <div
                     name="optionalSectionHeader"
                     key={i  + 7}
                     aria-required="true"
-                    style={{ marginLeft:'20px',width:'500px',textTransform:"uppercase", fontSize:19, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px" }}
+                    // fontSize:16.5 = 14 font size in word = the best header size for resumes
+                    style={{ marginLeft:'20px',width:'500px',textTransform:"uppercase", fontSize:16.5, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px" }}
                     onMouseUp={handleSelect}
                     suppressContentEditableWarning={true}
                     contentEditable={true}
@@ -140,7 +142,8 @@ const TodoRight = () => {
                     name="optionalSectionContent"
                     key={i  + 7}
                     aria-required="true"
-                    style={{  marginLeft:'20px',width:'505px',marginBottom:'10px',fontSize:19, padding: '0.2rem', lineHeight:"25px" }}
+                    // fontSize:14.5 = 12 font size in word = best content font size for resumes
+                    style={{  marginLeft:'20px',width:'505px',fontSize:14.5, padding: '0.2rem', lineHeight:"25px" }}
                     onMouseUp={handleSelect}
                     suppressContentEditableWarning={true}
                     contentEditable={true}

@@ -319,7 +319,7 @@ const InputsForm = () => {
                     name="fullName"
                     aria-required="true"
                     multiline
-                    style={{textTransform:"uppercase", marginTop:"25px",width:'235px',fontSize:24 ,color:'white', padding: '0.2rem', lineHeight:"25px"}}
+                    style={{textTransform:"uppercase", marginTop:"20px",width:'235px',fontSize:20 ,color:'white', padding: '0.2rem', lineHeight:"25px"}}
                     onMouseUp={handleSelect}
                     suppressContentEditableWarning={true}
                     contentEditable={true}
@@ -335,7 +335,7 @@ const InputsForm = () => {
                     name="jobTitle"
                     aria-required="true"
                     multiline
-                    style={{marginTop:"25px",width:'235px',fontSize:20, marginTop:'0px' ,color:'white', padding: '0.2rem', lineHeight:"25px"}}
+                    style={{width:'235px',fontSize:16.5, marginTop:'0px' ,color:'white', padding: '0.2rem', lineHeight:"25px"}}
                     onMouseUp={handleSelect}
                     suppressContentEditableWarning={true}
                     contentEditable={true}
@@ -361,7 +361,7 @@ const InputsForm = () => {
                 <div
                     name="email"
                     aria-required="true"
-                    style={{width:'210px', fontSize:13 ,color:'white', padding: '0.2rem', lineHeight:"15px", position:'relative' }}
+                    style={{width:'210px', fontSize:14.5 ,color:'white', padding: '0.2rem', lineHeight:"15px", position:'relative' }}
                     onMouseUp={handleSelect}
                     suppressContentEditableWarning={true}
                     contentEditable={true}
@@ -392,7 +392,7 @@ const InputsForm = () => {
                     // onMouseDown={window.location.href}
                     // href={`tel:+972${ourForm.objectName.phoneNumber}`}
                     aria-required="true"
-                    style={{width:'210px', fontSize:13 ,color:'white', padding: '0.2rem', lineHeight:"15px", position:'relative' }}
+                    style={{width:'210px', fontSize:14.5 ,color:'white', padding: '0.2rem', lineHeight:"15px", position:'relative' }}
                     onMouseUp={handleSelect}
                     suppressContentEditableWarning={true}
                     contentEditable={true}
@@ -422,7 +422,7 @@ const InputsForm = () => {
                 <div
                     name="linkedinLink"
                     aria-required="true"
-                    style={{width:'210px', fontSize:13 ,color:'white', padding: '0.2rem', lineHeight:"15px", position:'relative' }}
+                    style={{width:'210px', fontSize:14.5 ,color:'white', padding: '0.2rem', lineHeight:"15px", position:'relative' }}
                     onMouseUp={handleSelect}
                     suppressContentEditableWarning={true}
                     contentEditable={true}
@@ -450,7 +450,7 @@ const InputsForm = () => {
                 <div
                     name="githubLink"
                     aria-required="true"
-                    style={{width:'210px', fontSize:13 ,color:'white', padding: '0.2rem', lineHeight:"15px", position:'relative' }}
+                    style={{width:'210px', fontSize:14.5 ,color:'white', padding: '0.2rem', lineHeight:"15px", position:'relative' }}
                     onMouseUp={handleSelect}
                     suppressContentEditableWarning={true}
                     contentEditable={true}
@@ -475,7 +475,7 @@ const InputsForm = () => {
                 <div
                     name="portfolioLink"
                     aria-required="true"
-                    style={{width:'210px', fontSize:13 ,color:'white', padding: '0.2rem', lineHeight:"15px", position:'relative' }}
+                    style={{width:'210px', fontSize:14.5 ,color:'white', padding: '0.2rem', lineHeight:"15px", position:'relative' }}
                     onMouseUp={handleSelect}
                     suppressContentEditableWarning={true}
                     contentEditable={true}
@@ -506,11 +506,12 @@ const InputsForm = () => {
                 sx={{border: 'none',"& fieldset": { border: 'none' }  }}
                 value='EDUCATION'
                 style={{
-                marginTop:'20px',
+                marginTop:'15px',
+                
                 marginLeft:'10px',
                 width:'235px',
                 }}
-                InputProps={{style: {fontSize:19, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}}}   
+                InputProps={{style: {fontSize:16.5, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}}}   
             />
 
             <div className="iconAndInputs">
@@ -524,7 +525,7 @@ const InputsForm = () => {
                 <div
                     name="degreeTypeAndname"
                     aria-required="true"
-                    style={{width:'210px' , fontSize:15 , padding: '0.2rem', lineHeight:"25px" }}
+                    style={{width:'210px' , fontSize:14.5 , padding: '0.2rem', lineHeight:"25px" }}
                     onMouseUp={handleSelect}
                     suppressContentEditableWarning={true}
                     contentEditable={true}
@@ -548,7 +549,7 @@ const InputsForm = () => {
                 <div
                     name="schoolNameAndlocation"
                     aria-required="true"
-                    style={{width:'210px' , fontSize:15 , padding: '0.2rem', lineHeight:"25px" }}
+                    style={{width:'210px' , fontSize:14.5 , padding: '0.2rem', lineHeight:"25px" }}
                     onMouseUp={handleSelect}
                     suppressContentEditableWarning={true}
                     contentEditable={true}
@@ -572,7 +573,7 @@ const InputsForm = () => {
                 <div
                     name="timeLearnedDegree"
                     aria-required="true"
-                    style={{width:'210px' , fontSize:15 , padding: '0.2rem', lineHeight:"25px" }}
+                    style={{width:'210px' , fontSize:14.5 , padding: '0.2rem', lineHeight:"25px" }}
                     onMouseUp={handleSelect}
                     suppressContentEditableWarning={true}
                     contentEditable={true}
@@ -588,7 +589,7 @@ const InputsForm = () => {
             <TextField
                     type="text"
                     name="skillsHeader"
-                    className='pdfFonts'
+                    // className='pdfFonts'
                     required 
                     multiline
                     
@@ -596,12 +597,12 @@ const InputsForm = () => {
                     value='SKILLS'
                     
                     style={{
-                    marginTop:'20px',
+                    marginTop:'15px',
                     marginLeft:'10px',
                     width:'235px',
                     
                     }}
-                    InputProps={{style: {fontSize:19, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}}}
+                    InputProps={{style: {fontSize:16.5, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}}}
                     
                 />
 
@@ -618,7 +619,7 @@ const InputsForm = () => {
                 <div
                     name="ProgrammingLanguages"
                     aria-required="true"
-                    style={{width:'210px' ,fontSize:15 , padding: '0.2rem', lineHeight:"25px" }}
+                    style={{width:'210px' ,fontSize:14.5 , padding: '0.2rem', lineHeight:"25px" }}
                     onMouseUp={handleSelect}
                     suppressContentEditableWarning={true}
                     contentEditable={true}
@@ -642,7 +643,7 @@ const InputsForm = () => {
                 <div
                     name="Databases"
                     aria-required="true"
-                    style={{width:'210px', fontSize:15, padding: '0.2rem', lineHeight:"25px" }}
+                    style={{width:'210px', fontSize:14.5, padding: '0.2rem', lineHeight:"25px" }}
                     onMouseUp={handleSelect}
                     suppressContentEditableWarning={true}
                     contentEditable={true}
@@ -668,7 +669,7 @@ const InputsForm = () => {
                 <div
                     name="Frameworks"
                     aria-required="true"
-                    style={{width:'210px', fontSize:15, padding: '0.2rem', lineHeight:"25px" }}
+                    style={{width:'210px', fontSize:14.5, padding: '0.2rem', lineHeight:"25px" }}
                     onMouseUp={handleSelect}
                     suppressContentEditableWarning={true}
                     contentEditable={true}
@@ -692,7 +693,7 @@ const InputsForm = () => {
                 <div
                     name="GeneralKnowledge"
                     aria-required="true"
-                    style={{width:'210px', fontSize:15, padding: '0.2rem', lineHeight:"25px" }}
+                    style={{width:'210px', fontSize:14.5, padding: '0.2rem', lineHeight:"25px" }}
                     onMouseUp={handleSelect}
                     suppressContentEditableWarning={true}
                     contentEditable={true}
@@ -719,7 +720,7 @@ const InputsForm = () => {
                 <TextField
                     type="text"
                     name="workHeader"
-                    className='pdfFonts'
+                    // className='pdfFonts'
                     required 
                     
                     multiline
@@ -735,7 +736,7 @@ const InputsForm = () => {
                     width:'235px',
                     
                     }}
-                    InputProps={{style: {fontSize:19, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}}}
+                    InputProps={{style: {fontSize:16.5, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}}}
                     
                 />
 
