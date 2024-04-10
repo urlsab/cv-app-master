@@ -71,12 +71,12 @@ const InputsForm = () => {
     };
 
     // handle input change
-    const handleInputChange = (e, index) => {
-        const { name, value } = e.target;
-        const list = [...inputList];
-        list[index][name] =  value;
-        setInputList(list);
-    };
+    // const handleInputChange = (e, index) => {
+    //     const { name, value } = e.target;
+    //     const list = [...inputList];
+    //     list[index][name] =  value;
+    //     setInputList(list);
+    // };
 
     const handleAddResume = (event) => {
         
@@ -100,15 +100,15 @@ const InputsForm = () => {
         
     };
 
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setOurForm(prevState => ({
-            objectName: {
-                ...prevState.objectName,
-                [name]: value
-            },
-        }))
-    };
+    // const handleChange = (event) => {
+    //     const { name, value } = event.target;
+    //     setOurForm(prevState => ({
+    //         objectName: {
+    //             ...prevState.objectName,
+    //             [name]: value
+    //         },
+    //     }))
+    // };
 
     const handleCustomChange = (field, data) => {
         setOurForm({
@@ -133,80 +133,6 @@ const InputsForm = () => {
   };
 
   const [flag, setFlag] = useState(false);
-
-  // maybe just toggle font-weight: bold/normal;
-  const handleBold = () => {
-      if (window.getSelection() && !flag) {
-        const selection = window.getSelection();
-        const range = selection.getRangeAt(0);
-        const span = document.createElement('b');
-        span.setAttribute('id', 'bb');
-        span?.appendChild(range.extractContents());
-        range.insertNode(span);
-        setFlag(!flag);
-      }
-      if (window.getSelection() && flag) {
-        const selection = window.getSelection();
-        const range = selection.getRangeAt(0);
-        const span = document.getElementById('bb');
-        console.log(selection);
-        span?.replaceWith(...span.childNodes);
-        range.insertNode(span);
-        setFlag(!flag);
-      }
-    };
-  
-    // maybe just toggle text-decoration: underline/none
-    const handleUnderline = () => {
-      if (window.getSelection() && !flag) {
-        const selection = window.getSelection();
-        const range = selection.getRangeAt(0);
-        const span = document.createElement('u');
-        
-        span.setAttribute('id','cc');
-        span?.appendChild(range.extractContents());
-        range.insertNode(span);
-        setFlag(!flag);
-      }
-      if (window.getSelection() && flag) {
-        const selection = window.getSelection();
-        const range = selection.getRangeAt(0);
-        const span = document.getElementById('cc');
-        span?.replaceWith(...span.childNodes);
-        range.insertNode(span);
-        setFlag(!flag);
-      }
-    };
-
-  const boldSelectedText = () => {
-    const range = window.getSelection().getRangeAt(0);
-    const boldElement = document.createElement('strong');
-    if (boldEnabled) {
-      boldElement.appendChild(range.extractContents());
-      range.insertNode(boldElement);
-    } else {
-      const parentElement = range.commonAncestorContainer.parentElement;
-      if (parentElement.nodeName === 'STRONG') {
-        const textNode = document.createTextNode(parentElement.textContent);
-        parentElement.parentNode.replaceChild(textNode, parentElement);
-      }
-    }
-  };
-
-  const underlineSelectedText = () => {
-    const range = window.getSelection().getRangeAt(0);
-    const underlineElement = document.createElement('u');
-    if (underlineEnabled) {
-      underlineElement.appendChild(range.extractContents());
-      range.insertNode(underlineElement);
-    } else {
-      const parentElement = range.commonAncestorContainer.parentElement;
-      if (parentElement.nodeName === 'U') {
-        const textNode = document.createTextNode(parentElement.textContent);
-        parentElement.parentNode.replaceChild(textNode, parentElement);
-      }
-    }
-  };
 
   const toggleStyle = (tagName, id) => {
     if (window.getSelection()) {
@@ -335,7 +261,7 @@ const InputsForm = () => {
                     name="jobTitle"
                     aria-required="true"
                     multiline
-                    style={{width:'235px',fontSize:16.5, marginTop:'0px' ,color:'white', padding: '0.2rem', lineHeight:"25px"}}
+                    style={{marginBottom:'6px',width:'235px',fontSize:16.5 ,color:'white', paddingLeft: '0.2rem', lineHeight:"25px"}}
                     onMouseUp={handleSelect}
                     suppressContentEditableWarning={true}
                     contentEditable={true}
@@ -529,7 +455,7 @@ const InputsForm = () => {
                     onMouseUp={handleSelect}
                     suppressContentEditableWarning={true}
                     contentEditable={true}
-                    placeholder='Degree/course name'
+                    placeholder='Degree/course name, school name,location, duration..'
                     content={ourForm.objectName.degreeTypeAndname}
                     onInput={(event) => {
                         const nameFull = event.target.textContent;
@@ -538,7 +464,7 @@ const InputsForm = () => {
                 />
             </div>
 
-            <div className="iconAndInputs">
+            {/* <div className="iconAndInputs">
                 {ourForm.objectName.schoolNameAndlocation!=='' && (<Fade> <img 
                     style={{marginRight:"3px", marginLeft:'18px'}}
                     src='data:image/svg+xml;utf8,
@@ -560,9 +486,9 @@ const InputsForm = () => {
                         handleCustomChange('schoolNameAndlocation', nameFull);
                     }}
                 />
-            </div> 
+            </div>  */}
 
-            <div className="iconAndInputs">
+            {/* <div className="iconAndInputs">
                 {ourForm.objectName.timeLearnedDegree!=='' && (<Fade> <img 
                     style={{marginRight:"3px", marginLeft:'18px'}}
                     src='data:image/svg+xml;utf8,
@@ -584,7 +510,7 @@ const InputsForm = () => {
                         handleCustomChange('timeLearnedDegree', nameFull);
                     }}
                 />
-            </div> 
+            </div>  */}
 
             <TextField
                     type="text"
@@ -716,47 +642,32 @@ const InputsForm = () => {
 
             {/* rigth part */}
             <div className="grid-area work">
-            
                 <TextField
                     type="text"
                     name="workHeader"
                     // className='pdfFonts'
                     required 
-                    
                     multiline
                     // placeholder='Optional section'
-                    sx={{border: 'none',"& fieldset": { border: 'none' }  }}
+                    sx={{border: 'none',"& fieldset": { border: 'none' }}}
                     value={'WORK EXPERIENCE'}
                     // onChange={handleChange}
-                    defaultValue={'Languages:'}
-                    
+                    // defaultValue={'Languages:'}
                     style={{
                     marginTop:'20px',
                     marginLeft:'18px',
                     width:'235px',
-                    
                     }}
-                    InputProps={{style: {fontSize:16.5, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}}}
-                    
+                    InputProps={{style: {fontSize:16.5, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}}}    
                 />
-
-                <TodoWork/>
-
-                <TodoRight/>
-
-            </div>
-
+            <TodoWork/>
+            <TodoRight/>
+        </div>
     </div> 
 
                                 
-
-                            </PDFExport>
-
-                            
-                        </Fade>
-
-                   
-
+                </PDFExport>       
+                </Fade>
                 <Fade delay={800}>
                     <div className='buttonsStyle'>
 

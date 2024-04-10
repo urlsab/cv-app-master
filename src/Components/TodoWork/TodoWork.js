@@ -1,6 +1,5 @@
 import './TodoWork.css';
 import React, { useState, useEffect } from 'react';
-import { PiDotBold } from "react-icons/pi";
 import { initialState } from "../../utils/ourState";
 import Fade from 'react-reveal/Fade';
 
@@ -11,10 +10,6 @@ const TodoWork = () => {
   const [selectedText, setSelectedText] = useState('');
   const [isPopoverVisible, setIsPopoverVisible] = useState(false);
   const [ourForm, setOurForm] = useState(initialState);
-
-  const handleProcedureContentChange = (content) => {
-    console.log('content---->', content);
-  };
 
   const handleSelect = () => {
     const selection = window.getSelection();
@@ -50,20 +45,9 @@ const TodoWork = () => {
     return keyPressed;
   }
 
-  const enterPress = useKeyDown("Enter");
-  const iconOb = <PiDotBold/>;
-
-  const renderDot = () => {
-    return (
-      <>
-        <PiDotBold />
-      </>
-    );
-  }
 
 // •  • • ∙  ● • · · | . |
 // work at pdf kendo - · |  
-  const dotIcon =  <PiDotBold/>  ;
   const [inputList, setInputList] = useState([{ display: 'notdisplayed', roleAndCompanyName: '',  durationAndLocation: '', achivements: '-'}]);
 
   const handleEnterPress = (event, i) => {
@@ -202,23 +186,23 @@ const TodoWork = () => {
               placeholder='Role | Company Name'
               content={x.roleAndCompanyName}
               onChange={(e) => handleInputChange(e, i)}
-              style={{marginLeft:'5px',width:'490px',fontSize:16.5, padding: '0.2rem', lineHeight:"25px"}}
+              style={{marginLeft:'5px',width:'490px',fontSize:16.5, paddingLeft: '0.2rem', lineHeight:"25px"}}
               // onInput={(event) => {
               //     const nameFull = event.target.textContent;
               //     handleCustomChange('GeneralKnowledge', nameFull);
               // }}
-                />
-          </div>
+              />
+            </div>
 
         {/* x.durationAndLocation!=='' && */}
-          <div className="iconAndInputs">
-                { (<Fade> <img 
-                    style={{marginRight:"1px", marginLeft:'20px'}}
-                    src='data:image/svg+xml;utf8,
-                      <svg class="w-[12px] h-[12px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" viewBox="0 0 24 24">
-                        <path fill-rule="evenodd" stroke-width="1.5" d="M5 5a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1h1a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1h1a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1 2 2 0 0 1 2 2v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a2 2 0 0 1 2-2ZM3 19v-7a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Zm6.01-6a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm2 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm6 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm-10 4a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm6 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm2 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z" clip-rule="evenodd"/>
-                      </svg>'
-                /> </Fade>)}
+            <div className="iconAndInputs">
+              { (<Fade> <img 
+                  style={{marginRight:"1px", marginLeft:'20px'}}
+                  src='data:image/svg+xml;utf8,
+                    <svg class="w-[12px] h-[12px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" viewBox="0 0 24 24">
+                      <path fill-rule="evenodd" stroke-width="1.5" d="M5 5a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1h1a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1h1a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1 2 2 0 0 1 2 2v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a2 2 0 0 1 2-2ZM3 19v-7a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Zm6.01-6a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm2 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm6 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm-10 4a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm6 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm2 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z" clip-rule="evenodd"/>
+                    </svg>'
+              /> </Fade>)}
             <div
               name="durationAndLocation"
               aria-required="true"
@@ -228,7 +212,7 @@ const TodoWork = () => {
               placeholder='Duration | Location'
               content={x.durationAndLocation}
               onChange={(e) => handleInputChange(e, i)}
-              style={{marginLeft:'5px',width:'490px',fontSize:13, padding: '0.2rem', lineHeight:"25px"}}
+              style={{marginLeft:'5px',width:'490px',fontSize:13, paddingLeft: '0.2rem', lineHeight:"25px"}}
               // onInput={(event) => {
               //     const nameFull = event.target.textContent;
               //     handleCustomChange('GeneralKnowledge', nameFull);
@@ -239,11 +223,11 @@ const TodoWork = () => {
         {/* x.achivements!=='' && */}
           <div className="iconAndInputs">
             { (<Fade> <img 
-                style={{marginRight:"1px", marginLeft:'20px'}}
-                src='data:image/svg+xml;utf8,
-                  <svg class="w-[12px] h-[12px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24">
-                    <path stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 9a3 3 0 0 1 3-3m-2 15h4m0-3c0-4.1 4-4.9 4-9A6 6 0 1 0 6 9c0 4 4 5 4 9h4Z"/>
-                  </svg>'
+              style={{marginRight:"1px", marginLeft:'20px'}}
+              src='data:image/svg+xml;utf8,
+                <svg class="w-[12px] h-[12px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24">
+                  <path stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 9a3 3 0 0 1 3-3m-2 15h4m0-3c0-4.1 4-4.9 4-9A6 6 0 1 0 6 9c0 4 4 5 4 9h4Z"/>
+                </svg>'
             /> </Fade>)}
           
             <div
@@ -256,7 +240,7 @@ const TodoWork = () => {
               content={x.achivements}
               onKeyDown={(e) => handleEnterPress(e, i) } 
               onChange={(e) => handleInputChange(e, i) }
-              style={{fontSize:14.5,marginLeft:'5px', width:'497px', lineHeight:'25px'}}
+              style={{fontSize:14.5, marginLeft:'5px', width:'490px', lineHeight:'25px', paddingLeft:'0.2rem'}}
             />
 
           </div>
@@ -267,8 +251,7 @@ const TodoWork = () => {
           </div>
           </div>
         );
-      })}
-      
+      })}  
     </div>
   );
 };

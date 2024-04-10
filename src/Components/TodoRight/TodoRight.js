@@ -121,7 +121,7 @@ const TodoRight = () => {
                     key={i  + 7}
                     aria-required="true"
                     // fontSize:16.5 = 14 font size in word = the best header size for resumes
-                    style={{ marginLeft:'20px',width:'500px',textTransform:"uppercase", fontSize:16.5, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px" }}
+                    style={{ marginLeft:'20px',width:'500px', fontSize:16.5, fontWeight:'bolder', paddingLeft: '0.2rem', lineHeight:"25px" }}
                     onMouseUp={handleSelect}
                     suppressContentEditableWarning={true}
                     contentEditable={true}
@@ -143,7 +143,7 @@ const TodoRight = () => {
                     key={i  + 7}
                     aria-required="true"
                     // fontSize:14.5 = 12 font size in word = best content font size for resumes
-                    style={{  marginLeft:'20px',width:'505px',fontSize:14.5, padding: '0.2rem', lineHeight:"25px" }}
+                    style={{  marginLeft:'20px',width:'505px',fontSize:14.5, paddingLeft: '0.2rem', lineHeight:"25px" }}
                     onMouseUp={handleSelect}
                     suppressContentEditableWarning={true}
                     contentEditable={true}

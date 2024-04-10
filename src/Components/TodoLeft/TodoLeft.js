@@ -150,14 +150,15 @@ const TodoLeft = () => {
                   </button>
                 )}
 
-                <div className='forSecondGroup' style={{marginTop:'10px', marginBottom:'5px', marginLeft:'18px', width:'235px'}} key={i  + 7}>
+                <div className='forSecondGroup' style={{marginTop:'10px', marginBottom:'5px', marginLeft:'18px', width:'230px'}} key={i  + 7}>
 
                   <div
                     name="optionalSectionHeader"
                     key={i  + 7}
                     aria-required="true"
+                    // textTransform:"uppercase", - for only big letters
                     // fontSize:16.5 = 14 font size in word = the best header size for resumes
-                    style={{ textTransform:"uppercase", fontSize:16.5, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px", marginLeft:'3px'}}
+                    style={{ fontSize:16.5, fontWeight:'bolder', lineHeight:"25px"}}
                     onMouseUp={handleSelect}
                     suppressContentEditableWarning={true}
                     contentEditable={true}
@@ -177,7 +178,7 @@ const TodoLeft = () => {
                     key={i  + 7}
                     aria-required="true"
                     // fontSize:14.5 = 12 font size in word = best content font size for resumes
-                    style={{ fontSize:14.5, padding: '0.2rem', lineHeight:"30px", marginLeft:'5px' }}
+                    style={{ fontSize:14.5, lineHeight:"25px" }}
                     onMouseUp={handleSelect}
                     suppressContentEditableWarning={true}
                     contentEditable={true}
