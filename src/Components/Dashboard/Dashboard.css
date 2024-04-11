@@ -12,19 +12,14 @@
   align-content: center;
 }
 
-/* @media screen and (max-width: 425px) {
+@media screen and (max-width: 280px) {
   .dasboardContainer  
   {
-    width: 520px;
+    width: 285px;
   };
 } 
 
-@media screen and (max-width: 255px) {
-  .dasboardContainer  
-  {
-    width: 425px;
-  };
-}  */
+
 
 .styleName {
   font-family: 'poppins', serif;

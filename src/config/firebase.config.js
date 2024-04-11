@@ -24,7 +24,7 @@ export const firestoreDB = initializeFirestore(app, {
 
 TO DEPLOY COMMAND:
 npm start
-change any code
+change code
 exit npm start
 npm run build
 change code
