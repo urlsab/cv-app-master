@@ -8,6 +8,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { PDFExport } from "@progress/kendo-react-pdf";
 import TodoWork from '../TodoWork/TodoWork';
 import PrintIcon from '@mui/icons-material/Print';
+import SaveIcon from '@mui/icons-material/Save';
 import TextField from '@mui/material/TextField';
 import ReactToPrint from 'react-to-print';
 import { firestoreDB, auth } from "../../config/firebase.config";
@@ -698,13 +699,13 @@ const InputsForm = () => {
                             content={() => pdfExportComponent.current}
                         />
 
-                            {/* <Button 
+                            <Button 
                                 startIcon={<SaveIcon/>}
                                 color="success"
                                 variant="contained"
                                 sx={{m:1, mt: 4}}
                                 onClick={handleAddResume}>SAVE
-                            </Button> */}
+                            </Button>
 
                     </div>
 

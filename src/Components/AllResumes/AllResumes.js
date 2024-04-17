@@ -182,7 +182,7 @@ const handleAddResume = (event) => {
                                                     required 
                                                     multiline
                                                     placeholder='Full Name'
-                                                    className='pdfFonts'
+                                                    
 
                                                     // for hide the border
                                                     sx={{border: 'none',"& fieldset": { border: 'none' } }}
@@ -200,7 +200,8 @@ const handleAddResume = (event) => {
 
                                                 <div 
                                                     name="fullName"
-                                                    className='pdfFonts'
+                                                    
+                                                    style={{color:'white'}}
                                                     contentEditable={true}                                        
                                                     suppresscontenteditablewarning={true}                                                                                                          
                                                 > 
@@ -210,7 +211,7 @@ const handleAddResume = (event) => {
                                                 <TextField
                                                     type="text"
                                                     name="jobTitle"
-                                                    className='pdfFonts'
+                                                    
                                                     required 
                                                     multiline
                                                     placeholder='Role'
@@ -228,7 +229,7 @@ const handleAddResume = (event) => {
                                                 <TextField
                                                     type="email"
                                                     name="email"
-                                                    className='pdfFonts'
+                                                    
                                                     required 
                                                     multiline
                                                     
@@ -258,7 +259,7 @@ const handleAddResume = (event) => {
                                                 <TextField
                                                     type="text"
                                                     name="phoneNumber"
-                                                    className='pdfFonts'
+                                                    
                                                     required 
                                                     multiline
                                                     placeholder='Phone Number'
@@ -284,7 +285,7 @@ const handleAddResume = (event) => {
                                                 <TextField
                                                     type="text"
                                                     name="linkedinLink"
-                                                    className='pdfFonts'
+                                                    
                                                     required 
                                                     multiline
                                                     placeholder='Linkedin link'
@@ -312,7 +313,7 @@ const handleAddResume = (event) => {
                                                     name="githubLink"
                                                     required 
                                                     multiline
-                                                    className='pdfFonts'
+                                                    
                                                     placeholder='Github'
                                                     sx={{border: 'none',"& fieldset": { border: 'none' }  }}
                                                     defaultValue={cv[i].info.githubLink}
@@ -336,7 +337,7 @@ const handleAddResume = (event) => {
                                                 <TextField
                                                     type="text"
                                                     name="portfolioLink"
-                                                    className='pdfFonts'
+                                                    
                                                     required 
                                                     multiline
                                                     placeholder='Portfolio'
@@ -370,7 +371,7 @@ const handleAddResume = (event) => {
                                             <TextField
                                                     type="text"
                                                     name="educationHeader"
-                                                    className='pdfFonts'
+                                                    
                                                     required 
                                                     multiline
                                                     placeholder='Optional section'
@@ -390,7 +391,7 @@ const handleAddResume = (event) => {
                                                 <TextField
                                                     type="text"
                                                     name="degreeTypeAndname"
-                                                    className='pdfFonts'
+                                                    
                                                     required 
                                                     multiline
                                                     placeholder='Degree name'
@@ -418,7 +419,7 @@ const handleAddResume = (event) => {
                                                 <TextField
                                                     type="text"
                                                     name="schoolNameAndlocation"
-                                                    className='pdfFonts'
+                                                    
                                                     required 
                                                     multiline
                                                     placeholder='School name & location'
@@ -445,7 +446,7 @@ const handleAddResume = (event) => {
                                                 <TextField
                                                     type="text"
                                                     name="timeLearnedDegree"
-                                                    className='pdfFonts'
+                                                    
                                                     required 
                                                     multiline
                                                     placeholder='Time range'
@@ -473,7 +474,7 @@ const handleAddResume = (event) => {
                                             <TextField
                                                     type="text"
                                                     name="skillsHeader"
-                                                    className='pdfFonts'
+                                                    
                                                     required 
                                                     multiline
                                                     placeholder='Optional section'
@@ -493,7 +494,7 @@ const handleAddResume = (event) => {
                                                 <TextField
                                                     type="text"
                                                     name="ProgrammingLanguages"
-                                                    className='pdfFonts'
+                                                    
                                                     required 
                                                     multiline
                                                     placeholder='Languages: JS, CSS e.g.'
@@ -523,7 +524,7 @@ const handleAddResume = (event) => {
                                                 <TextField
                                                     type="text"
                                                     name="Databases"
-                                                    className='pdfFonts'
+                                                    
                                                     required 
                                                     multiline
                                                     placeholder='Databases: MongoDB e.g.'
@@ -552,7 +553,7 @@ const handleAddResume = (event) => {
                                                 <TextField
                                                     type="text"
                                                     name="Frameworks"
-                                                    className='pdfFonts'
+                                                    
                                                     required 
                                                     multiline
                                                     placeholder='Frameworks: React e.g.'
@@ -582,7 +583,7 @@ const handleAddResume = (event) => {
                                                 <TextField
                                                     type="text"
                                                     name="GeneralKnowledge"
-                                                    className='pdfFonts'
+                                                    
                                                     required 
                                                     multiline
                                                     placeholder='Knowledge: React-hooks e.g.'
@@ -623,7 +624,7 @@ const handleAddResume = (event) => {
                                                 <TextField
                                                     type="text"
                                                     name="workHeader"
-                                                    className='pdfFonts'
+                                                    
                                                     required 
                                                     multiline
                                                     // placeholder='Optional section'
@@ -675,7 +676,7 @@ const handleAddResume = (event) => {
                                             variant="contained" 
                                             color="inherit"
                                             startIcon={<PrintIcon/>}>PRINT</Button>} 
-                                            content={() => pdfExportComponent.current}
+                                            content={() => pdfExportComponent[i].current}
                                         />
                                     
                                     {/* <Button
