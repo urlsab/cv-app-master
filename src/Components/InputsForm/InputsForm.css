@@ -13,25 +13,24 @@
 .resume {
     display: grid;
     justify-content: center;
-    /* margin-top: 0.5px; */
     font-size: 20px;
     background-color: rgb(246, 246, 249);
     border: none;
     flex-direction: column;
     flex-wrap: wrap;
+
     /* sizes exactly like beamjobs = 790px*/
     width: 790px;
-    /* margin-right: 2px; */
     
     /* min height effects the footer part of the paper before print */
     min-height: 11.65in;
-
-    /* margin: 20px auto; */
+    
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr;
     box-shadow: 0 5px 9px 0 rgba(0, 0, 0, 0.35);
     grid-template-areas:
         "name work";
+        /* "work name" - for hebrew version */
 }
 
 .name {
@@ -41,11 +40,9 @@
     border: none;
     flex-direction: column;
     justify-content: flex-start;
-    /* align-content: center; */
     flex-wrap: wrap;
     align-items: flex-start;
     text-align: inherit;
-    /* margin-left: 18px; */
 }
 
 .work {
@@ -58,7 +55,6 @@
     align-content: flex-start;
     flex-wrap: wrap;
     text-align: inherit;
-    /* margin-left: 18px; */
     align-items: flex-start;
 }
 
@@ -80,14 +76,12 @@
     flex-wrap: wrap;
     justify-content: center;
     align-content: center;
-    /* margin-left: 15px; */
     align-items: center;
 }
 
 .square {
     background-color: rgb(251, 158, 77);
     min-height: 6cm;
-    /* width: 7cm; */
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -105,7 +99,7 @@
     flex-wrap: wrap;
 }
 
-/* allow fonts of pdfexport kendu react */
+/* allow fonts of pdfexport kendo react ui */
 .pdfFonts {
     font-family: "Arial", "Lato", "Rubik", "Exo", "DejaVu Sans" ,sans-serif;
 }

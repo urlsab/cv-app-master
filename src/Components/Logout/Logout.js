@@ -22,7 +22,7 @@ const Logout = () => {
 
   return (
     <div className="logoutContainer">  
-      <Fade bottom delay={300}> <h1> <b className='goodBeyStyle'> YOUR GREAT CV - OUR SUCCESS </b> </h1> </Fade> 
+      <Fade bottom delay={300}> <h1> <b className='goodBeyStyle'> YOUR GREAT RESUME - OUR SUCCESS </b> </h1> </Fade> 
       
       {/* <b className='styleName'> {localStorage.getItem(localStorage.key(0))}  </b> */}
       <Fade bottom delay={1100}> <h1 > <b className='goodBeyStyle'>  SEE YOU SOON  </b> 🤙 </h1>  </Fade>      

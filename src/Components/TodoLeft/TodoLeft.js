@@ -153,7 +153,7 @@ const TodoLeft = () => {
                 <div className='forSecondGroup' style={{marginTop:'10px', marginBottom:'5px', marginLeft:'18px', width:'230px'}} key={i  + 7}>
 
                   <div
-                    name="optionalSectionHeader"
+                    name="dynamicHeaderPartOne"
                     key={i  + 7}
                     aria-required="true"
                     // textTransform:"uppercase", - for only big letters
@@ -162,8 +162,8 @@ const TodoLeft = () => {
                     onMouseUp={handleSelect}
                     suppressContentEditableWarning={true}
                     contentEditable={true}
-                    placeholder='Optional Header'
-                    content={x.optionalSectionHeader}
+                    placeholder='dynamicHeaderPartOne'
+                    content={ourForm.objectName.dynamicHeaderPartOne}
                     onChange={(e) => handleInputChange(e, i)}
                     // onInput={(event) => {
                     //     const nameFull = event.target.textContent;
@@ -174,7 +174,7 @@ const TodoLeft = () => {
                   {/*className='pdfFonts'*/}
 
                   <div
-                    name="optionalSectionContent"
+                    name="dynamicContentPartOne"
                     key={i  + 7}
                     aria-required="true"
                     // fontSize:14.5 = 12 font size in word = best content font size for resumes
@@ -182,8 +182,8 @@ const TodoLeft = () => {
                     onMouseUp={handleSelect}
                     suppressContentEditableWarning={true}
                     contentEditable={true}
-                    placeholder='Optional Content'
-                    content={x.optionalSectionContent}
+                    placeholder='dynamicContentPartOne'
+                    content={ourForm.objectName.dynamicContentPartOne}
                     onChange={(e) => handleInputChange(e, i)}
                     // onInput={(event) => {
                     //     const nameFull = event.target.textContent;

@@ -7,34 +7,18 @@ export const arrInitialState = [
     'linkedinLink',
     'email', 
     'portfolioLink',
-     
-    'educationHeader',
+
     'degreeTypeAndname', 
-    'schoolNameAndlocation',
-    'timeLearnedDegree',
-    'relevantCourses', 
-    
-    'workHeader',
-    'position',
-    'companyName',
-    'locationAndDuration',
 
-    'projectName',
-    'buildDuration',
-    'shortProjectDescription',
-    'techUsed',
-    'githubCodeLink',
-
-    'skillsHeader',
-    'ProgrammingLanguages',
-    'Databases',
-    'Frameworks',
     'GeneralKnowledge',
 
     'dynamicHeaderPartOne',
     'dynamicContentPartOne',
+    
+    'position',
+    'companyName',
+    'locationAndDuration',
 
     'dynamicHeaderPartTow',
     'dynamicContentPartTow'
-
 ]
