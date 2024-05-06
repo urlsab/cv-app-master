@@ -65,7 +65,6 @@
     "react": "^18.2.0",
     "react-awesome-reveal": "^4.2.3",
     "react-bootstrap": "^2.7.4",
-    "react-bulleted-textarea": "^1.1.2",
     "react-confetti": "^6.1.0",
     "react-dom": "^18.2.0",
     "react-firebase-hooks": "^5.1.1",
