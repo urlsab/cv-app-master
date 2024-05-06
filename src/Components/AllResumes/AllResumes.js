@@ -643,7 +643,7 @@ const AllResumes = () => {
                     <LightSpeed left delay={300}><h1> 📝 <b className="textStyle" >EDIT & UPDATE </b>  </h1> </LightSpeed>
                     <LightSpeed left delay={600}><h1> 🚮 <b className="textStyle">DELETE FOREVER </b>  </h1> </LightSpeed>
                     <LightSpeed left delay={900}><h1> 📥 <b className="textStyle">DOWNLOAD AS PDF  </b>  </h1> </LightSpeed>
-                    <LightSpeed left delay={1200}><h1> 📃 <b className="textStyle">PRINT IMMEDIATELY </b>  </h1> </LightSpeed>
+                    <LightSpeed left delay={1200}><h1> 📃 <b className="textStyle">PRINT EASILY </b>  </h1> </LightSpeed>
                 </div>
 
                 {toggle ?
