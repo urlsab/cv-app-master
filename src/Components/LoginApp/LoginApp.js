@@ -69,7 +69,7 @@ const LoginApp = () => {
             const errorMessage = error.message;
             console.log(errorCode, errorMessage);
             console.log(curAuth);
-            alert("Fix email/password or disconnect your google account if you tried to log in with google");
+            alert("Fix email or password or disconnect your google account if you tried to log in with google");
         });
 
     }
