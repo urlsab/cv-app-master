@@ -599,7 +599,7 @@ const AllResumes = () => {
                                     color="inherit"
                                     variant="contained"
                                     sx={{m:1}}
-                                    onClick={()=> { handleDeleteDoc(el.id); handleAddResume(el.id+1);}}>UPDATE
+                                    onClick={()=> { handleDeleteDoc(el.id); handleAddResume(el.id+1);}}>EDIT
                                 </Button>
 
                                 <Button
@@ -607,7 +607,7 @@ const AllResumes = () => {
                                     color="error"
                                     sx={{m:1}}
                                     variant="contained"
-                                    onClick={ () => { handleDeleteDoc(el.id); }}>Delete
+                                    onClick={ () => { handleDeleteDoc(el.id); }}>DELETE
                                 </Button>   
 
                                 <ReactToPrint trigger={() => 
@@ -640,10 +640,11 @@ const AllResumes = () => {
         <div className="allResumesContainer">
             <Navbar/>
                 <div className="headersContainer" style={{fontFamily:'Itim'}}>   
-                    <LightSpeed left delay={300}><h1> 📝 <b className="textStyle" >EDIT & UPDATE </b>  </h1> </LightSpeed>
-                    <LightSpeed left delay={600}><h1> 🚮 <b className="textStyle">DELETE FOREVER </b>  </h1> </LightSpeed>
-                    <LightSpeed left delay={900}><h1> 📥 <b className="textStyle">DOWNLOAD AS PDF  </b>  </h1> </LightSpeed>
-                    <LightSpeed left delay={1200}><h1> 📃 <b className="textStyle">PRINT EASILY </b>  </h1> </LightSpeed>
+                    <LightSpeed left delay={300}><h1> 📝 <b className="textStyle" >EDIT </b>  </h1> </LightSpeed>
+                    <LightSpeed left delay={600}><h1> 🚮 <b className="textStyle">DELETE  </b>  </h1> </LightSpeed>
+                    <LightSpeed left delay={900}><h1> 📃 <b className="textStyle">PRINT NOW </b>  </h1> </LightSpeed>
+                    <LightSpeed left delay={1200}><h1> 📥 <b className="textStyle">GET IT AS PDF  </b>  </h1> </LightSpeed>
+                    
                 </div>
 
                 {toggle ?
