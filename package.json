@@ -64,7 +64,7 @@
     "package-json": "^8.1.0",
     "passport-google-oauth20": "^2.0.0",
     "path-browserify": "^1.0.1",
-    "postcss": "^8.4.38",
+    "postcss": "^8.4.31",
     "protobufjs": "^7.2.5",
     "randomstring": "^1.2.3",
     "react": "18.3.1",
