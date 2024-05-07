@@ -607,7 +607,7 @@ const AllResumes = () => {
                                     color="error"
                                     sx={{m:1}}
                                     variant="contained"
-                                    onClick={ () => { handleDeleteDoc(el.id); }}>remove
+                                    onClick={ () => { handleDeleteDoc(el.id); }}>delete
                                 </Button>   
 
                                 <ReactToPrint trigger={() => 
