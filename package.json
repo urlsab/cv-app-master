@@ -17,6 +17,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@google-cloud/pubsub": "^4.4.0",
     "@jridgewell/sourcemap-codec": "^1.4.15",
     "@mui/icons-material": "^5.15.16",
     "@mui/material": "^5.15.16",
@@ -55,7 +56,7 @@
     "firebase-admin": "^12.1.0",
     "firebase-tools": "^13.0.2",
     "fs": "^0.0.1-security",
-    "google-gax": "^4.3.3",
+    "google-gax": "^4.0.3",
     "hammerjs": "^2.0.8",
     "html2canvas": "^1.4.1",
     "htmlnano": "^2.1.1",
@@ -145,9 +146,12 @@
   "devDependencies": {
     "@babel/core": "^7.22.1",
     "@babel/preset-env": "^7.22.4",
+    "@google-cloud/pubsub": "^4.4.0",
     "@iconify/react": "^4.1.1",
     "@svgr/plugin-svgo": "^8.0.1",
     "babel-loader": "^9.1.2",
+    "google-gax": "^4.0.3",
+    "protobufjs": "^7.2.5",
     "webpack": "^5.84.1"
   },
   "overrides": {
