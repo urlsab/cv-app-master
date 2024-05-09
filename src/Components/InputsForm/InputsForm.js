@@ -30,6 +30,7 @@ const InputsForm = () => {
     // const [underlineEnabled, setUnderlineEnabled] = useState(false);
 
   const handleLinkInputChange = (event) => {
+    console.log(isPopoverVisible, linkApplied)
     setLinkUrl(event.target.value);
   };
 

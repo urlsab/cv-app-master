@@ -6,7 +6,7 @@ import { initialState } from "../../utils/ourState";
 const TodoLeft = () => {
 
   const [inputList, setInputList] = useState([{ display: 'notdisplayed'}]);
-  const [selectedText, setSelectedText] = useState('');
+  const [selectedTexti, setSelectedText] = useState('');
   const [isPopoverVisible, setIsPopoverVisible] = useState(false);
   // removed - setOurForm
   const [ourForm] = useState(initialState);
@@ -70,6 +70,7 @@ const TodoLeft = () => {
   const handleSelect = () => {
     const selection = window.getSelection();
     if (selection.toString()) {
+      console.log(selectedTexti, isPopoverVisible);
       const selectedText = selection.toString();
       setSelectedText(selectedText);
       setIsPopoverVisible(true);
