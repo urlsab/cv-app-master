@@ -170,7 +170,7 @@ const TodoWork = () => {
 
         {/* x.roleAndCompanyName!=='' && */}
           <div className="iconAndInputs">
-            { (<Fade> <img 
+            { (<Fade> <img alt="svg"
                     style={{marginRight:"1px", marginLeft:'20px'}}
                     src='data:image/svg+xml;utf8,
                       <svg class="w-[12px] h-[12px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" viewBox="0 0 24 24">
@@ -196,7 +196,7 @@ const TodoWork = () => {
 
         {/* x.durationAndLocation!=='' && */}
             <div className="iconAndInputs">
-              { (<Fade> <img 
+              { (<Fade> <img alt="svg"
                   style={{marginRight:"1px", marginLeft:'20px'}}
                   src='data:image/svg+xml;utf8,
                     <svg class="w-[12px] h-[12px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" viewBox="0 0 24 24">
@@ -222,7 +222,7 @@ const TodoWork = () => {
 
         {/* x.achivements!=='' && */}
           <div className="iconAndInputs">
-            { (<Fade> <img 
+            { (<Fade> <img alt="svg"
               style={{marginRight:"1px", marginLeft:'20px'}}
               src='data:image/svg+xml;utf8,
                 <svg class="w-[12px] h-[12px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24">

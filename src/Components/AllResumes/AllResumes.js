@@ -13,7 +13,7 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 // import { AiOutlineDatabase } from "react-icons/ai";
 // import { AiOutlineTool } from "react-icons/ai";
 // import { BsCode } from "react-icons/bs";
-import { collection, deleteDoc, getDocs, doc, updateDoc } from "firebase/firestore";
+import { collection, deleteDoc, getDocs, doc } from "firebase/firestore";
 import { useToggle } from "../../utils/useToggle";
 import { PDFExport } from "@progress/kendo-react-pdf";
 import Navbar from "../Navbar/Navbar";
@@ -43,7 +43,7 @@ const AllResumes = () => {
 
     const [cv, setCv] = useState([]);
     const [toggle, setToggle] = useToggle();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     
     const [user] = useAuthState(auth);
 
@@ -54,15 +54,15 @@ const AllResumes = () => {
     // const [popoverPosition, setPopoverPosition] = useState({ x: 0, y: 0 });
     const [isPopoverVisible, setIsPopoverVisible] = useState(false);
 
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setOurForm(prevState => ({
-            objectName: {
-                ...prevState.objectName,
-                [name]: value
-            },
-        }))
-    };
+    // const handleChange = (event) => {
+    //     const { name, value } = event.target;
+    //     setOurForm(prevState => ({
+    //         objectName: {
+    //             ...prevState.objectName,
+    //             [name]: value
+    //         },
+    //     }))
+    // };
 
     const handleCustomChange = (field, data) => {
         setOurForm({
@@ -111,31 +111,31 @@ const AllResumes = () => {
         }
     };
   
-    const handleBoldi = (id) => {
-        if (!flag) {
-        toggleStyle('b', id);
-        } else {
-        removeStyle('b');
-        setFlag(!flag);
-        }
-    };
+    // const handleBoldi = (id) => {
+    //     if (!flag) {
+    //     toggleStyle('b', id);
+    //     } else {
+    //     removeStyle('b');
+    //     setFlag(!flag);
+    //     }
+    // };
   
-    const handleUnderlinei = (id) => {
-        if (!flag) {
-        toggleStyle('u', id);
-        } else {
-        removeStyle('u');
-        setFlag(!flag);
-        }
-    };
+    // const handleUnderlinei = (id) => {
+    //     if (!flag) {
+    //     toggleStyle('u', id);
+    //     } else {
+    //     removeStyle('u');
+    //     setFlag(!flag);
+    //     }
+    // };
 
     // React.createRef - avoid hooks rules
     const pdfExportComponent = cv.map((i) => React.createRef(i));
     
-    const exportPDF = (i) => {
-        console.log(pdfExportComponent[i]);
-        pdfExportComponent[i].current.save();
-    };
+    // const exportPDF = (i) => {
+    //     console.log(pdfExportComponent[i]);
+    //     pdfExportComponent[i].current.save();
+    // };
 
 //     const handleEditResume = (id) => {
 //         updateDoc(doc(firestoreDB,`${user.email}`, id ), {address:16}).then(res => {
@@ -289,7 +289,7 @@ const AllResumes = () => {
                                             </div> 
 
                                             <div className="iconAndInputs" style={{marginTop:"10px"}}>
-                                                {ourForm.objectName.email !=='' && (<Fade> <img 
+                                                {ourForm.objectName.email !=='' && (<Fade> <img alt="svg"
                                                 style={{marginRight:"2px", marginLeft:'3px'}}
                                                     src='data:image/svg+xml;utf8,
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24">
@@ -320,7 +320,7 @@ const AllResumes = () => {
 
                                         <div className="iconAndInputs">
 
-                                            {ourForm.objectName.phoneNumber !=='' && (<Fade> <img 
+                                            {ourForm.objectName.phoneNumber !=='' && (<Fade> <img alt="svg" 
                                                 style={{marginRight:"2px", marginLeft:'3px'}}
                                                 src='data:image/svg+xml;utf8,
                                                     <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 24 24">
@@ -354,7 +354,7 @@ const AllResumes = () => {
                                         
                                         <div className="iconAndInputs">
 
-                                            {ourForm.objectName.linkedinLink!=='' && (<Fade> <img 
+                                            {ourForm.objectName.linkedinLink!=='' && (<Fade> <img alt="svg" 
                                                 style={{marginRight:"2px", marginLeft:'3px'}}
                                                 src='data:image/svg+xml;utf8,
                                                     <svg class="w-[16px] h-[16px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 24 24">
@@ -385,7 +385,7 @@ const AllResumes = () => {
 
                                         <div className="iconAndInputs">
 
-                                            {ourForm.objectName.githubLink!=='' && (<Fade> <img 
+                                            {ourForm.objectName.githubLink!=='' && (<Fade> <img alt="svg" 
                                                 style={{marginRight:"2px", marginLeft:'3px'}}
                                                 src='data:image/svg+xml;utf8,
                                                     <svg class="w-[16px] h-[16px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 24 24">
@@ -413,7 +413,7 @@ const AllResumes = () => {
                                         </div>  
 
                                         <div className="iconAndInputs">
-                                            {ourForm.objectName.portfolioLink!=='' && (<Fade> <img 
+                                            {ourForm.objectName.portfolioLink!=='' && (<Fade> <img alt="svg" 
                                                 style={{marginRight:"2px", marginLeft:'3px'}}
                                                 src='data:image/svg+xml;utf8,
                                                     <svg class="w-[16px] h-[16px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 24 24">
@@ -453,7 +453,7 @@ const AllResumes = () => {
                                     </div>
 
                                         <div className="iconAndInputs">
-                                            {ourForm.objectName.degreeTypeAndname!=='' && (<Fade> <img 
+                                            {ourForm.objectName.degreeTypeAndname!=='' && (<Fade> <img alt="svg" 
                                                 style={{marginRight:"3px", marginLeft:'18px'}}
                                                 src='data:image/svg+xml;utf8,
                                                     <svg class="w-[12px] h-[12px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24">
@@ -487,7 +487,7 @@ const AllResumes = () => {
                                         </div>
 
                                         <div className="iconAndInputs">
-                                            {ourForm.objectName.GeneralKnowledge!=='' && (<Fade> <img 
+                                            {ourForm.objectName.GeneralKnowledge!=='' && (<Fade> <img alt="svg" 
                                                 style={{marginRight:"3px", marginLeft:'18px'}}
                                                 src='data:image/svg+xml;utf8,
                                                     <svg class="w-[16px] h-[16px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" viewBox="0 0 24 24">

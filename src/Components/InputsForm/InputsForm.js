@@ -296,7 +296,7 @@ const handleSelectioni = () => {
                                             /> 
 
                                             <div className="iconAndInputs" style={{marginTop:"10px"}}>
-                                                {ourForm.objectName.email !=='' && (<Fade> <img 
+                                                {ourForm.objectName.email !=='' && (<Fade> <img alt="svg" 
                                                 style={{marginRight:"2px", marginLeft:'3px'}}
                                                     src='data:image/svg+xml;utf8,
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24">
@@ -325,7 +325,7 @@ const handleSelectioni = () => {
 
                                         <div className="iconAndInputs">
 
-                                            {ourForm.objectName.phoneNumber !=='' && (<Fade> <img 
+                                            {ourForm.objectName.phoneNumber !=='' && (<Fade> <img alt="svg" 
                                                 style={{marginRight:"2px", marginLeft:'3px'}}
                                                 src='data:image/svg+xml;utf8,
                                                     <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 24 24">
@@ -357,7 +357,7 @@ const handleSelectioni = () => {
                                         
                                         <div className="iconAndInputs">
 
-                                            {ourForm.objectName.linkedinLink!=='' && (<Fade> <img 
+                                            {ourForm.objectName.linkedinLink!=='' && (<Fade> <img alt="svg" 
                                                 style={{marginRight:"2px", marginLeft:'3px'}}
                                                 src='data:image/svg+xml;utf8,
                                                     <svg class="w-[16px] h-[16px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 24 24">
@@ -386,7 +386,7 @@ const handleSelectioni = () => {
 
                                         <div className="iconAndInputs">
 
-                                            {ourForm.objectName.githubLink!=='' && (<Fade> <img 
+                                            {ourForm.objectName.githubLink!=='' && (<Fade> <img alt="svg" 
                                                 style={{marginRight:"2px", marginLeft:'3px'}}
                                                 src='data:image/svg+xml;utf8,
                                                     <svg class="w-[16px] h-[16px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 24 24">
@@ -412,7 +412,7 @@ const handleSelectioni = () => {
                                         </div>  
 
                                         <div className="iconAndInputs">
-                                            {ourForm.objectName.portfolioLink!=='' && (<Fade> <img 
+                                            {ourForm.objectName.portfolioLink!=='' && (<Fade> <img alt="svg" 
                                                 style={{marginRight:"2px", marginLeft:'3px'}}
                                                 src='data:image/svg+xml;utf8,
                                                     <svg class="w-[16px] h-[16px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 24 24">
@@ -455,7 +455,7 @@ const handleSelectioni = () => {
                                     </div>
 
                                         <div className="iconAndInputs">
-                                            {ourForm.objectName.degreeTypeAndname!=='' && (<Fade> <img 
+                                            {ourForm.objectName.degreeTypeAndname!=='' && (<Fade> <img alt="svg" 
                                                 style={{marginRight:"3px", marginLeft:'18px'}}
                                                 src='data:image/svg+xml;utf8,
                                                     <svg class="w-[12px] h-[12px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24">
@@ -487,7 +487,7 @@ const handleSelectioni = () => {
                                         </div>
 
                                         <div className="iconAndInputs">
-                                            {ourForm.objectName.GeneralKnowledge!=='' && (<Fade> <img 
+                                            {ourForm.objectName.GeneralKnowledge!=='' && (<Fade> <img alt="svg" 
                                                 style={{marginRight:"3px", marginLeft:'18px'}}
                                                 src='data:image/svg+xml;utf8,
                                                     <svg class="w-[16px] h-[16px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" viewBox="0 0 24 24">
