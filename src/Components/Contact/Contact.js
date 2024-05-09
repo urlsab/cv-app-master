@@ -5,9 +5,9 @@ import TextField from '@mui/material/TextField';
 import { useNavigate } from "react-router-dom";
 import SendIcon from '@mui/icons-material/Send';
 import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
-import { auth } from "../../config/firebase.config"
+// import { auth } from "../../config/firebase.config"
 import { getAuth } from "firebase/auth";
-import { useAuthState } from "react-firebase-hooks/auth";
+// import { useAuthState } from "react-firebase-hooks/auth";
 import { Button } from "@mui/material";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Fade from 'react-reveal/Fade';
@@ -22,7 +22,7 @@ const Contact = () => {
 
     const curAuth = getAuth();
 
-    const [user] = useAuthState(auth);
+    // const [user] = useAuthState(auth);
     const [firstName, setFirstName] = useState('');
     const [emailAdd, setEmailAdd] = useState('');
     const [text, setText] = useState('');

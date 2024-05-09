@@ -1,15 +1,15 @@
 import './TodoWork.css';
-import React, { useState, useEffect } from 'react';
-import { initialState } from "../../utils/ourState";
+import React, { useState } from 'react';
+// import { initialState } from "../../utils/ourState";
 import Fade from 'react-reveal/Fade';
 
 // '•'
 
 const TodoWork = () => {
 
-  const [selectedText, setSelectedText] = useState('');
+  const [selectedTexti, setSelectedText] = useState('');
   const [isPopoverVisible, setIsPopoverVisible] = useState(false);
-  const [ourForm, setOurForm] = useState(initialState);
+  // const [ourForm, setOurForm] = useState(initialState);
 
   const handleSelect = () => {
     const selection = window.getSelection();
@@ -17,33 +17,34 @@ const TodoWork = () => {
       const selectedText = selection.toString();
       setSelectedText(selectedText);
       setIsPopoverVisible(true);
+      console.log(selectedTexti,isPopoverVisible);
     } else {
       setSelectedText('');
       setIsPopoverVisible(false);
     }
   };
 
-  const useKeyDown = (targetKey) => {
-    // State for keeping track of whether key is pressed
-    const [keyPressed, setKeyPressed] = useState(false);
-    // If pressed key is our target key then set to true
-    const downHandler = ({ key }) => {
-      if (key === targetKey) {
-        setKeyPressed(true);
-      }
-    }
+  // const useKeyDown = (targetKey) => {
+  //   // State for keeping track of whether key is pressed
+  //   const [keyPressed, setKeyPressed] = useState(false);
+  //   // If pressed key is our target key then set to true
+  //   const downHandler = ({ key }) => {
+  //     if (key === targetKey) {
+  //       setKeyPressed(true);
+  //     }
+  //   }
     
-    // Add event listeners to those lines
-    useEffect( () => {
-      window.addEventListener("keydown", downHandler);
+  //   // Add event listeners to those lines
+  //   useEffect( () => {
+  //     window.addEventListener("keydown", downHandler);
       
-      return () => {
-        window.removeEventListener("keydown", downHandler);
+  //     return () => {
+  //       window.removeEventListener("keydown", downHandler);
         
-      };
-    }, [] ); 
-    return keyPressed;
-  }
+  //     };
+  //   }, [] ); 
+  //   return keyPressed;
+  // }
 
 
 // •  • • ∙  ● • · · | . |

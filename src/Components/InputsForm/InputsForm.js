@@ -58,7 +58,7 @@ const InputsForm = () => {
   };
 
     // loading, error - check if false - render gif - if true - stop render
-    const [user, loading, error] = useAuthState(auth);
+    const [user] = useAuthState(auth);
     const [ourForm, setOurForm] = useState(initialState);
     // const [inputList, setInputList] = useState([{ firstName: '', display: 'notdisplayed' }]);
     const navigate = useNavigate();

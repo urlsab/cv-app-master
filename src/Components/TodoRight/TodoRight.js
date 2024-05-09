@@ -6,12 +6,13 @@ const TodoRight = () => {
   const [inputList, setInputList] = useState([{ display: 'notdisplayed', roleAndCompanyName: '',  durationAndLocation: '', achivments: ''}]);
 
   const [text, setText] = useState('');
-  const [selectedText, setSelectedText] = useState('');
+  const [selectedTexti, setSelectedText] = useState('');
   const [isPopoverVisible, setIsPopoverVisible] = useState(false);
 
   const handleSelect = () => {
     const selection = window.getSelection();
     if (selection.toString()) {
+      console.log(text, selectedTexti,isPopoverVisible)
       const selectedText = selection.toString();
       setSelectedText(selectedText);
       setIsPopoverVisible(true);
@@ -214,11 +215,3 @@ const TodoRight = () => {
 };
 
 export default TodoRight;
-
-// ==============================
-
-{/* suppressContentEditableWarning={true}  - aviod react warrnig*/}
-{/* contentEditable={true} - aloow to write text inside this div */}
-
-{/* {short solution for bullet list} */}
-{/* contenteditable - allow to write content like input tag */}

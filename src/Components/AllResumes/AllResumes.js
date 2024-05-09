@@ -37,7 +37,7 @@ import { auth } from "../../config/firebase.config";
 import { addDoc } from "firebase/firestore";
 // import Todo from "../Todo/Todo";
 import { initialState } from "../../utils/ourState";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const AllResumes = () => {
 
@@ -49,10 +49,10 @@ const AllResumes = () => {
 
     const [ourForm, setOurForm] = useState(initialState);
 
-    const [selectedText, setSelectedText] = useState('');
-    const [linkUrl, setLinkUrl] = useState('');
+    const [selectedTexti,setSelectedText] = useState('');
+    // const [linkUrl, setLinkUrl] = useState('');
     // const [popoverPosition, setPopoverPosition] = useState({ x: 0, y: 0 });
-    const [isPopoverVisible, setIsPopoverVisible] = useState(false);
+    const [isPopoverVisible,setIsPopoverVisible] = useState(false);
 
     // const handleChange = (event) => {
     //     const { name, value } = event.target;
@@ -77,6 +77,7 @@ const AllResumes = () => {
     const handleSelect = () => {
         const selection = window.getSelection();
         if (selection.toString()) {
+        console.log(selectedTexti, isPopoverVisible);
         const selectedText = selection.toString();
         setSelectedText(selectedText);
         setIsPopoverVisible(true);
@@ -86,30 +87,30 @@ const AllResumes = () => {
         }
     };
 
-    const [flag, setFlag] = useState(false);
+    // const [flag, setFlag] = useState(false);
 
-    const toggleStyle = (tagName, id) => {
-        if (window.getSelection()) {
-        const selection = window.getSelection();
-        const range = selection.getRangeAt(0);
-        const span = document.createElement(tagName);
-        span.setAttribute('id', id);
-        span.appendChild(range.extractContents());
-        range.insertNode(span);
-        setFlag(!flag);
-        }
-    };
+    // const toggleStyle = (tagName, id) => {
+    //     if (window.getSelection()) {
+    //     const selection = window.getSelection();
+    //     const range = selection.getRangeAt(0);
+    //     const span = document.createElement(tagName);
+    //     span.setAttribute('id', id);
+    //     span.appendChild(range.extractContents());
+    //     range.insertNode(span);
+    //     setFlag(!flag);
+    //     }
+    // };
   
-    const removeStyle = (id) => {
-        const span = document.getElementById(id);
-        if (span) {
-        const parent = span.parentNode;
-        while (span.firstChild) {
-            parent.insertBefore(span.firstChild, span);
-        }
-        parent.removeChild(span);
-        }
-    };
+    // const removeStyle = (id) => {
+    //     const span = document.getElementById(id);
+    //     if (span) {
+    //     const parent = span.parentNode;
+    //     while (span.firstChild) {
+    //         parent.insertBefore(span.firstChild, span);
+    //     }
+    //     parent.removeChild(span);
+    //     }
+    // };
   
     // const handleBoldi = (id) => {
     //     if (!flag) {

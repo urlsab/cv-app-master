@@ -8,7 +8,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 
-import { collection, getDocs, getDoc } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 
 import { firestoreDB } from "../config/firebase.config";
 

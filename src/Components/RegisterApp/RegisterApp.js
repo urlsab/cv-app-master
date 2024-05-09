@@ -3,10 +3,10 @@ import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { collection, doc, setDoc } from "firebase/firestore";
 import {  createUserWithEmailAndPassword  } from 'firebase/auth';
-import { auth } from "../../config/firebase.config"
+// import { auth } from "../../config/firebase.config"
 import { firestoreDB } from "../../config/firebase.config";
 import { getAuth } from "firebase/auth";
-import { useAuthState } from "react-firebase-hooks/auth";
+// import { useAuthState } from "react-firebase-hooks/auth";
 import EntryNavbar from '../EntryNavbar/EntryNavbar';
 import TextField from '@mui/material/TextField';
 import { Button } from "@mui/material";
@@ -24,7 +24,7 @@ const RegisterApp = () => {
     const form = useRef();
     const navigate = useNavigate();
     const curAuth = getAuth();
-    const [user] = useAuthState(auth);
+    // const [user] = useAuthState(auth);
     const [firstName, setFirstName] = useState('');
     const [emailAdd, setEmailAdd] = useState('');
     const [rePassword, setRePassword] = useState('');
@@ -49,7 +49,7 @@ const RegisterApp = () => {
             userData.displayName = firstName;
             userData.phoneNumber = firstName;
             
-            console.log(auth);
+            // console.log(auth);
             console.log(userData);
             
             console.log(`the user password is: ${rePassword} `);

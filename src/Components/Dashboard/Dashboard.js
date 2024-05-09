@@ -15,7 +15,9 @@ import Conffeti from 'react-confetti';
 const Dashboard = () => {
 
   const [cv, setCv] = useState([]);
-  const [user, loading, error] = useAuthState(auth);
+
+  //removed - error
+  const [user, loading] = useAuthState(auth);
 
   const [name, setName] = useState("");
   const navigate = useNavigate();
@@ -25,7 +27,7 @@ const Dashboard = () => {
   // }
 
   const navigateToCreateResume = () => {
-    navigate("/postInputs")
+    navigate("/postInputs");
   }
 
   // const navigateToShowResumes = () => {
@@ -45,7 +47,7 @@ const Dashboard = () => {
   };
 
   const getCv = async () => {
-
+    console.log(cv);
     const privateCollection = collection(firestoreDB, `${user.email}` );
 
     await getDocs(privateCollection).then(response => {
@@ -76,10 +78,12 @@ const Dashboard = () => {
     if (loading) return;
     if (!user) return navigate("/login");
     fetchUserName();
-
     getCv();
-
-  }, [user, loading, error]);
+    console.log(name);
+  }
+  // removed
+  //,[user, loading, error]
+);
 
   return (
 

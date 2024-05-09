@@ -1,6 +1,6 @@
 import './TodoLeft.css';
 import React, { useState } from 'react';
-import TextField from '@mui/material/TextField';
+// import TextField from '@mui/material/TextField';
 import { initialState } from "../../utils/ourState";
 
 const TodoLeft = () => {
@@ -8,63 +8,64 @@ const TodoLeft = () => {
   const [inputList, setInputList] = useState([{ display: 'notdisplayed'}]);
   const [selectedText, setSelectedText] = useState('');
   const [isPopoverVisible, setIsPopoverVisible] = useState(false);
-  const [ourForm, setOurForm] = useState(initialState);
+  // removed - setOurForm
+  const [ourForm] = useState(initialState);
 
-  const [flag, setFlag] = useState(false);
+  // const [flag, setFlag] = useState(false);
 
   // maybe just toggle font-weight: bold/normal;
-  const handleBold = () => {
-      if (window.getSelection() && !flag) {
-        const selection = window.getSelection();
-        const range = selection.getRangeAt(0);
-        const span = document.createElement('b');
-        span.setAttribute('id', 'bb');
-        span?.appendChild(range.extractContents());
-        range.insertNode(span);
-        setFlag(!flag);
-      }
-      if (window.getSelection() && flag) {
-        const selection = window.getSelection();
-        const range = selection.getRangeAt(0);
-        const span = document.getElementById('bb');
-        console.log(selection);
-        span?.replaceWith(...span.childNodes);
-        range.insertNode(span);
-        setFlag(!flag);
-      }
-    };
+  // const handleBold = () => {
+  //     if (window.getSelection() && !flag) {
+  //       const selection = window.getSelection();
+  //       const range = selection.getRangeAt(0);
+  //       const span = document.createElement('b');
+  //       span.setAttribute('id', 'bb');
+  //       span?.appendChild(range.extractContents());
+  //       range.insertNode(span);
+  //       setFlag(!flag);
+  //     }
+  //     if (window.getSelection() && flag) {
+  //       const selection = window.getSelection();
+  //       const range = selection.getRangeAt(0);
+  //       const span = document.getElementById('bb');
+  //       console.log(selection);
+  //       span?.replaceWith(...span.childNodes);
+  //       range.insertNode(span);
+  //       setFlag(!flag);
+  //     }
+  //   };
   
     // maybe just toggle text-decoration: underline/none
-    const handleUnderline = () => {
-      if (window.getSelection() && !flag) {
-        const selection = window.getSelection();
-        const range = selection.getRangeAt(0);
-        const span = document.createElement('u');
+    // const handleUnderline = () => {
+    //   if (window.getSelection() && !flag) {
+    //     const selection = window.getSelection();
+    //     const range = selection.getRangeAt(0);
+    //     const span = document.createElement('u');
         
-        span.setAttribute('id','bb');
-        span?.appendChild(range.extractContents());
-        range.insertNode(span);
-        setFlag(!flag);
-      }
-      if (window.getSelection() && flag) {
-        const selection = window.getSelection();
-        const range = selection.getRangeAt(0);
-        const span = document.getElementById('bb');
-        span?.replaceWith(...span.childNodes);
-        range.insertNode(span);
-        setFlag(!flag);
-      }
-    };
+    //     span.setAttribute('id','bb');
+    //     span?.appendChild(range.extractContents());
+    //     range.insertNode(span);
+    //     setFlag(!flag);
+    //   }
+    //   if (window.getSelection() && flag) {
+    //     const selection = window.getSelection();
+    //     const range = selection.getRangeAt(0);
+    //     const span = document.getElementById('bb');
+    //     span?.replaceWith(...span.childNodes);
+    //     range.insertNode(span);
+    //     setFlag(!flag);
+    //   }
+    // };
 
-  const handleCustomChange = (field, data) => {
-    setOurForm({
-        ...ourForm,
-        objectName: {
-            ...ourForm.objectName,
-            [field]: data,
-        }
-    })
-  }
+  // const handleCustomChange = (field, data) => {
+  //   setOurForm({
+  //       ...ourForm,
+  //       objectName: {
+  //           ...ourForm.objectName,
+  //           [field]: data,
+  //       }
+  //   })
+  // }
 
   const handleSelect = () => {
     const selection = window.getSelection();

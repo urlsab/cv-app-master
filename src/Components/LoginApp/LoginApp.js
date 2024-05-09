@@ -15,7 +15,7 @@ import EmailIcon from '@mui/icons-material/Email';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import GoogleIcon from '@mui/icons-material/Google';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import { useAuthState } from "react-firebase-hooks/auth";
+// import { useAuthState } from "react-firebase-hooks/auth";
 
 const LoginApp = () => {
 
@@ -23,7 +23,7 @@ const LoginApp = () => {
     const curAuth = getAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [user, loading, error] = useAuthState(auth);
+    // const [user, loading, error] = useAuthState(auth);
     // const [user, loading, error] = useAuthState(auth);
 
     const googleSignIn = () => {
