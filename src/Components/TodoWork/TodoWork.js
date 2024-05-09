@@ -58,7 +58,8 @@ const TodoWork = () => {
   setTimeout(() => {
     if (event.key === 'Enter') {
 
-      list[i].achivements += '-' + " "  ;
+      // fix: enter gives emty string
+      list[i].achivements += '-pp '  ;
 
       // list[i].achivements += '·' + " "  ;
       setInputList(list);
