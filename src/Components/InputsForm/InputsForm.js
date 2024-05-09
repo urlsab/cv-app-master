@@ -26,8 +26,8 @@ const InputsForm = () => {
     // const [popoverPosition, setPopoverPosition] = useState({ x: 0, y: 0 });
     const [isPopoverVisible, setIsPopoverVisible] = useState(false);
     const [linkApplied, setLinkApplied] = useState(false);
-    const [boldEnabled, setBoldEnabled] = useState(false);
-    const [underlineEnabled, setUnderlineEnabled] = useState(false);
+    // const [boldEnabled, setBoldEnabled] = useState(false);
+    // const [underlineEnabled, setUnderlineEnabled] = useState(false);
 
   const handleLinkInputChange = (event) => {
     setLinkUrl(event.target.value);
@@ -60,15 +60,15 @@ const InputsForm = () => {
     // loading, error - check if false - render gif - if true - stop render
     const [user, loading, error] = useAuthState(auth);
     const [ourForm, setOurForm] = useState(initialState);
-    const [inputList, setInputList] = useState([{ firstName: '', display: 'notdisplayed' }]);
+    // const [inputList, setInputList] = useState([{ firstName: '', display: 'notdisplayed' }]);
     const navigate = useNavigate();
     
     const pdfExportComponent = useRef(null);
     
-    const handleExportWithComponent = (data) => {
-        pdfExportComponent.current.save();
-        console.log(data);
-    };
+    // const handleExportWithComponent = (data) => {
+    //     pdfExportComponent.current.save();
+    //     console.log(data);
+    // };
 
     const handleAddResume = (event) => {
         

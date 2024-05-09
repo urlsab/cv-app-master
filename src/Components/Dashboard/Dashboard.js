@@ -28,9 +28,9 @@ const Dashboard = () => {
     navigate("/postInputs")
   }
 
-  const navigateToShowResumes = () => {
-    navigate("/allResumes")
-  }
+  // const navigateToShowResumes = () => {
+  //   navigate("/allResumes")
+  // }
 
   const fetchUserName = async () => {
     try {
