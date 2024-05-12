@@ -23,6 +23,7 @@ const InputsForm = () => {
 
     const [selectedText, setSelectedText] = useState('');
     const [linkUrl, setLinkUrl] = useState('');
+    //
     // const [popoverPosition, setPopoverPosition] = useState({ x: 0, y: 0 });
     const [isPopoverVisible, setIsPopoverVisible] = useState(false);
     const [linkApplied, setLinkApplied] = useState(false);
