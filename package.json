@@ -166,8 +166,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.22.1",
-    "@babel/plugin-transform-private-property-in-object": "7.24.5",
     "@babel/plugin-proposal-private-property-in-object": "7.21.11",
+    "@babel/plugin-transform-private-property-in-object": "7.24.5",
     "@babel/preset-env": "^7.22.4",
     "@google-cloud/pubsub": "^4.4.0",
     "@iconify/react": "^4.1.1",
