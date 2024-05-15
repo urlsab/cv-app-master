@@ -112,6 +112,7 @@
     "react-bootstrap": "^2.7.4",
     "react-confetti": "^6.1.0",
     "react-dom": "^18.2.0",
+    "react-draggable": "^4.4.6",
     "react-firebase-hooks": "^5.1.1",
     "react-icons": "^4.10.1",
     "react-link-state": "^0.1.2",

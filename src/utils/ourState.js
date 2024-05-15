@@ -1,6 +1,9 @@
 export const initialState = 
     {
         objectName:  {
+
+            // note for who you send the resume
+            sendTo: '',
             
             // name + position
             fullName: '', 

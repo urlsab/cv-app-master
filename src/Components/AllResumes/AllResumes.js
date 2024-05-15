@@ -239,6 +239,24 @@ const AllResumes = () => {
                     { 
                         cv.map((el, i) => 
                             <li className="liStStyle" key={el.id}>
+                                <div
+                                    name="sendTo"
+                                    // onMouseDown={window.location.href}
+                                    // href={`tel:+972${ourForm.objectName.phoneNumber}`}
+                                    aria-required="true"
+                                    style={{width:'210px', fontSize:14.5 ,backgroundColor:'blue', padding: '0.2rem', lineHeight:"15px", marginBottom:'15px' }}
+                                    
+                                    suppressContentEditableWarning={true}
+                                    contentEditable={true}
+                                    placeholder='Note role and compant name you send to'
+                                    content={ourForm.objectName.sendTo}
+                                    onInput={(event) => {
+                                        const nameFull = event.target.textContent;
+                                        handleCustomChange('sendTo', nameFull);
+                                    }}
+                                >
+                                    {cv[i].info.sendTo}
+                                </div>
                                 <PDFExport key={el.id} ref={pdfExportComponent[i]}>
                                     {/* margin top effects the head part of the paper before print */}
                                     <div onMouseUp={handleSelect} className="resume">
