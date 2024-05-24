@@ -158,3 +158,36 @@ input:focus{
     flex-direction: row;
     flex-wrap: nowrap;
 }
+
+.sendtoStyle {
+    width: 400px;
+    font-size: 19px;
+    background-color: rgb(213, 244, 242);
+    color: rgb(11, 31, 127);
+    padding: 0.2rem;
+    line-height: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    display: flex;
+    margin-top: 30px;
+    height: 25px;
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: center;
+    align-items: stretch;
+    font-weight: bold;
+
+   /* make the writing marker of an input to be center vertically */
+    line-height: normal; 
+}
+
+.sendtoStyle:focus {
+    border: 3px solid rgb(0, 157, 255);
+    
+    /* avoid the paper/input to move up/down after focus */
+    margin-bottom: 11px;
+    margin-top: 27px;
+    padding: 0.25rem;
+    
+}

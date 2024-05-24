@@ -24,50 +24,42 @@ const InputsForm = () => {
 
     const [selectedText, setSelectedText] = useState('');
     const [linkUrl, setLinkUrl] = useState('');
-    //
-    // const [popoverPosition, setPopoverPosition] = useState({ x: 0, y: 0 });
     const [isPopoverVisible, setIsPopoverVisible] = useState(false);
     const [linkApplied, setLinkApplied] = useState(false);
-    // const [boldEnabled, setBoldEnabled] = useState(false);
-    // const [underlineEnabled, setUnderlineEnabled] = useState(false);
+    
+    const handleLinkInputChange = (event) => {
+        console.log(isPopoverVisible, linkApplied)
+        setLinkUrl(event.target.value);
+    };
 
-  const handleLinkInputChange = (event) => {
-    console.log(isPopoverVisible, linkApplied)
-    setLinkUrl(event.target.value);
-  };
+    const handleApplyLink = () => {
+        applyLink();
+        setIsPopoverVisible(false);
+    };
 
-  const handleApplyLink = () => {
-    applyLink();
-    setIsPopoverVisible(false);
-  };
-
-  const applyLink = () => {
-    if (linkUrl && selectedText) {
-      const newNode = document.createElement('a');
-      newNode.setAttribute("style", 
-      "color:#007bff; font-size: inherit; text-decoration: underline; margin: 0px; padding: 0px; border:none; display: inline; cursor: pointer;"
-      
-      );
-      newNode.href = linkUrl;
-      newNode.textContent = selectedText;
-
-      const selection = window.getSelection();
-      const range = selection.getRangeAt(0);
-      range.deleteContents();
-      range.insertNode(newNode);
-
-      setLinkApplied(true);
-    }
-  };
+    const applyLink = () => {
+        if (linkUrl && selectedText) {
+        const newNode = document.createElement('a');
+        newNode.setAttribute("style", 
+        "color:#007bff; font-size: inherit; text-decoration: underline; margin: 0px; padding: 0px; border:none; display: inline; cursor: pointer;"
+        );
+        newNode.href = linkUrl;
+        newNode.textContent = selectedText;
+        const selection = window.getSelection();
+        const range = selection.getRangeAt(0);
+        range.deleteContents();
+        range.insertNode(newNode);
+        setLinkApplied(true);
+        }
+    };
 
     // loading, error - check if false - render gif - if true - stop render
     const [user] = useAuthState(auth);
     const [ourForm, setOurForm] = useState(initialState);
     // const [inputList, setInputList] = useState([{ firstName: '', display: 'notdisplayed' }]);
     const navigate = useNavigate();
-    
     const pdfExportComponent = useRef(null);
-    
+
     // const handleExportWithComponent = (data) => {
     //     pdfExportComponent.current.save();
     //     console.log(data);
@@ -87,7 +79,6 @@ const InputsForm = () => {
                 console.log(response.id);
                 console.log(response.path);
                 navigate("/allResumes")
-                
             }).catch(error => {
                 console.log(error);
                 console.log("error from handleAddResume function");
@@ -118,6 +109,17 @@ const InputsForm = () => {
   };
 
   const [flag, setFlag] = useState(false);
+
+  // select text, push it to an empty array, join('') the array to one big string and then bold it e.g.
+
+    //   let ranges = [];
+
+    // sel = window.getSelection();
+
+    // for (let i = 0; i < sel.rangeCount; i++) {
+    //   ranges[i] = sel.getRangeAt(i);
+    
+    // }
 
   const toggleStyle = (tagName, id) => {
     if (window.getSelection()) {
@@ -160,6 +162,7 @@ const InputsForm = () => {
     }
   };
 
+
 //   const validateEmail = (email) => {
 //     // Regular expression for validating email addresses
 //     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -195,44 +198,9 @@ const handleSelectioni = () => {
             <div className='createResumeContainer'>
                 <Navbar/>
 
-                <div
-                    name="sendTo"
-                    // onMouseDown={window.location.href}
-                    // href={`tel:+972${ourForm.objectName.phoneNumber}`}
-                    aria-required="true"
-                    style={{width:'210px', fontSize:14.5 ,backgroundColor:'blue', padding: '0.2rem', lineHeight:"15px", marginBottom:'15px' }}
-                    
-                    suppressContentEditableWarning={true}
-                    contentEditable={true}
-                    placeholder='Note role and compant name you send to'
-                    content={ourForm.objectName.sendTo}
-                    onInput={(event) => {
-                        const nameFull = event.target.textContent;
-                        handleCustomChange('sendTo', nameFull);
-                    }}
-                />
+                {/* אין בעיה במתודה של השגת טווח(0) - הבעיה היא שברגע שיש פופאובר אז הפונקציות לא מזהות סלקט. גם בסרגל הישן וגם בחדש */}
 
-            <div>{isVisible && (
-                <Draggable > 
-                    <div
-                        style={{
-                        position: 'absolute',
-                        top: position.y,
-                        left: position.x,
-                        borderRadius:'10px',
-
-                        backgroundColor: 'gray',
-                        
-                        zIndex: 1,
-                        marginTop:'-40px',
-                        
-                        
-                        }}
-                    >
-                    {/* Your popover content goes here */}
-                    <div className='buttonsStyle' style={{ marginTop:'2px',marginBottom:'2px',padding: '2px', border: '1px solid transparent', borderRadius: '5px' }}>
-                    
-                    <button 
+                {/* <button 
                         // center icon inside the button - justifyContent:  'flex-end' - becasue there is some default margin
                         style={{display: 'flex', justifyContent:  'flex-end'}}
                         onClick={handleBoldi}>
@@ -257,11 +225,82 @@ const handleSelectioni = () => {
                             placeholder="Enter URL"
                             onMouseUp={(e) => e.stopPropagation()}
                             style={{ width: '200px', borderRadius:'5px', borderColor:'black', marginRight:'1px', marginLeft:'2px' }}
-                        />
+                        /> */}
+
+                
+
+                {/* make placeholder work only if it's inside a wrraper div */}
+                <div className='forSecondGroup'>
+                    <div
+                        name="sendTo"
+                        className='sendtoStyle '
+                        aria-required="true"
+                        suppressContentEditableWarning={true}
+                        contentEditable={true}
+                        placeholder="Company & role you'll send to "
+                        content={ourForm.objectName.sendTo}
+                        onInput={(event) => {
+                            const nameFull = event.target.textContent;
+                            handleCustomChange('sendTo', nameFull);
+                        }}
+                    />
+                </div>
+
+                
+
+            <div>{isVisible && (
+                <Draggable > 
+                    <div
+                        style={{
+                        position: 'absolute',
+                        top: position.y,
+                        left: position.x,
+                        borderRadius:'10px',
+                        backgroundColor: 'gray',
+                        zIndex: 1,
+                        marginTop:'-40px',
+                        }}
+                    >
+                    {/* Your popover content goes here */}
+                    <div className='buttonsStyle' style={{ marginTop:'2px',marginBottom:'2px',padding: '2px', border: '1px solid transparent', borderRadius: '5px' }}>
+                    
+                    <Button 
+                    sx={{mr:1}}
+                    // center icon inside the button - justifyContent:  'flex-end' - becasue there is some default margin
+                    style={{display: 'flex', justifyContent:  'flex-end'}}
+                    color='inherit'
+                    variant="contained"
+                    startIcon={<FaBold/>}
+                    onClick={handleBoldi}>
+                </Button>
+                <Button 
+                    sx={{mr:1}}
+                    style={{display: 'flex', justifyContent:  'flex-end'}}
+                    color='inherit'
+                    variant="contained"
+                    startIcon={<TfiUnderline/>}
+                    onClick={handleUnderlinei}>
+                </Button>
+                <input
+                    type="text"
+                    value={linkUrl}
+                    onChange={handleLinkInputChange}
+                    placeholder="Enter URL"
+                    onMouseUp={(e) => e.stopPropagation()}
+                    style={{ width: '300px', padding:'6.5px', borderRadius:'5px', borderColor:'transparent', marginRight:'2px' }}
+                />
+                <Button     
+                    style={{display: 'flex', justifyContent:  'flex-end'}}
+                    color='inherit'
+                    variant="contained"
+                    startIcon={<MdAddLink/>}
+                    onClick={handleApplyLink}>
+                </Button> 
                     
                         </div>
                     </div>
-                </Draggable>)}
+                </Draggable>
+            )}
             </div>
                     <Fade delay={400}>
 
@@ -269,13 +308,9 @@ const handleSelectioni = () => {
 
                             {/* margin top effects the head part of the paper before print */}
                             <div onMouseUp={()=>{ handleSelect();handleSelectioni()}} className="resume">
-
                                 <div className='grid-area name'>
-
                                     <div className='square'>
-
                                         <div className='firstGroup forFirstGroup'> 
-
                                             <div
                                                 name="fullName"
                                                 aria-required="true"
@@ -288,7 +323,6 @@ const handleSelectioni = () => {
                                                     color:'white', 
                                                     padding: '0.2rem', 
                                                     lineHeight:"25px"}}
-                                    
                                                 suppressContentEditableWarning={true}
                                                 contentEditable={true}
                                                 placeholder="Full Name"
@@ -302,10 +336,8 @@ const handleSelectioni = () => {
                                             <div
                                                 name="jobTitle"
                                                 aria-required="true"
-                                                
                                                 multiline
                                                 style={{marginBottom:'6px',width:'235px',fontSize:16.5 ,color:'white', paddingLeft: '0.2rem', lineHeight:"25px"}}
-                                    
                                                 suppressContentEditableWarning={true}
                                                 contentEditable={true}
                                                 placeholder='Role'
@@ -331,7 +363,6 @@ const handleSelectioni = () => {
                                                 name="email"
                                                 aria-required="true"
                                                 style={{width:'210px', fontSize:14.5 ,color:'white', padding: '0.2rem', lineHeight:"15px", position:'relative' }}
-                                    
                                                 suppressContentEditableWarning={true}
                                                 contentEditable={true}
                                                 placeholder='Email'
@@ -341,11 +372,9 @@ const handleSelectioni = () => {
                                                     handleCustomChange('email', nameFull);
                                                 }}
                                             />
-
                                         </div>
 
                                         <div className="iconAndInputs">
-
                                             {ourForm.objectName.phoneNumber !=='' && (<Fade> <img alt="svg" 
                                                 style={{marginRight:"2px", marginLeft:'3px'}}
                                                 src='data:image/svg+xml;utf8,
@@ -354,7 +383,6 @@ const handleSelectioni = () => {
                                                     </svg>'
                                             /> </Fade>)}
 
-
                                             {/* add option for clickable phonenumber */}
                                             <div
                                                 name="phoneNumber"
@@ -362,7 +390,6 @@ const handleSelectioni = () => {
                                                 // href={`tel:+972${ourForm.objectName.phoneNumber}`}
                                                 aria-required="true"
                                                 style={{width:'210px', fontSize:14.5 ,color:'white', padding: '0.2rem', lineHeight:"15px", position:'relative' }}
-                                    
                                                 suppressContentEditableWarning={true}
                                                 contentEditable={true}
                                                 placeholder='Phone Number'
@@ -375,9 +402,7 @@ const handleSelectioni = () => {
 
                                         </div>
 
-                                        
                                         <div className="iconAndInputs">
-
                                             {ourForm.objectName.linkedinLink!=='' && (<Fade> <img alt="svg" 
                                                 style={{marginRight:"2px", marginLeft:'3px'}}
                                                 src='data:image/svg+xml;utf8,
@@ -387,12 +412,10 @@ const handleSelectioni = () => {
                                                     </svg>'
                                             /> </Fade>)}
 
-                                        
                                             <div
                                                 name="linkedinLink"
                                                 aria-required="true"
                                                 style={{width:'210px', fontSize:14.5 ,color:'white', padding: '0.2rem', lineHeight:"15px", position:'relative' }}
-                                    
                                                 suppressContentEditableWarning={true}
                                                 contentEditable={true}
                                                 placeholder='Linkedin Link'
@@ -419,7 +442,6 @@ const handleSelectioni = () => {
                                                 name="githubLink"
                                                 aria-required="true"
                                                 style={{width:'210px', fontSize:14.5 ,color:'white', padding: '0.2rem', lineHeight:"15px", position:'relative' }}
-                                    
                                                 suppressContentEditableWarning={true}
                                                 contentEditable={true}
                                                 placeholder='Github Link'
@@ -444,7 +466,6 @@ const handleSelectioni = () => {
                                                     name="portfolioLink"
                                                     aria-required="true"
                                                     style={{width:'210px', fontSize:14.5 ,color:'white', padding: '0.2rem', lineHeight:"15px", position:'relative' }}
-                                        
                                                     suppressContentEditableWarning={true}
                                                     contentEditable={true}
                                                     placeholder='Portfolio Link'
@@ -460,7 +481,7 @@ const handleSelectioni = () => {
 
                                     </div>
 
-                                        {/* after square //*/}
+                                    {/* after square //*/}
 
                                     <div className='afterSquareGroup forSecondGroup'>
 
@@ -487,7 +508,6 @@ const handleSelectioni = () => {
                                                 name="degreeTypeAndname"
                                                 aria-required="true"
                                                 style={{width:'210px' , fontSize:14.5 , padding: '0.2rem', lineHeight:"25px" }}
-                                    
                                                 suppressContentEditableWarning={true}
                                                 contentEditable={true}
                                                 placeholder='Knowledge, loaction, duration...'
@@ -519,7 +539,6 @@ const handleSelectioni = () => {
                                                 name="GeneralKnowledge"
                                                 aria-required="true"
                                                 style={{width:'210px', fontSize:14.5, padding: '0.2rem', lineHeight:"25px" }}
-                                                
                                                 suppressContentEditableWarning={true}
                                                 contentEditable={true}
                                                 placeholder="Programing languages, db's..."
@@ -530,14 +549,9 @@ const handleSelectioni = () => {
                                                 }}
                                             />
                                         </div>
-
-                                            <TodoLeft/>
-
-                                    </div>   
-
-                                </div>
-
-    
+                                    <TodoLeft/>
+                                </div>   
+                            </div>
 
             {/* rigth part */}
             <div className="grid-area work">
@@ -593,17 +607,11 @@ const handleSelectioni = () => {
                                 sx={{m:1 ,mt: 12, mb:12}}
                                 onClick={handleAddResume}>SAVE
                             </Button>
-
                     </div>
-
                 </Fade>
-
             </div>
-
         </>
-
     );
-
 }
 
 export default InputsForm;   

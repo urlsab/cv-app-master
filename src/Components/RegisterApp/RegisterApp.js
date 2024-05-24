@@ -33,30 +33,20 @@ const RegisterApp = () => {
         navigate("/login");
     }
 
-    // add await key word = function will run any req one after one
     const onSubmitHandler = async (e) => {
-
         e.preventDefault();
-
         // console.log(curAuth, emailAdd, rePassword);
-
-        // maybe add `await`
         await createUserWithEmailAndPassword(curAuth, emailAdd, rePassword)
-
         .then((userCredential) => {
             let userData = userCredential.user;
-
             userData.displayName = firstName;
             userData.phoneNumber = firstName;
-            
             // console.log(auth);
             console.log(userData);
-            
             console.log(`the user password is: ${rePassword} `);
             console.log(`displayName:${userData.displayName}`);
             console.log(`phoneNumber:${userData.phoneNumber}`);
         })
-
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
@@ -64,31 +54,22 @@ const RegisterApp = () => {
             console.log("error from createUserWithEmailAndPassword function")
         })
     
-    // e.preventDefault();
       const usersCollection = collection(firestoreDB, `${emailAdd}`);
-      
       // add 00000 to render user name at /dashboard from cv[0] array 
-
-      // maybe add 'await' before 'setdoc'
       await setDoc(doc(usersCollection, "00000Data"), {thePassword: rePassword, userName: firstName})
         .then(() => {
+
             // console.log(initialPassword.objectPassword.thePassword);
             console.log("set password as a collection successfully");
-
             navigate("/");
         })
-
         .catch(error => {
             console.log(error);
             console.log("error from set password as a collection function")
         })
         
-        // and not 'sendjs'
         emailjs.send(
-
             `${process.env.REACT_APP_SERVICE_ID}`, 
-
-
             `${process.env.REACT_APP_TEMPLATE_ID}`, 
             {
             user_name: firstName,
@@ -97,7 +78,6 @@ const RegisterApp = () => {
             },
             `${process.env.REACT_APP_PUBLIC_KEY}`,
         )
-
         .then((result) => {
             console.log(`email js send the password ${rePassword} to ${emailAdd}  `)
             console.log(result.text);
@@ -105,34 +85,24 @@ const RegisterApp = () => {
             console.log(result);
             navigate("/login");
         })
-
         .catch((error) => {
             console.log(error.text);
             console.log("error from emailjs function")
         });
-
     }
 
     return (
-
         <>
-
-        {/* <Fade><a className="homeStyle" href="/"><HomeIcon/></a></Fade> */}
-    
             <div className="containerRegiter">
             <EntryNavbar/>
                 <div className="loginForm">
-
-                    <Fade top dalay={300}>
-                       
+                    <Fade top dalay={300}>  
                         <form ref={form} onSubmit={onSubmitHandler}  className="loginFormContainer">                    
-
                             <TextField                              
                                 name="user_name"
                                 type="text"                                    
                                 required 
-                                
-                                // placeholder="Full name"
+
                                 // all fields stretch to this width
                                 sx={{width:"280px"}}
                                 InputProps={{startAdornment: (
@@ -150,7 +120,6 @@ const RegisterApp = () => {
                                 label="Email"
                                 name="user_email"
                                 required  
-                                // placeholder="Full name"
                                 InputProps={{startAdornment: (
                                     <InputAdornment position="start">
                                         <EmailIcon />
@@ -176,11 +145,8 @@ const RegisterApp = () => {
                             />
                                 
                             <Button startIcon={<AssignmentTurnedInIcon/>} size="large" color="success" variant="contained" type="submit"> Sign up </Button>
-                            
                             <Button onClick={navigateToSignIn} size="large" startIcon={<LoginIcon/>}  variant="outlined" color="primary"> login </Button>
-                            {/* <button onClick={sendToEmail}>send password to email</button> */}
-                            {/* <Button> Already have an account? <NavLink to="/">Sign in</NavLink> </Button>  */}
-
+                            
                         </form> 
 
                     </Fade>

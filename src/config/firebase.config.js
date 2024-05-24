@@ -14,8 +14,6 @@ const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig); 
 export const auth = getAuth(app);
-
-// UPDATE METHOD FOR AVOID CONNECTION FIRESTORE PROBLEMS
 export const firestoreDB = initializeFirestore(app, {
   experimentalForceLongPolling: true
 })

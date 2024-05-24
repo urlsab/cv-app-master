@@ -1,6 +1,10 @@
 import "./AllResumes.css";
 import React, { useState } from "react";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
+import { MdAddLink } from "react-icons/md";
+import { FaBold } from "react-icons/fa";
+import { TfiUnderline } from "react-icons/tfi";
+import Draggable from 'react-draggable';
 // import { MdAlternateEmail } from "react-icons/md";
 // import { BsPhone } from "react-icons/bs";
 // import { TiSocialLinkedin } from "react-icons/ti";
@@ -43,16 +47,43 @@ const AllResumes = () => {
 
     const [cv, setCv] = useState([]);
     const [toggle, setToggle] = useToggle();
+    const [linkUrl, setLinkUrl] = useState('');
+    const [selectedText, setSelectedText] = useState('');
     // const navigate = useNavigate();
-    
+    const [linkApplied, setLinkApplied] = useState(false);
     const [user] = useAuthState(auth);
-
     const [ourForm, setOurForm] = useState(initialState);
-
-    const [selectedTexti,setSelectedText] = useState('');
-    // const [linkUrl, setLinkUrl] = useState('');
-    // const [popoverPosition, setPopoverPosition] = useState({ x: 0, y: 0 });
+    const [selectedTexti,setSelectedTexti] = useState('');
     const [isPopoverVisible,setIsPopoverVisible] = useState(false);
+
+    const handleLinkInputChange = (event) => {
+        console.log(isPopoverVisible, linkApplied)
+        setLinkUrl(event.target.value);
+    };
+
+    const applyLink = () => {
+        if (linkUrl && selectedText) {
+          const newNode = document.createElement('a');
+          newNode.setAttribute("style", 
+          "color:#007bff; font-size: inherit; text-decoration: underline; margin: 0px; padding: 0px; border:none; display: inline; cursor: pointer;"
+          
+          );
+          newNode.href = linkUrl;
+          newNode.textContent = selectedText;
+    
+          const selection = window.getSelection();
+          const range = selection.getRangeAt(0);
+          range.deleteContents();
+          range.insertNode(newNode);
+    
+          setLinkApplied(true);
+        }
+      };
+
+    const handleApplyLink = () => {
+        applyLink();
+        setIsPopoverVisible(false);
+      };
 
     // const handleChange = (event) => {
     //     const { name, value } = event.target;
@@ -79,56 +110,13 @@ const AllResumes = () => {
         if (selection.toString()) {
         console.log(selectedTexti, isPopoverVisible);
         const selectedText = selection.toString();
-        setSelectedText(selectedText);
+        setSelectedTexti(selectedText);
         setIsPopoverVisible(true);
         } else {
         setSelectedText('');
         setIsPopoverVisible(false);
         }
     };
-
-    // const [flag, setFlag] = useState(false);
-
-    // const toggleStyle = (tagName, id) => {
-    //     if (window.getSelection()) {
-    //     const selection = window.getSelection();
-    //     const range = selection.getRangeAt(0);
-    //     const span = document.createElement(tagName);
-    //     span.setAttribute('id', id);
-    //     span.appendChild(range.extractContents());
-    //     range.insertNode(span);
-    //     setFlag(!flag);
-    //     }
-    // };
-  
-    // const removeStyle = (id) => {
-    //     const span = document.getElementById(id);
-    //     if (span) {
-    //     const parent = span.parentNode;
-    //     while (span.firstChild) {
-    //         parent.insertBefore(span.firstChild, span);
-    //     }
-    //     parent.removeChild(span);
-    //     }
-    // };
-  
-    // const handleBoldi = (id) => {
-    //     if (!flag) {
-    //     toggleStyle('b', id);
-    //     } else {
-    //     removeStyle('b');
-    //     setFlag(!flag);
-    //     }
-    // };
-  
-    // const handleUnderlinei = (id) => {
-    //     if (!flag) {
-    //     toggleStyle('u', id);
-    //     } else {
-    //     removeStyle('u');
-    //     setFlag(!flag);
-    //     }
-    // };
 
     // React.createRef - avoid hooks rules
     const pdfExportComponent = cv.map((i) => React.createRef(i));
@@ -226,6 +214,91 @@ const AllResumes = () => {
         })
         .catch(error => console.log(error)); 
     }
+
+    // const handleSelect = () => {
+    //     const selection = window.getSelection();
+    //     if (selection.toString()) {
+    //       const selectedText = selection.toString();
+    //       setSelectedText(selectedText);
+    //       setIsPopoverVisible(true);
+    //     } else {
+    //       setSelectedText('');
+    //       setIsPopoverVisible(false);
+    //     }
+    //   };
+    
+      const [flag, setFlag] = useState(false);
+    
+      const toggleStyle = (tagName, id) => {
+        if (window.getSelection()) {
+          const selection = window.getSelection();
+          const range = selection.getRangeAt(0);
+          const span = document.createElement(tagName);
+          span.setAttribute('id', id);
+          span.appendChild(range.extractContents());
+          range.insertNode(span);
+          setFlag(!flag);
+        }
+      };
+      
+      const removeStyle = (id) => {
+        const span = document.getElementById(id);
+        if (span) {
+          const parent = span.parentNode;
+          while (span.firstChild) {
+            parent.insertBefore(span.firstChild, span);
+          }
+          parent.removeChild(span);
+        }
+      };
+      
+      const handleBoldi = (id) => {
+        if (!flag) {
+          toggleStyle('b', id);
+        } else {
+          removeStyle('b');
+          setFlag(!flag);
+        }
+      };
+      
+      const handleUnderlinei = (id) => {
+        if (!flag) {
+          toggleStyle('u', id);
+        } else {
+          removeStyle('u');
+          setFlag(!flag);
+        }
+      };
+    
+    //   const validateEmail = (email) => {
+    //     // Regular expression for validating email addresses
+    //     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    //     return emailPattern.test(email);
+    // };
+    
+    // const isValidEmail = (email) => {
+    //     // Define a regular expression pattern for email validation.
+    //     const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    //     return pattern.test(email);
+    //   }
+    
+    const [isVisible, setIsVisible] = useState(false);
+    const [position, setPosition] = useState({ x: 0, y: 0 });
+    
+    const handleSelectioni = () => {
+      const selectedText = window.getSelection().toString();
+      if (selectedText) {
+        const selectionRects = window.getSelection().getRangeAt(0).getClientRects();
+        const lastRect = selectionRects[selectionRects.length - 1];
+        setPosition({
+          x: lastRect.left + window.scrollX,
+          y: lastRect.top + window.scrollY,
+        });
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
     
     let arrRefs = [];
     arrRefs.length = cv.length;
@@ -239,27 +312,83 @@ const AllResumes = () => {
                     { 
                         cv.map((el, i) => 
                             <li className="liStStyle" key={el.id}>
+                                
+                            {/* make placeholder work only if it's inside a wrraper div */}
+                            <div className='forSecondGroup'>
+
                                 <div
-                                    name="sendTo"
-                                    // onMouseDown={window.location.href}
-                                    // href={`tel:+972${ourForm.objectName.phoneNumber}`}
-                                    aria-required="true"
-                                    style={{width:'210px', fontSize:14.5 ,backgroundColor:'blue', padding: '0.2rem', lineHeight:"15px", marginBottom:'15px' }}
-                                    
-                                    suppressContentEditableWarning={true}
-                                    contentEditable={true}
-                                    placeholder='Note role and compant name you send to'
-                                    content={ourForm.objectName.sendTo}
-                                    onInput={(event) => {
-                                        const nameFull = event.target.textContent;
-                                        handleCustomChange('sendTo', nameFull);
-                                    }}
-                                >
+                                        name="sendTo"
+                                        className='sendtoStyle '
+                                        aria-required="true"
+                                        suppressContentEditableWarning={true}
+                                        contentEditable={true}
+                                        
+                                        placeholder="Company & role you'll send to "
+                                        content={ourForm.objectName.sendTo}
+                                        onInput={(event) => {
+                                            const nameFull = event.target.textContent;
+                                            handleCustomChange('sendTo', nameFull);
+                                        }}
+                                    >
                                     {cv[i].info.sendTo}
                                 </div>
+                            </div>
+
+            <div>{isVisible && (
+                <Draggable > 
+                    <div
+                        style={{
+                        position: 'absolute',
+                        top: position.y,
+                        left: position.x,
+                        borderRadius:'10px',
+
+                        backgroundColor: 'gray',
+                        
+                        zIndex: 1,
+                        marginTop:'-40px',
+                        
+                        
+                        }}
+                    >
+                    {/* Your popover content goes here */}
+                    <div className='buttonsStyle' style={{ marginTop:'2px',marginBottom:'2px',padding: '2px', border: '1px solid transparent', borderRadius: '5px' }}>
+                    
+                    <button 
+                        // center icon inside the button - justifyContent:  'flex-end' - becasue there is some default margin
+                        style={{display: 'flex', justifyContent:  'flex-end'}}
+                        onClick={handleBoldi}>
+                            <FaBold/>
+                    </button>
+                    <button 
+                        style={{display: 'flex', justifyContent:  'flex-end'}}
+                        onClick={handleUnderlinei}>
+                            <TfiUnderline/>
+                    </button>
+                    
+                    <button     
+                        style={{display: 'flex', justifyContent:  'flex-end'}}
+                        onClick={handleApplyLink}
+                    >
+                        <MdAddLink/>
+                    </button> 
+                        <input
+                            type="text"
+                            value={linkUrl}
+                            onChange={handleLinkInputChange}
+                            placeholder="Enter URL"
+                            onMouseUp={(e) => e.stopPropagation()}
+                            style={{ width: '200px', borderRadius:'5px', borderColor:'black', marginRight:'1px', marginLeft:'2px' }}
+                        />
+                    
+                        </div>
+                    </div>
+                </Draggable>)}
+            </div>
+
                                 <PDFExport key={el.id} ref={pdfExportComponent[i]}>
                                     {/* margin top effects the head part of the paper before print */}
-                                    <div onMouseUp={handleSelect} className="resume">
+                                    <div onMouseUp={()=>{handleSelectioni()}} className="resume">
                                         <div className='grid-area name'>
                                             <div className='square'>
                                                 <div className='firstGroup forFirstGroup'> 

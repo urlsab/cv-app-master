@@ -24,7 +24,6 @@ const LoginApp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     // const [user, loading, error] = useAuthState(auth);
-    // const [user, loading, error] = useAuthState(auth);
 
     const googleSignIn = () => {
         const googleAuth = new GoogleAuthProvider();
@@ -78,8 +77,6 @@ const LoginApp = () => {
 
         <>
 
-        {/* <Fade><a className="homeStyle" href="/"><HomeIcon/></a></Fade> */}
-
             <div className="mainContainer">
 
             <EntryNavbar/>
@@ -122,9 +119,7 @@ const LoginApp = () => {
                             />
                     
                             <Button size="large" startIcon={<VpnKeyIcon/>} variant="contained" color="inherit" onClick={onLogin}> Login  </Button>
-                            {/* <p> OR </p> */}
-                            <Button size="large" startIcon={<GoogleIcon/>} variant="contained" color="error" onClick={handleGoogleSignIn}>  google login </Button>
-                                           
+                            <Button size="large" startIcon={<GoogleIcon/>} variant="contained" color="error" onClick={handleGoogleSignIn}> with google  </Button>
                             <Button onClick={navigateToRegister} size="large" startIcon={<PersonAddIcon/>} variant="outlined" color="primary">  Sign up  </Button>
                                      
                         </form>
@@ -133,7 +128,6 @@ const LoginApp = () => {
 
                 </div>
                     
-                    {/* skin color: &#127996; */}
                 <div className="textContainer">
                     <Fade left delay={600}> <h1> <b className="textStyle"> LOGIN</b> </h1> </Fade>
                     <Fade left delay={900}> <h1> <b className="textStyle"> YOUR RESUME </b> </h1> </Fade>
