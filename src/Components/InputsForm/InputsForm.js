@@ -237,7 +237,7 @@ const handleSelectioni = () => {
                         aria-required="true"
                         suppressContentEditableWarning={true}
                         contentEditable={true}
-                        placeholder="Company & role you'll send to "
+                        placeholder="Send to: Company name | Role name | Date send | Role location"
                         content={ourForm.objectName.sendTo}
                         onInput={(event) => {
                             const nameFull = event.target.textContent;
@@ -264,7 +264,7 @@ const handleSelectioni = () => {
                     {/* Your popover content goes here */}
                     <div className='buttonsStyle' style={{ marginTop:'2px',marginBottom:'2px',padding: '2px', border: '1px solid transparent', borderRadius: '5px' }}>
                     
-                    <Button 
+                <Button 
                     sx={{mr:1}}
                     // center icon inside the button - justifyContent:  'flex-end' - becasue there is some default margin
                     style={{display: 'flex', justifyContent:  'flex-end'}}
