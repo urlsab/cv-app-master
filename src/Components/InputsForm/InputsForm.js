@@ -18,7 +18,7 @@ import Navbar from "../Navbar/Navbar";
 import { FaBold } from "react-icons/fa";
 import { TfiUnderline } from "react-icons/tfi";
 import { MdAddLink } from "react-icons/md";
-import Draggable from 'react-draggable';
+// import Draggable from 'react-draggable';
 
 const InputsForm = () => {
 
@@ -162,7 +162,6 @@ const InputsForm = () => {
     }
   };
 
-
 //   const validateEmail = (email) => {
 //     // Regular expression for validating email addresses
 //     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -175,29 +174,29 @@ const InputsForm = () => {
 //     return pattern.test(email);
 //   }
 
-const [isVisible, setIsVisible] = useState(false);
-const [position, setPosition] = useState({ x: 0, y: 0 });
+// const [isVisible, setIsVisible] = useState(false);
+// const [position, setPosition] = useState({ x: 0, y: 0 });
 
-const handleSelectioni = () => {
-  const selectedText = window.getSelection().toString();
-  if (selectedText) {
-    const selectionRects = window.getSelection().getRangeAt(0).getClientRects();
-    const lastRect = selectionRects[selectionRects.length - 1];
-    setPosition({
-      x: lastRect.left + window.scrollX,
-      y: lastRect.top + window.scrollY,
-    });
-    setIsVisible(true);
-  } else {
-    setIsVisible(false);
-  }
-};
+// const handleSelectioni = () => {
+//   const selectedText = window.getSelection().toString();
+//   if (selectedText) {
+//     const selectionRects = window.getSelection().getRangeAt(0).getClientRects();
+//     const lastRect = selectionRects[selectionRects.length - 1];
+//     setPosition({
+//       x: lastRect.left + window.scrollX,
+//       y: lastRect.top + window.scrollY,
+//     });
+//     setIsVisible(true);
+//   } else {
+//     setIsVisible(false);
+//   }
+// };
       
     return (
         <>
             <div className='createResumeContainer'>
                 <Navbar/>
-
+                <Fade delay={400}>
                 {/* אין בעיה במתודה של השגת טווח(0) - הבעיה היא שברגע שיש פופאובר אז הפונקציות לא מזהות סלקט. גם בסרגל הישן וגם בחדש */}
 
                 {/* <button 
@@ -230,27 +229,14 @@ const handleSelectioni = () => {
                 
 
                 {/* make placeholder work only if it's inside a wrraper div */}
-                <div className='forSecondGroup'>
-                    <div
-                        name="sendTo"
-                        className='sendtoStyle '
-                        aria-required="true"
-                        suppressContentEditableWarning={true}
-                        contentEditable={true}
-                        placeholder="Send to: Company name | Role name | Date send | Role location"
-                        content={ourForm.objectName.sendTo}
-                        onInput={(event) => {
-                            const nameFull = event.target.textContent;
-                            handleCustomChange('sendTo', nameFull);
-                        }}
-                    />
-                </div>
+                
 
                 
 
-            <div>{isVisible && (
-                <Draggable > 
-                    <div
+            <div>
+                {/* {isVisible && (
+                <Draggable >  */}
+                    {/* <div
                         style={{
                         position: 'absolute',
                         top: position.y,
@@ -260,9 +246,11 @@ const handleSelectioni = () => {
                         zIndex: 1,
                         marginTop:'-40px',
                         }}
-                    >
+                    > */}
                     {/* Your popover content goes here */}
-                    <div className='buttonsStyle' style={{ marginTop:'2px',marginBottom:'2px',padding: '2px', border: '1px solid transparent', borderRadius: '5px' }}>
+
+                    
+                    <div className='buttonsStyle' style={{ marginBottom:'15px',padding: '2px', border: '1px solid transparent', borderRadius: '5px' }}>
                     
                 <Button 
                     sx={{mr:1}}
@@ -298,16 +286,33 @@ const handleSelectioni = () => {
                 </Button> 
                     
                         </div>
-                    </div>
-                </Draggable>
-            )}
+                    {/* </div> */}
+                {/* </Draggable>
+            )} */}
             </div>
-                    <Fade delay={400}>
+                    
+
+                    {/* <div className='forSecondGroup'>
+                        <div
+                            name="sendTo"
+                            className='sendtoStyle '
+                            aria-required="true"
+                            suppressContentEditableWarning={true}
+                            contentEditable={true}
+                            placeholder="Send to: Company name | Role name | Date send | Role location"
+                            content={ourForm.objectName.sendTo}
+                            onInput={(event) => {
+                                const nameFull = event.target.textContent;
+                                handleCustomChange('sendTo', nameFull);
+                            }}
+                        />
+                    </div> */}
 
                         <PDFExport ref={pdfExportComponent}>
 
+                            {/* onMouseUp={()=>{ handleSelect();handleSelectioni()}}  */}
                             {/* margin top effects the head part of the paper before print */}
-                            <div onMouseUp={()=>{ handleSelect();handleSelectioni()}} className="resume">
+                            <div className="resume" onMouseUp={handleSelect}>
                                 <div className='grid-area name'>
                                     <div className='square'>
                                         <div className='firstGroup forFirstGroup'> 

@@ -6,7 +6,7 @@ import AppBar from '@mui/material/AppBar';
 import Container from '@mui/material/Container';
 import { useAuthState } from "react-firebase-hooks/auth";
 import LogoutIcon from '@mui/icons-material/Logout';
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+// import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
 import { auth } from '../../config/firebase.config';
 // import { useUserAuth } from '../../Context/UserAuthContext';
@@ -50,7 +50,7 @@ const Navbar = () => {
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
                         <NavLink to="/postInputs" exact="true"><NoteAddIcon sx={{mr:"4px"}}/>CREATE CV</NavLink>
-                        <NavLink to="/allResumes" exact="true"><ManageAccountsIcon sx={{mr:"4px"}}/>MY AREA</NavLink>
+                        {/* <NavLink to="/allResumes" exact="true"><ManageAccountsIcon sx={{mr:"4px"}}/>MY AREA</NavLink> */}
                         {/* <NavLink to="/examples" exact="true"><CollectionsIcon sx={{mr:"4px"}}/>EXAMPLES</NavLink> */}
                         <NavLink to="/logout" exact="true" onClick={handleLogout}><LogoutIcon sx={{mr:"4px"}}/>LOGOUT</NavLink>
                         {/* maybe add: <NavLink to="/allResumes/:id" exact="true"><b>See Your Resume</b></NavLink> */}
