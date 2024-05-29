@@ -1,16 +1,16 @@
 import './InputsForm.css';
 import React, { useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import TodoLeft from '../TodoLeft/TodoLeft';
 import TodoRight from '../TodoRight/TodoRight';
 // import { addDoc, collection } from "firebase/firestore";
-import { useAuthState } from "react-firebase-hooks/auth";
+// import { useAuthState } from "react-firebase-hooks/auth";
 import { PDFExport } from "@progress/kendo-react-pdf";
 import TodoWork from '../TodoWork/TodoWork';
 import PrintIcon from '@mui/icons-material/Print';
 // import SaveIcon from '@mui/icons-material/Save';
 import ReactToPrint from 'react-to-print';
-import { firestoreDB, auth } from "../../config/firebase.config";
+// import { firestoreDB, auth } from "../../config/firebase.config";
 import { initialState } from "../../utils/ourState";
 import { Button } from "@mui/material";
 import Fade from 'react-reveal/Fade';
@@ -54,7 +54,7 @@ const InputsForm = () => {
     };
 
     // loading, error - check if false - render gif - if true - stop render
-    const [user] = useAuthState(auth);
+    // const [user] = useAuthState(auth);
     const [ourForm, setOurForm] = useState(initialState);
     // const [inputList, setInputList] = useState([{ firstName: '', display: 'notdisplayed' }]);
     // const navigate = useNavigate();
