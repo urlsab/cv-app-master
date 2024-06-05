@@ -1,10 +1,7 @@
 <h1 align="center"><a href="https://resumes-builder.web.app"> 📝 <ins>RESUMES BUILDER</ins> 👷‍♂️ </a> </h1>
 
-<h3 align="center"> 🏃‍♂️ A fast and easy digital platform for building, editing and more - a great resume ! 💯
+<h3 align="center"> 🏃‍♂️ A fast and easy platform for building a great resume ! 💯
   
-<br />
-<br />
-
 </h3>
 
 <hr />
