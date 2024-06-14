@@ -40,6 +40,7 @@
     "@testing-library/user-event": "^14.4.3",
     "@types/aria-query": "^5.0.4",
     "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
     "@userfront/toolkit": "^1.0.8",
     "ajv": "^8.16.0",
     "archiver-utils": "^5.0.2",
