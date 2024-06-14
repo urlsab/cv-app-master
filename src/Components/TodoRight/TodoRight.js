@@ -126,7 +126,7 @@ const TodoRight = () => {
                     onMouseUp={handleSelect}
                     suppressContentEditableWarning={true}
                     contentEditable={true}
-                    placeholder='Optional Header'
+                    placeholder='Optional header'
                     content={x.optionalSectionHeader}
                     onChange={(e) => handleInputChange(e, i)}
                     // onInput={(event) => {
@@ -148,7 +148,7 @@ const TodoRight = () => {
                     onMouseUp={handleSelect}
                     suppressContentEditableWarning={true}
                     contentEditable={true}
-                    placeholder='Optional Content'
+                    placeholder='Optional content'
                     content={x.optionalSectionContent}
                     onChange={(e) => handleInputChange(e, i)}
                     // onInput={(event) => {

@@ -164,7 +164,7 @@ const TodoLeft = () => {
                     onMouseUp={handleSelect}
                     suppressContentEditableWarning={true}
                     contentEditable={true}
-                    placeholder='dynamicHeaderPartOne'
+                    placeholder='Optional header'
                     content={ourForm.objectName.dynamicHeaderPartOne}
                     onChange={(e) => handleInputChange(e, i)}
                     // onInput={(event) => {
@@ -184,7 +184,7 @@ const TodoLeft = () => {
                     onMouseUp={handleSelect}
                     suppressContentEditableWarning={true}
                     contentEditable={true}
-                    placeholder='dynamicContentPartOne'
+                    placeholder='Optional content'
                     content={ourForm.objectName.dynamicContentPartOne}
                     onChange={(e) => handleInputChange(e, i)}
                     // onInput={(event) => {

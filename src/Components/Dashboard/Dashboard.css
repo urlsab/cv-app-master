@@ -12,15 +12,6 @@
   align-content: center;
 }
 
-@media screen and (max-width: 280px) {
-  .dasboardContainer  
-  {
-    width: 285px;
-  };
-} 
-
-
-
 .styleName {
   font-family: 'poppins', serif;
   margin-left: 15px;
@@ -65,5 +56,19 @@
 
 .conffetiStyle {
   width: 100%;
-  height: 601px;
+  height: 770px;
 }
+
+@media screen and (max-width: 655px) {
+  .conffetiStyle  
+  {
+    height: 1100px;
+  };
+}
+
+@media screen and (max-width: 277px) {
+  .dasboardContainer 
+  {
+    width: 300px;
+  };
+} 

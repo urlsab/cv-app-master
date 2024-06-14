@@ -9,11 +9,8 @@ import {
 } from "firebase/auth";
 
 import { collection, getDocs } from "firebase/firestore";
-
 import { firestoreDB } from "../config/firebase.config";
-
 import { useAuthState } from "react-firebase-hooks/auth";
-
 import { auth } from "../config/firebase.config";
 
 const userAuthContext = createContext();
