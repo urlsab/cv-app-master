@@ -62,8 +62,6 @@ firebase deploy
 
 //https://console.firebase.google.com/project/resumes-builder/database/resumes-builder-default-rtdb/data
 
-
-
 // {
 //   "type": "service_account",
 //   "project_id": "resumes-builder",
