@@ -41,11 +41,9 @@ const LoginApp = () => {
         try {
             await googleSignIn();
             navigate("/dashboard");
-            console.log(`${process.env.REACT_APP_API_KEY}`);
 
         } catch (error) {
             console.log(error.message)
-            console.log(`${process.env.REACT_APP_API_KEY}`);
         }
     };
 
@@ -62,7 +60,6 @@ const LoginApp = () => {
             console.log(userInfo);
             console.log(curAuth);
             console.log(password);
-            console.log(`${process.env.REACT_APP_API_KEY}`);
             navigate("/dashboard");    
         })
 
@@ -71,7 +68,6 @@ const LoginApp = () => {
             const errorMessage = error.message;
             console.log(errorCode, errorMessage);
             console.log(curAuth);
-            console.log(`${process.env.REACT_APP_API_KEY}`);
             alert("Fix email or password or disconnect your google account if you tried to log in with google");
         });
 
