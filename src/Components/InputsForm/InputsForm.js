@@ -233,7 +233,7 @@ const InputsForm = () => {
 
                 
 
-            <div>
+            {/* <div> */}
                 {/* {isVisible && (
                 <Draggable >  */}
                     {/* <div
@@ -249,8 +249,12 @@ const InputsForm = () => {
                     > */}
                     {/* Your popover content goes here */}
 
+                <div className="textContainer">
+                    <Fade delay={700}> <h1> <b className="textStyle"> BUILD YOUR RESUME </b> 🔨 </h1> </Fade>
+                </div>
+
                     
-                    <div className='buttonsStyle' style={{ marginBottom:'15px',padding: '2px', border: '1px solid transparent', borderRadius: '5px' }}>
+                <div className='buttonsStyle' style={{ marginTop:'50px',marginBottom:'15px',padding: '2px', border: '1px solid transparent', borderRadius: '5px' }}>
                     
                 <Button 
                     sx={{mr:1}}
@@ -285,7 +289,7 @@ const InputsForm = () => {
                     onClick={handleApplyLink}>
                 </Button> 
                     
-                        </div>
+            {/* </div> */}
                     {/* </div> */}
                 {/* </Draggable>
             )} */}
@@ -593,7 +597,7 @@ const InputsForm = () => {
                             trigger={() => 
                             <Button 
                                 sx={
-                                        [{m:1, mt:12,mb:12, backgroundColor:"rgb(250, 204, 0)",
+                                        [{m:1, mt:12,mb:16, backgroundColor:"rgb(250, 204, 0)",
                                     },
                                     {'&:hover': {backgroundColor: "rgb(250, 184, 0)"}}
                                 ]}

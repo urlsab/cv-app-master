@@ -188,6 +188,5 @@ input:focus{
     /* avoid the paper/input to move up/down after focus */
     margin-bottom: 11px;
     margin-top: 27px;
-    padding: 0.25rem;
-    
+    padding: 0.25rem; 
 }
