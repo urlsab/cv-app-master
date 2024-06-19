@@ -160,7 +160,7 @@ const TodoLeft = () => {
                     aria-required="true"
                     // textTransform:"uppercase", - for only big letters
                     // fontSize:16.5 = 14 font size in word = the best header size for resumes
-                    style={{ fontSize:16.5, fontWeight:'bolder', lineHeight:"25px"}}
+                    style={{ marginBottom: '7px',fontSize:16.5, fontWeight:'bolder', lineHeight:"25px"}}
                     onMouseUp={handleSelect}
                     suppressContentEditableWarning={true}
                     contentEditable={true}
