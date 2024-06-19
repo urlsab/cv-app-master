@@ -29,5 +29,7 @@ npm run build
 [verify index.html of build dir is ok - add ' ' to index.html of build dir inside the url of fonts..]
 firebase deploy
 [check url if code changed]
+push in github desktop
+check github repository.
 
 */

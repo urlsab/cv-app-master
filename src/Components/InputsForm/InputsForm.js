@@ -250,7 +250,7 @@ const InputsForm = () => {
                     {/* Your popover content goes here */}
 
                 <div className="textContainer">
-                    <Fade delay={600}> <h1> <b className="textStyle"> BUILD YOUR RESUME </b> 🔨 </h1> </Fade>
+                    <Fade delay={600}> <h1 style={{marginTop:'20px'}}> <b className="textStyle"> BUILD YOUR RESUME </b> 🔨 </h1> </Fade>
                 </div>
 
                     
