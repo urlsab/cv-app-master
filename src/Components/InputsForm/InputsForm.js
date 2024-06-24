@@ -1,16 +1,16 @@
 import './InputsForm.css';
 import React, { useState, useRef } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import TodoLeft from '../TodoLeft/TodoLeft';
 import TodoRight from '../TodoRight/TodoRight';
-// import { addDoc, collection } from "firebase/firestore";
-// import { useAuthState } from "react-firebase-hooks/auth";
+import { addDoc, collection } from "firebase/firestore";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { PDFExport } from "@progress/kendo-react-pdf";
 import TodoWork from '../TodoWork/TodoWork';
 import PrintIcon from '@mui/icons-material/Print';
-// import SaveIcon from '@mui/icons-material/Save';
+import SaveIcon from '@mui/icons-material/Save';
 import ReactToPrint from 'react-to-print';
-// import { firestoreDB, auth } from "../../config/firebase.config";
+import { firestoreDB, auth } from "../../config/firebase.config";
 import { initialState } from "../../utils/ourState";
 import { Button } from "@mui/material";
 import Fade from 'react-reveal/Fade';
@@ -54,10 +54,10 @@ const InputsForm = () => {
     };
 
     // loading, error - check if false - render gif - if true - stop render
-    // const [user] = useAuthState(auth);
+    const [user] = useAuthState(auth);
     const [ourForm, setOurForm] = useState(initialState);
     // const [inputList, setInputList] = useState([{ firstName: '', display: 'notdisplayed' }]);
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const pdfExportComponent = useRef(null);
 
     // const handleExportWithComponent = (data) => {
@@ -65,26 +65,26 @@ const InputsForm = () => {
     //     console.log(data);
     // };
 
-    // const handleAddResume = (event) => {
+    const handleAddResume = (event) => {
         
-    //     // firestoreDB making auto uid for any document in hte user.email collection
-    //     event.preventDefault();
-    //     // `${user.email}` - cretes new collection with the use email name !!!
-    //     const usersCollection = collection(firestoreDB, `${user.email}`);
+        // firestoreDB making auto uid for any document in hte user.email collection
+        event.preventDefault();
+        // `${user.email}` - cretes new collection with the use email name !!!
+        const usersCollection = collection(firestoreDB, `${user.email}`);
 
-    //         addDoc(usersCollection, ourForm.objectName)
-    //         .then(response => {
-    //             console.log(ourForm.objectName);
-    //             console.log(response);               
-    //             console.log(response.id);
-    //             console.log(response.path);
-    //             navigate("/allResumes")
-    //         }).catch(error => {
-    //             console.log(error);
-    //             console.log("error from handleAddResume function");
-    //     })
+            addDoc(usersCollection, ourForm.objectName)
+            .then(response => {
+                console.log(ourForm.objectName);
+                console.log(response);               
+                console.log(response.id);
+                console.log(response.path);
+                navigate("/allResumes")
+            }).catch(error => {
+                console.log(error);
+                console.log("error from handleAddResume function");
+        })
         
-    // };
+    };
 
     const handleCustomChange = (field, data) => {
         setOurForm({
@@ -296,7 +296,7 @@ const InputsForm = () => {
             </div>
                     
 
-                    {/* <div className='forSecondGroup'>
+                    <div className='forSecondGroup'>
                         <div
                             name="sendTo"
                             className='sendtoStyle '
@@ -310,7 +310,7 @@ const InputsForm = () => {
                                 handleCustomChange('sendTo', nameFull);
                             }}
                         />
-                    </div> */}
+                    </div>
 
                         <PDFExport ref={pdfExportComponent}>
 
@@ -609,13 +609,13 @@ const InputsForm = () => {
                             content={() => pdfExportComponent.current}
                         />
 
-                            {/* <Button 
+                            <Button 
                                 startIcon={<SaveIcon/>}
                                 color="success"
                                 variant="contained"
-                                sx={{m:1 ,mt: 12, mb:12}}
+                                sx={{m:1 ,mt: 12, mb:16}}
                                 onClick={handleAddResume}>SAVE
-                            </Button> */}
+                            </Button>
                     </div>
                 </Fade>
             </div>

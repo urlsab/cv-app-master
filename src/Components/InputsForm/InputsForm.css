@@ -177,7 +177,6 @@ input:focus{
     justify-content: center;
     align-items: stretch;
     font-weight: bold;
-
    /* make the writing marker of an input to be center vertically */
     line-height: normal; 
 }
