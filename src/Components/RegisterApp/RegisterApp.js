@@ -33,10 +33,10 @@ const RegisterApp = () => {
         navigate("/login");
     }
 
-    const onSubmitHandler = async (e) => {
+    const onSubmitHandler = (e) => {
         e.preventDefault();
         // console.log(curAuth, emailAdd, rePassword);
-        await createUserWithEmailAndPassword(curAuth, emailAdd, rePassword)
+        createUserWithEmailAndPassword(curAuth, emailAdd, rePassword)
         .then((userCredential) => {
             let userData = userCredential.user;
             userData.displayName = firstName;
@@ -56,7 +56,7 @@ const RegisterApp = () => {
     
       const usersCollection = collection(firestoreDB, `${emailAdd}`);
       // add 00000 to render user name at /dashboard from cv[0] array 
-      await setDoc(doc(usersCollection, "00000Data"), {thePassword: rePassword, userName: firstName})
+     setDoc(doc(usersCollection, "00000Data"), {thePassword: rePassword, userName: firstName})
         .then(() => {
 
             // console.log(initialPassword.objectPassword.thePassword);

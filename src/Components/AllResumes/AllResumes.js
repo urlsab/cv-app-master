@@ -196,24 +196,24 @@ const AllResumes = () => {
         getCv();
     }
 
-    const getCv = async () => {
-
-        const privateCollection = collection(firestoreDB, `${user.email}` );
-
-        await getDocs(privateCollection).then(response => {
-            
-            const displayResumes = response.docs.map(doc => ({
-                info: doc.data(),
-                id: doc.id,
-                key: doc.id
-            })) 
-            setCv(displayResumes);
-            console.log(displayResumes[0].info.userName);
-            console.log("successfully set all cv's");
-           
-        })
-        .catch(error => console.log(error)); 
-    }
+    async function getCv() {
+        try {
+          const privateCollection = collection(firestoreDB, `${userData.email}` );
+      
+          const response  = await getDocs(privateCollection);
+              
+              const displayResumes = response.docs.map(doc => ({
+                  info: doc.data(),
+                  id: doc.id,
+                  key: doc.id
+              })) 
+              setCv(displayResumes);
+              console.log(displayResumes[0].info.userName);
+              console.log("successfully set all cv's");
+              
+          }
+          catch(error) {console.log(error)}; 
+      }
 
     // const handleSelect = () => {
     //     const selection = window.getSelection();

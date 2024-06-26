@@ -52,24 +52,24 @@ const LoginApp = () => {
         e.preventDefault();
 
         console.log(curAuth, email, password);
-
+try {
         await signInWithEmailAndPassword(curAuth, email, password)
 
-        .then((userCredential) => {
+        
             const userInfo = userCredential.user;
             console.log(userInfo);
             console.log(curAuth);
             console.log(password);
             navigate("/dashboard");    
-        })
+        }
 
-        .catch((error) => {
+        catch (error)  {
             const errorCode = error.code;
             const errorMessage = error.message;
             console.log(errorCode, errorMessage);
             console.log(curAuth);
             alert("Fix email or password or disconnect your google account if you tried to log in with google");
-        });
+        };
 
     }
 

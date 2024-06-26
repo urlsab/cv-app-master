@@ -35,10 +35,10 @@ export function UserAuthContextProvider({ children }) {
   }
 
   async function getCv() {
-
+try {
     const privateCollection = collection(firestoreDB, `${userData.email}` );
 
-    await getDocs(privateCollection).then(response => {
+    const response  = await getDocs(privateCollection);
         
         const displayResumes = response.docs.map(doc => ({
             info: doc.data(),
@@ -49,8 +49,8 @@ export function UserAuthContextProvider({ children }) {
         console.log(displayResumes[0].info.userName);
         console.log("successfully set all cv's");
         
-    })
-    .catch(error => console.log(error)); 
+    }
+    catch(error) {console.log(error)}; 
 }
 
   useEffect(() => {

@@ -45,34 +45,24 @@ const Dashboard = () => {
       alert("An error occured while fetching user data");
     }
   };
-
-  const getCv = async () => {
-    console.log(cv);
-    const privateCollection = collection(firestoreDB, `${user.email}` );
-
-    await getDocs(privateCollection).then(response => {
-        
-        const displayResumes = response.docs.map(doc => ({
-            info: doc.data(),
-            id: doc.id,
-            key: doc.id
-        })) 
-        setCv(displayResumes);
-        console.log(displayResumes[0].info.userName);
-        console.log("successfully set all docs");
-
-      // setter
-      // localStorage.setItem("userName",displayResumes[0].info.userName);
-
-      // // getter
-      // localStorage.getItem(displayResumes[0].info.userName);
-
-      // console.log(localStorage);
-
-      console.log("save user name on local storage successfully");
-    })
-    .catch(error => console.log(error)); 
-}
+  async function getCv() {
+    try {
+      const privateCollection = collection(firestoreDB, `${userData.email}` );
+  
+      const response  = await getDocs(privateCollection);
+          
+          const displayResumes = response.docs.map(doc => ({
+              info: doc.data(),
+              id: doc.id,
+              key: doc.id
+          })) 
+          setCv(displayResumes);
+          console.log(displayResumes[0].info.userName);
+          console.log("successfully set all cv's");
+          
+      }
+      catch(error) {console.log(error)}; 
+  }
  
   useEffect(() => {
     if (loading) return;
