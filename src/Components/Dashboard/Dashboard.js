@@ -58,6 +58,7 @@ const Dashboard = () => {
           })) 
           setCv(displayResumes);
           console.log(displayResumes[0].info.userName);
+          console.log(cv);
           console.log("successfully set all cv's");
           
       }
