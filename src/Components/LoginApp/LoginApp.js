@@ -55,9 +55,6 @@ const LoginApp = () => {
 try {
         await signInWithEmailAndPassword(curAuth, email, password)
 
-        
-            const userInfo = userCredential.user;
-            console.log(userInfo);
             console.log(curAuth);
             console.log(password);
             navigate("/dashboard");    

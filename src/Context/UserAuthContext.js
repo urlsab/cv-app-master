@@ -35,7 +35,7 @@ export function UserAuthContextProvider({ children }) {
   }
 
   async function getCv() {
-try {
+  try {
     const privateCollection = collection(firestoreDB, `${userData.email}` );
 
     const response  = await getDocs(privateCollection);

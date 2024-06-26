@@ -47,7 +47,7 @@ const Dashboard = () => {
   };
   async function getCv() {
     try {
-      const privateCollection = collection(firestoreDB, `${userData.email}` );
+      const privateCollection = collection(firestoreDB, `${user.email}` );
   
       const response  = await getDocs(privateCollection);
           
