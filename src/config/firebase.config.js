@@ -11,6 +11,7 @@ import { initializeFirestore } from "firebase/firestore";
 //   messagingSenderId: `${process.env.REACT_APP_SENDER_ID}`,
 //   appId: `${process.env.REACT_APP_API_ID}`
 // };
+//
 
 const firebaseConfig = {
   apiKey: "AIzaSyCEryolwTvi751-v2evqPUquUvlcugNys8",
