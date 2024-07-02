@@ -1,5 +1,5 @@
 import "./AllResumes.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { MdAddLink } from "react-icons/md";
 import { FaBold } from "react-icons/fa";
@@ -44,6 +44,11 @@ import { initialState } from "../../utils/ourState";
 // import { useNavigate } from "react-router-dom";
 
 const AllResumes = () => {
+
+    useEffect(() => {
+        const viewport = document.querySelector('meta[name=viewport]');
+        viewport.setAttribute('content', 'width=device-width, initial-scale=0.5');
+    }, []);
 
     const [cv, setCv] = useState([]);
     const [toggle, setToggle] = useToggle();
@@ -788,11 +793,14 @@ const AllResumes = () => {
         <div className="allResumesContainer">
             <Navbar/>
                 <div className="headersContainer" style={{fontFamily:'Itim'}}>   
-                    <LightSpeed left delay={300}><h1> 📝 <b className="textStyle" >EDIT </b>  </h1> </LightSpeed>
-                    <LightSpeed left delay={600}><h1> 🚮 <b className="textStyle">DELETE  </b>  </h1> </LightSpeed>
-                    <LightSpeed left delay={900}><h1> 📃 <b className="textStyle">PRINT NOW </b>  </h1> </LightSpeed>
+                    <LightSpeed left delay={300}><h1> 🥳 <b className="textStyle" style={{fontSize:'60px'}} >WELCOME TO YOUR AREA </b>  </h1> </LightSpeed>
+                    <LightSpeed left delay={600}><h1> 👀 <b className="textStyle" >HERE YOU CAN WATCH YOUR RESUMES </b> </h1> </LightSpeed>
+                    <LightSpeed left delay={900}><h1> ✍ <b className="textStyle" >AND MANIPULATE THEM BY: </b> </h1> </LightSpeed>
+                    <LightSpeed left delay={1200}><h1> 📝 <b className="textStyle" >EDIT </b>  </h1> </LightSpeed>
+                    <LightSpeed left delay={1200}><h1> 🚮 <b className="textStyle">DELETE  </b>  </h1> </LightSpeed>
+                    <LightSpeed left delay={1200}><h1> 📃 <b className="textStyle">FAST PRINT </b>  </h1> </LightSpeed>
                     <LightSpeed left delay={1200}><h1> 📥 <b className="textStyle">GET IT AS PDF  </b>  </h1> </LightSpeed>
-                    
+                    <LightSpeed left delay={1200}><h1> 👇 <b className="textStyle">CLICK DOWN BELOW TO CONTINUE  </b>  </h1> </LightSpeed>
                 </div>
 
                 {toggle ?
