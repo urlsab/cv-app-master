@@ -9,7 +9,7 @@
     align-items:center;
     font-size: 22px;
     border: none;
-    min-width: 710px;
+    /* min-width: 710px; */
 }
 
 .liStStyle {
@@ -94,9 +94,20 @@
     background-color: white;
 }
 
-@media screen and (max-width: 453px) {
-    .textStyle  
+.firstHeader {
+    font-size: 45px
+}
+
+@media screen and (max-width: 680px) {
+    .firstHeader 
     {
-      font-size: 10px;
+      font-size: 40px;
     }; 
   }  
+
+  @media screen and (max-width: 600px) {
+    .firstHeader 
+    {
+      font-size: 33px;
+    }; 
+  }

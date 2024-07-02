@@ -793,16 +793,16 @@ const AllResumes = () => {
         <div className="allResumesContainer">
             <Navbar/>
                 <div className="headersContainer" style={{fontFamily:'Itim', justifyContent:'center', display:'flex', alignItems:'center'}}>   
-                    <LightSpeed left delay={300}><h1> 🥳 <b className="textStyle" style={{fontSize:'45px'}} >WELCOME TO YOUR AREA </b>  </h1> </LightSpeed>
+                    <LightSpeed left delay={300}><h1 className="firstHeader" style={{marginTop:'85px'}}> 🥳 <b className="textStyle">WELCOME TO YOUR AREA </b>  </h1> </LightSpeed>
                     <div style={{display:'flex', flexDirection:'column', justifyContent:'center', textAlign:'center'}}>
-                        <LightSpeed left delay={600}><h2> 👀 <b className="textStyle" >WATCH YOUR RESUMES </b> </h2> </LightSpeed>
-                        <LightSpeed left delay={900}><h2> ✍ <b className="textStyle" >AND CONTROL THEM BY: </b> </h2> </LightSpeed>
+                        <LightSpeed left delay={600}><h2 style={{marginTop:'85px'}}> 👀 <b className="textStyle" >WATCH YOUR RESUMES </b> </h2> </LightSpeed>
+                        <LightSpeed left delay={900}><h2 style={{marginBottom:'85px'}}> ✍ <b className="textStyle" >AND CONTROL THEM BY: </b> </h2> </LightSpeed>
                         <div style={{display:'flex', flexDirection:'column', justifyContent:'center', textAlign:'center'}}>
                             <LightSpeed left delay={1200}><h3> 📝 <b className="textStyle" >EDIT </b>  </h3> </LightSpeed>
                             <LightSpeed left delay={1200}><h3> 🚮 <b className="textStyle">DELETE  </b>  </h3> </LightSpeed>
                             <LightSpeed left delay={1200}><h3> 📃 <b className="textStyle">FAST PRINT </b>  </h3> </LightSpeed>
                             <LightSpeed left delay={1200}><h3> 📥 <b className="textStyle">GET IT AS PDF  </b>  </h3> </LightSpeed>
-                            <LightSpeed left delay={1200}><h3> 👇 <b className="textStyle">CLICK HERE TO CONTINUE  </b>  </h3> </LightSpeed>
+                            <LightSpeed left delay={1200}><h3 style={{marginBottom:'70px'}}> 👇 <b className="textStyle">CLICK HERE TO CONTINUE  </b>  </h3> </LightSpeed>
                         </div>
                     </div>
                     
