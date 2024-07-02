@@ -21,15 +21,13 @@ export const firestoreDB = initializeFirestore(app, {
 /* 
 
 TO DEPLOY, COMMAND:
+
 npm start
-[change code]
-[exit npm start = ctrl + c, the press 'y' ]
+change code inisde vs code
+deploy to github by desktop
+watch on github if deployment is ok, if not - fix bugs
 npm run build
-[change code]
-[verify index.html of build dir is ok - add ' ' to index.html of build dir inside the url of fonts..]
-firebase deploy
-[check url if code changed]
-push in github desktop
-check github repository.
+firebase deploy --only hosting
+check the url on pc and mobile if working, if not fix bugs
 
 */
