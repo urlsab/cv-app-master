@@ -12,18 +12,6 @@ const firebaseConfig = {
   appId: `${process.env.REACT_APP_API_ID}`
 };
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyCEryolwTvi751-v2evqPUquUvlcugNys8",
-//   authDomain: "resumes-builder.firebaseapp.com",
-//   databaseURL: "https://resumes-builder-default-rtdb.firebaseio.com",
-//   projectId: "resumes-builder",
-//   storageBucket: "resumes-builder.appspot.com",
-//   messagingSenderId: "235192135514",
-//   appId: "1:235192135514:web:87d29f46541b32550d0d63"
-// };
-
-// @latest
-
 export const app = initializeApp(firebaseConfig); 
 export const auth = getAuth(app);
 export const firestoreDB = initializeFirestore(app, {

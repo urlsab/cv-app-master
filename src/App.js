@@ -17,7 +17,7 @@ import ErrorNoAccount from './Components/ErrorNoAccount/ErrorNoAccount';
 
 const App = () => {
 
-  // for deafult auto zoom out for mobile screens
+  // deafult auto zoom out for mobile screens
   useEffect(() => {
     const viewport = document.querySelector('meta[name=viewport]');
     viewport.setAttribute('content', 'width=device-width, initial-scale=0.8');
