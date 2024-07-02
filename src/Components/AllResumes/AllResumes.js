@@ -47,7 +47,7 @@ const AllResumes = () => {
 
     useEffect(() => {
         const viewport = document.querySelector('meta[name=viewport]');
-        viewport.setAttribute('content', 'width=device-width, inintial-scale=0.45');
+        viewport.setAttribute('content', 'width=device-width, initial-scale=0.45');
       }, []);
 
     const [cv, setCv] = useState([]);
@@ -792,15 +792,21 @@ const AllResumes = () => {
     <>
         <div className="allResumesContainer">
             <Navbar/>
-                <div className="headersContainer" style={{fontFamily:'Itim'}}>   
-                    <LightSpeed left delay={300}><h1> 🥳 <b className="textStyle" style={{fontSize:'60px'}} >WELCOME TO YOUR AREA </b>  </h1> </LightSpeed>
-                    <LightSpeed left delay={600}><h1> 👀 <b className="textStyle" >HERE YOU CAN WATCH YOUR RESUMES </b> </h1> </LightSpeed>
-                    <LightSpeed left delay={900}><h1> ✍ <b className="textStyle" >AND MANIPULATE THEM BY: </b> </h1> </LightSpeed>
-                    <LightSpeed left delay={1200}><h1> 📝 <b className="textStyle" >EDIT </b>  </h1> </LightSpeed>
-                    <LightSpeed left delay={1200}><h1> 🚮 <b className="textStyle">DELETE  </b>  </h1> </LightSpeed>
-                    <LightSpeed left delay={1200}><h1> 📃 <b className="textStyle">FAST PRINT </b>  </h1> </LightSpeed>
-                    <LightSpeed left delay={1200}><h1> 📥 <b className="textStyle">GET IT AS PDF  </b>  </h1> </LightSpeed>
-                    <LightSpeed left delay={1200}><h1> 👇 <b className="textStyle">CLICK DOWN BELOW TO CONTINUE  </b>  </h1> </LightSpeed>
+                <div className="headersContainer" style={{fontFamily:'Itim', justifyContent:'center', display:'flex', alignItems:'center'}}>   
+                    <LightSpeed left delay={300}><h1> 🥳 <b className="textStyle" style={{fontSize:'45px'}} >WELCOME TO YOUR AREA </b>  </h1> </LightSpeed>
+                    <div style={{display:'flex', flexDirection:'column', justifyContent:'center', textAlign:'center'}}>
+                        <LightSpeed left delay={600}><h2> 👀 <b className="textStyle" >WATCH YOUR RESUMES </b> </h2> </LightSpeed>
+                        <LightSpeed left delay={900}><h2> ✍ <b className="textStyle" >AND CONTROL THEM BY: </b> </h2> </LightSpeed>
+                        <div style={{display:'flex', flexDirection:'column', justifyContent:'center', textAlign:'center'}}>
+                            <LightSpeed left delay={1200}><h3> 📝 <b className="textStyle" >EDIT </b>  </h3> </LightSpeed>
+                            <LightSpeed left delay={1200}><h3> 🚮 <b className="textStyle">DELETE  </b>  </h3> </LightSpeed>
+                            <LightSpeed left delay={1200}><h3> 📃 <b className="textStyle">FAST PRINT </b>  </h3> </LightSpeed>
+                            <LightSpeed left delay={1200}><h3> 📥 <b className="textStyle">GET IT AS PDF  </b>  </h3> </LightSpeed>
+                            <LightSpeed left delay={1200}><h3> 👇 <b className="textStyle">CLICK HERE TO CONTINUE  </b>  </h3> </LightSpeed>
+                        </div>
+                    </div>
+                    
+                    
                 </div>
 
                 {toggle ?
