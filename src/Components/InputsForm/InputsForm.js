@@ -24,7 +24,7 @@ const InputsForm = () => {
 
     useEffect(() => {
         const viewport = document.querySelector('meta[name=viewport]');
-        viewport.setAttribute('content', 'width=device-width, initial-scale=0.7');
+        viewport.setAttribute('content', 'width=device-width, initial-scale=0.4');
     }, []);
 
     const [selectedText, setSelectedText] = useState('');
