@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './EntryNavbar.css';
 import { NavLink } from "react-router-dom";
 import ForwardToInboxIcon from '@mui/icons-material/ForwardToInbox';
@@ -11,6 +11,12 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import LoginIcon from '@mui/icons-material/Login';
 
 const EntryNavbar = () => {
+
+  useEffect(() => {
+    const viewport = document.querySelector('meta[name=viewport]');
+    viewport.setAttribute('content', 'width=device-width, initial-scale=0.8');
+  }, []);
+
   return (
     <>
       <AppBar style={{background:"linear-gradient(162deg, rgb(99, 88, 80) 0%, rgb(54, 108, 158) 70%)"}} position="sticky" color="default">

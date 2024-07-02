@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useEffect} from 'react';
+import React from 'react';
 import { UserAuthContextProvider } from "./Context/UserAuthContext";
 import { Routes ,Route } from 'react-router-dom';
 import AllResumes from './Components/AllResumes/AllResumes';
@@ -16,12 +16,6 @@ import Contact from './Components/Contact/Contact';
 import ErrorNoAccount from './Components/ErrorNoAccount/ErrorNoAccount';
 
 const App = () => {
-
-  // deafult auto zoom out for mobile screens
-  useEffect(() => {
-    const viewport = document.querySelector('meta[name=viewport]');
-    viewport.setAttribute('content', 'width=device-width, initial-scale=0.8');
-  }, []);
 
   return (
     <React.Fragment>

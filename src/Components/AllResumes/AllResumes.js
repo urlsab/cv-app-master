@@ -47,8 +47,8 @@ const AllResumes = () => {
 
     useEffect(() => {
         const viewport = document.querySelector('meta[name=viewport]');
-        viewport.setAttribute('content', 'width=device-width, initial-scale=0.45');
-    }, []);
+        viewport.setAttribute('content', 'width=device-width, inintial-scale=0.45');
+      }, []);
 
     const [cv, setCv] = useState([]);
     const [toggle, setToggle] = useToggle();

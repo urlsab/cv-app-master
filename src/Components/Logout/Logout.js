@@ -1,14 +1,16 @@
 import './Logout.css';
-
-import React  from 'react';
-
+import React, { useEffect }  from 'react';
 import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
-
 import Fade from 'react-reveal/Fade';
 import HomeIcon from '@mui/icons-material/Home';
 
 const Logout = () => {
+
+    useEffect(() => {
+      const viewport = document.querySelector('meta[name=viewport]');
+      viewport.setAttribute('content', 'width=device-width, inintial-scale=0.8');
+    }, []);
 
   const navigate = useNavigate();
 
