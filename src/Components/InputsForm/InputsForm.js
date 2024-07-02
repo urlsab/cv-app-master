@@ -1,5 +1,5 @@
 import './InputsForm.css';
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import TodoLeft from '../TodoLeft/TodoLeft';
 import TodoRight from '../TodoRight/TodoRight';
@@ -21,6 +21,11 @@ import { MdAddLink } from "react-icons/md";
 // import Draggable from 'react-draggable';
 
 const InputsForm = () => {
+
+    useEffect(() => {
+        const viewport = document.querySelector('meta[name=viewport]');
+        viewport.setAttribute('content', 'width=device-width, initial-scale=0.7');
+    }, []);
 
     const [selectedText, setSelectedText] = useState('');
     const [linkUrl, setLinkUrl] = useState('');

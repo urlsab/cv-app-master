@@ -1,7 +1,9 @@
 import './Entry.css';
-import React from 'react';
+import React , {useEffect} from 'react';
 import { Fade } from 'react-reveal';
 import EntryNavbar from '../EntryNavbar/EntryNavbar';
+
+
 
 const Entry = () => {
 

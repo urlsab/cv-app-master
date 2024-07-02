@@ -22,6 +22,8 @@
     };
   } 
 
+  /* y out zoom in in react on css - for avoid zoom in with fingers on mobile */
+
 .styleHeader{
   font-family: 'Itim';
   font-size: 45px;
