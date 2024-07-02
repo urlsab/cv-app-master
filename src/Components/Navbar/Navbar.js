@@ -1,5 +1,5 @@
 import './Navbar.css';
-import React from 'react';
+import React, {useEffect} from 'react';
 import { NavLink, useNavigate } from "react-router-dom";
 import Toolbar from '@mui/material/Toolbar';
 import AppBar from '@mui/material/AppBar';
@@ -13,6 +13,11 @@ import { auth } from '../../config/firebase.config';
 import { signOut } from "firebase/auth";
 
 const Navbar = () => {
+
+    useEffect(() => {
+        const viewport = document.querySelector('meta[name=viewport]');
+        viewport.setAttribute('content', 'width=device-width, initial-scale=0.45');
+    }, []);
 
     // const { logOut } = useUserAuth();
     // const { getCv } = useUserAuth();
