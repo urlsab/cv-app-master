@@ -14,6 +14,11 @@ import Conffeti from 'react-confetti';
 
 const Dashboard = () => {
 
+  useEffect(() => {
+    const viewport = document.querySelector('meta[name=viewport]');
+    viewport.setAttribute('content', 'width=device-width, initial-scale=0.68');
+  }, []);
+
   const [cv, setCv] = useState([]);
 
   //removed - error
@@ -87,16 +92,17 @@ const Dashboard = () => {
         <div className="wordsContainer">
 
         {/* {cv.map((el, i) => <b key={i} className="styleName"> {cv[i].info.userName} </b>)} */}
-          <Flip bottom delay={1100}><h1 style={{marginTop:'80px'}} className="greetingStyle"> WELCOME TO THE </h1></Flip>
-          <Flip bottom delay={2000}><h1> <b className="greetingStyle">  RESUMES BUILDER </b> 📱 </h1></Flip>
+          <Flip bottom delay={1100}><h1 style={{marginTop:'85px', marginBottom:'85px'}} className="greetingStyle"> WELCOME TO THE </h1></Flip>
+          <Flip bottom delay={1400}><h1 style={{marginBottom:'85px'}}> <b className="greetingStyle">  RESUMES BUILDER </b>  </h1></Flip>
+          <Flip bottom delay={1700}><h2 style={{marginBottom:'85px', marginTop:'85px'}}>  <b className="textStyle">CLICK HERE TO CONTINUE  </b>  </h2> </Flip>
                  
         </div>
 
         <div className="optionsContainer">
          
-          <Fade top delay={2700}> <h1> <Jump delay={4000} duration={2000} forever={true}>👇</Jump>  </h1> </Fade>
-            <div className="buttonsContainer">
-              <Fade  delay={3400}> <Button style={{marginBottom:'150px'}} startIcon={<NoteAddIcon/>} onClick={navigateToCreateResume} size="medium" sx={{m:2, width:"140px", height:"60px"}} variant="contained" color="primary">CREATE CV</Button> </Fade> 
+          <Fade top delay={2700}> <h1 style={{marginBottom:'85px'}}> <Jump delay={4000} duration={2000} forever={true}>👇</Jump>  </h1> </Fade>
+            <div style={{marginBottom:'165px'}} className="buttonsContainer">
+              <Fade delay={3400}> <Button startIcon={<NoteAddIcon/>} onClick={navigateToCreateResume} size="medium" sx={{m:2, width:"140px", height:"60px"}} variant="contained" color="primary">CREATE CV</Button> </Fade> 
               {/* <Fade  delay={3400}> <Button startIcon={<ManageAccountsIcon/>} onClick={navigateToShowResumes} size="medium" sx={{m:2, width:"140px", height:"60px"}} variant="contained" color="warning"> MY AREA</Button> </Fade> */}
             </div> 
         </div>

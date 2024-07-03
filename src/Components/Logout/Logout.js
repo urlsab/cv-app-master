@@ -9,7 +9,7 @@ const Logout = () => {
 
     useEffect(() => {
       const viewport = document.querySelector('meta[name=viewport]');
-      viewport.setAttribute('content', 'width=device-width, inintial-scale=0.8');
+      viewport.setAttribute('content', 'width=device-width, inintial-scale=0.45');
     }, []);
 
   const navigate = useNavigate();
@@ -24,11 +24,11 @@ const Logout = () => {
 
   return (
     <div className="logoutContainer">  
-      <Fade bottom delay={300}> <h1> <b className='goodBeyStyle'> YOUR GREAT RESUME - OUR SUCCESS </b> </h1> </Fade> 
+      <Fade bottom delay={300}> <h2> <b className='goodBeyStyle'> YOUR GREAT RESUME - OUR SUCCESS </b> </h2> </Fade> 
       
       {/* <b className='styleName'> {localStorage.getItem(localStorage.key(0))}  </b> */}
-      <Fade bottom delay={1100}> <h1 > <b className='goodBeyStyle'>  SEE YOU SOON  </b> 🤙 </h1>  </Fade>      
-      <Fade delay={900}> <Button sx={{m:3}} startIcon={<HomeIcon/>} onClick={navigateToHome} color="primary" variant="contained"> home </Button> </Fade>
+      <Fade bottom delay={600}> <h3> <b className='goodBeyStyle'>  SEE YOU SOON  </b> 🤙 </h3>  </Fade>      
+      <Fade delay={900}> <Button style={{marginBottom:'80px'}} sx={{m:3}} startIcon={<HomeIcon/>} onClick={navigateToHome} color="primary" variant="contained"> home </Button> </Fade>
     </div>
   )
 }

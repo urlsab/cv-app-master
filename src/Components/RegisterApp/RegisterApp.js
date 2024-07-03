@@ -156,7 +156,7 @@ const RegisterApp = () => {
                 <div className="textContainer">
                     <Fade left delay={600}> <h1> <b className="textStyle"> SIGN UP</b> </h1> </Fade>
                     <Fade left delay={900}> <h1> <b className="textStyle"> FOR FREE </b> </h1> </Fade>
-                    <Fade left delay={1200}> <h1> <b className="textStyle">CREATION</b> 🎨 </h1> </Fade>
+                    <Fade left delay={1200}> <h1 style={{marginBottom:'160px'}}> <b className="textStyle">CREATION</b> 🎨 </h1> </Fade>
                 </div>
 
             </div>

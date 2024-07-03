@@ -614,7 +614,7 @@ const InputsForm = () => {
                             trigger={() => 
                             <Button 
                                 sx={
-                                        [{m:1, mt:12,mb:16, backgroundColor:"rgb(250, 204, 0)",
+                                        [{m:1, mt:7,mb:16.5, backgroundColor:"rgb(250, 204, 0)",
                                     },
                                     {'&:hover': {backgroundColor: "rgb(250, 184, 0)"}}
                                 ]}
@@ -630,7 +630,7 @@ const InputsForm = () => {
                                 startIcon={<SaveIcon/>}
                                 color="success"
                                 variant="contained"
-                                sx={{m:1 ,mt: 12, mb:16}}
+                                sx={{m:1 ,mt: 7, mb:16.5}}
                                 onClick={handleAddResume}>SAVE
                             </Button>
                     </div>

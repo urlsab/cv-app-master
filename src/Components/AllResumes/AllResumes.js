@@ -804,7 +804,7 @@ const AllResumes = () => {
                             <LightSpeed left delay={1200}><h3> 📃 <b className="textStyle">FAST PRINT </b>  </h3> </LightSpeed>
                             <LightSpeed left delay={1200}><h3> 📥 <b className="textStyle">GET IT AS PDF  </b>  </h3> </LightSpeed>
 
-                            <img style={{marginBottom:'85px', marginTop:'85px'}} alt="edit cv gif" align="center" width="700" height="500" src={editGif}/>
+                            <LightSpeed left delay={1200}><img style={{marginBottom:'85px', marginTop:'85px'}} alt="edit cv gif" align="center" width="700" height="500" src={editGif}/></LightSpeed>
 
                             <LightSpeed left delay={1500}><h3 style={{marginBottom:'85px', marginTop:'85px'}}> 👇 <b className="textStyle">CLICK BELOW TO CONTINUE  </b>  </h3> </LightSpeed>
                         </div>
