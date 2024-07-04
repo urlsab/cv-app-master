@@ -14,6 +14,7 @@ import Examples from './Components/Examples/Examples';
 import About from './Components/About/About';
 import Contact from './Components/Contact/Contact';
 import ErrorNoAccount from './Components/ErrorNoAccount/ErrorNoAccount';
+import FastBuild from './Components/FastBuild/FastBuild';
 
 const App = () => {
 
@@ -33,6 +34,7 @@ const App = () => {
           <Route path='/' element={<Entry/> } exact="true" />
           <Route path='/about' element={<About/> } exact="true" />
           <Route path='/contact' element={<Contact/> } exact="true" />
+          <Route path='/fastBuild' element={<FastBuild/> } exact="true" />
         </Routes>
       </UserAuthContextProvider>
     </React.Fragment>

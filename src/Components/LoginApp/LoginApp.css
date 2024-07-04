@@ -1,5 +1,4 @@
 .mainContainer {
-  /* height: 100%; */
   background: linear-gradient(170deg, rgb(80, 114, 181) 65%, rgb(17, 189, 205) 100%);
   display: flex;
   justify-content: space-evenly;
@@ -7,7 +6,6 @@
   flex-direction: row;
   flex-wrap: wrap;
   align-content: center;
-  /* margin: 60.5px; */
 }
 
 @media screen and (max-width: 425px) {
@@ -31,8 +29,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  height: 527px;
-  margin-top: 10px;
+  height: 503px;
 }
 
 .loginFormContainer {
@@ -43,7 +40,7 @@
   flex-wrap: wrap;
   align-content: center;
   align-items: stretch;
-  height: 480px;
+  height: 450px;
   width: 320px;
   margin: auto;
   text-align: center;
@@ -60,13 +57,14 @@
   align-items: center;
   font-size: 30px;
   font-family: 'Itim', serif;
+  margin-bottom: 50px;
 }
 
 .textStyle {
-  /* font-size: 70px; */
   background: -webkit-linear-gradient(80deg, rgb(255, 233, 107) 0%, white  100%);
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  
 }
 
 .homeStyle {

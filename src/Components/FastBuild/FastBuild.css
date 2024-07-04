@@ -1,0 +1,191 @@
+.createResumeContainer {
+    background: linear-gradient(90deg, rgb(131, 99, 206) 50%, rgb(132, 193, 233) 100%);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+    justify-content: space-evenly;
+    border: none;
+    min-width: 800px;     
+}
+   
+.resume {
+    display: grid;
+    justify-content: center;
+    font-size: 20px;
+    background-color: rgb(246, 246, 249);
+    border: none;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    /* sizes exactly like beamjobs = 790px*/
+    width: 790px;
+    
+    /* min height effects the footer part of the paper before print */
+    min-height: 11.65in;
+    
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr;
+    box-shadow: 0 5px 9px 0 rgba(0, 0, 0, 0.35);
+    grid-template-areas:
+        "name work";
+        /* "work name" - for hebrew version */
+}
+
+.name {
+    grid-area: name;
+    background-color: rgb(250, 245, 245);
+    text-align: center;
+    border: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    text-align: inherit;
+}
+
+.work {
+    grid-area: work;
+    text-align: center;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    text-align: inherit;
+    align-items: flex-start;
+}
+
+.firstGroup {
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: stretch;
+    align-items: stretch;
+    margin-left: 15px;
+}
+
+.afterSquareGroup {
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.square {
+    background-color: rgb(251, 158, 77);
+    min-height: 6cm;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: stretch;
+    flex-wrap: nowrap;
+    flex-direction: column;    
+}
+
+.buttonsStyle {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+/* allow fonts of pdfexport kendo react ui */
+.pdfFonts {
+    font-family: "Arial", "Lato", "Rubik", "Exo", "DejaVu Sans" ,sans-serif;
+}
+
+@font-face {
+    font-family: "DejaVu Sans";
+    font-weight: bold;
+    color:white;
+    background-color: white;
+    src: url("https://kendo.cdn.telerik.com/2017.2.621/styles/fonts/DejaVu/DejaVuSans-Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "DejaVu Sans";
+    font-weight: bold;
+    color:white;
+    background-color: white ;
+    font-style: italic;
+    src: url("https://kendo.cdn.telerik.com/2017.2.621/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf") format("truetype");
+}
+
+/* SAVED CLASS NAME - MUI ICONS */
+.css-1oe4rwd-MuiSvgIcon-root{
+  color:black;
+}
+
+
+/* SAVED CLASS NAME -  KENDO REACT PDF */
+.k-pdf-export {
+   font-weight: normal; 
+}
+
+.forFirstGroup [contenteditable][placeholder]:empty:before {
+    content: attr(placeholder);
+    color: whitesmoke;
+    opacity: 50%;
+}
+
+.forSecondGroup [contenteditable][placeholder]:empty:before {
+    content: attr(placeholder);
+    color: gray;
+    opacity: 70%;
+}
+
+[contenteditable]:focus {
+    outline: 0px solid transparent;
+}
+
+input:focus{
+    outline: none; 
+}
+
+.iconAndInputs {
+    display: flex;
+    align-content: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.sendtoStyle {
+    width: 600px;
+    font-size: 19px;
+    background-color: rgb(213, 244, 242);
+    color: rgb(11, 31, 127);
+    padding: 0.2rem;
+    line-height: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    display: flex;
+    margin-top: 30px;
+    height: 25px;
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: center;
+    align-items: stretch;
+    font-weight: bold;
+   /* make the writing marker of an input to be center vertically */
+    line-height: normal; 
+}
+
+.sendtoStyle:focus {
+    border: 3px solid rgb(0, 157, 255);
+    
+    /* avoid the paper/input to move up/down after focus */
+    margin-bottom: 11px;
+    margin-top: 27px;
+    padding: 0.25rem; 
+}

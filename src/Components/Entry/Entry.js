@@ -22,7 +22,6 @@ const Entry = () => {
                     <div className='symbolStyle'>
                         <Fade delay={1200} bottom> 
                             <h1 className='styleHeader' > 
-                                {/* <img style={{height:"100px", width:"100px"}} src="https://img.icons8.com/external-kmg-design-outline-color-kmg-design/64/null/external-cv-human-resources-kmg-design-outline-color-kmg-design.png"/> */}
                                 <img alt="svg" style={{height:"100px", width:"100px"}} src="https://img.icons8.com/external-vectorslab-flat-vectorslab/53/null/external-Giving-CV-human-resource-vectorslab-flat-vectorslab.png"/> 
                             </h1> 
                         </Fade>

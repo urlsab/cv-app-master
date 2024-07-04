@@ -70,11 +70,11 @@ const Contact = () => {
             <Fade delay={900} top> <h1>  <b className='shortText'>  AND WE'LL CALL YOU BACK SOON  </b> 📬 </h1> </Fade>
           </div>
 
-          <div style={{marginBottom:'180px'}} className='textBoxContainer'>
+          <div className='textBoxContainer'>
             
             <Fade delay={1200} top >
                         
-              <form ref={form} onSubmit={onSubmitHandler} className="loginFormContainer">                    
+              <form style={{marginTop:'30px', marginBottom:'50px'}} ref={form} onSubmit={onSubmitHandler} className="loginFormContainer">                    
 
                 <TextField                              
                     name="user_name"
