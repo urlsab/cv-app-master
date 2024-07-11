@@ -64,17 +64,17 @@ const Contact = () => {
     <>
         <div className='contactContainer'>
         <EntryNavbar/>    
-          <div className='textsContainerContact'>
+          <div className='textsContainerContact' style={{marginTop:'30px',marginBottom:'140px'}}>
             <Fade delay={300} top> <h1>  <b className='shortText'>FOR ANY ISSUE </b> </h1> </Fade>
             <Fade delay={600} top> <h1>  <b className='shortText'>  LEAVE A MESSAGE HERE </b> </h1> </Fade>
             <Fade delay={900} top> <h1>  <b className='shortText'>  AND WE'LL CALL YOU BACK SOON  </b> 📬 </h1> </Fade>
           </div>
 
-          <div className='textBoxContainer'>
+          <div style={{marginBottom:'90px'}} className='textBoxContainer'>
             
             <Fade delay={1200} top >
                         
-              <form style={{marginTop:'30px', marginBottom:'50px'}} ref={form} onSubmit={onSubmitHandler} className="loginFormContainer">                    
+              <form ref={form} onSubmit={onSubmitHandler} className="loginFormContainer">                    
 
                 <TextField                              
                     name="user_name"

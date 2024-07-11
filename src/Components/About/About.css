@@ -1,16 +1,15 @@
 .aboutContainer {
-    display: flex;
-    background: rgb(63,94,251);
-    background: linear-gradient(73deg, rgb(45, 62, 146) 0%, rgb(62, 20, 85) 100%);
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-content: center;
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
-    font-family: 'Itim';
-    font-size: 20px;
-    /* heigth:450px */
+  display: flex;
+  background: rgb(63,94,251);
+  background: linear-gradient(73deg, rgb(45, 62, 146) 0%, rgb(62, 20, 85) 100%);
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  font-family: 'Itim';
+  font-size: 20px;
 }
 
 @media screen and (max-width: 425px) {

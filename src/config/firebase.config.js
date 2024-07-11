@@ -27,7 +27,8 @@ change code inisde vs code
 deploy to github by desktop
 watch on github if deployment is ok, if not - fix bugs
 npm run build
-firebase deploy --only hosting
+firebase deploy --only hosting (env should work)
+firebase deploy (should work even when this project not open on this pc vs code)
 check the url on pc and mobile if working, if not fix bugs
 
 */

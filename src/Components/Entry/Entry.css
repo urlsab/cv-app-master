@@ -25,7 +25,7 @@
 .styleHeader{
   font-family: 'Itim';
   font-size: 45px;
-  margin-bottom: 45px;
+  margin-bottom: 60px;
   background: -webkit-linear-gradient(80deg, rgb(255, 233, 107) 0%, white  100%);
   background-clip: text;
   -webkit-text-fill-color: transparent;

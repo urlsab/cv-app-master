@@ -169,7 +169,7 @@ input:focus{
     margin-bottom: 15px;
     border-radius: 5px;
     display: flex;
-    margin-top: 30px;
+    margin-top: 10px;
     height: 25px;
     flex-direction: column-reverse;
     flex-wrap: wrap;

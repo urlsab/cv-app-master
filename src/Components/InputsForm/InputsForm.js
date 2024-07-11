@@ -246,9 +246,6 @@ const InputsForm = () => {
                 
 
                 {/* make placeholder work only if it's inside a wrraper div */}
-                
-
-                
 
             {/* <div> */}
                 {/* {isVisible && (
@@ -267,11 +264,11 @@ const InputsForm = () => {
                     {/* Your popover content goes here */}
 
                 <div className="textContainer">
-                    <Fade delay={600}> <h1 style={{marginTop:'20px'}}> <b className="textStyle"> BUILD YOUR RESUME </b> 🔨 </h1> </Fade>
+                    <Fade delay={600}> <h1> <b className="textStyle"> BUILD YOUR RESUME </b> 🔨 </h1> </Fade>
                 </div>
 
                     
-                <div className='buttonsStyle' style={{ marginTop:'50px',marginBottom:'15px',padding: '2px', border: '1px solid transparent', borderRadius: '5px' }}>
+                <div className='buttonsStyle' style={{ marginBottom:'5px',padding: '2px', border: '1px solid transparent', borderRadius: '5px' }}>
                     
                 <Button 
                     sx={{mr:1}}
@@ -312,22 +309,21 @@ const InputsForm = () => {
             )} */}
             </div>
                     
-
-                    <div className='forSecondGroup'>
-                        <div
-                            name="sendTo"
-                            className='sendtoStyle '
-                            aria-required="true"
-                            suppressContentEditableWarning={true}
-                            contentEditable={true}
-                            placeholder="Send to: Company name | Role name | Date send | Role location"
-                            content={ourForm.objectName.sendTo}
-                            onInput={(event) => {
-                                const nameFull = event.target.textContent;
-                                handleCustomChange('sendTo', nameFull);
-                            }}
-                        />
-                    </div>
+                <div className='forSecondGroup'>
+                    <div
+                        name="sendTo"
+                        className='sendtoStyle '
+                        aria-required="true"
+                        suppressContentEditableWarning={true}
+                        contentEditable={true}
+                        placeholder="Send to: Company name | Role name | Date send | Role location"
+                        content={ourForm.objectName.sendTo}
+                        onInput={(event) => {
+                            const nameFull = event.target.textContent;
+                            handleCustomChange('sendTo', nameFull);
+                        }}
+                    />
+                </div>
 
                         <PDFExport ref={pdfExportComponent}>
 
@@ -614,7 +610,7 @@ const InputsForm = () => {
                             trigger={() => 
                             <Button 
                                 sx={
-                                        [{m:1, mt:7,mb:16.5, backgroundColor:"rgb(250, 204, 0)",
+                                        [{m:1, mt:3,mb:19, backgroundColor:"rgb(250, 204, 0)",
                                     },
                                     {'&:hover': {backgroundColor: "rgb(250, 184, 0)"}}
                                 ]}
@@ -630,7 +626,7 @@ const InputsForm = () => {
                                 startIcon={<SaveIcon/>}
                                 color="success"
                                 variant="contained"
-                                sx={{m:1 ,mt: 7, mb:16.5}}
+                                sx={{m:1 ,mt: 3, mb:18}}
                                 onClick={handleAddResume}>SAVE
                             </Button>
                     </div>
