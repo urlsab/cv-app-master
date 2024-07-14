@@ -49,7 +49,7 @@ const Navbar = () => {
             <AppBar style={{background:"linear-gradient(162deg, rgb(99, 88, 80) 0%, rgb(54, 108, 158) 70%)"}} position="sticky" color="default">
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
-                        <NavLink to="/postInputs" exact="true"><NoteAddIcon sx={{mr:"4px"}}/>CREATE CV</NavLink>
+                        <NavLink to="/postInputs" exact="true"><NoteAddIcon sx={{mr:"4px"}}/>NEW RESUME</NavLink>
                         <NavLink to="/allResumes" exact="true"><ManageAccountsIcon sx={{mr:"4px"}}/>MY AREA</NavLink>
                         {/* <NavLink to="/examples" exact="true"><CollectionsIcon sx={{mr:"4px"}}/>EXAMPLES</NavLink> */}
                         <NavLink to="/logout" exact="true" onClick={handleLogout}><LogoutIcon sx={{mr:"4px"}}/>LOGOUT</NavLink>

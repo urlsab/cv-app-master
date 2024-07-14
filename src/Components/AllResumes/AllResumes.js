@@ -4,7 +4,7 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { MdAddLink } from "react-icons/md";
 import { FaBold } from "react-icons/fa";
 import { TfiUnderline } from "react-icons/tfi";
-import Draggable from 'react-draggable';
+// import Draggable from 'react-draggable';
 import editGif from '../../utils/edit cv clip.gif';
 import { collection, deleteDoc, getDocs, doc } from "firebase/firestore";
 import { useToggle } from "../../utils/useToggle";
@@ -51,7 +51,7 @@ const AllResumes = () => {
     const [isPopoverVisible,setIsPopoverVisible] = useState(false);
 
     const handleLinkInputChange = (event) => {
-        console.log(isPopoverVisible, linkApplied)
+        console.log(isPopoverVisible, linkApplied, linkUrl)
         setLinkUrl(event.target.value);
     };
 
@@ -280,18 +280,19 @@ const AllResumes = () => {
     const [position, setPosition] = useState({ x: 0, y: 0 });
     
     const handleSelectioni = () => {
-      const selectedText = window.getSelection().toString();
-      if (selectedText) {
-        const selectionRects = window.getSelection().getRangeAt(0).getClientRects();
-        const lastRect = selectionRects[selectionRects.length - 1];
-        setPosition({
-          x: lastRect.left + window.scrollX,
-          y: lastRect.top + window.scrollY,
-        });
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+        console.log(isVisible,position);
+        const selectedText = window.getSelection().toString();
+        if (selectedText) {
+            const selectionRects = window.getSelection().getRangeAt(0).getClientRects();
+            const lastRect = selectionRects[selectionRects.length - 1];
+            setPosition({
+            x: lastRect.left + window.scrollX,
+            y: lastRect.top + window.scrollY,
+            });
+            setIsVisible(true);
+        } else {
+            setIsVisible(false);
+        }
     };
     
     let arrRefs = [];
@@ -306,29 +307,67 @@ const AllResumes = () => {
                     { 
                         cv.map((el, i) => 
                             <li className="liStStyle" key={el.id}>
+
+                <div key={el.id} className='buttonsStyle' style={{ marginTop:'50px',padding: '2px', border: '1px solid transparent', borderRadius: '5px' }}>
+                    
+                    <Button 
+                        sx={{mr:1}}
+                        style={{display: 'flex', justifyContent:  'flex-end'}}
+                        color='inherit'
+                        variant="contained"
+                        startIcon={<FaBold/>}
+                        onClick={handleBoldi}>
+                    </Button>
+                    <Button 
+                        sx={{mr:1}}
+                        style={{display: 'flex', justifyContent:  'flex-end'}}
+                        color='inherit'
+                        variant="contained"
+                        startIcon={<TfiUnderline/>}
+                        onClick={handleUnderlinei}>
+                    </Button>
+                    <input
+                        type="text"
+                        key={el.id}
+                        value={linkUrl.current}
+                        onChange={handleLinkInputChange}
+                        placeholder="Enter URL"
+                        onMouseUp={(e) => e.stopPropagation()}
+                        style={{ width: '300px', padding:'6.5px', borderRadius:'5px', borderColor:'transparent', marginRight:'2px' }}
+                    />
+                    <Button  
+                        key={el.id}   
+                        style={{display: 'flex', justifyContent:  'flex-end'}}
+                        color='inherit'
+                        variant="contained"
+                        startIcon={<MdAddLink/>}
+                        onClick={handleApplyLink}>
+                    </Button> 
+               
+                </div>
                                 
                             {/* make placeholder work only if it's inside a wrraper div */}
                             <div className='forSecondGroup'>
 
                                 <div
-                                        name="sendTo"
-                                        className='sendtoStyle '
-                                        aria-required="true"
-                                        suppressContentEditableWarning={true}
-                                        contentEditable={true}
-                                        
-                                        placeholder="Company & role you'll send to "
-                                        content={ourForm.objectName.sendTo}
-                                        onInput={(event) => {
-                                            const nameFull = event.target.textContent;
-                                            handleCustomChange('sendTo', nameFull);
-                                        }}
+                                    name="sendTo"
+                                    className='sendtoStyle '
+                                    aria-required="true"
+                                    suppressContentEditableWarning={true}
+                                    contentEditable={true}
+                                    
+                                    placeholder="Send to: Company name | Role name | Date send | Role location"
+                                    content={ourForm.objectName.sendTo}
+                                    onInput={(event) => {
+                                        const nameFull = event.target.textContent;
+                                        handleCustomChange('sendTo', nameFull);
+                                    }}
                                     >
                                     {cv[i].info.sendTo}
                                 </div>
                             </div>
 
-            <div>{isVisible && (
+            {/* <div>{isVisible && (
                 <Draggable > 
                     <div
                         style={{
@@ -345,7 +384,7 @@ const AllResumes = () => {
                         
                         }}
                     >
-                    {/* Your popover content goes here */}
+                    
                     <div className='buttonsStyle' style={{ marginTop:'2px',marginBottom:'2px',padding: '2px', border: '1px solid transparent', borderRadius: '5px' }}>
                     
                     <button 
@@ -378,7 +417,9 @@ const AllResumes = () => {
                         </div>
                     </div>
                 </Draggable>)}
-            </div>
+            </div> */}
+
+            
 
                                 <PDFExport key={el.id} ref={pdfExportComponent[i]}>
                                     {/* margin top effects the head part of the paper before print */}
@@ -588,11 +629,11 @@ const AllResumes = () => {
 
                                     <div className='afterSquareGroup forSecondGroup'>
 
-                                    <div
-                                        style={{marginTop:'15px',marginLeft:'18px',width:'235px',border: 'none',fontSize:16.5, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}} 
-                                    >
-                                        EDUCATION
-                                    </div>
+                                        <div
+                                            style={{marginTop:'15px',marginLeft:'18px',width:'235px',border: 'none',fontSize:16.5, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}} 
+                                        >
+                                            EDUCATION
+                                        </div>
 
                                         <div className="iconAndInputs">
                                             {ourForm.objectName.degreeTypeAndname!=='' && (<Fade> <img alt="svg" 
@@ -659,11 +700,11 @@ const AllResumes = () => {
                                             name="dynamicHeaderPartOne"
                                             aria-required="true"
                                             // style={{width:'210px', fontSize:14.5, padding: '0.2rem', lineHeight:"25px" }}
-                                            style={{ fontSize:16.5, fontWeight:'bolder', lineHeight:"25px"}}
+                                            style={{marginLeft:'15px',width:'230px',marginTop:'15px', marginBottom:'5px',fontSize:16.5, fontWeight:'bolder', lineHeight:"25px"}}
                                             onMouseUp={handleSelect}
                                             suppressContentEditableWarning={true}
                                             contentEditable={true}
-                                            placeholder='dynamicHeaderPartOne'
+                                            placeholder='Optional header'
                                             content={ourForm.objectName.dynamicHeaderPartOne}
                                             onInput={(event) => {
                                                 const nameFull = event.target.textContent;
@@ -677,11 +718,11 @@ const AllResumes = () => {
                                             name="dynamicContentPartOne"
                                             aria-required="true"
                                             // style={{width:'210px', fontSize:14.5, padding: '0.2rem', lineHeight:"25px" }}
-                                            style={{ fontSize:14.5, lineHeight:"25px"}}
+                                            style={{ width:'230px',marginLeft:'15px',fontSize:14.5, lineHeight:"25px", justifyContent:'start', textAlign:'start'}}
                                             onMouseUp={handleSelect}
                                             suppressContentEditableWarning={true}
                                             contentEditable={true}
-                                            placeholder='dynamicContentPartOne'
+                                            placeholder='Optional content'
                                             content={ourForm.objectName.dynamicContentPartOne}
                                             onInput={(event) => {
                                                 const nameFull = event.target.textContent;
@@ -693,7 +734,7 @@ const AllResumes = () => {
 
                                         {/* <TodoLeft/> */}
         
-                                    </div>   
+                                    </div> 
 
                                 </div>
 

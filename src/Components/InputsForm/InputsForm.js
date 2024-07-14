@@ -626,7 +626,7 @@ const InputsForm = () => {
                                 startIcon={<SaveIcon/>}
                                 color="success"
                                 variant="contained"
-                                sx={{m:1 ,mt: 3, mb:18}}
+                                sx={{m:1 ,mt: 3, mb:19}}
                                 onClick={handleAddResume}>SAVE
                             </Button>
                     </div>

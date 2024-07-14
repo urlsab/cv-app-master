@@ -24,10 +24,9 @@ const EntryNavbar = () => {
         <Container maxWidth="xl">
           <Toolbar disableGutters>
               <NavLink style={{fontSize:"14px"}} to='/' exact="true"><HomeIcon sx={{mr:"3px"}}/>HOME</NavLink>
-
-              <NavLink style={{fontSize:"14px"}} to='/login' exact="true"><LoginIcon sx={{mr:"3px"}}/>LOGIN</NavLink>
-              <NavLink style={{fontSize:"14px"}} to='/register' exact="true"><PersonAddIcon sx={{mr:"3px"}}/>SIGN UP</NavLink>
               <NavLink style={{fontSize:"14px"}} to='/fastBuild' exact="true"><HandymanIcon sx={{mr:"3px"}}/>BUILD</NavLink>
+              <NavLink style={{fontSize:"14px"}} to='/register' exact="true"><PersonAddIcon sx={{mr:"3px"}}/>SIGN UP</NavLink>
+              <NavLink style={{fontSize:"14px"}} to='/login' exact="true"><LoginIcon sx={{mr:"3px"}}/>LOGIN</NavLink>
               <NavLink style={{fontSize:"14px"}} to='/about' exact="true"><FingerprintIcon sx={{mr:"3px"}}/>ABOUT</NavLink>
               <NavLink style={{fontSize:"14px"}} to='/contact' exact="true"><ForwardToInboxIcon sx={{mr:"3px"}}/>CONTACT</NavLink>
               {/* <img className='styleLogoCv' src="https://img.icons8.com/external-basicons-color-edtgraphics/50/null/external-cv-hr-edtim-lineal-color-edtim-3.png"/> */}

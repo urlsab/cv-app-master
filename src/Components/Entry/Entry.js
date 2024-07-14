@@ -15,7 +15,7 @@ const Entry = () => {
                     
                     <div className='headersStyle'>
                         <Fade delay={300} bottom><h1>  <b className='styleHeader'> WELCOME TO THE RESUME BUILDER APP </b>  </h1> </Fade>
-                        <Fade delay={600} bottom> <h1>  <b className='styleHeader'>  HERE YOU WILL BUILD RESUMES FOR FREE </b> </h1> </Fade>
+                        <Fade delay={600} bottom> <h1>  <b className='styleHeader'>  BUILD NOW AMAZING RESUMES </b> </h1> </Fade>
                         <Fade delay={900} bottom> <h1>  <b className='styleHeader'>  FASTER THAN YOU THINK </b> 🚀 </h1> </Fade>
                     </div>
 

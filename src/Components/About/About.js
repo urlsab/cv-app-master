@@ -16,8 +16,8 @@ const About = () => {
         <div className='aboutContainer'>
         <EntryNavbar/>
           <div style={{marginTop:'45px', marginBottom:'90px'}} className='allText'>
-            <Fade delay={400} top><h1 style={{marginBottom:'70px'}} className='symbolAndText'> <b className='textStyle'> CVA IS A FREE APP FOR BUILD AND DESIGN CV </b></h1></Fade>
-            <Fade delay={800} top><h1 style={{marginBottom:'70px'}} className='symbolAndText'> <b className='textStyle'> INCLUDES FEATURES WITH FRIENDLY USE </b></h1></Fade>
+            <Fade delay={400} top><h1 style={{marginBottom:'70px'}} className='symbolAndText'> <b className='textStyle'> RESUMES BUILDER APP IS A FRIENDLY PLATFORM </b></h1></Fade>
+            <Fade delay={800} top><h1 style={{marginBottom:'70px'}} className='symbolAndText'> <b className='textStyle'> INCLUDES FEATURES AND CLEAR GUIDES </b></h1></Fade>
             <Fade delay={1200} top> <h1 style={{marginBottom:'70px'}} className='symbolAndText'> <b className='textStyle'> CONTACT US FOR ANY PURPOSE </b> 📞 </h1></Fade> 
             <Fade top delay={2000}> <h1 className='symbolAndText' style={{marginBottom:'70px'}}> <Jump delay={4000} duration={2000} forever={true}>👇</Jump>  </h1> </Fade> 
             <div className='aboutButton'>

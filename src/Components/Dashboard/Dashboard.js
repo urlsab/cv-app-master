@@ -102,7 +102,7 @@ const Dashboard = () => {
          
           <Fade top delay={2700}> <h1 style={{marginBottom:'85px'}}> <Jump delay={4000} duration={2000} forever={true}>👇</Jump>  </h1> </Fade>
             <div style={{marginBottom:'165px'}} className="buttonsContainer">
-              <Fade delay={3400}> <Button startIcon={<NoteAddIcon/>} onClick={navigateToCreateResume} size="medium" sx={{m:2, width:"140px", height:"60px"}} variant="contained" color="primary">CREATE CV</Button> </Fade> 
+              <Fade delay={3400}> <Button startIcon={<NoteAddIcon/>} onClick={navigateToCreateResume} size="medium" sx={{m:2, width:"140px", height:"60px"}} variant="contained" color="primary">BUILD NOW</Button> </Fade> 
               {/* <Fade  delay={3400}> <Button startIcon={<ManageAccountsIcon/>} onClick={navigateToShowResumes} size="medium" sx={{m:2, width:"140px", height:"60px"}} variant="contained" color="warning"> MY AREA</Button> </Fade> */}
             </div> 
         </div>
