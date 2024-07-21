@@ -2,7 +2,7 @@ import './App.css';
 import React from 'react';
 import { UserAuthContextProvider } from "./Context/UserAuthContext";
 import { Routes ,Route } from 'react-router-dom';
-import AllResumes from './Components/AllResumes/AllResumes';
+// import AllResumes from './Components/AllResumes/AllResumes';
 import InputsForm from './Components/InputsForm/InputsForm';
 import LoginApp from './Components/LoginApp/LoginApp';
 import RegisterApp from './Components/RegisterApp/RegisterApp';
@@ -25,8 +25,9 @@ const App = () => {
           <Route path='/login' element={<LoginApp/>} exact="true" />
           <Route path='/register' element={<RegisterApp/>} exact="true" />
           <Route path='/gotNewPassword' element={<GotNewPassword/>} exact="true" />
-          <Route path='/postInputs' element={<InputsForm/>} exact="true" />
-          <Route path='/allResumes' element={<AllResumes/> } exact="true" />
+          <Route path='/postInputs' element={<InputsForm/>} />
+          {/* <Route path='/postInputs/:id' element={<InputsForm/>} /> */}
+          {/* <Route path='/allResumes' element={<AllResumes/> } exact="true" /> */}
           <Route path='/dashboard' element={<Dashboard/> } exact="true" />
           <Route path='/examples' element={<Examples/> } exact="true" />
           <Route path='/logout' element={<Logout/> } exact="true" />

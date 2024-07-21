@@ -1,36 +1,83 @@
 import './InputsForm.css';
 import React, { useState, useRef, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import TodoLeft from '../TodoLeft/TodoLeft';
 import TodoRight from '../TodoRight/TodoRight';
-import { addDoc, collection } from "firebase/firestore";
+// import { addDoc, collection } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { PDFExport } from "@progress/kendo-react-pdf";
 import TodoWork from '../TodoWork/TodoWork';
 import PrintIcon from '@mui/icons-material/Print';
-import SaveIcon from '@mui/icons-material/Save';
+// import SaveIcon from '@mui/icons-material/Save';
 import ReactToPrint from 'react-to-print';
-import { firestoreDB, auth } from "../../config/firebase.config";
+// import { firestoreDB } from "../../config/firebase.config";
+import { auth } from "../../config/firebase.config";
 import { initialState } from "../../utils/ourState";
 import { Button } from "@mui/material";
 import Fade from 'react-reveal/Fade';
+import LightSpeed from 'react-reveal/LightSpeed';
 import Navbar from "../Navbar/Navbar";
 import { FaBold } from "react-icons/fa";
 import { TfiUnderline } from "react-icons/tfi";
 import { MdAddLink } from "react-icons/md";
+import bAnduGif from '../../utils/b and u .gif';
+import addLinkGif from '../../utils/add link.gif';
+// import { generatePath } from "react-router";
+// import { createRandomId } from '../../utils/randomId';
 // import Draggable from 'react-draggable';
 
 const InputsForm = () => {
 
     useEffect(() => {
+        
         const viewport = document.querySelector('meta[name=viewport]');
         viewport.setAttribute('content', 'width=device-width, initial-scale=0.45');
     }, []);
+
+    // const navigate = useNavigate();
+
+    const [color, setColor] = useState('#666777');
+
+    const handleColorChange = (event) => {
+        setColor(event.target.value);
+    };
 
     const [selectedText, setSelectedText] = useState('');
     const [linkUrl, setLinkUrl] = useState('');
     const [isPopoverVisible, setIsPopoverVisible] = useState(false);
     const [linkApplied, setLinkApplied] = useState(false);
+
+    // const saveAsUnicPath = (e) => {
+    //     e.preventDefault();
+    //     const iDrand = createRandomId();
+
+    //     // try: navigate(`/postInputs/${iDrand}`, { replace: true});
+    //     navigate(`/postInputs/${iDrand}`, { replace: false});
+    // };    
+
+    // const handleAddPath = (event) => {
+        
+    //     // firestoreDB making auto uid for any document in hte user.email collection
+    //     event.preventDefault();
+    //     const iDrand = createRandomId();
+    //     ourForm.objectName.path = `/postInputs/${iDrand}`;
+    //     // `${user.email}` - cretes new collection with the use email name !!!
+    //     const usersCollection = collection(firestoreDB, `${user.email}`);
+
+    //         addDoc(usersCollection, ourForm.objectName)
+    //         .then(response => {
+                
+    //             console.log(response);               
+    //             console.log(response.id);
+    //             console.log(response.path);
+    //             console.log(`/postInputs/${iDrand}`);
+    //             navigate("/allResumes");
+    //         }).catch(error => {
+    //             console.log(error);
+    //             console.log("error from handleAddResume function");
+    //     })
+        
+    // };
     
     const handleLinkInputChange = (event) => {
         console.log(isPopoverVisible, linkApplied)
@@ -62,7 +109,7 @@ const InputsForm = () => {
     const [user] = useAuthState(auth);
     const [ourForm, setOurForm] = useState(initialState);
     // const [inputList, setInputList] = useState([{ firstName: '', display: 'notdisplayed' }]);
-    const navigate = useNavigate();
+    
     const pdfExportComponent = useRef(null);
 
     // const handleExportWithComponent = (data) => {
@@ -70,26 +117,26 @@ const InputsForm = () => {
     //     console.log(data);
     // };
 
-    const handleAddResume = (event) => {
+    // const handleAddResume = (event) => {
         
-        // firestoreDB making auto uid for any document in hte user.email collection
-        event.preventDefault();
-        // `${user.email}` - cretes new collection with the use email name !!!
-        const usersCollection = collection(firestoreDB, `${user.email}`);
+    //     // firestoreDB making auto uid for any document in hte user.email collection
+    //     event.preventDefault();
+    //     // `${user.email}` - cretes new collection with the use email name !!!
+    //     const usersCollection = collection(firestoreDB, `${user.email}`);
 
-            addDoc(usersCollection, ourForm.objectName)
-            .then(response => {
-                console.log(ourForm.objectName);
-                console.log(response);               
-                console.log(response.id);
-                console.log(response.path);
-                navigate("/allResumes")
-            }).catch(error => {
-                console.log(error);
-                console.log("error from handleAddResume function");
-        })
+    //         addDoc(usersCollection, ourForm.objectName)
+    //         .then(response => {
+    //             console.log(ourForm.objectName);
+    //             console.log(response);               
+    //             console.log(response.id);
+    //             console.log(response.path);
+    //             navigate("/allResumes")
+    //         }).catch(error => {
+    //             console.log(error);
+    //             console.log("error from handleAddResume function");
+    //     })
         
-    };
+    // };
 
     const handleCustomChange = (field, data) => {
         setOurForm({
@@ -139,6 +186,7 @@ const InputsForm = () => {
   };
   
   const removeStyle = (id) => {
+    console.log(user);
     const span = document.getElementById(id);
     if (span) {
       const parent = span.parentNode;
@@ -213,7 +261,7 @@ const InputsForm = () => {
         <>
             <div className='createResumeContainer'>
                 <Navbar/>
-                <Fade delay={400}>
+                {/* <Fade delay={400}> */}
                 {/* אין בעיה במתודה של השגת טווח(0) - הבעיה היא שברגע שיש פופאובר אז הפונקציות לא מזהות סלקט. גם בסרגל הישן וגם בחדש */}
 
                 {/* <button 
@@ -267,9 +315,32 @@ const InputsForm = () => {
                     <Fade delay={600}> <h1> <b className="textStyle"> BUILD YOUR RESUME </b> 🔨 </h1> </Fade>
                 </div>
 
+                <div style={{display:'flex', flexDirection:'row'}}>
+                    <LightSpeed left delay={800}><img style={{marginBottom:'80px',marginRight:'20px', border:'2px solid black'}} alt="b and u gif" align="center" width="230" height="150" src={bAnduGif}/></LightSpeed>
+                    <LightSpeed left delay={800}><img style={{marginBottom:'80px',marginLeft:'20px', border:'2px solid black'}} alt="add link gif" align="center" width="230" height="150" src={addLinkGif}/></LightSpeed>
+                </div>
+
                     
                 <div className='buttonsStyle' style={{ marginBottom:'5px',padding: '2px', border: '1px solid transparent', borderRadius: '5px' }}>
                     
+                        <input
+                            id="colorPicker"
+                            type="color"
+                            value={color}
+                            onChange={handleColorChange}
+                            style={{ 
+                                height:'32.5px',
+                                width:'60px',
+                                cursor: 'pointer',
+                                marginRight:'8px',
+                                borderRadius: '5px',
+                                
+                                borderColor:'transparent',
+                                }}
+                        />
+                    
+
+
                 <Button 
                     sx={{mr:1}}
                     // center icon inside the button - justifyContent:  'flex-end' - becasue there is some default margin
@@ -309,7 +380,7 @@ const InputsForm = () => {
             )} */}
             </div>
                     
-                <div className='forSecondGroup'>
+                {/* <div className='forSecondGroup'>
                     <div
                         name="sendTo"
                         className='sendtoStyle '
@@ -323,7 +394,7 @@ const InputsForm = () => {
                             handleCustomChange('sendTo', nameFull);
                         }}
                     />
-                </div>
+                </div> */}
 
                         <PDFExport ref={pdfExportComponent}>
 
@@ -331,7 +402,7 @@ const InputsForm = () => {
                             {/* margin top effects the head part of the paper before print */}
                             <div className="resume" onMouseUp={handleSelect}>
                                 <div className='grid-area name'>
-                                    <div className='square'>
+                                    <div style={{backgroundColor:color}} className='square'>
                                         <div className='firstGroup forFirstGroup'> 
                                             <div
                                                 name="fullName"
@@ -363,6 +434,7 @@ const InputsForm = () => {
                                                 suppressContentEditableWarning={true}
                                                 contentEditable={true}
                                                 placeholder='Role'
+                                                value={'gogo'}
                                                 content={ourForm.objectName.jobTitle}
                                                 onInput={(event) => {
                                                     const nameFull = event.target.textContent;
@@ -591,7 +663,7 @@ const InputsForm = () => {
 
                                 
                 </PDFExport>       
-                </Fade>
+                {/* </Fade> */}
                 <Fade delay={800}>
                     <div className='buttonsStyle'>
 
@@ -622,13 +694,13 @@ const InputsForm = () => {
                             content={() => pdfExportComponent.current}
                         />
 
-                            <Button 
+                            {/* <Button 
                                 startIcon={<SaveIcon/>}
                                 color="success"
                                 variant="contained"
                                 sx={{m:1 ,mt: 3, mb:19}}
-                                onClick={handleAddResume}>SAVE
-                            </Button>
+                                onClick={handleAddPath}>SAVE
+                            </Button> */}
                     </div>
                 </Fade>
             </div>

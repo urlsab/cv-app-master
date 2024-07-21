@@ -80,7 +80,7 @@
 }
 
 .square {
-    background-color: rgb(251, 158, 77);
+    /* background-color: rgb(251, 158, 77); */
     min-height: 6cm;
     display: flex;
     justify-content: flex-start;

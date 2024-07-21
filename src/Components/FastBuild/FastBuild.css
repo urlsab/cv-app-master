@@ -35,7 +35,7 @@
 
 .name {
     grid-area: name;
-    background-color: rgb(237, 219, 219);
+    background-color: rgb(242, 234, 234);
     text-align: center;
     border: none;
     flex-direction: column;
@@ -80,7 +80,7 @@
 }
 
 .square {
-    background-color: rgb(101, 219, 145);
+    background-color: rgb(232, 158, 98);
     min-height: 6cm;
     display: flex;
     justify-content: flex-start;

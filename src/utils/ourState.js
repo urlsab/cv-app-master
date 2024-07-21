@@ -51,7 +51,8 @@ export const initialState =
             dynamicHeaderPartTow: '',
             dynamicContentPartTow: '',
 
-            show:'notshow'
+            show:'notshow',
+            path: ''
 
         }
     }  

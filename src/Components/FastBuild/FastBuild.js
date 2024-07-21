@@ -9,10 +9,13 @@ import ReactToPrint from 'react-to-print';
 import { initialState } from "../../utils/ourState";
 import { Button } from "@mui/material";
 import Fade from 'react-reveal/Fade';
+import LightSpeed from 'react-reveal/LightSpeed';
 import { FaBold } from "react-icons/fa";
 import { TfiUnderline } from "react-icons/tfi";
 import { MdAddLink } from "react-icons/md";
 import EntryNavbar from '../EntryNavbar/EntryNavbar';
+import bAnduGif from '../../utils/b and u .gif';
+import addLinkGif from '../../utils/add link.gif';
 
 const FastBuild = () => {
 
@@ -131,42 +134,48 @@ const FastBuild = () => {
                     <Fade delay={600}> <h1 style={{marginTop:'20px'}}> <b className="textStyle"> BUILD YOUR RESUME </b> 🔨 </h1> </Fade>
                 </div>
 
+                <div style={{display:'flex', flexDirection:'row'}}>
+                    <LightSpeed left delay={800}><img style={{marginBottom:'80px',marginRight:'20px', border:'2px solid black'}} alt="b and u gif" align="center" width="230" height="150" src={bAnduGif}/></LightSpeed>
+                    <LightSpeed left delay={800}><img style={{marginBottom:'80px',marginLeft:'20px', border:'2px solid black'}} alt="add link gif" align="center" width="230" height="150" src={addLinkGif}/></LightSpeed>
+                </div>
+                
+
                     
                 <div className='buttonsStyle' style={{ marginTop:'50px',marginBottom:'15px',padding: '2px', border: '1px solid transparent', borderRadius: '5px' }}>
                     
-                <Button 
-                    sx={{mr:1}}
-                    style={{display: 'flex', justifyContent:  'flex-end'}}
-                    color='inherit'
-                    variant="contained"
-                    startIcon={<FaBold/>}
-                    onClick={handleBoldi}>
-                </Button>
-                <Button 
-                    sx={{mr:1}}
-                    style={{display: 'flex', justifyContent:  'flex-end'}}
-                    color='inherit'
-                    variant="contained"
-                    startIcon={<TfiUnderline/>}
-                    onClick={handleUnderlinei}>
-                </Button>
-                <input
-                    type="text"
-                    value={linkUrl}
-                    onChange={handleLinkInputChange}
-                    placeholder="Enter URL"
-                    onMouseUp={(e) => e.stopPropagation()}
-                    style={{ width: '300px', padding:'6.5px', borderRadius:'5px', borderColor:'transparent', marginRight:'2px' }}
-                />
-                <Button     
-                    style={{display: 'flex', justifyContent:  'flex-end'}}
-                    color='inherit'
-                    variant="contained"
-                    startIcon={<MdAddLink/>}
-                    onClick={handleApplyLink}>
-                </Button> 
+                    <Button 
+                        sx={{mr:1}}
+                        style={{display: 'flex', justifyContent:  'flex-end'}}
+                        color='inherit'
+                        variant="contained"
+                        startIcon={<FaBold/>}
+                        onClick={handleBoldi}>
+                    </Button>
+                    <Button 
+                        sx={{mr:1}}
+                        style={{display: 'flex', justifyContent:  'flex-end'}}
+                        color='inherit'
+                        variant="contained"
+                        startIcon={<TfiUnderline/>}
+                        onClick={handleUnderlinei}>
+                    </Button>
+                    <input
+                        type="text"
+                        value={linkUrl}
+                        onChange={handleLinkInputChange}
+                        placeholder="Enter URL"
+                        onMouseUp={(e) => e.stopPropagation()}
+                        style={{ width: '300px', padding:'6.5px', borderRadius:'5px', borderColor:'transparent', marginRight:'2px' }}
+                    />
+                    <Button     
+                        style={{display: 'flex', justifyContent:  'flex-end'}}
+                        color='inherit'
+                        variant="contained"
+                        startIcon={<MdAddLink/>}
+                        onClick={handleApplyLink}>
+                    </Button> 
            
-            </div>
+                </div>
                     
 
 
