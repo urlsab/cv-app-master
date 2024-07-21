@@ -376,7 +376,7 @@ const FastBuild = () => {
                                                 style={{width:'210px' , fontSize:14.5 , padding: '0.2rem', lineHeight:"25px" }}
                                                 suppressContentEditableWarning={true}
                                                 contentEditable={true}
-                                                placeholder='Knowledge, loaction, duration...'
+                                                placeholder='Knowledge, location, duration...'
                                                 content={ourForm.objectName.degreeTypeAndname}
                                                 onInput={(event) => {
                                                     const nameFull = event.target.textContent;
