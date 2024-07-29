@@ -215,30 +215,6 @@ const InputsForm = () => {
     }
   };
 
-// const USER_REGEX = /^\[A-z\][A-z0-9-_]{3,23}$/;
-// const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-
-// useEffect(() => {
-//     setValidName(USER_REGEX.test(user));
-//   }, [user]);
-  
-//   useEffect(() => {
-//     setValidPwd(PWD_REGEX.test(pwd));
-//     setValidMatch(pwd === matchPwd);
-//   }, [pwd, matchPwd]);
-
-//   const validateEmail = (email) => {
-//     // Regular expression for validating email addresses
-//     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-//     return emailPattern.test(email);
-// };
-
-// const isValidEmail = (email) => {
-//     // Define a regular expression pattern for email validation.
-//     const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-//     return pattern.test(email);
-//   }
-
 // const [isVisible, setIsVisible] = useState(false);
 // const [position, setPosition] = useState({ x: 0, y: 0 });
 

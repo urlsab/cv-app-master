@@ -67,7 +67,13 @@ try {
             console.log(curAuth);
             alert("Fix email or password or disconnect your google account if you tried to log in with google");
         };
+    }
 
+    const handleSpace = (e) => {
+        if (e.key === ' '){
+            e.preventDefault();
+            alert('Unlegal character');
+        }
     }
 
     return (
@@ -91,6 +97,7 @@ try {
                                 type="email" 
                                 label="Email"                                   
                                 required 
+                                onKeyDown={handleSpace}
                                 InputProps={{startAdornment: (
                                     <InputAdornment position="start">
                                         <EmailIcon />
@@ -100,12 +107,15 @@ try {
                                 sx={{width:"280px"}}                                   
                                 onChange={(e)=>setEmail(e.target.value)}
                             /> 
+
+                            {/* @latest */}
                                                                                          
                             <TextField
                                 id="password"
                                 name="password"
                                 type="password"
-                                label="Password"                                    
+                                label="Password"  
+                                onKeyDown={handleSpace}                                  
                                 required 
                                 InputProps={{startAdornment: (
                                     <InputAdornment position="start">
