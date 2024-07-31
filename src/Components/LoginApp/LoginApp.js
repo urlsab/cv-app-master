@@ -23,7 +23,18 @@ const LoginApp = () => {
     const curAuth = getAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
     // const [user, loading, error] = useAuthState(auth);
+
+    const sanitizeInput = (input) => {
+        // Basic sanitization: remove HTML tags and trim
+        return input.replace(/(<([^>]+)>)/gi, "").trim();
+    };
+
+    const validateEmail = (email) => {
+        const re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        return re.test(String(email).toLowerCase());
+    };
 
     const googleSignIn = () => {
         const googleAuth = new GoogleAuthProvider();
@@ -35,30 +46,31 @@ const LoginApp = () => {
     }
 
     const handleGoogleSignIn = async (e) => {
-
         e.preventDefault();
-
         try {
             await googleSignIn();
             navigate("/dashboard");
-
         } catch (error) {
             console.log(error.message)
         }
     };
 
     const onLogin = async (e) => {
-
         e.preventDefault();
-
+        const sanitizedEmail = sanitizeInput(email);
+        const sanitizedPassword = sanitizeInput(password);
         console.log(curAuth, email, password);
-try {
-        await signInWithEmailAndPassword(curAuth, email, password)
-
-            console.log(curAuth);
-            console.log(password);
-            navigate("/dashboard");    
+        if (!validateEmail(sanitizedEmail)) {
+            setError("Please enter a valid email address");
+            return;
         }
+
+        try {
+            await signInWithEmailAndPassword(curAuth, sanitizedEmail, sanitizedPassword)
+                // console.log(curAuth);
+                // console.log(password);
+                navigate("/dashboard");    
+            }
 
         catch (error)  {
             const errorCode = error.code;
@@ -70,11 +82,17 @@ try {
     }
 
     const handleSpace = (e) => {
-        if (e.key === ' '){
+        if (e.key === ' ' || e.key === 62 || e.key === 43){
             e.preventDefault();
-            alert('Unlegal character');
         }
     }
+
+    const handleInputChange = (e, setter) => {
+        const value = e.target.value;
+        if (!value.includes(' ') && !value.includes('>') && !value.includes('+')) {
+            setter(value);
+        }
+    };
 
     return (
 
@@ -105,10 +123,8 @@ try {
                                 )}}     
                                 // all fields stretch to this width
                                 sx={{width:"280px"}}                                   
-                                onChange={(e)=>setEmail(e.target.value)}
+                                onChange={(e) => handleInputChange(e, setEmail)}
                             /> 
-
-                            {/* @latest */}
                                                                                          
                             <TextField
                                 id="password"
@@ -122,9 +138,10 @@ try {
                                         <LockOpenIcon />
                                     </InputAdornment>
                                 )}}                                             
-                                onChange={(e)=>setPassword(e.target.value)}
+                                onChange={(e) => handleInputChange(e, setPassword)}
                             />
                     
+                            {error && <div style={{color:'red', fontSize:'13px', fontWeight:'bold'}}>{error}</div>}
                             <Button size="large" startIcon={<VpnKeyIcon/>} variant="contained" color="inherit" onClick={onLogin}> Login  </Button>
                             <Button size="large" startIcon={<GoogleIcon/>} variant="contained" color="error" onClick={handleGoogleSignIn}> with google  </Button>
                             <Button onClick={navigateToRegister} size="large" startIcon={<PersonAddIcon/>} variant="outlined" color="primary">  Sign up  </Button>

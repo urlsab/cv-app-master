@@ -31,6 +31,12 @@ const RegisterApp = () => {
     const [rePassword, setRePassword] = useState('');
     const [isValid, setIsValid] = useState(null);
 
+
+    const sanitizeInput = (input) => {
+        // Basic sanitization: remove HTML tags and trim
+        return input.replace(/(<([^>]+)>)/gi, "").trim();
+    };
+
     const navigateToSignIn = () => {
         navigate("/login");
     }
@@ -38,6 +44,7 @@ const RegisterApp = () => {
     const validateEmail = async (e) => {
         e.preventDefault();
         const apiKey = `${process.env.REACT_APP_VALID_EMAIL}`;
+        // const sanitizedEmail = encodeURIComponent(sanitizeInput(emailAdd));
         const url = `https://emailvalidation.abstractapi.com/v1/?api_key=${apiKey}&email=${emailAdd}`;
         try {
           const response = await fetch(url);
@@ -62,61 +69,79 @@ const RegisterApp = () => {
 
     const onSubmitHandler = (e) => {
         // e.preventDefault();
+        const auth = getAuth();
+        const sanitizedEmail = sanitizeInput(emailAdd);
+        const sanitizedPassword = sanitizeInput(rePassword);
+        const sanitizedFirstName = sanitizeInput(firstName);
+
         console.log(curAuth, emailAdd, rePassword);
-        createUserWithEmailAndPassword(curAuth, emailAdd, rePassword)
+        createUserWithEmailAndPassword(auth, sanitizedEmail, sanitizedPassword)
         .then((userCredential) => {
-            let userData = userCredential.user;
-            userData.displayName = firstName;
-            userData.phoneNumber = firstName;
+            const user = userCredential.user;
+            user.updateProfile({
+                displayName: sanitizedFirstName,
+            });
+            
             // console.log(auth);
-            console.log(userData);
+            console.log(user);
             console.log(`the user password is: ${rePassword} `);
-            console.log(`displayName:${userData.displayName}`);
-            console.log(`phoneNumber:${userData.phoneNumber}`);
+            createCollectionAndSendPasswordToEmail();
         })
         .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode, errorMessage);
-            console.log("error from createUserWithEmailAndPassword function")
+            alert(error.message);
+            // const errorCode = error.code;
+            // const errorMessage = error.message;
+            // console.log(errorCode, errorMessage);
+            // console.log("error from createUserWithEmailAndPassword function");
+            // navigate("/register");
         })
+
     
-      const usersCollection = collection(firestoreDB, `${emailAdd}`);
-      // add 00000 to render user name at /dashboard from cv[0] array 
-     setDoc(doc(usersCollection, "00000Data"), {thePassword: rePassword, userName: firstName})
-        .then(() => {
-            // console.log(initialPassword.objectPassword.thePassword);
-            console.log("set password as a collection successfully");
-            alert('Acount created successfully')
-            navigate("/login");
-        })
-        .catch(error => {
-            console.log(error);
-            console.log("error from set password as a collection function")
-        })
-        
-        emailjs.send(
-            `${process.env.REACT_APP_SERVICE_ID}`, 
-            `${process.env.REACT_APP_TEMPLATE_ID}`, 
-            {
-            user_name: firstName,
-            message: rePassword,
-            user_email: emailAdd
-            },
-            `${process.env.REACT_APP_PUBLIC_KEY}`,
-        )
-        .then((result) => {
-            console.log(`email js send the password ${rePassword} to ${emailAdd}  `)
-            console.log(result.text);
-            console.log(result.status);
-            console.log(result);
-            // navigate("/login");
-        })
-        .catch((error) => {
-            console.log(error.text);
-            console.log("error from emailjs function")
-        });
-    }
+}
+
+const createCollectionAndSendPasswordToEmail = () => {
+
+        const sanitizedEmail = sanitizeInput(emailAdd);
+        const sanitizedPassword = sanitizeInput(rePassword);
+        const sanitizedFirstName = sanitizeInput(firstName);
+                
+    const usersCollection = collection(firestoreDB, sanitizedEmail);
+    // add 00000 to render user name at /dashboard from cv[0] array 
+   setDoc(doc(usersCollection, "00000Data"), {thePassword: sanitizedPassword, userName: sanitizedFirstName})
+      .then(() => {
+          // console.log(initialPassword.objectPassword.thePassword);
+          console.log("set password as a collection successfully");
+          alert('Acount created successfully')
+          navigate("/login");
+      })
+      .catch(error => {
+          console.log(error);
+          console.log("error from set password as a collection function")
+      })
+      
+      emailjs.send(
+          `${process.env.REACT_APP_SERVICE_ID}`, 
+          `${process.env.REACT_APP_TEMPLATE_ID}`, 
+          {
+          user_name: sanitizedFirstName,
+          message: sanitizedPassword,
+          user_email: sanitizedEmail,
+          },
+          `${process.env.REACT_APP_PUBLIC_KEY}`,
+      )
+      .then((result) => {
+          console.log(`email js send the password ${rePassword} to ${emailAdd}  `)
+          console.log(result.text);
+          console.log(result.status);
+          console.log(result);
+          // navigate("/login");
+      })
+      .catch((error) => {
+          console.log(error.text);
+          console.log("error from emailjs function")
+      });
+  }
+
 
     const isNotEmptyOrWhitespace = (str) => str.trim().length > 0;
     // const hasNoSpaces = (str) => {
@@ -124,9 +149,8 @@ const RegisterApp = () => {
     // };
 
     const handleSpace = (e) => {
-        if (e.key === ' '){
+        if (e.key === ' ' || e.key === 62 || e.key === 43){
             e.preventDefault();
-            alert('Unlegal character');
         }
     }
 
@@ -151,7 +175,7 @@ const RegisterApp = () => {
                                         <AccountCircleIcon />
                                     </InputAdornment>
                                 )}}                                  
-                                label="First Name"   
+                                label="Name"   
                                                                 
                             />
                             { isNotEmptyOrWhitespace(firstName) && firstName.length < 6 && firstName!=='' && (
