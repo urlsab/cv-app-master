@@ -14,6 +14,7 @@ import Fade from 'react-reveal/Fade';
 import InputAdornment from '@mui/material/InputAdornment';
 import EmailIcon from '@mui/icons-material/Email';
 import emailjs from '@emailjs/browser';
+import DOMPurify from 'dompurify';
 
 const Contact = () => {
 
@@ -27,10 +28,58 @@ const Contact = () => {
     const [emailAdd, setEmailAdd] = useState('');
     const [text, setText] = useState('');
     const [number, setNumber] = useState('');
+    const [isValid, setIsValid] = useState(null);
+
+    const sanitizeInput = (input) => {
+      return DOMPurify.sanitize(input.trim());
+    };
+
+    const validateEmail = async (e) => {
+      e.preventDefault();
+      const apiKey = `${process.env.REACT_APP_VALID_EMAIL}`;
+      // const sanitizedEmail = encodeURIComponent(sanitizeInput(emailAdd));
+      const url = `https://emailvalidation.abstractapi.com/v1/?api_key=${apiKey}&email=${emailAdd}`;
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        
+        // Check if the email is valid based on the API response
+        if (data.is_valid_format && data.deliverability === "DELIVERABLE") {
+          console.log("The email address is valid!");
+          onSubmitHandler();
+        } else {
+          console.log("The email address is not valid.");
+          setIsValid('');
+        }
+      } catch (error) {
+        console.error("There was a problem with the validation:", error);
+        alert("An error occurred while validating the email.");
+      } 
+    };
 
     const onSubmitHandler = async (e) => {
 
-      e.preventDefault();
+      // e.preventDefault();
+
+      if (!firstName || !emailAdd || !text || !number) {
+          alert("All fields are required");
+          return;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(emailAdd)) {
+          alert("Please enter a valid email address");
+          return;
+      }
+
+      const phoneRegex = /^\d{10}$/;
+      if (!phoneRegex.test(number)) {
+          alert("Please enter a valid 10-digit phone number");
+          return;
+      }
 
       console.log(curAuth, emailAdd, text);
       
@@ -38,10 +87,10 @@ const Contact = () => {
           process.env.REACT_APP_SERVICE_ID_CONTACT, 
           process.env.REACT_APP_TEMPLATE_ID_CONTACT, 
           {
-            user_name: firstName,
-            message: text,
-            user_email: emailAdd,
-            user_number: number 
+            user_name: sanitizeInput(firstName),
+            message: sanitizeInput(text),
+            user_email: sanitizeInput(emailAdd),
+            user_number: sanitizeInput(number) 
           },
           process.env.REACT_APP_PUBLIC_KEY_CONTACT
       )
@@ -74,7 +123,7 @@ const Contact = () => {
             
             <Fade delay={1200} top >
                         
-              <form ref={form} onSubmit={onSubmitHandler} className="loginFormContainer">                    
+              <form ref={form} onSubmit={validateEmail} className="loginFormContainer">                    
 
                 <TextField                              
                     name="user_name"
@@ -83,14 +132,14 @@ const Contact = () => {
                     // placeholder="Full name"
                     // all fields stretch to this width
                     sx={{width:"280px"}}
-                    InputProps={{startAdornment: (
+                    InputProps={{maxLength:30,pattern: "[A-Za-z ]{1,50}",startAdornment: (
                         <InputAdornment position="start">
                             <AccountCircleIcon />
                         </InputAdornment>
                     )}}                                  
                     label="Full name"   
                     value={firstName} 
-                    onChange={(e) => setFirstName(e.target.value)}                                
+                    onChange={(e) => setFirstName(sanitizeInput(e.target.value))}                                
                 />
 
                 <TextField  
@@ -99,14 +148,18 @@ const Contact = () => {
                   name="user_email"
                   required  
                   // placeholder="Full name"
-                  InputProps={{startAdornment: (
+                  InputProps={{maxLength:30,pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+[a-z]{2,}$",startAdornment: (
                       <InputAdornment position="start">
                           <EmailIcon />
                       </InputAdornment>
                   )}}   
                   value={emailAdd}
-                  onChange={(e) => setEmailAdd(e.target.value)}                                                                 
+                  onChange={(e) => setEmailAdd(sanitizeInput(e.target.value))}                                                                 
                 />
+
+              {isValid !== null && (
+                <Fade><div style={{color:'red',justifyContent:'center',fontFamily:'-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,sans-serif', fontSize:'15px',fontWeight:'bold', background:'pink', borderRadius:'5px'}}>{isValid ? '✔️' : 'INVALID EMAIL ADDRESS'}</div></Fade>
+              )}
 
                 <TextField  
                   type="text"
@@ -114,14 +167,16 @@ const Contact = () => {
                   name="user_number"
                   required  
                   // placeholder="Full name"
-                  InputProps={{startAdornment: (
+                  InputProps={{maxLength:20,pattern: "{10}",startAdornment: (
                       <InputAdornment position="start">
                           <ContactPhoneIcon />
                       </InputAdornment>
                   )}}   
                   value={number}
-                  onChange={(e) => setNumber(e.target.value)}                                                                 
+                  onChange={(e) => setNumber(sanitizeInput(e.target.value))}                           
               />
+
+              
 
               <TextField
                 type="text"
@@ -132,7 +187,7 @@ const Contact = () => {
                 multiline
                 value={text}
                   
-                onChange={(e) => setText(e.target.value)} 
+                onChange={(e) => setText(sanitizeInput(e.target.value))}
                 
                 // InputProps - works for other things
                 inputProps={{maxLength:105}}

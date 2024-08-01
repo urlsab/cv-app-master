@@ -16,6 +16,7 @@ import { MdAddLink } from "react-icons/md";
 import EntryNavbar from '../EntryNavbar/EntryNavbar';
 import bAnduGif from '../../utils/b and u .gif';
 import addLinkGif from '../../utils/add link.gif';
+import DOMPurify from 'dompurify';
 
 const FastBuild = () => {
 
@@ -29,9 +30,25 @@ const FastBuild = () => {
     const [isPopoverVisible, setIsPopoverVisible] = useState(false);
     const [linkApplied, setLinkApplied] = useState(false);
     
+    const sanitizeInput = (input) => {
+        return DOMPurify.sanitize(input.trim());
+    };
+
+    const sanitizeUrl = (url) => {
+        return DOMPurify.sanitize(url);
+    };
+
     const handleLinkInputChange = (event) => {
-        console.log(isPopoverVisible, linkApplied)
-        setLinkUrl(event.target.value);
+        const sanitizedInput = sanitizeInput(event.target.value);
+        // Basic URL validation
+        const urlPattern = /^(https?:\/\/)?([\da-z-]+)\.([a-z]{2,6})([\w -]*)*\/?$/;
+        if (urlPattern.test(sanitizedInput) || sanitizedInput === '') {
+            setLinkUrl(sanitizedInput);
+        } else {
+            // Handle invalid URL
+            console.log("Invalid URL");
+            alert('Paste (and do not type) only valid URL');
+        }
     };
 
     const handleApplyLink = () => {
@@ -41,17 +58,22 @@ const FastBuild = () => {
 
     const applyLink = () => {
         if (linkUrl && selectedText) {
-        const newNode = document.createElement('a');
-        newNode.setAttribute("style", 
-        "color:#007bff; font-size: inherit; text-decoration: underline; margin: 0px; padding: 0px; border:none; display: inline; cursor: pointer;"
-        );
-        newNode.href = linkUrl;
-        newNode.textContent = selectedText;
-        const selection = window.getSelection();
-        const range = selection.getRangeAt(0);
-        range.deleteContents();
-        range.insertNode(newNode);
-        setLinkApplied(true);
+            const sanitizedUrl = sanitizeUrl(linkUrl);
+            const sanitizedText = sanitizeInput(selectedText);
+            const newNode = document.createElement('a');
+            newNode.setAttribute("style", 
+            "color:#007bff; font-size: inherit; text-decoration: underline; margin: 0px; padding: 0px; border:none; display: inline; cursor: pointer;"
+            );
+            newNode.href = sanitizedUrl;
+            newNode.textContent = sanitizedText;
+            const selection = window.getSelection();
+            if (selection.rangeCount > 0) {
+                const range = selection.getRangeAt(0);
+                range.deleteContents();
+                range.insertNode(newNode);
+                console.log(linkApplied);
+                setLinkApplied(true);
+            }
         }
     };
 
@@ -62,7 +84,7 @@ const FastBuild = () => {
             ...ourForm,
             objectName: {
                 ...ourForm.objectName,
-                [field]: data,
+                [field]: sanitizeInput(data),
             }
         })
     }
@@ -72,6 +94,7 @@ const FastBuild = () => {
     if (selection.toString()) {
       const selectedText = selection.toString();
       setSelectedText(selectedText);
+      console.log(isPopoverVisible);
       setIsPopoverVisible(true);
     } else {
       setSelectedText('');
@@ -83,26 +106,28 @@ const FastBuild = () => {
 
   const toggleStyle = (tagName, id) => {
     if (window.getSelection()) {
-      const selection = window.getSelection();
-      const range = selection.getRangeAt(0);
-      const span = document.createElement(tagName);
-      span.setAttribute('id', id);
-      span.appendChild(range.extractContents());
-      range.insertNode(span);
-      setFlag(!flag);
+        const selection = window.getSelection();
+        if (selection.rangeCount > 0) {
+            const range = selection.getRangeAt(0);
+            const span = document.createElement(tagName);
+            span.setAttribute('id', id);
+            span.appendChild(range.extractContents());
+            range.insertNode(span);
+            setFlag(!flag);
+        }
     }
-  };
-  
-  const removeStyle = (id) => {
+};
+
+const removeStyle = (id) => {
     const span = document.getElementById(id);
     if (span) {
-      const parent = span.parentNode;
-      while (span.firstChild) {
-        parent.insertBefore(span.firstChild, span);
-      }
-      parent.removeChild(span);
+        const parent = span.parentNode;
+        while (span.firstChild) {
+            parent.insertBefore(span.firstChild, span);
+        }
+        parent.removeChild(span);
     }
-  };
+};
   
   const handleBoldi = (id) => {
     if (!flag) {
@@ -163,7 +188,7 @@ const FastBuild = () => {
                         type="text"
                         value={linkUrl}
                         onChange={handleLinkInputChange}
-                        placeholder="Enter URL"
+                        placeholder="Paste (and do not type) here a valid URL"
                         onMouseUp={(e) => e.stopPropagation()}
                         style={{ width: '300px', padding:'6.5px', borderRadius:'5px', borderColor:'transparent', marginRight:'2px' }}
                     />
@@ -202,8 +227,8 @@ const FastBuild = () => {
                                                 placeholder="Full Name"
                                                 content={ourForm.objectName.fullName}
                                                 onInput={(event) => {
-                                                    const nameFull = event.target.textContent;
-                                                    handleCustomChange('fullName', nameFull);
+                                                    const sanitizedInput = sanitizeInput(event.target.textContent);
+                                                    handleCustomChange('fieldName', sanitizedInput);
                                                 }}
                                             /> 
 
@@ -217,8 +242,8 @@ const FastBuild = () => {
                                                 placeholder='Role'
                                                 content={ourForm.objectName.jobTitle}
                                                 onInput={(event) => {
-                                                    const nameFull = event.target.textContent;
-                                                    handleCustomChange('jobTitle', nameFull);
+                                                    const sanitizedInput = sanitizeInput(event.target.textContent);
+                                                    handleCustomChange('fieldName', sanitizedInput);
                                                 }}
                                             /> 
 
@@ -240,8 +265,8 @@ const FastBuild = () => {
                                                 placeholder='Email'
                                                 content={ourForm.objectName.email}
                                                 onInput={(event) => {
-                                                    const nameFull = event.target.textContent;
-                                                    handleCustomChange('email', nameFull);
+                                                    const sanitizedInput = sanitizeInput(event.target.textContent);
+                                                    handleCustomChange('fieldName', sanitizedInput);
                                                 }}
                                             />
                                         </div>
@@ -264,8 +289,8 @@ const FastBuild = () => {
                                                 placeholder='Phone Number'
                                                 content={ourForm.objectName.phoneNumber}
                                                 onInput={(event) => {
-                                                    const nameFull = event.target.textContent;
-                                                    handleCustomChange('phoneNumber', nameFull);
+                                                    const sanitizedInput = sanitizeInput(event.target.textContent);
+                                                    handleCustomChange('fieldName', sanitizedInput);
                                                 }}
                                             />
 
@@ -290,8 +315,8 @@ const FastBuild = () => {
                                                 placeholder='Linkedin Link'
                                                 content={ourForm.objectName.linkedinLink}
                                                 onInput={(event) => {
-                                                    const nameFull = event.target.textContent;
-                                                    handleCustomChange('linkedinLink', nameFull);
+                                                    const sanitizedInput = sanitizeInput(event.target.textContent);
+                                                    handleCustomChange('fieldName', sanitizedInput);
                                                 }}
                                             />
 
@@ -316,8 +341,8 @@ const FastBuild = () => {
                                                 placeholder='Github Link'
                                                 content={ourForm.objectName.githubLink}
                                                 onInput={(event) => {
-                                                    const nameFull = event.target.textContent;
-                                                    handleCustomChange('githubLink', nameFull);
+                                                    const sanitizedInput = sanitizeInput(event.target.textContent);
+                                                    handleCustomChange('fieldName', sanitizedInput);
                                                 }}
                                             />
 
@@ -340,8 +365,8 @@ const FastBuild = () => {
                                                     placeholder='Portfolio Link'
                                                     content={ourForm.objectName.portfolioLink}
                                                     onInput={(event) => {
-                                                        const nameFull = event.target.textContent;
-                                                        handleCustomChange('portfolioLink', nameFull);
+                                                        const sanitizedInput = sanitizeInput(event.target.textContent);
+                                                        handleCustomChange('fieldName', sanitizedInput);
                                                     }}
                                                 />
                                         </div>   
@@ -379,8 +404,8 @@ const FastBuild = () => {
                                                 placeholder='Knowledge, location, duration...'
                                                 content={ourForm.objectName.degreeTypeAndname}
                                                 onInput={(event) => {
-                                                    const nameFull = event.target.textContent;
-                                                    handleCustomChange('degreeTypeAndname', nameFull);
+                                                    const sanitizedInput = sanitizeInput(event.target.textContent);
+                                                    handleCustomChange('fieldName', sanitizedInput);
                                                 }}
                                             />
                                         </div>
@@ -410,8 +435,8 @@ const FastBuild = () => {
                                                 placeholder="Programing languages, db's..."
                                                 content={ourForm.objectName.GeneralKnowledge}
                                                 onInput={(event) => {
-                                                    const nameFull = event.target.textContent;
-                                                    handleCustomChange('GeneralKnowledge', nameFull);
+                                                    const sanitizedInput = sanitizeInput(event.target.textContent);
+                                                    handleCustomChange('fieldName', sanitizedInput);
                                                 }}
                                             />
                                         </div>

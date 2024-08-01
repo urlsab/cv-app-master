@@ -2,14 +2,16 @@ import './TodoLeft.css';
 import React, { useState } from 'react';
 // import TextField from '@mui/material/TextField';
 import { initialState } from "../../utils/ourState";
+import DOMPurify from 'dompurify';
 
 const TodoLeft = () => {
 
-  const [inputList, setInputList] = useState([{ display: 'notdisplayed'}]);
+  const [inputList, setInputList] = useState([{ display: 'notdisplayed', dynamicHeaderPartOne: '', dynamicContentPartOne: '' }]);
   const [selectedTexti, setSelectedText] = useState('');
   const [isPopoverVisible, setIsPopoverVisible] = useState(false);
   // removed - setOurForm
   const [ourForm] = useState(initialState);
+
 
   // const [flag, setFlag] = useState(false);
 
@@ -67,7 +69,12 @@ const TodoLeft = () => {
   //   })
   // }
 
+  const sanitizeInput = (input) => {
+    return DOMPurify.sanitize(input.trim());
+};
+
   const handleSelect = () => {
+    console.log(ourForm);
     const selection = window.getSelection();
     if (selection.toString()) {
       console.log(selectedTexti, isPopoverVisible);
@@ -94,11 +101,11 @@ const TodoLeft = () => {
     setInputList(list);
   };
 
-  // handle input change
   const handleInputChange = (e, index) => {
     const { name, value } = e.target;
+    const sanitizedValue = sanitizeInput(value);
     const list = [...inputList];
-    list[index][name] =  value;
+    list[index][name] = sanitizedValue;
     setInputList(list);
   };
 
@@ -154,44 +161,37 @@ const TodoLeft = () => {
 
                 <div className='forSecondGroup' style={{marginTop:'10px', marginBottom:'5px', marginLeft:'18px', width:'230px'}} key={i  + 7}>
 
-                  <div
-                    name="dynamicHeaderPartOne"
-                    key={i  + 7}
-                    aria-required="true"
-                    // textTransform:"uppercase", - for only big letters
-                    // fontSize:16.5 = 14 font size in word = the best header size for resumes
-                    style={{ marginBottom: '7px',fontSize:16.5, fontWeight:'bolder', lineHeight:"25px"}}
-                    onMouseUp={handleSelect}
-                    suppressContentEditableWarning={true}
-                    contentEditable={true}
-                    placeholder='Optional header'
-                    content={ourForm.objectName.dynamicHeaderPartOne}
-                    onChange={(e) => handleInputChange(e, i)}
-                    // onInput={(event) => {
-                    //     const nameFull = event.target.textContent;
-                    //     handleCustomChange('optionalSectionHeader', nameFull);
-                    // }}
-                />
+                <div
+  name="dynamicHeaderPartOne"
+  key={i + 7}
+  aria-required="true"
+  style={{ marginBottom: '7px', fontSize: 16.5, fontWeight: 'bolder', lineHeight: "25px" }}
+  onMouseUp={handleSelect}
+  suppressContentEditableWarning={true}
+  contentEditable={true}
+  placeholder='Optional header'
+  onInput={(event) => {
+    const sanitizedInput = sanitizeInput(event.target.textContent);
+    handleInputChange({ target: { name: 'dynamicHeaderPartOne', value: sanitizedInput } }, i);
+  }}
+  // dangerouslySetInnerHTML={{ __html: x.dynamicHeaderPartOne || '' }}
+/>
 
-                  {/*className='pdfFonts'*/}
-
-                  <div
-                    name="dynamicContentPartOne"
-                    key={i  + 7}
-                    aria-required="true"
-                    // fontSize:14.5 = 12 font size in word = best content font size for resumes
-                    style={{ fontSize:14.5, lineHeight:"25px" }}
-                    onMouseUp={handleSelect}
-                    suppressContentEditableWarning={true}
-                    contentEditable={true}
-                    placeholder='Optional content'
-                    content={ourForm.objectName.dynamicContentPartOne}
-                    onChange={(e) => handleInputChange(e, i)}
-                    // onInput={(event) => {
-                    //     const nameFull = event.target.textContent;
-                    //     handleCustomChange('optionalSectionContent', nameFull);
-                    // }}
-                />
+<div
+  name="dynamicContentPartOne"
+  key={i + 8}
+  aria-required="true"
+  style={{ fontSize: 14.5, lineHeight: "25px" }}
+  onMouseUp={handleSelect}
+  suppressContentEditableWarning={true}
+  contentEditable={true}
+  placeholder='Optional content'
+  onInput={(event) => {
+    const sanitizedInput = sanitizeInput(event.target.textContent);
+    handleInputChange({ target: { name: 'dynamicContentPartOne', value: sanitizedInput } }, i);
+  }}
+  // dangerouslySetInnerHTML={{ __html: x.dynamicContentPartOne || '' }}
+/>
 
                 </div>
               </div>

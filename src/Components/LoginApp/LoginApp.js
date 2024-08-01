@@ -24,6 +24,7 @@ const LoginApp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [isValid, setIsValid] = useState(null);
     // const [user, loading, error] = useAuthState(auth);
 
     const sanitizeInput = (input) => {
@@ -31,10 +32,31 @@ const LoginApp = () => {
         return input.replace(/(<([^>]+)>)/gi, "").trim();
     };
 
-    const validateEmail = (email) => {
-        const re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-        return re.test(String(email).toLowerCase());
-    };
+    const validateEmail = async (e) => {
+        e.preventDefault();
+        const apiKey = `${process.env.REACT_APP_VALID_EMAIL}`;
+        // const sanitizedEmail = encodeURIComponent(sanitizeInput(emailAdd));
+        const url = `https://emailvalidation.abstractapi.com/v1/?api_key=${apiKey}&email=${email}`;
+        try {
+          const response = await fetch(url);
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const data = await response.json();
+          
+          // Check if the email is valid based on the API response
+          if (data.is_valid_format && data.deliverability === "DELIVERABLE") {
+            console.log("The email address is valid!");
+            onSubmitHandler();
+          } else {
+            console.log("The email address is not valid.");
+            setIsValid('');
+          }
+        } catch (error) {
+          console.error("There was a problem with the validation:", error);
+          alert("An error occurred while validating the email.");
+        } 
+      };
 
     const googleSignIn = () => {
         const googleAuth = new GoogleAuthProvider();
@@ -55,8 +77,8 @@ const LoginApp = () => {
         }
     };
 
-    const onLogin = async (e) => {
-        e.preventDefault();
+    const onSubmitHandler = async (e) => {
+        // e.preventDefault();
         const sanitizedEmail = sanitizeInput(email);
         const sanitizedPassword = sanitizeInput(password);
         console.log(curAuth, email, password);
@@ -125,6 +147,10 @@ const LoginApp = () => {
                                 sx={{width:"280px"}}                                   
                                 onChange={(e) => handleInputChange(e, setEmail)}
                             /> 
+
+                            {isValid !== null && (
+                                <Fade><div style={{color:'red',justifyContent:'center', fontSize:'15px',fontWeight:'bold', background:'pink', borderRadius:'5px'}}>{isValid ? '✔️' : 'INVALID EMAIL ADDRESS'}</div></Fade>
+                            )}
                                                                                          
                             <TextField
                                 id="password"
@@ -142,7 +168,7 @@ const LoginApp = () => {
                             />
                     
                             {error && <div style={{color:'red', fontSize:'13px', fontWeight:'bold'}}>{error}</div>}
-                            <Button size="large" startIcon={<VpnKeyIcon/>} variant="contained" color="inherit" onClick={onLogin}> Login  </Button>
+                            <Button size="large" startIcon={<VpnKeyIcon/>} variant="contained" color="inherit" onClick={validateEmail}> Login  </Button>
                             <Button size="large" startIcon={<GoogleIcon/>} variant="contained" color="error" onClick={handleGoogleSignIn}> with google  </Button>
                             <Button onClick={navigateToRegister} size="large" startIcon={<PersonAddIcon/>} variant="outlined" color="primary">  Sign up  </Button>
                                      

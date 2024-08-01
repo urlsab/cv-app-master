@@ -1,13 +1,22 @@
 import './TodoRight.css';
 import React, { useState } from 'react';
+import DOMPurify from 'dompurify';
 
 const TodoRight = () => {
 
-  const [inputList, setInputList] = useState([{ display: 'notdisplayed', roleAndCompanyName: '',  durationAndLocation: '', achivments: ''}]);
+  const [inputList, setInputList] = useState([{ 
+    display: 'notdisplayed', 
+    optionalSectionHeader: '', 
+    optionalSectionContent: '' 
+  }]);
 
   const [text, setText] = useState('');
   const [selectedTexti, setSelectedText] = useState('');
   const [isPopoverVisible, setIsPopoverVisible] = useState(false);
+
+  const sanitizeInput = (input) => {
+    return DOMPurify.sanitize(input.trim());
+  };
 
   const handleSelect = () => {
     const selection = window.getSelection();
@@ -22,12 +31,7 @@ const TodoRight = () => {
     }
   };
 
-  const handleKeyPress = (event, index) => {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      setText((prevText) => prevText + '\n\u2022 ');
-    }
-  };
+  
 
   const showButton = (e, i) => {
     e.preventDefault();
@@ -43,40 +47,45 @@ const TodoRight = () => {
     setInputList(list);
   };
 
-  // handle input change
+  
   const handleInputChange = (e, index) => {
     const { name, value } = e.target;
-
-    handleKeyPress(e, index);
-
-    // inputRef[index].current.save();
-
-    const list = [...inputList];
-    list[index][name] =  value;
-    setInputList(list);
-  };
-
-  // handle click event of the Remove button
-  const handleRemoveClick = (index) => {
-    const list = [...inputList];
-
-    // inputRef[index].current.save();
-
-    list.splice(index, 1);
-    console.log(list[index]);
-    setInputList(list);
+    const sanitizedValue = sanitizeInput(value);
     
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const newValue = sanitizedValue + '\n\u2022 ';
+      const list = [...inputList];
+      list[index][name] = newValue;
+      setInputList(list);
+      setText(newValue);
+    } else {
+      const list = [...inputList];
+      list[index][name] = sanitizedValue;
+      setInputList(list);
+    }
   };
 
-  // handle click event of the Add button
   const handleAddClick = (index) => {
-    const list = [...inputList];
-
-    // inputRef[index].current.save();
-
-    list.splice(index + 1 , 0, { optionalSectionHeader: '',  optionalSectionContent: ''});
-    console.log(list[index]);
-    setInputList(list);
+    try {
+      const list = [...inputList];
+      list.splice(index + 1, 0, { optionalSectionHeader: '', optionalSectionContent: '' });
+      setInputList(list);
+    } catch (error) {
+      console.error('Error in handleAddClick:', error);
+    }
+  };
+  
+  const handleRemoveClick = (index) => {
+    try {
+      const list = [...inputList];
+      if (list.length > 1) {
+        list.splice(index, 1);
+        setInputList(list);
+      }
+    } catch (error) {
+      console.error('Error in handleRemoveClick:', error);
+    }
   };
 
   return (
@@ -117,45 +126,38 @@ const TodoRight = () => {
 
                         <div className='forSecondGroup' style={{ marginBottom:'1px'}} key={i  + 7}>
 
-                  <div
-                    name="optionalSectionHeader"
-                    key={i  + 7}
-                    aria-required="true"
-                    // fontSize:16.5 = 14 font size in word = the best header size for resumes
-                    style={{ marginBottom: '7px',marginLeft:'20px',width:'500px', fontSize:16.5, fontWeight:'bolder', paddingLeft: '0.2rem', lineHeight:"25px" }}
-                    onMouseUp={handleSelect}
-                    suppressContentEditableWarning={true}
-                    contentEditable={true}
-                    placeholder='Optional header'
-                    content={x.optionalSectionHeader}
-                    onChange={(e) => handleInputChange(e, i)}
-                    // onInput={(event) => {
-                    //     const nameFull = event.target.textContent;
-                    //     handleCustomChange('optionalSectionHeader', nameFull);
-                    // }}
-                />
+                        <div
+  name="optionalSectionHeader"
+  key={i + 7}
+  aria-required="true"
+  style={{ marginBottom: '7px', marginLeft: '20px', width: '500px', fontSize: 16.5, fontWeight: 'bolder', paddingLeft: '0.2rem', lineHeight: "25px" }}
+  onMouseUp={handleSelect}
+  suppressContentEditableWarning={true}
+  contentEditable={true}
+  placeholder='Optional header'
+  onInput={(event) => {
+    const sanitizedInput = sanitizeInput(event.target.textContent);
+    handleInputChange({ target: { name: 'optionalSectionHeader', value: sanitizedInput }, key: '' }, i);
+  }}
+  // dangerouslySetInnerHTML={{ __html: x.optionalSectionHeader || '' }}
+/>
 
-                  {/* <TextField
-                    className='pdfFonts'
-                  /> */}
-
-                  <div
-                    name="optionalSectionContent"
-                    key={i  + 7}
-                    aria-required="true"
-                    // fontSize:14.5 = 12 font size in word = best content font size for resumes
-                    style={{  marginLeft:'20px',width:'505px',fontSize:14.5, paddingLeft: '0.2rem', lineHeight:"25px" }}
-                    onMouseUp={handleSelect}
-                    suppressContentEditableWarning={true}
-                    contentEditable={true}
-                    placeholder='Optional content'
-                    content={x.optionalSectionContent}
-                    onChange={(e) => handleInputChange(e, i)}
-                    // onInput={(event) => {
-                    //     const nameFull = event.target.textContent;
-                    //     handleCustomChange('optionalSectionContent', nameFull);
-                    // }}
-                />
+<div
+  name="optionalSectionContent"
+  key={i + 8}
+  aria-required="true"
+  style={{ marginLeft: '20px', width: '505px', fontSize: 14.5, paddingLeft: '0.2rem', lineHeight: "25px" }}
+  onMouseUp={handleSelect}
+  suppressContentEditableWarning={true}
+  contentEditable={true}
+  placeholder='Optional content'
+  onInput={(event) => {
+    const sanitizedInput = sanitizeInput(event.target.textContent);
+    handleInputChange({ target: { name: 'optionalSectionContent', value: sanitizedInput }, key: event.key }, i);
+  }}
+  // onKeyDown={handleKeyPress}
+  // dangerouslySetInnerHTML={{ __html: x.optionalSectionContent || '' }}
+/>
 
                                     {/* <TextField
                                         type="text"

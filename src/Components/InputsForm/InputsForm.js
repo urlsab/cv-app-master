@@ -25,18 +25,91 @@ import addLinkGif from '../../utils/add link.gif';
 // import { generatePath } from "react-router";
 // import { createRandomId } from '../../utils/randomId';
 // import Draggable from 'react-draggable';
+// import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+// import { Document, Packer, Paragraph, TextRun } from 'docx';
+import DOMPurify from 'dompurify';
 
 const InputsForm = () => {
 
     useEffect(() => {
-        
+        // @latest
         const viewport = document.querySelector('meta[name=viewport]');
         viewport.setAttribute('content', 'width=device-width, initial-scale=0.45');
     }, []);
 
+    const sanitizeInput = (input) => {
+        return DOMPurify.sanitize(input.trim());
+    };
+
+    const sanitizeUrl = (url) => {
+        return DOMPurify.sanitize(url);
+    };
+
+    // const isValidUrl = (url) => {
+    //     try {
+    //       new URL(url);
+    //       return true;
+    //     } catch (e) {
+    //       return false;
+    //     }
+    //   };
+
+    // const generateAndUploadWordFile = async (data) => {
+    //     // Create a new document
+    //     const doc = new Document({
+    //       sections: [{
+    //         properties: {},
+    //         children: [
+    //           new Paragraph({
+    //             children: [
+    //               new TextRun(JSON.stringify(data, null, 2)),
+    //             ],
+    //           }),
+    //         ],
+    //       }],
+    //     });
+      
+    //     // Generate the document as a Blob
+    //     const blob = await Packer.toBlob(doc);
+      
+    //     // Get a reference to the storage service
+    //     const storage = getStorage();
+      
+    //     // Create a unique filename
+    //     const fileName = `resume_${Date.now()}.docx`;
+      
+    //     // Create a reference to the file location
+    //     const storageRef = ref(storage, 'resumes/' + fileName);
+      
+    //     try {
+    //       // Upload the blob
+    //       const snapshot = await uploadBytes(storageRef, blob);
+          
+    //       // Get the download URL
+    //       const downloadURL = await getDownloadURL(snapshot.ref);
+          
+    //       console.log('File uploaded successfully. Download URL:', downloadURL);
+    //       return downloadURL;
+    //     } catch (error) {
+    //       console.error('Error uploading file:', error);
+    //     }
+    //   };
+
+    //   const handleSaveAsWord = async () => {
+    //     try {
+    //       const downloadURL = await generateAndUploadWordFile(ourForm.objectName);
+    //       // You can do something with the downloadURL here, like saving it to Firestore
+    //       console.log('Word file saved to Firebase Storage. Download URL:', downloadURL);
+    //       // Optionally, you can update the state or show a success message
+    //     } catch (error) {
+    //       console.error('Error saving Word file:', error);
+    //       // Handle the error (e.g., show an error message to the user)
+    //     }
+    //   };
+
     // const navigate = useNavigate();
 
-    const [color, setColor] = useState('#666777');
+    const [color, setColor] = useState('#E89E62');
 
     const handleColorChange = (event) => {
         setColor(event.target.value);
@@ -80,28 +153,42 @@ const InputsForm = () => {
     // };
     
     const handleLinkInputChange = (event) => {
-        console.log(isPopoverVisible, linkApplied)
-        setLinkUrl(event.target.value);
+        const sanitizedInput = sanitizeInput(event.target.value);
+        // Basic URL validation
+        const urlPattern = /^(https?:\/\/)?([\da-z-]+)\.([a-z]{2,6})([\w -]*)*\/?$/;
+        if (urlPattern.test(sanitizedInput) || sanitizedInput === '') {
+            setLinkUrl(sanitizedInput);
+        } else {
+            // Handle invalid URL
+            console.log("Invalid URL");
+            alert('Paste (and do not type) only valid URL');
+        }
     };
 
     const handleApplyLink = () => {
         applyLink();
+        console.log(isPopoverVisible);
         setIsPopoverVisible(false);
     };
 
     const applyLink = () => {
         if (linkUrl && selectedText) {
-        const newNode = document.createElement('a');
-        newNode.setAttribute("style", 
-        "color:#007bff; font-size: inherit; text-decoration: underline; margin: 0px; padding: 0px; border:none; display: inline; cursor: pointer;"
-        );
-        newNode.href = linkUrl;
-        newNode.textContent = selectedText;
-        const selection = window.getSelection();
-        const range = selection.getRangeAt(0);
-        range.deleteContents();
-        range.insertNode(newNode);
-        setLinkApplied(true);
+            const sanitizedUrl = sanitizeUrl(linkUrl);
+            const sanitizedText = sanitizeInput(selectedText);
+            const newNode = document.createElement('a');
+            newNode.setAttribute("style", 
+            "color:#007bff; font-size: inherit; text-decoration: underline; margin: 0px; padding: 0px; border:none; display: inline; cursor: pointer;"
+            );
+            newNode.href = sanitizedUrl;
+            newNode.textContent = sanitizedText;
+            const selection = window.getSelection();
+            if (selection.rangeCount > 0) {
+                const range = selection.getRangeAt(0);
+                range.deleteContents();
+                range.insertNode(newNode);
+                console.log(linkApplied);
+                setLinkApplied(true);
+            }
         }
     };
 
@@ -139,14 +226,15 @@ const InputsForm = () => {
     // };
 
     const handleCustomChange = (field, data) => {
+        const sanitizedData = sanitizeInput(data);
         setOurForm({
-            ...ourForm,
-            objectName: {
-                ...ourForm.objectName,
-                [field]: data,
-            }
-        })
-    }
+          ...ourForm,
+          objectName: {
+            ...ourForm.objectName,
+            [field]: sanitizedData,
+          }
+        });
+      };
     
   const handleSelect = () => {
     const selection = window.getSelection();
@@ -335,7 +423,7 @@ const InputsForm = () => {
                     type="text"
                     value={linkUrl}
                     onChange={handleLinkInputChange}
-                    placeholder="Enter URL"
+                    placeholder="Paste (and do not type) here a valid URL"
                     onMouseUp={(e) => e.stopPropagation()}
                     style={{ width: '300px', padding:'6.5px', borderRadius:'5px', borderColor:'transparent', marginRight:'2px' }}
                 />
@@ -394,8 +482,8 @@ const InputsForm = () => {
                                                 placeholder="Full Name"
                                                 content={ourForm.objectName.fullName}
                                                 onInput={(event) => {
-                                                    const nameFull = event.target.textContent;
-                                                    handleCustomChange('fullName', nameFull);
+                                                    const sanitizedInput = sanitizeInput(event.target.textContent);
+                                                    handleCustomChange('fieldName', sanitizedInput);
                                                 }}
                                             /> 
 
@@ -410,8 +498,8 @@ const InputsForm = () => {
                                                 value={'gogo'}
                                                 content={ourForm.objectName.jobTitle}
                                                 onInput={(event) => {
-                                                    const nameFull = event.target.textContent;
-                                                    handleCustomChange('jobTitle', nameFull);
+                                                    const sanitizedInput = sanitizeInput(event.target.textContent);
+                                                    handleCustomChange('fieldName', sanitizedInput);
                                                 }}
                                             /> 
 
@@ -435,8 +523,8 @@ const InputsForm = () => {
                                                 placeholder='Email'
                                                 content={ourForm.objectName.email}
                                                 onInput={(event) => {
-                                                    const nameFull = event.target.textContent;
-                                                    handleCustomChange('email', nameFull);
+                                                    const sanitizedInput = sanitizeInput(event.target.textContent);
+                                                    handleCustomChange('fieldName', sanitizedInput);
                                                 }}
                                             />
                                         </div>
@@ -462,8 +550,8 @@ const InputsForm = () => {
                                                 placeholder='Phone Number'
                                                 content={ourForm.objectName.phoneNumber}
                                                 onInput={(event) => {
-                                                    const nameFull = event.target.textContent;
-                                                    handleCustomChange('phoneNumber', nameFull);
+                                                    const sanitizedInput = sanitizeInput(event.target.textContent);
+                                                    handleCustomChange('fieldName', sanitizedInput);
                                                 }}
                                             />
 
@@ -488,8 +576,8 @@ const InputsForm = () => {
                                                 placeholder='Linkedin Link'
                                                 content={ourForm.objectName.linkedinLink}
                                                 onInput={(event) => {
-                                                    const nameFull = event.target.textContent;
-                                                    handleCustomChange('linkedinLink', nameFull);
+                                                    const sanitizedInput = sanitizeInput(event.target.textContent);
+                                                    handleCustomChange('fieldName', sanitizedInput);
                                                 }}
                                             />
 
@@ -514,8 +602,8 @@ const InputsForm = () => {
                                                 placeholder='Github Link'
                                                 content={ourForm.objectName.githubLink}
                                                 onInput={(event) => {
-                                                    const nameFull = event.target.textContent;
-                                                    handleCustomChange('githubLink', nameFull);
+                                                    const sanitizedInput = sanitizeInput(event.target.textContent);
+                                                    handleCustomChange('fieldName', sanitizedInput);
                                                 }}
                                             />
 
@@ -538,8 +626,8 @@ const InputsForm = () => {
                                                     placeholder='Portfolio Link'
                                                     content={ourForm.objectName.portfolioLink}
                                                     onInput={(event) => {
-                                                        const nameFull = event.target.textContent;
-                                                        handleCustomChange('portfolioLink', nameFull);
+                                                        const sanitizedInput = sanitizeInput(event.target.textContent);
+                                                        handleCustomChange('fieldName', sanitizedInput);
                                                     }}
                                                 />
                                         </div>   
@@ -580,8 +668,8 @@ const InputsForm = () => {
                                                 placeholder='Knowledge, location, duration...'
                                                 content={ourForm.objectName.degreeTypeAndname}
                                                 onInput={(event) => {
-                                                    const nameFull = event.target.textContent;
-                                                    handleCustomChange('degreeTypeAndname', nameFull);
+                                                    const sanitizedInput = sanitizeInput(event.target.textContent);
+                                                    handleCustomChange('fieldName', sanitizedInput);
                                                 }}
                                             />
                                         </div>
@@ -611,8 +699,8 @@ const InputsForm = () => {
                                                 placeholder="Programing languages, db's..."
                                                 content={ourForm.objectName.GeneralKnowledge}
                                                 onInput={(event) => {
-                                                    const nameFull = event.target.textContent;
-                                                    handleCustomChange('GeneralKnowledge', nameFull);
+                                                    const sanitizedInput = sanitizeInput(event.target.textContent);
+                                                    handleCustomChange('fieldName', sanitizedInput);
                                                 }}
                                             />
                                         </div>
@@ -672,7 +760,7 @@ const InputsForm = () => {
                                 color="success"
                                 variant="contained"
                                 sx={{m:1 ,mt: 3, mb:19}}
-                                onClick={handleAddPath}>SAVE
+                                onClick={handleSaveAsWord}>SAVE
                             </Button> */}
                     </div>
                 </Fade>
