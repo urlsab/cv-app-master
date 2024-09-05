@@ -1,12 +1,13 @@
 import './InputsForm.css';
 import React, { useState, useRef, useEffect } from "react";
 // import { useNavigate } from "react-router-dom";
-import TodoLeft from '../TodoLeft/TodoLeft';
-import TodoRight from '../TodoRight/TodoRight';
+import Left from "../Left/Left";
+import Right from "../Right/Right";
+import Work from "../Work/Work";
+import CopyToClipboardButton from '../../utils/CopyToClipboardButton';
 // import { addDoc, collection } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { PDFExport } from "@progress/kendo-react-pdf";
-import TodoWork from '../TodoWork/TodoWork';
 import PrintIcon from '@mui/icons-material/Print';
 // import SaveIcon from '@mui/icons-material/Save';
 import ReactToPrint from 'react-to-print';
@@ -29,10 +30,11 @@ import addLinkGif from '../../utils/add link.gif';
 // import { Document, Packer, Paragraph, TextRun } from 'docx';
 import DOMPurify from 'dompurify';
 
+
 const InputsForm = () => {
 
     useEffect(() => {
-        // @latest
+
         const viewport = document.querySelector('meta[name=viewport]');
         viewport.setAttribute('content', 'width=device-width, initial-scale=0.45');
     }, []);
@@ -155,14 +157,14 @@ const InputsForm = () => {
     const handleLinkInputChange = (event) => {
         const sanitizedInput = sanitizeInput(event.target.value);
         // Basic URL validation
-        const urlPattern = /^(https?:\/\/)?([\da-z-]+)\.([a-z]{2,6})([\w -]*)*\/?$/;
-        if (urlPattern.test(sanitizedInput) || sanitizedInput === '') {
+        // const urlPattern = /^(https?:\/\/)?([\da-z-]+)\.([a-z]{2,6})([\w -]*)*\/?$/;
+        // if (urlPattern.test(sanitizedInput) || sanitizedInput === '') {
             setLinkUrl(sanitizedInput);
-        } else {
-            // Handle invalid URL
-            console.log("Invalid URL");
-            alert('Paste (and do not type) only valid URL');
-        }
+        // } else {
+        //     // Handle invalid URL
+        //     console.log("Invalid URL");
+        //     // alert('Paste (and do not type) only valid URL');
+        // }
     };
 
     const handleApplyLink = () => {
@@ -385,15 +387,17 @@ const InputsForm = () => {
                 </div>
 
                     
-                <div className='buttonsStyle' style={{ marginBottom:'5px',padding: '2px', border: '1px solid transparent', borderRadius: '5px' }}>
+                <div className='buttonsStyle' style={{ width:'790px',marginBottom:'5px',padding: '2px', border: '1px solid transparent', borderRadius: '5px' }}>
                     
+                
+
                         <input
                             id="colorPicker"
                             type="color"
                             value={color}
                             onChange={handleColorChange}
                             style={{ 
-                                height:'32.5px',
+                                height:'36.5px',
                                 width:'60px',
                                 cursor: 'pointer',
                                 marginRight:'8px',
@@ -405,7 +409,7 @@ const InputsForm = () => {
                 <Button 
                     sx={{mr:1}}
                     // center icon inside the button - justifyContent:  'flex-end' - becasue there is some default margin
-                    style={{display: 'flex', justifyContent:  'flex-end'}}
+                    style={{height:'36.5px',display: 'flex', justifyContent:  'flex-end'}}
                     color='inherit'
                     variant="contained"
                     startIcon={<FaBold/>}
@@ -413,7 +417,7 @@ const InputsForm = () => {
                 </Button>
                 <Button 
                     sx={{mr:1}}
-                    style={{display: 'flex', justifyContent:  'flex-end'}}
+                    style={{height:'36.5px',display: 'flex', justifyContent:  'flex-end'}}
                     color='inherit'
                     variant="contained"
                     startIcon={<TfiUnderline/>}
@@ -423,17 +427,20 @@ const InputsForm = () => {
                     type="text"
                     value={linkUrl}
                     onChange={handleLinkInputChange}
-                    placeholder="Paste (and do not type) here a valid URL"
+                    placeholder="Add URL"
                     onMouseUp={(e) => e.stopPropagation()}
-                    style={{ width: '300px', padding:'6.5px', borderRadius:'5px', borderColor:'transparent', marginRight:'2px' }}
+                    style={{ width: '407px', padding:'6.5px', borderRadius:'5px', borderColor:'transparent', marginRight:'2px' }}
                 />
-                <Button     
-                    style={{display: 'flex', justifyContent:  'flex-end'}}
+                <Button  
+                sx={{mr:1, ml:1}}   
+                    style={{height:'36.5px',display: 'flex', justifyContent:  'flex-end'}}
                     color='inherit'
                     variant="contained"
                     startIcon={<MdAddLink/>}
                     onClick={handleApplyLink}>
                 </Button> 
+
+                <CopyToClipboardButton text="•" />
                     
             {/* </div> */}
                     {/* </div> */}
@@ -461,10 +468,11 @@ const InputsForm = () => {
 
                             {/* onMouseUp={()=>{ handleSelect();handleSelectioni()}}  */}
                             {/* margin top effects the head part of the paper before print */}
-                            <div className="resume" onMouseUp={handleSelect}>
-                                <div className='grid-area name'>
-                                    <div style={{backgroundColor:color}} className='square'>
-                                        <div className='firstGroup forFirstGroup'> 
+                            <div className="resumei" onMouseUp={handleSelect}>
+                                <div style={{backgroundColor:'rgb(234,239,239)'}}>
+                                <div className="grid-area namei">
+                                    <div style={{backgroundColor:color}} className='squarei'>
+                                        <div className='firstGroupi forFirstGroup'> 
                                             <div
                                                 name="fullName"
                                                 aria-required="true"
@@ -472,6 +480,7 @@ const InputsForm = () => {
                                                 style=
                                                     {{textTransform:"uppercase", 
                                                     marginTop:"20px",
+                                                    marginLeft:"18px",
                                                     width:'235px',
                                                     fontSize:20 ,
                                                     color:'white', 
@@ -491,7 +500,7 @@ const InputsForm = () => {
                                                 name="jobTitle"
                                                 aria-required="true"
                                                 multiline
-                                                style={{marginBottom:'6px',width:'235px',fontSize:16.5 ,color:'white', paddingLeft: '0.2rem', lineHeight:"25px"}}
+                                                style={{marginLeft:'18px',marginBottom:'6px',width:'235px',fontSize:16.5 ,color:'white', paddingLeft: '0.2rem', lineHeight:"25px"}}
                                                 suppressContentEditableWarning={true}
                                                 contentEditable={true}
                                                 placeholder='Role'
@@ -634,6 +643,8 @@ const InputsForm = () => {
       
                                         </div>
 
+                                        </div>
+
                                     </div>
 
                                     {/* after square //*/}
@@ -704,21 +715,22 @@ const InputsForm = () => {
                                                 }}
                                             />
                                         </div>
-                                    <TodoLeft/>
+                                        
+                                    <Left/>
                                 </div>   
                             </div>
 
             {/* rigth part */}
-            <div className="grid-area work">
+            <div className="grid-area worki">
             <div
                 required 
                 multiline
-                style={{marginTop:'15px',marginLeft:'18px',width:'235px',border: 'none',fontSize:16.5, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}} 
+                style={{marginTop:'15px',width:'235px',border: 'none',fontSize:16.5, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}} 
             >
                 WORK EXPERIENCE
             </div>
-            <TodoWork/>
-            <TodoRight/>
+            <Work/>
+            <Right/>
         </div>
     </div> 
 
@@ -726,7 +738,7 @@ const InputsForm = () => {
                 </PDFExport>       
                 {/* </Fade> */}
                 <Fade delay={800}>
-                    <div className='buttonsStyle'>
+                    <div className='buttonsStylei'>
 
                         {/* <a href='' download=''> DOWNLOAD TO PC </a> */}
 

@@ -6,7 +6,7 @@
     margin-left : 1em;
     outline: none;
     font-size: 15px;
-    font-family: 'Itim';
+    /* font-family: 'Itim'; */
     margin-bottom: 20px;
     width: 420px;
   }
@@ -20,7 +20,7 @@
   .box {
     margin-bottom: 1px;
     padding-right: 2px;
-    /* width: fit-content; */
+    width: fit-content;
   }
   
   .btn-box {
@@ -62,7 +62,7 @@
     outline: none;
     border: none;
     font-size: 15px;
-    font-family: 'Itim';
+    /* font-family: 'Itim'; */
     margin-bottom: 20px;
     width: 420px;
     margin-left: 40px;
@@ -92,7 +92,7 @@
     /* display: list-item; */
     font-size: 12px;
   }
-   
+  
   .pdfFonts {
     font-family: "DejaVu Sans", "Arial", "Lato", "Rubik", "Exo" ,sans-serif,;
   }
@@ -112,4 +112,4 @@
     background-color: white ;
     font-style: italic;
     src: url("https://kendo.cdn.telerik.com/2017.2.621/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf") format("truetype");
-}
+  }

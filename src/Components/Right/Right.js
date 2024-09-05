@@ -1,4 +1,4 @@
-import './TodoRight.css';
+import './Right.css';
 import React, { useState } from 'react';
 import DOMPurify from 'dompurify';
 
@@ -130,7 +130,7 @@ const TodoRight = () => {
                           name="optionalSectionHeader"
                           key={i + 7}
                           aria-required="true"
-                          style={{ marginBottom: '7px',marginTop:'10px', marginLeft: '20px', width: '750px', fontSize: 16.5, fontWeight: 'bolder', paddingLeft: '0.2rem', lineHeight: "25px" }}
+                          style={{ marginBottom: '7px',marginTop:'10px',width: '500px', fontSize: 16.5, fontWeight: 'bolder', paddingLeft: '0.2rem', lineHeight: "25px" }}
                           onMouseUp={handleSelect}
                           suppressContentEditableWarning={true}
                           contentEditable={true}
@@ -142,13 +142,13 @@ const TodoRight = () => {
                           // dangerouslySetInnerHTML={{ __html: x.optionalSectionHeader || '' }}
                         />
 
-                        <hr style={{marginLeft:'20px',height:'2px',backgroundColor:'gray' , border:'none', borderRadius:'5px', width:'750px'}} />
+                        {/* <hr style={{height:'2px',backgroundColor:'gray' , border:'none', borderRadius:'5px', width:'450px'}} /> */}
 
                         <div
                           name="optionalSectionContent"
                           key={i + 8}
                           aria-required="true"
-                          style={{ marginLeft: '20px', width: '750px', fontSize: 14.5, paddingLeft: '0.2rem', lineHeight: "25px" }}
+                          style={{ width: '500px', fontSize: 14.5, paddingLeft: '0.2rem', lineHeight: "25px" }}
                           onMouseUp={handleSelect}
                           suppressContentEditableWarning={true}
                           contentEditable={true}

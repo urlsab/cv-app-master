@@ -1,4 +1,4 @@
-import './TodoWork.css';
+import './Work.css';
 import React, { useState } from 'react';
 // import { initialState } from "../../utils/ourState";
 // import Fade from 'react-reveal/Fade';
@@ -176,7 +176,7 @@ const TodoWork = () => {
             {/* {dotIcon} */}
 
         {/* x.roleAndCompanyName!=='' && */}
-        <div style={{display:'flex',flexDirection:'row', justifyContent:'space-between'}}>
+        <div style={{display:'flex',flexDirection:'row', justifyContent:'normal'}}>
           <div>
             
             <div
@@ -192,7 +192,7 @@ const TodoWork = () => {
                 handleInputChange({ target: { name: 'optionalSectionContent', value: sanitizedInput }, key: event.key }, i);
               }}
               // onChange={(e) => handleInputChange(e, i)}
-              style={{width:'450px',marginLeft:'3px',fontSize:16.5, paddingLeft: '0.2rem', lineHeight:"25px"}}
+              style={{width:'250px',marginLeft:'3px',fontSize:16.5, paddingLeft: '0.2rem', lineHeight:"25px"}}
               // onInput={(event) => {
               //     const nameFull = event.target.textContent;
               //     handleCustomChange('GeneralKnowledge', nameFull);
@@ -216,7 +216,7 @@ const TodoWork = () => {
                 const sanitizedInput = sanitizeInput(event.target.textContent);
                 handleInputChange({ target: { name: 'optionalSectionContent', value: sanitizedInput }, key: event.key }, i);
               }}
-              style={{width:'270px',marginRight:'6px',color:'gray',fontWeight:'bold',justifyContent:'end',textAlign:'end',fontSize:13, paddingLeft: '0.2rem', lineHeight:"25px"}}
+              style={{width:'240px',marginRight:'2px',color:'gray',fontWeight:'bold',justifyContent:'end',textAlign:'end',fontSize:13, paddingLeft: '0.2rem', lineHeight:"25px"}}
               // onInput={(event) => {
               //     const nameFull = event.target.textContent;
               //     handleCustomChange('GeneralKnowledge', nameFull);
@@ -236,7 +236,7 @@ const TodoWork = () => {
               onMouseUp={handleSelect}
               suppressContentEditableWarning={true}
               contentEditable={true}
-              placeholder='Achievements: Accomplished X as measured by Y by doing Z. Use numbers!'
+              placeholder='Achievements: Accomplished X as measured by Y by doing Z. Use numbers!!!!'
               content={x.achivements}
               onKeyDown={(e) => handleEnterPress(e, i) } 
               // onChange={(e) => handleInputChange(e, i) }
@@ -244,10 +244,10 @@ const TodoWork = () => {
                 const sanitizedInput = sanitizeInput(event.target.textContent);
                 handleInputChange({ target: { name: 'optionalSectionContent', value: sanitizedInput }, key: event.key }, i);
               }}
-              style={{fontSize:14.5, marginLeft:'3px', width:'750px', lineHeight:'25px', paddingLeft:'0.2rem'}}
+              style={{fontSize:14.5, marginLeft:'3px', width:'500px', lineHeight:'25px', paddingLeft:'0.2rem'}}
             />
 
-            <hr style={{opacity:0.3,height:'0.2px',backgroundColor:'gray' , border:'none', borderRadius:'5px', width:'750px'}} />
+            <hr style={{opacity:0.3,height:'0.2px',backgroundColor:'gray' , border:'none', borderRadius:'5px', width:'500px'}} />
 
           </div>
               

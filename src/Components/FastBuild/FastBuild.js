@@ -9,14 +9,16 @@ import ReactToPrint from 'react-to-print';
 import { initialState } from "../../utils/ourState";
 import { Button } from "@mui/material";
 import Fade from 'react-reveal/Fade';
-import LightSpeed from 'react-reveal/LightSpeed';
+// import LightSpeed from 'react-reveal/LightSpeed';
 import { FaBold } from "react-icons/fa";
 import { TfiUnderline } from "react-icons/tfi";
 import { MdAddLink } from "react-icons/md";
 import EntryNavbar from '../EntryNavbar/EntryNavbar';
-import bAnduGif from '../../utils/b and u .gif';
-import addLinkGif from '../../utils/add link.gif';
+// import bAnduGif from '../../utils/b and u .gif';
+// import addLinkGif from '../../utils/add link.gif';
+// import { FaListUl } from "react-icons/fa6";
 import DOMPurify from 'dompurify';
+import CopyToClipboardButton from '../../utils/CopyToClipboardButton';
 
 const FastBuild = () => {
 
@@ -24,6 +26,18 @@ const FastBuild = () => {
         const viewport = document.querySelector('meta[name=viewport]');
         viewport.setAttribute('content', 'width=device-width, initial-scale=0.45');
     }, []);
+
+    // const [bullets, setBullets] = useState([]);
+
+    // const addBullet = () => {
+    //     setBullets([...bullets, '•']);
+    // };
+
+    // const [bullets, setBullets] = useState([]);
+
+    // const addBullet = () => {
+    //     <span>•</span>
+    // };
 
     const [selectedText, setSelectedText] = useState('');
     const [linkUrl, setLinkUrl] = useState('');
@@ -34,21 +48,8 @@ const FastBuild = () => {
         return DOMPurify.sanitize(input.trim());
     };
 
-    const sanitizeUrl = (url) => {
-        return DOMPurify.sanitize(url);
-    };
-
     const handleLinkInputChange = (event) => {
-        const sanitizedInput = sanitizeInput(event.target.value);
-        // Basic URL validation
-        const urlPattern = /^(https?:\/\/)?([\da-z-]+)\.([a-z]{2,6})([\w -]*)*\/?$/;
-        if (urlPattern.test(sanitizedInput) || sanitizedInput === '') {
-            setLinkUrl(sanitizedInput);
-        } else {
-            // Handle invalid URL
-            console.log("Invalid URL");
-            alert('Paste (and do not type) only valid URL');
-        }
+        setLinkUrl(sanitizeInput(event.target.value));
     };
 
     const handleApplyLink = () => {
@@ -58,7 +59,7 @@ const FastBuild = () => {
 
     const applyLink = () => {
         if (linkUrl && selectedText) {
-            const sanitizedUrl = sanitizeUrl(linkUrl);
+            const sanitizedUrl = sanitizeInput(linkUrl);
             const sanitizedText = sanitizeInput(selectedText);
             const newNode = document.createElement('a');
             newNode.setAttribute("style", 
@@ -89,149 +90,189 @@ const FastBuild = () => {
         })
     }
     
-  const handleSelect = () => {
-    const selection = window.getSelection();
-    if (selection.toString()) {
-      const selectedText = selection.toString();
-      setSelectedText(selectedText);
-      console.log(isPopoverVisible);
-      setIsPopoverVisible(true);
-    } else {
-      setSelectedText('');
-      setIsPopoverVisible(false);
-    }
-  };
-
-  const [flag, setFlag] = useState(false);
-
-  const toggleStyle = (tagName, id) => {
-    if (window.getSelection()) {
+    const handleSelect = () => {
         const selection = window.getSelection();
-        if (selection.rangeCount > 0) {
-            const range = selection.getRangeAt(0);
-            const span = document.createElement(tagName);
-            span.setAttribute('id', id);
-            span.appendChild(range.extractContents());
-            range.insertNode(span);
-            setFlag(!flag);
+        if (selection.toString()) {
+        const selectedText = selection.toString();
+        setSelectedText(selectedText);
+        console.log(isPopoverVisible);
+        setIsPopoverVisible(true);
+        } else {
+        setSelectedText('');
+        setIsPopoverVisible(false);
         }
-    }
-};
+    };
 
-const removeStyle = (id) => {
-    const span = document.getElementById(id);
-    if (span) {
-        const parent = span.parentNode;
-        while (span.firstChild) {
-            parent.insertBefore(span.firstChild, span);
+    const [flag, setFlag] = useState(false);
+
+    const toggleStyle = (tagName, id) => {
+        if (window.getSelection()) {
+            const selection = window.getSelection();
+            if (selection.rangeCount > 0) {
+                const range = selection.getRangeAt(0);
+                const span = document.createElement(tagName);
+                span.setAttribute('id', id);
+                span.appendChild(range.extractContents());
+                range.insertNode(span);
+                setFlag(!flag);
+            }
         }
-        parent.removeChild(span);
-    }
-};
-  
-  const handleBoldi = (id) => {
-    if (!flag) {
-      toggleStyle('b', id);
-    } else {
-      removeStyle('b');
-      setFlag(!flag);
-    }
-  };
-  
-  const handleUnderlinei = (id) => {
-    if (!flag) {
-      toggleStyle('u', id);
-    } else {
-      removeStyle('u');
-      setFlag(!flag);
-    }
-  };
+    };
 
-
+    const removeStyle = (id) => {
+        const span = document.getElementById(id);
+        if (span) {
+            const parent = span.parentNode;
+            while (span.firstChild) {
+                parent.insertBefore(span.firstChild, span);
+            }
+            parent.removeChild(span);
+        }
+    };
+  
+    const handleBoldi = (id) => {
+        if (!flag) {
+        toggleStyle('b', id);
+        } else {
+        removeStyle('b');
+        setFlag(!flag);
+        }
+    };
+  
+    const handleUnderlinei = (id) => {
+        if (!flag) {
+        toggleStyle('u', id);
+        } else {
+        removeStyle('u');
+        setFlag(!flag);
+        }
+    };
       
     return (
         <>
             <div className='createResumeContainer'>
                 <EntryNavbar/>
-                <Fade delay={400}>
+                    <Fade delay={400}>
+                        <div className="textContainer">
+                            <Fade delay={600}> <h1 style={{marginTop:'20px'}}> <b className="textStyle"> BUILD YOUR RESUME </b> 🔨 </h1> </Fade>
+                        </div>
 
-                <div className="textContainer">
-                    <Fade delay={600}> <h1 style={{marginTop:'20px'}}> <b className="textStyle"> BUILD YOUR RESUME </b> 🔨 </h1> </Fade>
-                </div>
+                        {/* <div style={{display:'flex', flexDirection:'row'}}>
+                            <LightSpeed left delay={800}><img style={{marginBottom:'80px',marginRight:'20px', border:'2px solid black'}} alt="b and u gif" align="center" width="230" height="150" src={bAnduGif}/></LightSpeed>
+                            <LightSpeed left delay={800}><img style={{marginBottom:'80px',marginLeft:'20px', border:'2px solid black'}} alt="add link gif" align="center" width="230" height="150" src={addLinkGif}/></LightSpeed>
+                        </div> */}
+                        
+                        <div className='buttonsStyle' style={{ marginTop:'50px',marginBottom:'5px',padding: '2px', border: '1px solid transparent', borderRadius: '5px' }}>
+                            
+                            {/* <Button
+                                sx={{mr:1}}
+                                style={{display: 'flex', justifyContent:  'flex-end'}}
+                                color='inherit'
+                                variant="contained"
+                                startIcon={<FaListUl/>}
+                                // •
+                                onClick={addBullet}
+                                >
+                            </Button> */}
 
-                <div style={{display:'flex', flexDirection:'row'}}>
-                    <LightSpeed left delay={800}><img style={{marginBottom:'80px',marginRight:'20px', border:'2px solid black'}} alt="b and u gif" align="center" width="230" height="150" src={bAnduGif}/></LightSpeed>
-                    <LightSpeed left delay={800}><img style={{marginBottom:'80px',marginLeft:'20px', border:'2px solid black'}} alt="add link gif" align="center" width="230" height="150" src={addLinkGif}/></LightSpeed>
-                </div>
+                            <CopyToClipboardButton text="•" />
+                            
+                            <Button   
+                                sx={{mr:1}}  
+                                style={{height:'36.5px',display: 'flex', justifyContent:  'flex-end'}}
+                                color='inherit'
+                                variant="contained"
+                                startIcon={<MdAddLink/>}
+                                onClick={handleApplyLink}>
+                            </Button> 
+                            <input
+                                type="text"
+                                value={linkUrl}
+                                onChange={handleLinkInputChange}
+                                placeholder="Add URL"
+                                onMouseUp={(e) => e.stopPropagation()}
+                                style={{ width: '487px', padding:'6.5px', borderRadius:'5px', borderColor:'transparent', marginRight:'2px' }}
+                            />
+                            
+                            <Button 
+                                sx={{mr:1, ml:1}}
+                                style={{height:'36.5px',display: 'flex', justifyContent:  'flex-end'}}
+                                color='inherit'
+                                variant="contained"
+                                startIcon={<FaBold/>}
+                                onClick={handleBoldi}>
+                            </Button>
+                            <Button 
+                                
+                                style={{height:'36.5px',display: 'flex', justifyContent:  'flex-end'}}
+                                color='inherit'
+                                variant="contained"
+                                startIcon={<TfiUnderline/>}
+                                onClick={handleUnderlinei}>
+                            </Button>
                 
-
+                        </div>
                     
-                <div className='buttonsStyle' style={{ marginTop:'50px',marginBottom:'15px',padding: '2px', border: '1px solid transparent', borderRadius: '5px' }}>
-                    
-                    <Button 
-                        sx={{mr:1}}
-                        style={{display: 'flex', justifyContent:  'flex-end'}}
-                        color='inherit'
-                        variant="contained"
-                        startIcon={<FaBold/>}
-                        onClick={handleBoldi}>
-                    </Button>
-                    <Button 
-                        sx={{mr:1}}
-                        style={{display: 'flex', justifyContent:  'flex-end'}}
-                        color='inherit'
-                        variant="contained"
-                        startIcon={<TfiUnderline/>}
-                        onClick={handleUnderlinei}>
-                    </Button>
-                    <input
-                        type="text"
-                        value={linkUrl}
-                        onChange={handleLinkInputChange}
-                        placeholder="Paste (and do not type) here a valid URL"
-                        onMouseUp={(e) => e.stopPropagation()}
-                        style={{ width: '300px', padding:'6.5px', borderRadius:'5px', borderColor:'transparent', marginRight:'2px' }}
-                    />
-                    <Button     
-                        style={{display: 'flex', justifyContent:  'flex-end'}}
-                        color='inherit'
-                        variant="contained"
-                        startIcon={<MdAddLink/>}
-                        onClick={handleApplyLink}>
-                    </Button> 
-           
-                </div>
-                    
-
-
                         <PDFExport ref={pdfExportComponent}>
 
                             <div className="resume" onMouseUp={handleSelect}>
-                                <div className='grid-area name'>
+
+                                {/* className='grid-area name' */}
+                                <div> 
+
                                     <div className='square'>
                                         <div className='firstGroup forFirstGroup'> 
                                             <div
                                                 name="fullName"
                                                 aria-required="true"
+                                                
                                                 multiline
+                                                
                                                 style=
-                                                    {{textTransform:"uppercase", 
+                                                {{ 
                                                     marginTop:"20px",
-                                                    width:'235px',
-                                                    fontSize:20 ,
-                                                    color:'white', 
+                                                    width:'750px',
+                                                    multiline:true,
+                                                    fontSize:20,
+                                                    display:'flex',
+                                                    // color:'white', 
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
+                                                    textAlign: 'center',
                                                     padding: '0.2rem', 
                                                     lineHeight:"25px"}}
-                                                suppressContentEditableWarning={true}
-                                                contentEditable={true}
-                                                placeholder="Full Name"
-                                                content={ourForm.objectName.fullName}
-                                                onInput={(event) => {
-                                                    const sanitizedInput = sanitizeInput(event.target.textContent);
-                                                    handleCustomChange('fieldName', sanitizedInput);
-                                                }}
+                                                    suppressContentEditableWarning={true}
+                                                    contentEditable={true}
+                                                    placeholder="Full Name | Role"
+                                                    content={ourForm.objectName.fullName}
+                                                    // onInput={(event) => {
+                                                    //     const sanitizedInput = sanitizeInput(event.target.textContent);
+                                                    //     handleCustomChange('fieldName', sanitizedInput);
+                                                    // }}
+                                                    onInput={(event) => {
+                                                        const maxLength = 62; // Set your desired maximum length here
+                                                        let content = event.target.textContent;
+                                                        
+                                                        if (content.length > maxLength) {
+                                                          content = content.slice(0, maxLength);
+                                                          event.target.textContent = content;
+                                                          
+                                                          // Move cursor to end
+                                                          const range = document.createRange();
+                                                          const sel = window.getSelection();
+                                                          range.setStart(event.target.childNodes[0], maxLength);
+                                                          range.collapse(true);
+                                                          sel.removeAllRanges();
+                                                          sel.addRange(range);
+                                                        }
+                                                        
+                                                        const sanitizedInput = sanitizeInput(content);
+                                                        handleCustomChange('fieldName', sanitizedInput);
+                                                      }}
                                             /> 
 
+
+                                            {/* 
                                             <div
                                                 name="jobTitle"
                                                 aria-required="true"
@@ -245,33 +286,206 @@ const removeStyle = (id) => {
                                                     const sanitizedInput = sanitizeInput(event.target.textContent);
                                                     handleCustomChange('fieldName', sanitizedInput);
                                                 }}
-                                            /> 
+                                            />  */}
 
                                             <div className="iconAndInputs" style={{marginTop:"10px"}}>
-                                                {ourForm.objectName.email !=='' && (<Fade> <img alt="svg" 
+
+                                                {/* {ourForm.objectName.phoneNumber !=='' && (<Fade> <img alt="svg" 
                                                 style={{marginRight:"2px", marginLeft:'3px'}}
                                                     src='data:image/svg+xml;utf8,
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24">
                                                             <path stroke="white" stroke-linecap="round" stroke-width="1.5" d="m3.5 5.5 7.893 6.036a1 1 0 0 0 1.214 0L20.5 5.5M4 19h16a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Z"/>
                                                         </svg>'
-                                                /> </Fade>)}
+                                                /> </Fade>)} */}
 
-                                            <div
-                                                name="email"
-                                                aria-required="true"
-                                                style={{width:'210px', fontSize:14.5 ,color:'white', padding: '0.2rem', lineHeight:"15px", position:'relative' }}
-                                                suppressContentEditableWarning={true}
-                                                contentEditable={true}
-                                                placeholder='Email'
-                                                content={ourForm.objectName.email}
-                                                onInput={(event) => {
-                                                    const sanitizedInput = sanitizeInput(event.target.textContent);
-                                                    handleCustomChange('fieldName', sanitizedInput);
-                                                }}
-                                            />
+                                                
+                                                <div
+                                                    name="phoneNumber"
+                                                    aria-required="true"
+                                                    style={{textAlign:'center',width:'115px',display:'flex',justifyContent:'center', fontSize:14.5 ,marginBottom:'10px',
+                                                        // color:'white', 
+                                                    padding: '0.2rem', lineHeight:"15px" }}
+                                                    suppressContentEditableWarning={true}
+                                                    contentEditable={true}
+                                                    placeholder='Phone'
+                                                    content={ourForm.objectName.phoneNumber}
+                                                    onInput={(event) => {
+                                                        const maxLength = 15; // max length on the world! https://worldpopulationreview.com/country-rankings/phone-number-length-by-country
+                                                        let content = event.target.textContent;
+                                                        
+                                                        if (content.length > maxLength) {
+                                                          content = content.slice(0, maxLength);
+                                                          event.target.textContent = content;
+                                                          
+                                                          // Move cursor to end
+                                                          const range = document.createRange();
+                                                          const sel = window.getSelection();
+                                                          range.setStart(event.target.childNodes[0], maxLength);
+                                                          range.collapse(true);
+                                                          sel.removeAllRanges();
+                                                          sel.addRange(range);
+                                                        }
+                                                        
+                                                        const sanitizedInput = sanitizeInput(content);
+                                                        handleCustomChange('fieldName', sanitizedInput);
+                                                      }}
+                                                    // onInput={(event) => {
+                                                    //     const sanitizedInput = sanitizeInput(event.target.textContent);
+                                                    //     handleCustomChange('fieldName', sanitizedInput);
+                                                    // }}
+                                                />
+
+                                                <div
+                                                    name="email"
+                                                    multiline
+                                                    aria-required="true"
+                                                    style={{
+                                                        textAlign: 'center',width:'210px',display:'flex',alignContent:'center',justifyContent:'center',alignItems:'center', fontSize:14.5 ,marginBottom:'10px',
+                                                        // color:'white', 
+                                                        padding: '0.2rem', lineHeight:"15px" }}
+                                                    suppressContentEditableWarning={true}
+                                                    contentEditable={true}
+                                                    placeholder='Email'
+                                                    content={ourForm.objectName.email}
+                                                    onInput={(event) => {
+                                                        const maxLength = 25; 
+                                                        let content = event.target.textContent;
+                                                        
+                                                        if (content.length > maxLength) {
+                                                          content = content.slice(0, maxLength);
+                                                          event.target.textContent = content;
+                                                          
+                                                          // Move cursor to end
+                                                          const range = document.createRange();
+                                                          const sel = window.getSelection();
+                                                          range.setStart(event.target.childNodes[0], maxLength);
+                                                          range.collapse(true);
+                                                          sel.removeAllRanges();
+                                                          sel.addRange(range);
+                                                        }
+                                                        
+                                                        const sanitizedInput = sanitizeInput(content);
+                                                        handleCustomChange('fieldName', sanitizedInput);
+                                                      }}
+                                                    // onInput={(event) => {
+                                                    //     const sanitizedInput = sanitizeInput(event.target.textContent);
+                                                    //     handleCustomChange('fieldName', sanitizedInput);
+                                                    // }}
+                                                />
+
+                                                <div
+                                                    name="linkedinLink"
+                                                    aria-required="true"
+                                                    style={{
+                                                        textAlign:'center',width:'203px',display:'flex',justifyContent:'center', fontSize:14.5 ,marginBottom:'10px',
+                                                        // color:'white', 
+                                                        padding: '0.2rem', lineHeight:"15px" }}
+                                                    suppressContentEditableWarning={true}
+                                                    contentEditable={true}
+                                                    placeholder='Linkedin'
+                                                    content={ourForm.objectName.linkedinLink}
+                                                    onInput={(event) => {
+                                                        const maxLength = 30; //'linkedin.com/in/' = base = 16 + customName = 14
+                                                        let content = event.target.textContent;
+                                                        
+                                                        if (content.length > maxLength) {
+                                                          content = content.slice(0, maxLength);
+                                                          event.target.textContent = content;
+                                                          
+                                                          // Move cursor to end
+                                                          const range = document.createRange();
+                                                          const sel = window.getSelection();
+                                                          range.setStart(event.target.childNodes[0], maxLength);
+                                                          range.collapse(true);
+                                                          sel.removeAllRanges();
+                                                          sel.addRange(range);
+                                                        }
+                                                        
+                                                        const sanitizedInput = sanitizeInput(content);
+                                                        handleCustomChange('fieldName', sanitizedInput);
+                                                      }}
+                                                    // onInput={(event) => {
+                                                    //     const sanitizedInput = sanitizeInput(event.target.textContent);
+                                                    //     handleCustomChange('fieldName', sanitizedInput);
+                                                    // }}
+                                                />
+
+                                                {/* <div
+                                                    name="githubLink"
+                                                    aria-required="true"
+                                                    style={{textAlign:'center',width:'150px', display:'flex',justifyContent:'center', fontSize:14.5 ,marginBottom:'10px',
+                                                        // color:'white', 
+                                                        padding: '0.2rem', lineHeight:"15px" }}
+                                                    suppressContentEditableWarning={true}
+                                                    contentEditable={true}
+                                                    placeholder='optional github'
+                                                    content={ourForm.objectName.githubLink}
+                                                    onInput={(event) => {
+                                                        const maxLength = 30; // Set your desired maximum length here
+                                                        let content = event.target.textContent;
+                                                        
+                                                        if (content.length > maxLength) {
+                                                          content = content.slice(0, maxLength);
+                                                          event.target.textContent = content;
+                                                          
+                                                          // Move cursor to end
+                                                          const range = document.createRange();
+                                                          const sel = window.getSelection();
+                                                          range.setStart(event.target.childNodes[0], maxLength);
+                                                          range.collapse(true);
+                                                          sel.removeAllRanges();
+                                                          sel.addRange(range);
+                                                        }
+                                                        
+                                                        const sanitizedInput = sanitizeInput(content);
+                                                        handleCustomChange('fieldName', sanitizedInput);
+                                                      }}
+                                                    // onInput={(event) => {
+                                                    //     const sanitizedInput = sanitizeInput(event.target.textContent);
+                                                    //     handleCustomChange('fieldName', sanitizedInput);
+                                                    // }}
+                                                /> */}
+
+                                                <div
+                                                    name="portfolioLink"
+                                                    aria-required="true"
+                                                    style={{width:'230px',display:'flex',textAlign: 'center',alignContent:'center',justifyContent:'center',alignItems:'center', fontSize:14.5 ,marginBottom:'10px',
+                                                        // color:'white', 
+                                                        padding: '0.2rem', lineHeight:"15px" }}
+                                                    suppressContentEditableWarning={true}
+                                                    contentEditable={true}
+                                                    placeholder='Portfolio'
+                                                    content={ourForm.objectName.portfolioLink}
+                                                    onInput={(event) => {
+                                                        const maxLength = 40; // 
+                                                        let content = event.target.textContent;
+                                                        
+                                                        if (content.length > maxLength) {
+                                                          content = content.slice(0, maxLength);
+                                                          event.target.textContent = content;
+                                                          
+                                                          // Move cursor to end
+                                                          const range = document.createRange();
+                                                          const sel = window.getSelection();
+                                                          range.setStart(event.target.childNodes[0], maxLength);
+                                                          range.collapse(true);
+                                                          sel.removeAllRanges();
+                                                          sel.addRange(range);
+                                                        }
+                                                        
+                                                        const sanitizedInput = sanitizeInput(content);
+                                                        handleCustomChange('fieldName', sanitizedInput);
+                                                      }}
+                                                    // onInput={(event) => {
+                                                    //     const sanitizedInput = sanitizeInput(event.target.textContent);
+                                                    //     handleCustomChange('fieldName', sanitizedInput);
+                                                    // }}
+                                                />
                                         </div>
 
-                                        <div className="iconAndInputs">
+                                            <TodoLeft/>
+
+                                        {/* <div className="iconAndInputs">
                                             {ourForm.objectName.phoneNumber !=='' && (<Fade> <img alt="svg" 
                                                 style={{marginRight:"2px", marginLeft:'3px'}}
                                                 src='data:image/svg+xml;utf8,
@@ -369,53 +583,34 @@ const removeStyle = (id) => {
                                                         handleCustomChange('fieldName', sanitizedInput);
                                                     }}
                                                 />
-                                        </div>   
+                                        </div>    */}
       
                                         </div>
 
                                     </div>
 
-                                    <div className='afterSquareGroup forSecondGroup'>
+                                    <div className="grid-area work">
+                                        <div
+                                            required 
+                                            multiline
+                                            style={{marginTop:'15px',width:'235px',border: 'none',fontSize:16.5, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}} 
+                                        >
+                                            WORK EXPERIENCE
+                                            <hr style={{height:'2px',backgroundColor:'gray' , border:'none', borderRadius:'5px', width:'750px'}} />
+                                        </div>
+                                            <TodoWork/>
+                                        </div>
+                                    <TodoRight/>
+
+                                <div className='afterSquareGroup forSecondGroup'>
 
                                     <div
-                                        type="text"
-                                        name="educationHeader"
                                         required 
                                         multiline
                                         style={{marginTop:'15px',marginLeft:'18px',width:'235px',border: 'none',fontSize:16.5, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}} 
                                         >
-                                        EDUCATION
-                                    </div>
-
-                                        <div className="iconAndInputs">
-                                            {ourForm.objectName.degreeTypeAndname!=='' && (<Fade> <img alt="svg" 
-                                                style={{marginRight:"3px", marginLeft:'18px'}}
-                                                src='data:image/svg+xml;utf8,
-                                                    <svg class="w-[12px] h-[12px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24">
-                                                        <path stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.03v13m0-13c-2.819-.831-4.715-1.076-8.029-1.023A.99.99 0 0 0 3 6v11c0 .563.466 1.014 1.03 1.007 3.122-.043 5.018.212 7.97 1.023m0-13c2.819-.831 4.715-1.076 8.029-1.023A.99.99 0 0 1 21 6v11c0 .563-.466 1.014-1.03 1.007-3.122-.043-5.018.212-7.97 1.023"/>
-                                                    </svg>'
-                                            /> </Fade>)}
-                                            <div
-                                                name="degreeTypeAndname"
-                                                aria-required="true"
-                                                style={{width:'210px' , fontSize:14.5 , padding: '0.2rem', lineHeight:"25px" }}
-                                                suppressContentEditableWarning={true}
-                                                contentEditable={true}
-                                                placeholder='Knowledge, location, duration...'
-                                                content={ourForm.objectName.degreeTypeAndname}
-                                                onInput={(event) => {
-                                                    const sanitizedInput = sanitizeInput(event.target.textContent);
-                                                    handleCustomChange('fieldName', sanitizedInput);
-                                                }}
-                                            />
-                                        </div>
-
-                                        <div
-                                            required 
-                                            multiline
-                                            style={{marginTop:'15px',marginLeft:'18px',width:'235px',border: 'none',fontSize:16.5, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}} 
-                                        >
                                             SKILLS
+                                            <hr style={{height:'2px',backgroundColor:'gray' , border:'none', borderRadius:'5px', width:'750px'}} />
                                         </div>
 
                                         <div className="iconAndInputs">
@@ -429,9 +624,10 @@ const removeStyle = (id) => {
                                             <div
                                                 name="GeneralKnowledge"
                                                 aria-required="true"
-                                                style={{width:'210px', fontSize:14.5, padding: '0.2rem', lineHeight:"25px" }}
+                                                style={{width:'750px',marginBottom:'20px',marginLeft:'20px', fontSize:14.5, padding: '0.2rem', lineHeight:"25px"}}
                                                 suppressContentEditableWarning={true}
                                                 contentEditable={true}
+                                                
                                                 placeholder="Programing languages, db's..."
                                                 content={ourForm.objectName.GeneralKnowledge}
                                                 onInput={(event) => {
@@ -439,48 +635,75 @@ const removeStyle = (id) => {
                                                     handleCustomChange('fieldName', sanitizedInput);
                                                 }}
                                             />
+                                            {/* {bullets.map((bullet, index) => (
+                                                <span key={index} style={{ display:'column',fontSize: '24px', color: 'black' }}>
+                                                    {bullet}
+                                                </span>
+                                            ))} */}
                                         </div>
-                                    <TodoLeft/>
-                                </div>   
-                            </div>
 
-            <div className="grid-area work">
-            <div
-                required 
-                multiline
-                style={{marginTop:'15px',marginLeft:'18px',width:'235px',border: 'none',fontSize:16.5, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}} 
-            >
-                WORK EXPERIENCE
-            </div>
-            <TodoWork/>
-            <TodoRight/>
-        </div>
-    </div> 
+                                        <div
+                                            type="text"
+                                            name="educationHeader"
+                                            required 
+                                            multiline
+                                            style={{marginTop:'15px',marginLeft:'18px',width:'235px',border: 'none',fontSize:16.5, fontWeight:'bolder', padding: '0.2rem', lineHeight:"25px"}} 
+                                            >
+                                            EDUCATION
+                                            <hr style={{height:'2px',backgroundColor:'gray' , border:'none', borderRadius:'5px', width:'750px'}} />
+                                        </div>
 
-                                
-                </PDFExport>       
-                </Fade>
-                <Fade delay={800}>
-                    <div className='buttonsStyle'>
+                                        <div className="iconAndInputs">
+                                            {ourForm.objectName.degreeTypeAndname!=='' && (<Fade> <img alt="svg" 
+                                                style={{marginRight:"3px", marginLeft:'18px'}}
+                                                src='data:image/svg+xml;utf8,
+                                                    <svg class="w-[12px] h-[12px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24">
+                                                        <path stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.03v13m0-13c-2.819-.831-4.715-1.076-8.029-1.023A.99.99 0 0 0 3 6v11c0 .563.466 1.014 1.03 1.007 3.122-.043 5.018.212 7.97 1.023m0-13c2.819-.831 4.715-1.076 8.029-1.023A.99.99 0 0 1 21 6v11c0 .563-.466 1.014-1.03 1.007-3.122-.043-5.018.212-7.97 1.023"/>
+                                                    </svg>'
+                                            /> </Fade>)}
+                                            <div
+                                                name="degreeTypeAndname"
+                                                aria-required="true"
+                                                style={{width:'750px',marginBottom:'20px',marginLeft:'20px', fontSize:14.5 , padding: '0.2rem', lineHeight:"25px" }}
+                                                suppressContentEditableWarning={true}
+                                                contentEditable={true}
+                                                placeholder='Knowledge, location, duration...'
+                                                content={ourForm.objectName.degreeTypeAndname}
+                                                onInput={(event) => {
+                                                    const sanitizedInput = sanitizeInput(event.target.textContent);
+                                                    handleCustomChange('fieldName', sanitizedInput);
+                                                }}
+                                            />
+                                        </div>
+                                    
+                                    </div> 
+                                    <TodoRight />  
+                                </div>
+                            </div> 
+                        </PDFExport>       
+                    </Fade>
+                        
+                    <Fade delay={800}>
+                        <div>
 
-                        <ReactToPrint 
-                            trigger={() => 
-                            <Button 
-                                sx={
-                                        [{m:1, mt:7,mb:18, backgroundColor:"rgb(250, 204, 0)",
-                                    },
-                                    {'&:hover': {backgroundColor: "rgb(250, 184, 0)"}}
-                                ]}
-                                    variant="contained" 
-                                    color="inherit"
-                                    startIcon={<PrintIcon/>}>PRINT & PDF
-                            </Button>
-                            } 
-                            content={() => pdfExportComponent.current}
-                        />
+                            <ReactToPrint 
+                                trigger={() => 
+                                <Button 
+                                    sx={
+                                            [{m:1, mt:7,mb:18, backgroundColor:"rgb(250, 204, 0)",
+                                        },
+                                        {'&:hover': {backgroundColor: "rgb(250, 184, 0)"}}
+                                    ]}
+                                        variant="contained" 
+                                        color="inherit"
+                                        startIcon={<PrintIcon/>}>PRINT & PDF
+                                </Button>
+                                } 
+                                content={() => pdfExportComponent.current}
+                            />
 
-                    </div>
-                </Fade>
+                        </div>
+                    </Fade>
             </div>
         </>
     );

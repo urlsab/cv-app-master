@@ -118,18 +118,18 @@ const TodoLeft = () => {
   };
 
   // handle click event of the Add button
-  const handleAddClick = (index) => {
-    const list = [...inputList];
-    list.splice(index + 1 , 0, { optionalSectionHeader: '',  optionalSectionContent: ''});
-    console.log(list[index]);
-    setInputList(list);
-  };
+  // const handleAddClick = (index) => {
+  //   const list = [...inputList];
+  //   list.splice(index + 1 , 0, { optionalSectionHeader: '',  optionalSectionContent: ''});
+  //   console.log(list[index]);
+  //   setInputList(list);
+  // };
 
   return (
     <div>
       {inputList.map((x, i) => {
         return (
-          <div style={{marginTop:'15px'}}>
+          <div style={{marginTop:'5px'}}>
             <div
               key={i + 1}
               className="box"
@@ -139,19 +139,19 @@ const TodoLeft = () => {
 
               <div className="btn-box">
                 {/* {inputList.length - 1 === i && ( */}
-                <button 
+                {/* <button 
                   style={{backgroundColor:"transparent",color:"green", width:"20px", height:"20px", border:"none"}} 
                   key={i + 3} className={x.display} 
                   onClick={() => handleAddClick(i)}
                   // onClick={() => inputRefCurrent(i)}
                 >
                   +
-                </button>
+                </button> */}
 
                 {inputList.length !== 0 && (
                   <button
                     key={i + 4}
-                    style={{backgroundColor:"transparent",color:"red", width:"20px", height:"20px", border:"none"}} 
+                    style={{backgroundColor:"transparent",color:"red", width:"770px", border:"none"}} 
                     className={x.display}
                     onClick={() => handleRemoveClick(i)}
                   >
@@ -159,9 +159,9 @@ const TodoLeft = () => {
                   </button>
                 )}
 
-                <div className='forSecondGroup' style={{marginTop:'10px', marginBottom:'5px', marginLeft:'18px', width:'230px'}} key={i  + 7}>
+                <div className='forSecondGroup' style={{marginTop:'5px', marginBottom:'5px', width:'230px'}} key={i  + 7}>
 
-                <div
+                {/* <div
   name="dynamicHeaderPartOne"
   key={i + 7}
   aria-required="true"
@@ -175,20 +175,40 @@ const TodoLeft = () => {
     handleInputChange({ target: { name: 'dynamicHeaderPartOne', value: sanitizedInput } }, i);
   }}
   // dangerouslySetInnerHTML={{ __html: x.dynamicHeaderPartOne || '' }}
-/>
+/> */}
+
+
 
 <div
   name="dynamicContentPartOne"
-  key={i + 8}
+  key={i + 13}
   aria-required="true"
-  style={{ fontSize: 14.5, lineHeight: "25px" }}
+  // remove display:flex = become mulitiner 
+  style={{ textAlign:'center',fontSize: 14.5, lineHeight: "25px", width:'770px', justifyContent:'center',alignItems:'center',alignSelf:'center' }}
   onMouseUp={handleSelect}
   suppressContentEditableWarning={true}
   contentEditable={true}
-  placeholder='Optional content'
+  placeholder='Optional Objective'
   onInput={(event) => {
+
+    const maxLength = 280; // Set your desired maximum length here
+    let content = event.target.textContent;
+                                                        
+    if (content.length > maxLength) {
+      content = content.slice(0, maxLength);
+      event.target.textContent = content;
+      
+      // Move cursor to end
+      const range = document.createRange();
+      const sel = window.getSelection();
+      range.setStart(event.target.childNodes[0], maxLength);
+      range.collapse(true);
+      sel.removeAllRanges();
+      sel.addRange(range);
+    }
+
     const sanitizedInput = sanitizeInput(event.target.textContent);
-    handleInputChange({ target: { name: 'dynamicContentPartOne', value: sanitizedInput } }, i);
+    handleInputChange({ target: { name: 'dynamicContentPartOne', value: sanitizedInput }, key: event.key }, i);
   }}
   // dangerouslySetInnerHTML={{ __html: x.dynamicContentPartOne || '' }}
 />

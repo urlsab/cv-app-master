@@ -26,6 +26,7 @@ const App = () => {
           <Route path='/register' element={<RegisterApp/>} exact="true" />
           <Route path='/gotNewPassword' element={<GotNewPassword/>} exact="true" />
           <Route path='/postInputs' element={<InputsForm/>} />
+          <Route path="/resume/:id" element={<InputsForm />} />
           {/* <Route path='/postInputs/:id' element={<InputsForm/>} /> */}
           {/* <Route path='/allResumes' element={<AllResumes/> } exact="true" /> */}
           <Route path='/dashboard' element={<Dashboard/> } exact="true" />
