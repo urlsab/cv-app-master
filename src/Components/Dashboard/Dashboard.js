@@ -17,7 +17,7 @@ const Dashboard = ({ setShowNavbar }) => {
 
   useLayoutEffect(() => {
     setShowNavbar(false);
-}, [])
+})
 
   useEffect(() => {
     const viewport = document.querySelector('meta[name=viewport]');

@@ -10,7 +10,7 @@ const Logout = ({ setShowNavbar }) => {
 
       useLayoutEffect(() => {
         setShowNavbar(false);
-    }, [setShowNavbar(false)])
+    })
 
     useEffect(() => {
       const viewport = document.querySelector('meta[name=viewport]');

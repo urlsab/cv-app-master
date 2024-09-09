@@ -19,13 +19,8 @@ import { MdAddLink } from "react-icons/md";
 // import { FaListUl } from "react-icons/fa6";
 import DOMPurify from 'dompurify';
 import CopyToClipboardButton from '../../utils/CopyToClipboardButton';
-// import { useLayoutEffect } from 'react';
 
 const FastBuild = () => {
-
-    // useLayoutEffect(() => {
-    //     setShowNavbar(false);
-    // }, [])
 
     useEffect(() => {
         const viewport = document.querySelector('meta[name=viewport]');
