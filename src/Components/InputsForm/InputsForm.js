@@ -16,25 +16,30 @@ import { auth } from "../../config/firebase.config";
 import { initialState } from "../../utils/ourState";
 import { Button } from "@mui/material";
 import Fade from 'react-reveal/Fade';
-import LightSpeed from 'react-reveal/LightSpeed';
+// import LightSpeed from 'react-reveal/LightSpeed';
 import Navbar from "../Navbar/Navbar";
 import { FaBold } from "react-icons/fa";
 import { TfiUnderline } from "react-icons/tfi";
 import { MdAddLink } from "react-icons/md";
-import bAnduGif from '../../utils/b and u .gif';
-import addLinkGif from '../../utils/add link.gif';
+// import bAnduGif from '../../utils/b and u .gif';
+// import addLinkGif from '../../utils/add link.gif';
+import FastBuild from '../FastBuild/FastBuild';
 // import { generatePath } from "react-router";
 // import { createRandomId } from '../../utils/randomId';
 // import Draggable from 'react-draggable';
 // import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 // import { Document, Packer, Paragraph, TextRun } from 'docx';
 import DOMPurify from 'dompurify';
+import { useLayoutEffect } from 'react';
 
 
-const InputsForm = () => {
+const InputsForm = ({ setShowNavbar }) => {
+
+    useLayoutEffect(() => {
+        setShowNavbar(false);
+    })
 
     useEffect(() => {
-
         const viewport = document.querySelector('meta[name=viewport]');
         viewport.setAttribute('content', 'width=device-width, initial-scale=0.45');
     }, []);
@@ -378,18 +383,16 @@ const InputsForm = () => {
                     {/* Your popover content goes here */}
 
                 <div className="textContainer">
-                    <Fade delay={600}> <h1> <b className="textStyle"> BUILD YOUR RESUME </b> 🔨 </h1> </Fade>
+                    <Fade delay={600}> <h1> <b className="textStyle"> HUMAN FRIENDLY </b> 😊 </h1> </Fade>
                 </div>
 
-                <div style={{display:'flex', flexDirection:'row'}}>
+                {/* <div style={{display:'flex', flexDirection:'row'}}>
                     <LightSpeed left delay={800}><img style={{marginBottom:'80px',marginRight:'20px', border:'2px solid black'}} alt="b and u gif" align="center" width="230" height="150" src={bAnduGif}/></LightSpeed>
                     <LightSpeed left delay={800}><img style={{marginBottom:'80px',marginLeft:'20px', border:'2px solid black'}} alt="add link gif" align="center" width="230" height="150" src={addLinkGif}/></LightSpeed>
-                </div>
+                </div> */}
 
                     
                 <div className='buttonsStyle' style={{ width:'790px',marginBottom:'5px',padding: '2px', border: '1px solid transparent', borderRadius: '5px' }}>
-                    
-                
 
                         <input
                             id="colorPicker"
@@ -483,7 +486,7 @@ const InputsForm = () => {
                                                     marginLeft:"18px",
                                                     width:'235px',
                                                     fontSize:20 ,
-                                                    color:'white', 
+                                                    
                                                     padding: '0.2rem', 
                                                     lineHeight:"25px"}}
                                                 suppressContentEditableWarning={true}
@@ -500,7 +503,7 @@ const InputsForm = () => {
                                                 name="jobTitle"
                                                 aria-required="true"
                                                 multiline
-                                                style={{marginLeft:'18px',marginBottom:'6px',width:'235px',fontSize:16.5 ,color:'white', paddingLeft: '0.2rem', lineHeight:"25px"}}
+                                                style={{marginLeft:'18px',marginBottom:'6px',width:'235px',fontSize:16.5 , paddingLeft: '0.2rem', lineHeight:"25px"}}
                                                 suppressContentEditableWarning={true}
                                                 contentEditable={true}
                                                 placeholder='Role'
@@ -526,7 +529,7 @@ const InputsForm = () => {
                                             <div
                                                 name="email"
                                                 aria-required="true"
-                                                style={{width:'210px', fontSize:14.5 ,color:'white', padding: '0.2rem', lineHeight:"15px", position:'relative' }}
+                                                style={{width:'210px', fontSize:14.5 , padding: '0.2rem', lineHeight:"15px", position:'relative' }}
                                                 suppressContentEditableWarning={true}
                                                 contentEditable={true}
                                                 placeholder='Email'
@@ -553,7 +556,7 @@ const InputsForm = () => {
                                                 // onMouseDown={window.location.href}
                                                 // href={`tel:+972${ourForm.objectName.phoneNumber}`}
                                                 aria-required="true"
-                                                style={{width:'210px', fontSize:14.5 ,color:'white', padding: '0.2rem', lineHeight:"15px", position:'relative' }}
+                                                style={{width:'210px', fontSize:14.5 , padding: '0.2rem', lineHeight:"15px", position:'relative' }}
                                                 suppressContentEditableWarning={true}
                                                 contentEditable={true}
                                                 placeholder='Phone Number'
@@ -579,7 +582,7 @@ const InputsForm = () => {
                                             <div
                                                 name="linkedinLink"
                                                 aria-required="true"
-                                                style={{width:'210px', fontSize:14.5 ,color:'white', padding: '0.2rem', lineHeight:"15px", position:'relative' }}
+                                                style={{width:'210px', fontSize:14.5 , padding: '0.2rem', lineHeight:"15px", position:'relative' }}
                                                 suppressContentEditableWarning={true}
                                                 contentEditable={true}
                                                 placeholder='Linkedin Link'
@@ -605,7 +608,7 @@ const InputsForm = () => {
                                             <div
                                                 name="githubLink"
                                                 aria-required="true"
-                                                style={{width:'210px', fontSize:14.5 ,color:'white', padding: '0.2rem', lineHeight:"15px", position:'relative' }}
+                                                style={{width:'210px', fontSize:14.5 , padding: '0.2rem', lineHeight:"15px", position:'relative' }}
                                                 suppressContentEditableWarning={true}
                                                 contentEditable={true}
                                                 placeholder='Github Link'
@@ -629,7 +632,7 @@ const InputsForm = () => {
                                                 <div
                                                     name="portfolioLink"
                                                     aria-required="true"
-                                                    style={{width:'210px', fontSize:14.5 ,color:'white', padding: '0.2rem', lineHeight:"15px", position:'relative' }}
+                                                    style={{width:'210px', fontSize:14.5 , padding: '0.2rem', lineHeight:"15px", position:'relative' }}
                                                     suppressContentEditableWarning={true}
                                                     contentEditable={true}
                                                     placeholder='Portfolio Link'
@@ -777,6 +780,8 @@ const InputsForm = () => {
                     </div>
                 </Fade>
             </div>
+
+            <FastBuild />
         </>
     );
 }

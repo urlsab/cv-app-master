@@ -11,8 +11,13 @@ import Fade from 'react-reveal/Fade';
 import { Button } from "@mui/material";
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
 import Conffeti from 'react-confetti';
+import { useLayoutEffect } from 'react';
 
-const Dashboard = () => {
+const Dashboard = ({ setShowNavbar }) => {
+
+  useLayoutEffect(() => {
+    setShowNavbar(false);
+}, [])
 
   useEffect(() => {
     const viewport = document.querySelector('meta[name=viewport]');

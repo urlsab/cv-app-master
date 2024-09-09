@@ -4,7 +4,7 @@ import Fade from 'react-reveal/Fade';
 import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import ForwardToInboxIcon from '@mui/icons-material/ForwardToInbox';
-import EntryNavbar from '../EntryNavbar/EntryNavbar';
+// import EntryNavbar from '../EntryNavbar/EntryNavbar';
 import Jump from 'react-reveal/Jump';
 
 const About = () => {
@@ -14,7 +14,7 @@ const About = () => {
   return (
     <>
         <div className='aboutContainer'>
-        <EntryNavbar/>
+        {/* <EntryNavbar/> */}
           <div style={{marginTop:'45px', marginBottom:'90px'}} className='allText'>
             <Fade delay={400} top><h1 style={{marginBottom:'70px'}} className='symbolAndText'> <b className='textStyle'> RESUMES BUILDER APP IS A FRIENDLY PLATFORM </b></h1></Fade>
             <Fade delay={800} top><h1 style={{marginBottom:'70px'}} className='symbolAndText'> <b className='textStyle'> INCLUDES FEATURES AND CLEAR GUIDES </b></h1></Fade>

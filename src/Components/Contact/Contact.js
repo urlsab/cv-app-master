@@ -1,6 +1,6 @@
 import './Contact.css';
 import React, { useState, useRef } from "react";
-import EntryNavbar from '../EntryNavbar/EntryNavbar';
+// import EntryNavbar from '../EntryNavbar/EntryNavbar';
 import TextField from '@mui/material/TextField';
 import { useNavigate } from "react-router-dom";
 import SendIcon from '@mui/icons-material/Send';
@@ -31,7 +31,7 @@ const Contact = () => {
     const [isValid, setIsValid] = useState(null);
 
     const sanitizeInput = (input) => {
-      return DOMPurify.sanitize(input.trim());
+      return DOMPurify.sanitize(input);
     };
 
     const validateEmail = async (e) => {
@@ -112,14 +112,14 @@ const Contact = () => {
   return (
     <>
         <div className='contactContainer'>
-        <EntryNavbar/>    
+        {/* <EntryNavbar/>     */}
           <div className='textsContainerContact' style={{marginTop:'30px',marginBottom:'140px'}}>
             <Fade delay={300} top> <h1>  <b className='shortText'>FOR ANY ISSUE </b> </h1> </Fade>
             <Fade delay={600} top> <h1>  <b className='shortText'>  LEAVE A MESSAGE HERE </b> </h1> </Fade>
             <Fade delay={900} top> <h1>  <b className='shortText'>  AND WE'LL CALL YOU BACK SOON  </b> 📬 </h1> </Fade>
           </div>
 
-          <div style={{marginBottom:'90px'}} className='textBoxContainer'>
+          <div style={{marginBottom:'90px', marginTop:'10px'}} className='textBoxContainer'>
             
             <Fade delay={1200} top >
                         
@@ -137,7 +137,7 @@ const Contact = () => {
                             <AccountCircleIcon />
                         </InputAdornment>
                     )}}                                  
-                    label="Full name"   
+                    label="Name"   
                     value={firstName} 
                     onChange={(e) => setFirstName(sanitizeInput(e.target.value))}                                
                 />
@@ -176,8 +176,6 @@ const Contact = () => {
                   onChange={(e) => setNumber(sanitizeInput(e.target.value))}                           
               />
 
-              
-
               <TextField
                 type="text"
                 name="message"
@@ -186,7 +184,6 @@ const Contact = () => {
                 id="outlined-multiline-static"
                 multiline
                 value={text}
-                  
                 onChange={(e) => setText(sanitizeInput(e.target.value))}
                 
                 // InputProps - works for other things

@@ -7,7 +7,7 @@ import {  createUserWithEmailAndPassword  } from 'firebase/auth';
 import { firestoreDB } from "../../config/firebase.config";
 import { getAuth } from "firebase/auth";
 // import { useAuthState } from "react-firebase-hooks/auth";
-import EntryNavbar from '../EntryNavbar/EntryNavbar';
+// import EntryNavbar from '../EntryNavbar/EntryNavbar';
 import TextField from '@mui/material/TextField';
 import { Button } from "@mui/material";
 import LockOpenIcon from '@mui/icons-material/LockOpen';
@@ -157,7 +157,7 @@ const createCollectionAndSendPasswordToEmail = () => {
     return (
         <>
             <div className="containerRegiter">
-            <EntryNavbar/>
+            {/* <EntryNavbar/> */}
                 <div className="loginForm">
                     <Fade top dalay={300}>  
                         <form ref={form} onSubmit={validateEmail} className="loginFormContainer">                    

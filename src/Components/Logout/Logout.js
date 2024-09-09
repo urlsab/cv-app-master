@@ -4,8 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import Fade from 'react-reveal/Fade';
 import HomeIcon from '@mui/icons-material/Home';
+import { useLayoutEffect } from 'react';
 
-const Logout = () => {
+const Logout = ({ setShowNavbar }) => {
+
+      useLayoutEffect(() => {
+        setShowNavbar(false);
+    }, [setShowNavbar(false)])
 
     useEffect(() => {
       const viewport = document.querySelector('meta[name=viewport]');
@@ -15,10 +20,8 @@ const Logout = () => {
   const navigate = useNavigate();
 
   const navigateToHome = () => {
-
     // avoid user name index in local storage + memory waste
     // localStorage.clear();
-
     navigate("/");
   }
 

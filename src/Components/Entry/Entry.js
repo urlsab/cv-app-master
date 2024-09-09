@@ -1,15 +1,29 @@
 import './Entry.css';
 import React from 'react';
 import { Fade } from 'react-reveal';
-import EntryNavbar from '../EntryNavbar/EntryNavbar';
+// import EntryNavbar from '../EntryNavbar/EntryNavbar';
+import { useNavigate } from "react-router-dom";
+import { Button } from "@mui/material";
+import HandymanIcon from '@mui/icons-material/Handyman';
+import { useLayoutEffect } from 'react';
 
-const Entry = () => {
+const Entry = ({setShowNavbar}) => {
+
+    useLayoutEffect(() => {
+        setShowNavbar(true);
+    })
+
+    const navigate = useNavigate();
+
+    const navigateToCreateResume = () => {
+        navigate("/fastBuild");
+    }
 
     return (
         <>
             <div className='engine'>
 
-                <EntryNavbar/>
+                {/* <EntryNavbar/> */}
 
                 <div className='both'>
                     
@@ -21,8 +35,9 @@ const Entry = () => {
 
                     <div className='symbolStyle'>
                         <Fade delay={1200} bottom> 
-                            <h1 className='styleHeader' > 
-                                <img alt="svg" style={{height:"100px", width:"100px"}} src="https://img.icons8.com/external-vectorslab-flat-vectorslab/53/null/external-Giving-CV-human-resource-vectorslab-flat-vectorslab.png"/> 
+                            <h1> 
+                                {/* <img alt="svg" style={{height:"100px", width:"100px"}} src="https://img.icons8.com/external-vectorslab-flat-vectorslab/53/null/external-Giving-CV-human-resource-vectorslab-flat-vectorslab.png"/> */}
+                                <Fade delay={3400}> <Button startIcon={<HandymanIcon/>} onClick={navigateToCreateResume} size="medium" sx={{m:2, width:"140px", height:"60px"}} variant="contained" color="primary">BUILD NOW</Button> </Fade> 
                             </h1> 
                         </Fade>
                     </div>

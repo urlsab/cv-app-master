@@ -13,19 +13,33 @@ import Fade from 'react-reveal/Fade';
 import { FaBold } from "react-icons/fa";
 import { TfiUnderline } from "react-icons/tfi";
 import { MdAddLink } from "react-icons/md";
-import EntryNavbar from '../EntryNavbar/EntryNavbar';
+// import EntryNavbar from '../EntryNavbar/EntryNavbar';
 // import bAnduGif from '../../utils/b and u .gif';
 // import addLinkGif from '../../utils/add link.gif';
 // import { FaListUl } from "react-icons/fa6";
 import DOMPurify from 'dompurify';
 import CopyToClipboardButton from '../../utils/CopyToClipboardButton';
+// import { useLayoutEffect } from 'react';
 
 const FastBuild = () => {
+
+    // useLayoutEffect(() => {
+    //     setShowNavbar(false);
+    // }, [])
 
     useEffect(() => {
         const viewport = document.querySelector('meta[name=viewport]');
         viewport.setAttribute('content', 'width=device-width, initial-scale=0.45');
     }, []);
+
+    const [color, setColor] = useState('#86CAC6');
+
+    const handleColorChange = (event) => {
+        setColor(event.target.value);
+    };
+
+    // 
+
 
     // const [bullets, setBullets] = useState([]);
 
@@ -151,16 +165,20 @@ const FastBuild = () => {
     return (
         <>
             <div className='createResumeContainer'>
-                <EntryNavbar/>
+                {/* <EntryNavbar/> */}
                     <Fade delay={400}>
-                        <div className="textContainer">
+                        {/* <div className="textContainer">
                             <Fade delay={600}> <h1 style={{marginTop:'20px'}}> <b className="textStyle"> BUILD YOUR RESUME </b> 🔨 </h1> </Fade>
-                        </div>
+                        </div> */}
 
                         {/* <div style={{display:'flex', flexDirection:'row'}}>
                             <LightSpeed left delay={800}><img style={{marginBottom:'80px',marginRight:'20px', border:'2px solid black'}} alt="b and u gif" align="center" width="230" height="150" src={bAnduGif}/></LightSpeed>
                             <LightSpeed left delay={800}><img style={{marginBottom:'80px',marginLeft:'20px', border:'2px solid black'}} alt="add link gif" align="center" width="230" height="150" src={addLinkGif}/></LightSpeed>
                         </div> */}
+
+                        <div className="textContainer">
+                            <Fade delay={600}> <h1> <b className="textStyle"> ATS FRIENDLY ! </b> 🤖 </h1> </Fade>
+                        </div>
                         
                         <div className='buttonsStyle' style={{ marginTop:'50px',marginBottom:'5px',padding: '2px', border: '1px solid transparent', borderRadius: '5px' }}>
                             
@@ -175,27 +193,23 @@ const FastBuild = () => {
                                 >
                             </Button> */}
 
-                            <CopyToClipboardButton text="•" />
-                            
-                            <Button   
-                                sx={{mr:1}}  
-                                style={{height:'36.5px',display: 'flex', justifyContent:  'flex-end'}}
-                                color='inherit'
-                                variant="contained"
-                                startIcon={<MdAddLink/>}
-                                onClick={handleApplyLink}>
-                            </Button> 
                             <input
-                                type="text"
-                                value={linkUrl}
-                                onChange={handleLinkInputChange}
-                                placeholder="Add URL"
-                                onMouseUp={(e) => e.stopPropagation()}
-                                style={{ width: '487px', padding:'6.5px', borderRadius:'5px', borderColor:'transparent', marginRight:'2px' }}
+                                id="colorPicker"
+                                type="color"
+                                value={color}
+                                onChange={handleColorChange}
+                                style={{ 
+                                    height:'36.5px',
+                                    width:'60px',
+                                    cursor: 'pointer',
+                                    marginRight:'8px',
+                                    borderRadius: '5px',
+                                    borderColor:'transparent',
+                                }}
                             />
-                            
+
                             <Button 
-                                sx={{mr:1, ml:1}}
+                                sx={{mr:1}}
                                 style={{height:'36.5px',display: 'flex', justifyContent:  'flex-end'}}
                                 color='inherit'
                                 variant="contained"
@@ -203,13 +217,35 @@ const FastBuild = () => {
                                 onClick={handleBoldi}>
                             </Button>
                             <Button 
-                                
+                                sx={{mr:1}}
                                 style={{height:'36.5px',display: 'flex', justifyContent:  'flex-end'}}
                                 color='inherit'
                                 variant="contained"
                                 startIcon={<TfiUnderline/>}
                                 onClick={handleUnderlinei}>
                             </Button>
+
+                            <input
+                                type="text"
+                                value={linkUrl}
+                                onChange={handleLinkInputChange}
+                                placeholder="Add URL"
+                                onMouseUp={(e) => e.stopPropagation()}
+                                style={{ width: '410px', padding:'6.5px', borderRadius:'5px', borderColor:'transparent', marginRight:'2px' }}
+                            />
+
+                            <Button   
+                                sx={{mr:1, ml:1}}  
+                                style={{height:'36.5px',display: 'flex', justifyContent:  'flex-end'}}
+                                color='inherit'
+                                variant="contained"
+                                startIcon={<MdAddLink/>}
+                                onClick={handleApplyLink}>
+                            </Button> 
+
+                            <CopyToClipboardButton text="•" />
+                            
+                            
                 
                         </div>
                     
@@ -220,7 +256,8 @@ const FastBuild = () => {
                                 {/* className='grid-area name' */}
                                 <div> 
 
-                                    <div className='square'>
+                                    <div style={{backgroundColor:color}} className='square'>
+                                        
                                         <div className='firstGroup forFirstGroup'> 
                                             <div
                                                 name="fullName"
@@ -454,7 +491,7 @@ const FastBuild = () => {
                                                         padding: '0.2rem', lineHeight:"15px" }}
                                                     suppressContentEditableWarning={true}
                                                     contentEditable={true}
-                                                    placeholder='Portfolio'
+                                                    placeholder='Portfolio and / Github'
                                                     content={ourForm.objectName.portfolioLink}
                                                     onInput={(event) => {
                                                         const maxLength = 40; // 
@@ -690,7 +727,7 @@ const FastBuild = () => {
                                 trigger={() => 
                                 <Button 
                                     sx={
-                                            [{m:1, mt:7,mb:18, backgroundColor:"rgb(250, 204, 0)",
+                                            [{m:1, mt:3,mb:18, backgroundColor:"rgb(250, 204, 0)",
                                         },
                                         {'&:hover': {backgroundColor: "rgb(250, 184, 0)"}}
                                     ]}

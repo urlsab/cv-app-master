@@ -23,7 +23,7 @@
     width: 800px;
     
     /* min height effects the footer part of the paper before print */
-    min-height: 11.65in;
+    min-height: 11.75in;
     
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr;

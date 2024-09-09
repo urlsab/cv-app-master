@@ -1,7 +1,7 @@
 import "./LoginApp.css";
 import TextField from '@mui/material/TextField';
 import { Button } from "@mui/material";
-import EntryNavbar from '../EntryNavbar/EntryNavbar';
+// import EntryNavbar from '../EntryNavbar/EntryNavbar';
 import { getAuth } from "firebase/auth";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -122,7 +122,7 @@ const LoginApp = () => {
 
             <div className="mainContainer">
 
-            <EntryNavbar/>
+            {/* <EntryNavbar/> */}
 
                 <div className="loginForm">
 
