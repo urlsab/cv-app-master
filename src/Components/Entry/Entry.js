@@ -37,7 +37,7 @@ const Entry = ({setShowNavbar}) => {
                         <Fade delay={1200} bottom> 
                             <h1> 
                                 {/* <img alt="svg" style={{height:"100px", width:"100px"}} src="https://img.icons8.com/external-vectorslab-flat-vectorslab/53/null/external-Giving-CV-human-resource-vectorslab-flat-vectorslab.png"/> */}
-                                <Fade delay={3400}> <Button startIcon={<HandymanIcon/>} onClick={navigateToCreateResume} size="medium" sx={{m:2, width:"140px", height:"60px"}} variant="contained" color="primary">BUILD NOW</Button> </Fade> 
+                                <Fade delay={1400} bottom> <Button startIcon={<HandymanIcon/>} onClick={navigateToCreateResume} size="medium" sx={{m:2, width:"140px", height:"60px", mb:14}} variant="contained" color="primary">BUILD NOW</Button> </Fade> 
                             </h1> 
                         </Fade>
                     </div>
