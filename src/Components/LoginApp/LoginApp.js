@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 import { Button } from "@mui/material";
 // import EntryNavbar from '../EntryNavbar/EntryNavbar';
 import { getAuth } from "firebase/auth";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../../src/config/firebase.config";
 import { signInWithEmailAndPassword } from 'firebase/auth';
@@ -18,6 +18,11 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 // import { useAuthState } from "react-firebase-hooks/auth";
 
 const LoginApp = () => {
+
+    useEffect(() => {
+        const viewport = document.querySelector('meta[name=viewport]');
+        viewport.setAttribute('content', 'width=device-width, initial-scale=0.7');
+    }, []);
 
     const navigate = useNavigate();
     const curAuth = getAuth();

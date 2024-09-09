@@ -1,5 +1,5 @@
 import './About.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Fade from 'react-reveal/Fade';
 import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
@@ -8,6 +8,11 @@ import ForwardToInboxIcon from '@mui/icons-material/ForwardToInbox';
 import Jump from 'react-reveal/Jump';
 
 const About = () => {
+
+  useEffect(() => {
+    const viewport = document.querySelector('meta[name=viewport]');
+    viewport.setAttribute('content', 'width=device-width, initial-scale=0.7');
+  }, []);
 
   const navigate = useNavigate();
 

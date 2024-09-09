@@ -1,5 +1,5 @@
 import './Contact.css';
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 // import EntryNavbar from '../EntryNavbar/EntryNavbar';
 import TextField from '@mui/material/TextField';
 import { useNavigate } from "react-router-dom";
@@ -17,6 +17,11 @@ import emailjs from '@emailjs/browser';
 import DOMPurify from 'dompurify';
 
 const Contact = () => {
+
+    useEffect(() => {
+      const viewport = document.querySelector('meta[name=viewport]');
+      viewport.setAttribute('content', 'width=device-width, initial-scale=0.7');
+    }, []);
 
     const form = useRef();
     const navigate = useNavigate();

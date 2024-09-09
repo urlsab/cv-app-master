@@ -1,5 +1,5 @@
 import "./RegisterApp.css";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { collection, doc, setDoc } from "firebase/firestore";
 import {  createUserWithEmailAndPassword  } from 'firebase/auth';
@@ -21,6 +21,11 @@ import emailjs from '@emailjs/browser';
 // import axios from 'axios';
 
 const RegisterApp = () => {
+
+    useEffect(() => {
+        const viewport = document.querySelector('meta[name=viewport]');
+        viewport.setAttribute('content', 'width=device-width, initial-scale=0.7');
+      }, []);
 
     const form = useRef();
     const navigate = useNavigate();

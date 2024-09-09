@@ -1,5 +1,5 @@
 import './Entry.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Fade } from 'react-reveal';
 // import EntryNavbar from '../EntryNavbar/EntryNavbar';
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,11 @@ import HandymanIcon from '@mui/icons-material/Handyman';
 import { useLayoutEffect } from 'react';
 
 const Entry = ({setShowNavbar}) => {
+
+    useEffect(() => {
+        const viewport = document.querySelector('meta[name=viewport]');
+        viewport.setAttribute('content', 'width=device-width, initial-scale=0.7');
+      }, []);
 
     useLayoutEffect(() => {
         setShowNavbar(true);
