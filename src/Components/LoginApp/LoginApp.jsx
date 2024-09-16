@@ -5,7 +5,7 @@ import { Button } from "@mui/material";
 import { getAuth } from "firebase/auth";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../../../src/config/firebase.config";
+import { auth } from "../../config/firebase.config";
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import Fade from 'react-reveal/Fade';
@@ -39,7 +39,7 @@ const LoginApp = () => {
 
     const validateEmail = async (e) => {
         e.preventDefault();
-        const apiKey = `${process.env.REACT_APP_VALID_EMAIL}`;
+        const apiKey = `${import.meta.env.VITE_APP_VALID_EMAIL}`;
         // const sanitizedEmail = encodeURIComponent(sanitizeInput(emailAdd));
         const url = `https://emailvalidation.abstractapi.com/v1/?api_key=${apiKey}&email=${email}`;
         try {

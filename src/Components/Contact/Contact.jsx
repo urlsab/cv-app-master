@@ -41,7 +41,7 @@ const Contact = () => {
 
     const validateEmail = async (e) => {
       e.preventDefault();
-      const apiKey = `${process.env.REACT_APP_VALID_EMAIL}`;
+      const apiKey = `${import.meta.env.VITE_APP_VALID_EMAIL}`;
       // const sanitizedEmail = encodeURIComponent(sanitizeInput(emailAdd));
       const url = `https://emailvalidation.abstractapi.com/v1/?api_key=${apiKey}&email=${emailAdd}`;
       try {
@@ -89,15 +89,15 @@ const Contact = () => {
       console.log(curAuth, emailAdd, text);
       
       emailjs.send(
-          process.env.REACT_APP_SERVICE_ID_CONTACT, 
-          process.env.REACT_APP_TEMPLATE_ID_CONTACT, 
+        import.meta.env.VITE_APP_SERVICE_ID_CONTACT, 
+        import.meta.env.VITE_APP_TEMPLATE_ID_CONTACT, 
           {
             user_name: sanitizeInput(firstName),
             message: sanitizeInput(text),
             user_email: sanitizeInput(emailAdd),
             user_number: sanitizeInput(number) 
           },
-          process.env.REACT_APP_PUBLIC_KEY_CONTACT
+          import.meta.env.VITE_APP_PUBLIC_KEY_CONTACT
       )
 
       .then((result) => {
