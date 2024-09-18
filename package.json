@@ -40,9 +40,10 @@
     "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^14.4.3",
     "@types/aria-query": "^5.0.4",
-    "@types/react": "^18.3.5",
+    "@types/react": "^18.3.6",
     "@types/react-dom": "^18.3.0",
     "@userfront/toolkit": "^1.0.10",
+    "@vitejs/plugin-react-swc": "^3.7.0",
     "ajv": "^8.17.1",
     "archiver-utils": "^5.0.2",
     "axios": "^1.7.7",
@@ -79,7 +80,7 @@
     "jsdom": "^25.0.0",
     "lilconfig": "^3.1.2",
     "lz-string": "^1.5.0",
-    "mdb-react-ui-kit": "^8.0.0",
+    "mdb-react-ui-kit": "^9.0.0",
     "node": "^22.8.0",
     "normalize-url": "^8.0.1",
     "package-json": "^10.0.1",
@@ -140,6 +141,8 @@
     "typescript": "^5.6.2",
     "upgrade": "^1.1.0",
     "uuid": "^10.0.0",
+    "vite-plugin-svgr": "^4.2.0",
+    "vite-tsconfig-paths": "^5.0.1",
     "web-vitals": "^4.2.3",
     "workbox-core": "^7.1.0",
     "workbox-precaching": "^7.1.0",
@@ -148,9 +151,10 @@
     "yaml": "^2.5.1"
   },
   "scripts": {
-    "start": "vite",
+    "start": "npm start",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "dev": "vite"
   },
   "eslintConfig": {
     "extends": [
