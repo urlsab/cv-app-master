@@ -5,6 +5,16 @@ header {
     /* margin-bottom: 20px; */
    
   }
+
+  .navbarCon {
+    width: 100%;
+  }
+
+  /* @media screen and (max-width: 330x){
+    .navbarCon {
+      width: 550px;
+    }
+  } */
   
   .main-header {
       height: 3rem;

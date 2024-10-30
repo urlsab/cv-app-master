@@ -41,7 +41,8 @@ const Contact = () => {
 
     const validateEmail = async (e) => {
       e.preventDefault();
-      const apiKey = `${import.meta.env.VITE_APP_VALID_EMAIL}`;
+      const apiKey = `${import.meta.env.VITE_VALID_EMAIL}`;
+      console.log(apiKey);
       // const sanitizedEmail = encodeURIComponent(sanitizeInput(emailAdd));
       const url = `https://emailvalidation.abstractapi.com/v1/?api_key=${apiKey}&email=${emailAdd}`;
       try {
@@ -88,16 +89,19 @@ const Contact = () => {
 
       console.log(curAuth, emailAdd, text);
       
+      // the order of the arguments is critical! keep it this way
       emailjs.send(
-        import.meta.env.VITE_APP_SERVICE_ID_CONTACT, 
-        import.meta.env.VITE_APP_TEMPLATE_ID_CONTACT, 
-          {
-            user_name: sanitizeInput(firstName),
-            message: sanitizeInput(text),
-            user_email: sanitizeInput(emailAdd),
-            user_number: sanitizeInput(number) 
-          },
-          import.meta.env.VITE_APP_PUBLIC_KEY_CONTACT
+        import.meta.env.VITE_SERVICE_ID_CONTACT, 
+        import.meta.env.VITE_TEMPLATE_ID_CONTACT, 
+        {
+          user_name: sanitizeInput(firstName),
+          message: sanitizeInput(text),
+          user_email: sanitizeInput(emailAdd),
+          user_number: sanitizeInput(number) 
+        },
+        
+        //must be called at the last!!!
+        import.meta.env.VITE_PUBLIC_KEY_CONTACT,
       )
 
       .then((result) => {

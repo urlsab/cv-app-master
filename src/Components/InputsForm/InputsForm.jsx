@@ -23,7 +23,7 @@ import { TfiUnderline } from "react-icons/tfi";
 import { MdAddLink } from "react-icons/md";
 // import bAnduGif from '../../utils/b and u .gif';
 // import addLinkGif from '../../utils/add link.gif';
-import FastBuild from '../FastBuild/FastBuild';
+// import FastBuild from '../FastBuild/FastBuild';
 // import { generatePath } from "react-router";
 // import { createRandomId } from '../../utils/randomId';
 // import Draggable from 'react-draggable';
@@ -758,7 +758,7 @@ const InputsForm = ({ setShowNavbar }) => {
                             trigger={() => 
                             <Button 
                                 sx={
-                                        [{m:1, mt:3,mb:19, backgroundColor:"rgb(250, 204, 0)",
+                                        [{m:1, mt:3,mb:25, backgroundColor:"rgb(250, 204, 0)",
                                     },
                                     {'&:hover': {backgroundColor: "rgb(250, 184, 0)"}}
                                 ]}
@@ -781,7 +781,7 @@ const InputsForm = ({ setShowNavbar }) => {
                 </Fade>
             </div>
 
-            <FastBuild />
+            {/* <FastBuild /> */}
         </>
     );
 }

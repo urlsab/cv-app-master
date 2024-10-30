@@ -1,0 +1,10 @@
+.atsCon {
+    background: linear-gradient(90deg, rgb(131, 99, 206) 50%, rgb(132, 193, 233) 100%);
+    display: flex;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}

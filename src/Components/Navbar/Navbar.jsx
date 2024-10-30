@@ -3,11 +3,13 @@ import React from 'react';
 import { NavLink, useNavigate } from "react-router-dom";
 import Toolbar from '@mui/material/Toolbar';
 import AppBar from '@mui/material/AppBar';
+import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
+import BrushIcon from '@mui/icons-material/Brush';
 import Container from '@mui/material/Container';
 import { useAuthState } from "react-firebase-hooks/auth";
 import LogoutIcon from '@mui/icons-material/Logout';
 // import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
-import NoteAddIcon from '@mui/icons-material/NoteAdd';
+// import NoteAddIcon from '@mui/icons-material/NoteAdd';
 import { auth } from '../../config/firebase.config';
 // import { useUserAuth } from '../../Context/UserAuthContext';
 import { signOut } from "firebase/auth";
@@ -44,12 +46,13 @@ const Navbar = () => {
 
     return (
 
-        <>
+        <div className='navbarCon'>
                
             <AppBar style={{background:"linear-gradient(162deg, rgb(99, 88, 80) 0%, rgb(54, 108, 158) 70%)"}} position="sticky" color="default">
-                <Container maxWidth="xl">
-                    <Toolbar disableGutters>
-                        <NavLink to="/postInputs" exact="true"><NoteAddIcon sx={{mr:"4px"}}/>NEW RESUME</NavLink>
+            <Container maxWidth="xl">
+                    <Toolbar  disableGutters>
+                        <NavLink to="/postInputs" exact="true"><BrushIcon sx={{mr:"4px"}}/>DESIGNED TEMPLATE</NavLink>
+                        <NavLink to="/atsTemplate" exact="true"><DocumentScannerIcon sx={{mr:"4px"}}/>ATS TEMPLATE</NavLink>
                         {/* <NavLink to="/allResumes" exact="true"><ManageAccountsIcon sx={{mr:"4px"}}/>MY AREA</NavLink> */}
                         {/* <NavLink to="/examples" exact="true"><CollectionsIcon sx={{mr:"4px"}}/>EXAMPLES</NavLink> */}
                         <NavLink to="/logout" exact="true" onClick={handleLogout}><LogoutIcon sx={{mr:"4px"}}/>LOGOUT</NavLink>
@@ -58,7 +61,7 @@ const Navbar = () => {
                 </Container>
             </AppBar>
 
-        </>
+        </div>
 
     );
 

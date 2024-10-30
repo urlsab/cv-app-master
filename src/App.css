@@ -3,4 +3,35 @@
   min-height: 100%;
 } */
 
+body {
+  margin: 0;
+  width: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; 
+}
+
 /* במצב של בדיקת מסכי טלפון רספונסיביים - מה שמדמה מסך שלי זה : 790 על 400  */
+
+.appCon {
+cursor: pointer;
+  /* text-align: center; */
+}
+
+@media screen and (max-width: 450px) {
+  .appCon {
+    width: 520px;
+  }
+}
+
+/* @media screen and (max-width: 400px) {
+  .appCon {
+    width: 700px;
+  }
+}
+
+
+@media screen and (max-width: 350px) {
+  .appCon {
+    width: 650px;
+  }
+} */

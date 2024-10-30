@@ -48,7 +48,7 @@ const RegisterApp = () => {
   
     const validateEmail = async (e) => {
         e.preventDefault();
-        const apiKey = `${import.meta.env.VITE_APP_VALID_EMAIL}`;
+        const apiKey = `${import.meta.env.VITE_VALID_EMAIL}`;
         // const sanitizedEmail = encodeURIComponent(sanitizeInput(emailAdd));
         const url = `https://emailvalidation.abstractapi.com/v1/?api_key=${apiKey}&email=${emailAdd}`;
         try {
@@ -125,14 +125,14 @@ const createCollectionAndSendPasswordToEmail = () => {
       })
       
       emailjs.send(
-          `${import.meta.env.VITE_APP_SERVICE_ID}`, 
-          `${import.meta.env.VITE_APP_TEMPLATE_ID}`, 
+          `${import.meta.env.VITE_SERVICE_ID}`, 
+          `${import.meta.env.VITE_TEMPLATE_ID}`, 
           {
           user_name: sanitizedFirstName,
           message: sanitizedPassword,
           user_email: sanitizedEmail,
           },
-          `${import.meta.env.VITE_APP_PUBLIC_KEY}`,
+          `${import.meta.env.VITE_PUBLIC_KEY}`,
       )
       .then((result) => {
           console.log(`email js send the password ${rePassword} to ${emailAdd}  `)

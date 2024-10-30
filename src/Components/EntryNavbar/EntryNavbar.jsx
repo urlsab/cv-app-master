@@ -19,7 +19,7 @@ const EntryNavbar = () => {
   }, []);
 
   return (
-    <>
+    <div className='navbarCon'>
       <AppBar style={{background:"linear-gradient(162deg, rgb(99, 88, 80) 0%, rgb(54, 108, 158) 70%)"}} position="sticky" color="default">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
@@ -35,7 +35,7 @@ const EntryNavbar = () => {
           </Toolbar>   
         </Container>
       </AppBar>
-    </>
+    </div>
   )
 }
 

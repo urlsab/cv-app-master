@@ -1,6 +1,8 @@
 import './FastBuild.css';
 import React, { useState, useRef, useEffect } from "react";
 import TodoLeft from '../TodoLeft/TodoLeft';
+import { useNavigate, useParams } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 import TodoRight from '../TodoRight/TodoRight';
 import { PDFExport } from "@progress/kendo-react-pdf";
 import TodoWork from '../TodoWork/TodoWork';
@@ -19,8 +21,141 @@ import { MdAddLink } from "react-icons/md";
 // import { FaListUl } from "react-icons/fa6";
 import DOMPurify from 'dompurify';
 import CopyToClipboardButton from '../../utils/CopyToClipboardButton';
+import { getStorage, ref, listAll,getDownloadURL , uploadBytes } from "firebase/storage";
+import { Document, Packer, Paragraph, TextRun } from "docx";
+// import { ref } from 'firebase/storage';
+// import { storage } from "../../config/firebase.config";
 
-const FastBuild = () => {
+const FastBuild = ({fileUrl, fileName}) => {
+
+    
+  const [firebaseFiles, setFirebaseFiles] = useState([]);
+
+  const getFilesFromFirebase = async () => {
+    const storage = getStorage();
+    const listRef = ref(storage, 'resumes'); // Assuming 'resumes' is the folder where files are stored
+
+    try {
+      const res = await listAll(listRef);
+      const filesPromises = res.items.map(async (itemRef) => {
+        const url = await getDownloadURL(itemRef);
+        return { name: itemRef.name, url };
+      });
+      const files = await Promise.all(filesPromises);
+      setFirebaseFiles(files);
+    } catch (error) {
+      console.error("Error fetching files from Firebase:", error);
+    }
+  };
+
+  useEffect(() => {
+    getFilesFromFirebase();
+  }, []);
+
+    const storage = getStorage();
+
+    useEffect(() => {
+        if (fileUrl) {
+          // Load the file content from the URL and update the component state
+          fetch(fileUrl)
+            .then(response => response.text())
+            .then(content => {
+              // Parse the content and update the component state
+              // This depends on how you've stored the resume data
+              // For example, if it's JSON:
+              const resumeData = JSON.parse(content);
+              setOurForm(resumeData);
+            })
+            .catch(error => console.error("Error loading file:", error));
+        }
+      }, [fileUrl]);
+
+    const generateDocx = (data) => {
+        const doc = new Document({
+          sections: [{
+            properties: {},
+            children: [
+              new Paragraph({
+                children: [
+                  new TextRun(`${ourForm.objectName.fullName}`),
+                  new TextRun(`${ourForm.objectName.phoneNumber}`),
+                  new TextRun(`${ourForm.objectName.email}`),
+                  new TextRun(`${ourForm.objectName.linkedinLink}`),
+                  new TextRun(`${ourForm.objectName.githubLink}`),
+                  new TextRun(`${ourForm.objectName.portfolioLink}`),
+                ],
+              }),
+            ],
+          }],
+        });
+      
+        return Packer.toBlob(doc);
+      };
+
+      const uploadDocxToFirebase = async (data) => {
+        try {
+          const docxBuffer = await generateDocx(data);
+          const fileName = `resume_${Date.now()}.docx`;
+          const storageRef = ref(storage, fileName);
+      
+          const snapshot = await uploadBytes(storageRef, docxBuffer);
+          console.log('Uploaded a DOCX file!');
+          return snapshot.ref.fullPath;
+        } catch (error) {
+          console.error("Error uploading DOCX file:", error);
+          throw error;
+        }
+      };
+      
+      const handleSaveAsDocx = async () => {
+        try {
+          const filePath = await uploadDocxToFirebase(ourForm.objectName);
+          console.log("File saved to Firebase Storage:", filePath);
+          
+          // You can store the filePath in your database or show it to the user
+        } catch (error) {
+          console.error("Failed to save DOCX file:", error);
+          // Handle the error (e.g., show an error message to the user)
+        }
+      };
+    // const fileRef = ref(storage, 'someFile.docx');
+
+    const [data, setData] = useState({});
+    const navigate = useNavigate();
+    const { id } = useParams();
+
+    useEffect(() => {
+        if (id) {
+        const savedData = localStorage.getItem(id);
+        if (savedData) {
+            setData(JSON.parse(savedData));
+        }
+        }
+    }, [id]);
+
+  const saveData = () => {
+    let saveId = id;
+    if (!saveId) {
+      saveId = uuidv4();
+
+      // maybe - navigate(`fastBuild/${saveId}`);
+      navigate(`/${saveId}`);
+    }
+    localStorage.setItem(saveId, JSON.stringify(data));
+    console.log(`Data saved with ID: ${saveId}`);
+  };
+
+// for savin data on inputs tags
+//   const handleChange = (e) => {
+//     setData({ ...data, [e.target.name]: e.target.value });
+//   };
+
+  const handleDivChange = (e) => {
+    const { name } = e.target.dataset;
+    if (name) {
+      setData({ ...data, [name]: e.target.innerText });
+    }
+  };
 
     useEffect(() => {
         const viewport = document.querySelector('meta[name=viewport]');
@@ -256,6 +391,12 @@ const FastBuild = () => {
                                         <div className='firstGroup forFirstGroup'> 
                                             <div
                                                 name="fullName"
+
+                                                // replace this pattren all over the template and see if it saved on unic id
+                                                // onInput={handleDivChange}
+                                                // data-name="fullNames"
+                                                // dangerouslySetInnerHTML={{ __html: data.fullNames }}
+                                                
                                                 aria-required="true"
                                                 
                                                 multiline
@@ -515,6 +656,43 @@ const FastBuild = () => {
                                                 />
                                         </div>
 
+    {/* <div
+        style={{
+          marginTop: "20px",
+          width: '250px',
+          fontSize: 20,
+          backgroundColor: 'green',
+          alignItems: 'center',
+          justifyContent: 'center',
+          textAlign: 'center',
+          padding: '0.2rem',
+          lineHeight: "25px"
+        }}
+        suppressContentEditableWarning={true}
+        contentEditable={true}
+        onInput={handleDivChange}
+        data-name="fullNames"
+        dangerouslySetInnerHTML={{ __html: data.fullNames }}
+      /> */}
+
+      {/* <div
+        style={{
+          marginTop: "20px",
+          width: '250px',
+          fontSize: 16,
+          backgroundColor: 'lightblue',
+          padding: '0.2rem',
+          lineHeight: "20px"
+        }}
+        suppressContentEditableWarning={true}
+        contentEditable={true}
+        onInput={handleDivChange}
+        data-name="description"
+        dangerouslySetInnerHTML={{ __html: data.description }}
+      /> */}
+
+      
+
                                             <TodoLeft/>
 
                                         {/* <div className="iconAndInputs">
@@ -722,7 +900,7 @@ const FastBuild = () => {
                                 trigger={() => 
                                 <Button 
                                     sx={
-                                            [{m:1, mt:3,mb:22, backgroundColor:"rgb(250, 204, 0)",
+                                            [{m:1, mt:3,mb:25, backgroundColor:"rgb(250, 204, 0)",
                                         },
                                         {'&:hover': {backgroundColor: "rgb(250, 184, 0)"}}
                                     ]}
@@ -734,11 +912,179 @@ const FastBuild = () => {
                                 content={() => pdfExportComponent.current}
                             />
 
+                        <Button 
+                        sx={[
+                            {m:1, mt:3,mb:25, backgroundColor:"rgb(0, 128, 255)"},
+                            {'&:hover': {backgroundColor: "rgb(0, 100, 200)"}}
+                        ]}
+                        variant="contained" 
+                        color="primary"
+                        onClick={handleSaveAsDocx}
+                        >
+                        Save as DOCX
+                        </Button>
+
+                            {/* <button onClick={saveData}>Save</button> */}
+
                         </div>
                     </Fade>
             </div>
+
+        {/* <div>
+          <h2>Saved Resumes</h2>
+          {firebaseFiles.map((file, index) => (
+            <p key={index} fileUrl={file.url} fileName={file.name} >data</p>
+          ))}
+        </div> */}
         </>
     );
 }
 
 export default FastBuild;   
+
+
+// maybe add this code of claude ai
+// import { getStorage, ref, listAll, getDownloadURL } from "firebase/storage";
+// import { useState, useEffect } from "react";
+// import { CircularProgress, Typography, List, ListItem, ListItemText, Button } from "@mui/material";
+// import { Alert } from '@/components/ui/alert';
+
+// const FastBuild = () => {
+//   const [firebaseFiles, setFirebaseFiles] = useState([]);
+//   const [selectedFile, setSelectedFile] = useState(null);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState(null);
+
+//   const getFilesFromFirebase = async () => {
+//     const storage = getStorage();
+//     const listRef = ref(storage, 'resumes');
+
+//     setLoading(true);
+//     setError(null);
+
+//     try {
+//       const res = await listAll(listRef);
+//       const filesPromises = res.items.map(async (itemRef) => {
+//         const url = await getDownloadURL(itemRef);
+//         return { name: itemRef.name, url };
+//       });
+//       const files = await Promise.all(filesPromises);
+//       setFirebaseFiles(files);
+//     } catch (error) {
+//       console.error("Error fetching files from Firebase:", error);
+//       setError("Failed to fetch files. Please try again later.");
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   useEffect(() => {
+//     getFilesFromFirebase();
+//   }, []);
+
+//   const handleFileSelect = (file) => {
+//     setSelectedFile(file);
+//   };
+
+//   const renderFileContent = () => {
+//     if (!selectedFile) {
+//       return null;
+//     }
+
+//     return (
+//       <FastBuildContent fileUrl={selectedFile.url} fileName={selectedFile.name} />
+//     );
+//   };
+
+//   if (loading) {
+//     return <CircularProgress />;
+//   }
+
+//   if (error) {
+//     return (
+//       <Alert variant="destructive">
+//         <AlertTitle>Error</AlertTitle>
+//         <AlertDescription>{error}</AlertDescription>
+//       </Alert>
+//     );
+//   }
+
+//   return (
+//     <div className='createResumeContainer'>
+//       <Typography variant="h4" gutterBottom>
+//         Saved Resumes
+//       </Typography>
+//       <List>
+//         {firebaseFiles.map((file, index) => (
+//           <ListItem key={index}>
+//             <ListItemText primary={file.name} />
+//             <Button onClick={() => handleFileSelect(file)}>
+//               Load
+//             </Button>
+//           </ListItem>
+//         ))}
+//       </List>
+//       {renderFileContent()}
+//     </div>
+//   );
+// };
+
+// const FastBuildContent = ({ fileUrl, fileName }) => {
+//   const [resumeData, setResumeData] = useState(null);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState(null);
+
+//   useEffect(() => {
+//     const fetchResumeData = async () => {
+//       setLoading(true);
+//       setError(null);
+//       try {
+//         const response = await fetch(fileUrl);
+//         if (!response.ok) {
+//           throw new Error('Failed to fetch resume data');
+//         }
+//         const content = await response.text();
+//         const parsedData = JSON.parse(content);
+//         setResumeData(parsedData);
+//       } catch (error) {
+//         console.error("Error loading file:", error);
+//         setError("Failed to load resume data. Please try again.");
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+
+//     fetchResumeData();
+//   }, [fileUrl]);
+
+//   if (loading) {
+//     return <CircularProgress />;
+//   }
+
+//   if (error) {
+//     return (
+//       <Alert variant="destructive">
+//         <AlertTitle>Error</AlertTitle>
+//         <AlertDescription>{error}</AlertDescription>
+//       </Alert>
+//     );
+//   }
+
+//   if (!resumeData) {
+//     return null;
+//   }
+
+//   // Render the FastBuild component with the loaded data
+//   return (
+//     <div>
+//       <Typography variant="h5" gutterBottom>
+//         {fileName}
+//       </Typography>
+//       {/* Render your FastBuild component here using the resumeData */}
+//       {/* For example: */}
+//       {/* <FastBuildRenderer data={resumeData} /> */}
+//     </div>
+//   );
+// };
+
+// export default FastBuild;

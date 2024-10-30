@@ -39,7 +39,7 @@ const LoginApp = () => {
 
     const validateEmail = async (e) => {
         e.preventDefault();
-        const apiKey = `${import.meta.env.VITE_APP_VALID_EMAIL}`;
+        const apiKey = `${import.meta.env.VITE_VALID_EMAIL}`;
         // const sanitizedEmail = encodeURIComponent(sanitizeInput(emailAdd));
         const url = `https://emailvalidation.abstractapi.com/v1/?api_key=${apiKey}&email=${email}`;
         try {

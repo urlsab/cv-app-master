@@ -42,8 +42,7 @@
 }
 
 .symbolStyle {
-  text-align: center;
-  margin-top: 3px;
+  margin-top: 20px;
 }
 
 .both {
@@ -52,5 +51,5 @@
   flex-wrap: wrap;
   flex-direction: row;
   padding: 120px;
-  align-items: center;
+  align-items: flex-end;
 }
