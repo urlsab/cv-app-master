@@ -134,18 +134,19 @@ const Contact = () => {
                         
               <form ref={form} onSubmit={validateEmail} className="loginFormContainer">                    
 
-                <TextField                              
+                <TextField                             
                     name="user_name"
                     type="text"                                    
                     required 
                     // placeholder="Full name"
                     // all fields stretch to this width
-                    sx={{width:"280px"}}
-                    InputProps={{maxLength:30,pattern: "[A-Za-z ]{1,50}",startAdornment: (
-                        <InputAdornment position="start">
-                            <AccountCircleIcon />
-                        </InputAdornment>
-                    )}}                                  
+                    style={{width:"280px"}}
+
+                    slotProps={{input: {startAdornment: <AccountCircleIcon style={{color:'gray',marginRight:'7px'}} />,
+                      maxLength: '5',
+                      pattern: "[A-Za-z ]{1,50}"
+                    }}}
+                                                    
                     label="Name"   
                     value={firstName} 
                     onChange={(e) => setFirstName(sanitizeInput(e.target.value))}                                
@@ -157,11 +158,14 @@ const Contact = () => {
                   name="user_email"
                   required  
                   // placeholder="Full name"
-                  InputProps={{maxLength:30,pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+[a-z]{2,}$",startAdornment: (
-                      <InputAdornment position="start">
-                          <EmailIcon />
-                      </InputAdornment>
-                  )}}   
+                    
+
+                  slotProps={{input: {startAdornment: <EmailIcon  style={{color:'gray',marginRight:'7px'}} />,
+                      maxLength: '30',
+                      pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+[a-z]{2,}$"
+
+                    }}}
+
                   value={emailAdd}
                   onChange={(e) => setEmailAdd(sanitizeInput(e.target.value))}                                                                 
                 />
@@ -176,11 +180,14 @@ const Contact = () => {
                   name="user_number"
                   required  
                   // placeholder="Full name"
-                  InputProps={{maxLength:20,pattern: "{10}",startAdornment: (
-                      <InputAdornment position="start">
-                          <ContactPhoneIcon />
-                      </InputAdornment>
-                  )}}   
+                  
+
+                  slotProps={{input: {startAdornment: <ContactPhoneIcon  style={{color:'gray',marginRight:'7px'}} />,
+                      maxLength: '20',
+                      pattern: "{10}"
+
+                    }}}
+
                   value={number}
                   onChange={(e) => setNumber(sanitizeInput(e.target.value))}                           
               />
@@ -195,8 +202,7 @@ const Contact = () => {
                 value={text}
                 onChange={(e) => setText(sanitizeInput(e.target.value))}
                 
-                // InputProps - works for other things
-                inputProps={{maxLength:105}}
+                slotProps={{input: { maxLength: '105'}}}
                 
                 rows={4}
                 

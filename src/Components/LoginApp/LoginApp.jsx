@@ -143,11 +143,10 @@ const LoginApp = () => {
                                 label="Email"                                   
                                 required 
                                 onKeyDown={handleSpace}
-                                InputProps={{startAdornment: (
-                                    <InputAdornment position="start">
-                                        <EmailIcon />
-                                    </InputAdornment>
-                                )}}     
+                                    
+
+                                slotProps={{input: {startAdornment: <EmailIcon style={{color:'gray',marginRight:'7px'}} /> }}}
+
                                 // all fields stretch to this width
                                 sx={{width:"280px"}}                                   
                                 onChange={(e) => handleInputChange(e, setEmail)}
@@ -164,11 +163,12 @@ const LoginApp = () => {
                                 label="Password"  
                                 onKeyDown={handleSpace}                                  
                                 required 
-                                InputProps={{startAdornment: (
-                                    <InputAdornment position="start">
-                                        <LockOpenIcon />
-                                    </InputAdornment>
-                                )}}                                             
+                                 
+
+                                slotProps={{input: {startAdornment: <LockOpenIcon style={{color:'gray',marginRight:'7px'}} /> }}}
+                                
+                                
+                                
                                 onChange={(e) => handleInputChange(e, setPassword)}
                             />
                     

@@ -175,11 +175,10 @@ const createCollectionAndSendPasswordToEmail = () => {
                                 onChange={(e) => setFirstName(e.target.value)}
                                 // all fields stretch to this width
                                 sx={{width:"280px"}}
-                                InputProps={{startAdornment: (
-                                    <InputAdornment position="start">
-                                        <AccountCircleIcon />
-                                    </InputAdornment>
-                                )}}                                  
+                                
+                                
+                                slotProps={{input: {startAdornment: <AccountCircleIcon style={{color:'gray',marginRight:'7px'}} /> }}}
+                                
                                 label="Name"   
                                                                 
                             />
@@ -194,13 +193,10 @@ const createCollectionAndSendPasswordToEmail = () => {
                                 name="user_email"
                                 required  
                                 onKeyDown={handleSpace}
-                                InputProps={{startAdornment: (
-                                    <InputAdornment position="start">
-                                        <EmailIcon />
-                                    </InputAdornment>
-                                )
                                 
-                            }}   
+
+                            slotProps={{input: {startAdornment: <EmailIcon style={{color:'gray',marginRight:'7px'}} /> }}}
+
                                 value={emailAdd}
                                 onChange={(e) => setEmailAdd(e.target.value)}                                                                 
                             />
@@ -217,11 +213,9 @@ const createCollectionAndSendPasswordToEmail = () => {
                                 value={rePassword}
                                 onChange={(e) => setRePassword(e.target.value)}  
                                 autoComplete="on"
-                                InputProps={{startAdornment: (
-                                    <InputAdornment position="start">
-                                        <LockOpenIcon />
-                                    </InputAdornment>
-                                )}}   
+                                
+                                
+                                slotProps={{input: {startAdornment: <LockOpenIcon style={{color:'gray',marginRight:'7px'}} /> }}}
                                                                                                    
                             />
                             {isNotEmptyOrWhitespace(rePassword) && rePassword.length < 8 && rePassword!=='' && (
