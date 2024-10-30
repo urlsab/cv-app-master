@@ -912,7 +912,7 @@ const FastBuild = ({fileUrl, fileName}) => {
                                 content={() => pdfExportComponent.current}
                             />
 
-                        <Button 
+                        {/* <Button 
                         sx={[
                             {m:1, mt:3,mb:25, backgroundColor:"rgb(0, 128, 255)"},
                             {'&:hover': {backgroundColor: "rgb(0, 100, 200)"}}
@@ -922,7 +922,7 @@ const FastBuild = ({fileUrl, fileName}) => {
                         onClick={handleSaveAsDocx}
                         >
                         Save as DOCX
-                        </Button>
+                        </Button> */}
 
                             {/* <button onClick={saveData}>Save</button> */}
 
