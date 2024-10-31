@@ -27,11 +27,12 @@ const Logout = ({ setShowNavbar }) => {
 
   return (
     <div className="logoutContainer">  
-      <Fade bottom delay={300}> <h2> <b className='goodBeyStyle'> YOUR GREAT RESUME - OUR SUCCESS </b> </h2> </Fade> 
-      
+      <Fade bottom delay={300}> <h2> <b className='goodBeyStyle'> YOUR GREAT RESUME  </b> </h2> </Fade> 
+      <Fade bottom delay={600}> <h2> <b className='goodBeyStyle'> IS OUR SUCCESS  </b> </h2> </Fade> 
+      <Fade bottom delay={600}> <h2> <b className='goodBeyStyle'> GOOD LUCK!  </b> </h2> </Fade> 
       {/* <b className='styleName'> {localStorage.getItem(localStorage.key(0))}  </b> */}
-      <Fade bottom delay={600}> <h3> <b className='goodBeyStyle'>  SEE YOU SOON  </b> 🤙 </h3>  </Fade>      
-      <Fade delay={900}> <Button style={{marginBottom:'80px'}} sx={{m:3}} startIcon={<HomeIcon/>} onClick={navigateToHome} color="primary" variant="contained"> home </Button> </Fade>
+      <Fade bottom delay={900}> <h3> <b className='goodBeyStyle'>  SEE YOU SOON  </b> 🤙 </h3>  </Fade>      
+      <Fade delay={1200}> <Button style={{marginBottom:'80px'}} sx={{m:3}} startIcon={<HomeIcon/>} onClick={navigateToHome} color="primary" variant="contained"> home </Button> </Fade>
     </div>
   )
 }

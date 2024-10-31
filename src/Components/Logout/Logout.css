@@ -11,9 +11,27 @@
     justify-content: space-evenly;
     font-family: 'Itim', serif;
     /* height: 601px; */
-    font-size: 28px;
-    padding: 110px;
+    
+    /* padding: 110px; */
     text-align: center;
+  }
+
+  @media screen and (max-width: 1400px){
+    .logoutContainer {
+      font-size: 30px;
+    }
+  }
+
+  @media screen and (max-width: 770px){
+    .logoutContainer {
+      font-size: 35px;
+    }
+  }
+
+  @media screen and (max-width: 480px){
+    .logoutContainer {
+      font-size: 40px;
+    }
   }
 
   .goodBeyStyle {
