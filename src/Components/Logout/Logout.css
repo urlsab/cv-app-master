@@ -24,13 +24,13 @@
 
   @media screen and (max-width: 770px){
     .logoutContainer {
-      font-size: 35px;
+      font-size: 39px;
     }
   }
 
   @media screen and (max-width: 480px){
     .logoutContainer {
-      font-size: 40px;
+      font-size: 47px;
     }
   }
 
