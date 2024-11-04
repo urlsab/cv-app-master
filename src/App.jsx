@@ -12,7 +12,7 @@ import Logout from './Components/Logout/Logout';
 import Entry from './Components/Entry/Entry';
 import About from './Components/About/About';
 import Contact from './Components/Contact/Contact';
-import FastBuild from './Components/FastBuild/FastBuild';
+import FastBuild  from './Components/FastBuild/FastBuild';
 import EntryNavbar from './Components/EntryNavbar/EntryNavbar';
 
 const App = () => {

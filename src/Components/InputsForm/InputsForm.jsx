@@ -31,9 +31,13 @@ import { MdAddLink } from "react-icons/md";
 // import { Document, Packer, Paragraph, TextRun } from 'docx';
 import DOMPurify from 'dompurify';
 import { useLayoutEffect } from 'react';
+import { useReactToPrint } from'react-to-print';
 
 
 const InputsForm = ({ setShowNavbar }) => {
+
+    const contentRef = useRef(null);
+    const reactToPrintFn = useReactToPrint({ contentRef });
 
     useLayoutEffect(() => {
         setShowNavbar(false);
@@ -471,7 +475,7 @@ const InputsForm = ({ setShowNavbar }) => {
 
                             {/* onMouseUp={()=>{ handleSelect();handleSelectioni()}}  */}
                             {/* margin top effects the head part of the paper before print */}
-                            <div className="resumei" onMouseUp={handleSelect}>
+                            <div ref={contentRef} className="resumei" onMouseUp={handleSelect}>
                                 <div style={{backgroundColor:'rgb(234,239,239)'}}>
                                 <div className="grid-area namei">
                                     <div style={{backgroundColor:color}} className='squarei'>
@@ -754,21 +758,19 @@ const InputsForm = ({ setShowNavbar }) => {
                             onClick={handleExportWithComponent}>pdf 
                         </Button> */}
 
-                        <ReactToPrint 
-                            trigger={() => 
-                            <Button 
-                                sx={
-                                        [{m:1, mt:3,mb:25, backgroundColor:"rgb(250, 204, 0)",
-                                    },
-                                    {'&:hover': {backgroundColor: "rgb(250, 184, 0)"}}
-                                ]}
-                                    variant="contained" 
-                                    color="inherit"
-                                    startIcon={<PrintIcon/>}>PRINT & PDF
-                            </Button>
-                            } 
-                            content={() => pdfExportComponent.current}
-                        />
+                                <Button 
+                                    onClick={reactToPrintFn}
+                                // content={() => pdfExportComponent.current}
+                                // ref={pdfExportComponent.current}
+                                    sx={
+                                            [{m:1, mt:3,mb:25, backgroundColor:"rgb(250, 204, 0)",
+                                        },
+                                        {'&:hover': {backgroundColor: "rgb(250, 184, 0)"}}
+                                    ]}
+                                        variant="contained" 
+                                        color="inherit"
+                                        startIcon={<PrintIcon/>}>PRINT & PDF
+                                </Button>
 
                             {/* <Button 
                                 startIcon={<SaveIcon/>}
