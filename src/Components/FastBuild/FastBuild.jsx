@@ -286,7 +286,6 @@ const FastBuild = ({fileUrl, fileName}) => {
               
                     <Fade delay={400}>
                         
-
                         <div className="textContainer">
                             <Fade delay={600}> <h1> <b className="textStyle"> ATS FRIENDLY ! </b> 🤖 </h1> </Fade>
                         </div>
