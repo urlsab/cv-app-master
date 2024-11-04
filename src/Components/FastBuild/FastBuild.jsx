@@ -28,32 +28,31 @@ import { Document, Packer, Paragraph, TextRun } from "docx";
 
 const FastBuild = ({fileUrl, fileName}) => {
 
-    
     const contentRef = useRef(null);
     const reactToPrintFn = useReactToPrint({ contentRef });
    
-  const [firebaseFiles, setFirebaseFiles] = useState([]);
+    const [firebaseFiles, setFirebaseFiles] = useState([]);
 
-  const getFilesFromFirebase = async () => {
-    const storage = getStorage();
-    const listRef = ref(storage, 'resumes'); // Assuming 'resumes' is the folder where files are stored
+    const getFilesFromFirebase = async () => {
+      const storage = getStorage();
+      const listRef = ref(storage, 'resumes'); // Assuming 'resumes' is the folder where files are stored
 
-    try {
-      const res = await listAll(listRef);
-      const filesPromises = res.items.map(async (itemRef) => {
-        const url = await getDownloadURL(itemRef);
-        return { name: itemRef.name, url };
-      });
-      const files = await Promise.all(filesPromises);
-      setFirebaseFiles(files);
-    } catch (error) {
-      console.error("Error fetching files from Firebase:", error);
-    }
-  };
+      try {
+        const res = await listAll(listRef);
+        const filesPromises = res.items.map(async (itemRef) => {
+          const url = await getDownloadURL(itemRef);
+          return { name: itemRef.name, url };
+        });
+        const files = await Promise.all(filesPromises);
+        setFirebaseFiles(files);
+      } catch (error) {
+        console.error("Error fetching files from Firebase:", error);
+      }
+    };
 
-  useEffect(() => {
-    getFilesFromFirebase();
-  }, []);
+    useEffect(() => {
+      getFilesFromFirebase();
+    }, []);
 
     const storage = getStorage();
 
@@ -73,7 +72,7 @@ const FastBuild = ({fileUrl, fileName}) => {
         }
       }, [fileUrl]);
 
-    const generateDocx = (data) => {
+      const generateDocx = (data) => {
         const doc = new Document({
           sections: [{
             properties: {},
@@ -136,19 +135,19 @@ const FastBuild = ({fileUrl, fileName}) => {
         }
     }, [id]);
 
-  const saveData = () => {
-    let saveId = id;
-    if (!saveId) {
-      saveId = uuidv4();
+    const saveData = () => {
+      let saveId = id;
+      if (!saveId) {
+        saveId = uuidv4();
 
-      // maybe - navigate(`fastBuild/${saveId}`);
-      navigate(`/${saveId}`);
-    }
-    localStorage.setItem(saveId, JSON.stringify(data));
-    console.log(`Data saved with ID: ${saveId}`);
-  };
+        // maybe - navigate(`fastBuild/${saveId}`);
+        navigate(`/${saveId}`);
+      }
+      localStorage.setItem(saveId, JSON.stringify(data));
+      console.log(`Data saved with ID: ${saveId}`);
+    };
 
-// for savin data on inputs tags
+// for saving data on inputs tags
 //   const handleChange = (e) => {
 //     setData({ ...data, [e.target.name]: e.target.value });
 //   };
@@ -343,9 +342,7 @@ const FastBuild = ({fileUrl, fileName}) => {
                             </Button> 
 
                             <CopyToClipboardButton text="•" />
-                            
-                            
-                
+                           
                         </div>
                     
                         <PDFExport ref={pdfExportComponent}>
@@ -360,12 +357,8 @@ const FastBuild = ({fileUrl, fileName}) => {
                                         <div className='firstGroup forFirstGroup'> 
                                             <div
                                                 name="fullName"
-
-                                                
                                                 aria-required="true"
-                                                
                                                 multiline
-                                                
                                                 style=
                                                 {{ 
                                                     marginTop:"20px",
@@ -412,9 +405,6 @@ const FastBuild = ({fileUrl, fileName}) => {
 
                                             <div className="iconAndInputs" style={{marginTop:"10px"}}>
 
-                                                
-
-                                                
                                                 <div
                                                     name="phoneNumber"
                                                     aria-required="true"
@@ -526,42 +516,6 @@ const FastBuild = ({fileUrl, fileName}) => {
                                                     // }}
                                                 />
 
-                                                {/* <div
-                                                    name="githubLink"
-                                                    aria-required="true"
-                                                    style={{textAlign:'center',width:'150px', display:'flex',justifyContent:'center', fontSize:14.5 ,marginBottom:'10px',
-                                                        // color:'white', 
-                                                        padding: '0.2rem', lineHeight:"15px" }}
-                                                    suppressContentEditableWarning={true}
-                                                    contentEditable={true}
-                                                    placeholder='optional github'
-                                                    content={ourForm.objectName.githubLink}
-                                                    onInput={(event) => {
-                                                        const maxLength = 30; // Set your desired maximum length here
-                                                        let content = event.target.textContent;
-                                                        
-                                                        if (content.length > maxLength) {
-                                                          content = content.slice(0, maxLength);
-                                                          event.target.textContent = content;
-                                                          
-                                                          // Move cursor to end
-                                                          const range = document.createRange();
-                                                          const sel = window.getSelection();
-                                                          range.setStart(event.target.childNodes[0], maxLength);
-                                                          range.collapse(true);
-                                                          sel.removeAllRanges();
-                                                          sel.addRange(range);
-                                                        }
-                                                        
-                                                        const sanitizedInput = sanitizeInput(content);
-                                                        handleCustomChange('fieldName', sanitizedInput);
-                                                      }}
-                                                    // onInput={(event) => {
-                                                    //     const sanitizedInput = sanitizeInput(event.target.textContent);
-                                                    //     handleCustomChange('fieldName', sanitizedInput);
-                                                    // }}
-                                                /> */}
-
                                                 <div
                                                     name="portfolioLink"
                                                     aria-required="true"
@@ -599,14 +553,8 @@ const FastBuild = ({fileUrl, fileName}) => {
                                                 />
                                         </div>
 
-    
+                                          <TodoLeft/>
 
-      
-
-                                            <TodoLeft/>
-
-                                        
-      
                                         </div>
 
                                     </div>
@@ -704,11 +652,10 @@ const FastBuild = ({fileUrl, fileName}) => {
                     <Fade delay={800}>
                         <div>
 
-                            
                                 <Button 
                                     onClick={reactToPrintFn}
-                                // content={() => pdfExportComponent.current}
-                                // ref={pdfExportComponent.current}
+                                content={() => pdfExportComponent.current}
+                                ref={pdfExportComponent.current}
                                     sx={
                                             [{m:1, mt:3,mb:25, backgroundColor:"rgb(250, 204, 0)",
                                         },
@@ -718,9 +665,7 @@ const FastBuild = ({fileUrl, fileName}) => {
                                         color="inherit"
                                         startIcon={<PrintIcon/>}>PRINT & PDF
                                 </Button>
-                                
-                           
-
+                          
                         {/* <Button 
                         sx={[
                             {m:1, mt:3,mb:25, backgroundColor:"rgb(0, 128, 255)"},

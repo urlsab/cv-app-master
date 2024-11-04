@@ -10,7 +10,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { PDFExport } from "@progress/kendo-react-pdf";
 import PrintIcon from '@mui/icons-material/Print';
 // import SaveIcon from '@mui/icons-material/Save';
-import ReactToPrint from 'react-to-print';
 // import { firestoreDB } from "../../config/firebase.config";
 import { auth } from "../../config/firebase.config";
 import { initialState } from "../../utils/ourState";
@@ -261,17 +260,6 @@ const InputsForm = ({ setShowNavbar }) => {
 
   const [flag, setFlag] = useState(false);
 
-  // select text, push it to an empty array, join('') the array to one big string and then bold it e.g.
-
-    //   let ranges = [];
-
-    // sel = window.getSelection();
-
-    // for (let i = 0; i < sel.rangeCount; i++) {
-    //   ranges[i] = sel.getRangeAt(i);
-    
-    // }
-
   const toggleStyle = (tagName, id) => {
     if (window.getSelection()) {
       const selection = window.getSelection();
@@ -336,38 +324,7 @@ const InputsForm = ({ setShowNavbar }) => {
         <>
             <div className='createResumeContainer'>
                 <Navbar/>
-                {/* <Fade delay={400}> */}
-                {/* אין בעיה במתודה של השגת טווח(0) - הבעיה היא שברגע שיש פופאובר אז הפונקציות לא מזהות סלקט. גם בסרגל הישן וגם בחדש */}
-
-                {/* <button 
-                        // center icon inside the button - justifyContent:  'flex-end' - becasue there is some default margin
-                        style={{display: 'flex', justifyContent:  'flex-end'}}
-                        onClick={handleBoldi}>
-                            <FaBold/>
-                    </button>
-                    <button 
-                        style={{display: 'flex', justifyContent:  'flex-end'}}
-                        onClick={handleUnderlinei}>
-                            <TfiUnderline/>
-                    </button>
-                    
-                    <button     
-                        style={{display: 'flex', justifyContent:  'flex-end'}}
-                        onClick={handleApplyLink}
-                    >
-                        <MdAddLink/>
-                    </button> 
-                        <input
-                            type="text"
-                            value={linkUrl}
-                            onChange={handleLinkInputChange}
-                            placeholder="Enter URL"
-                            onMouseUp={(e) => e.stopPropagation()}
-                            style={{ width: '200px', borderRadius:'5px', borderColor:'black', marginRight:'1px', marginLeft:'2px' }}
-                        /> */}
-
                 
-
                 {/* make placeholder work only if it's inside a wrraper div */}
 
             {/* <div> */}
@@ -747,21 +704,10 @@ const InputsForm = ({ setShowNavbar }) => {
                 <Fade delay={800}>
                     <div className='buttonsStylei'>
 
-                        {/* <a href='' download=''> DOWNLOAD TO PC </a> */}
-
-                        {/* <Button 
-                            sx={{m:1, mt:4}}
-                            color="error"
-                            variant="contained"
-                            // startIcon={<PictureAsPdfIcon/>}
-                            startIcon={<DownloadIcon/>}
-                            onClick={handleExportWithComponent}>pdf 
-                        </Button> */}
-
                                 <Button 
                                     onClick={reactToPrintFn}
-                                // content={() => pdfExportComponent.current}
-                                // ref={pdfExportComponent.current}
+                                content={() => pdfExportComponent.current}
+                                ref={pdfExportComponent.current}
                                     sx={
                                             [{m:1, mt:3,mb:25, backgroundColor:"rgb(250, 204, 0)",
                                         },
@@ -783,7 +729,7 @@ const InputsForm = ({ setShowNavbar }) => {
                 </Fade>
             </div>
 
-            {/* <FastBuild /> */}
+           
         </>
     );
 }
