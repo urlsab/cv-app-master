@@ -236,7 +236,7 @@ const TodoWork = () => {
               onMouseUp={handleSelect}
               suppressContentEditableWarning={true}
               contentEditable={true}
-              placeholder='Achievements: Accomplished X as measured by Y by doing Z. Use numbers !'
+              placeholder='Achievements: Accomplished X as measured by Y by doing Z. Use numbers and percentages!'
               content={x.achivements}
               onKeyDown={(e) => handleEnterPress(e, i) } 
               // onChange={(e) => handleInputChange(e, i) }

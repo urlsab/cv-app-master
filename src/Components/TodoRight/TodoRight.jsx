@@ -126,6 +126,26 @@ const TodoRight = () => {
 
                         <div className='forSecondGroup' style={{ marginBottom:'1px'}} key={i  + 7}>
 
+                        {/* <div
+              name="durationAndLocation"
+              aria-required="true"
+              onMouseUp={handleSelect}
+              suppressContentEditableWarning={true}
+              contentEditable={true}
+              placeholder='Duration | Location'
+              content={x.durationAndLocation}
+              // onChange={(e) => handleInputChange(e, i)}
+              onInput={(event) => {
+                const sanitizedInput = sanitizeInput(event.target.textContent);
+                handleInputChange({ target: { name: 'optionalSectionContent', value: sanitizedInput }, key: event.key }, i);
+              }}
+              style={{width:'270px',marginRight:'6px',color:'gray',fontWeight:'bold',justifyContent:'end',textAlign:'end',fontSize:13, paddingLeft: '0.2rem', lineHeight:"25px"}}
+              // onInput={(event) => {
+              //     const nameFull = event.target.textContent;
+              //     handleCustomChange('GeneralKnowledge', nameFull);
+              // }}
+            /> */}
+
                         <div
                           name="optionalSectionHeader"
                           key={i + 7}
@@ -141,6 +161,8 @@ const TodoRight = () => {
                           }}
                           // dangerouslySetInnerHTML={{ __html: x.optionalSectionHeader || '' }}
                         />
+
+
 
                         <hr style={{marginLeft:'20px',height:'2px',backgroundColor:'gray' , border:'none', borderRadius:'5px', width:'750px'}} />
 

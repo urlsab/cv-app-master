@@ -715,7 +715,7 @@ const InputsForm = ({ setShowNavbar }) => {
                                     ]}
                                         variant="contained" 
                                         color="inherit"
-                                        startIcon={<PrintIcon/>}>PRINT & PDF
+                                        startIcon={<PrintIcon/>}>PRINT & PDF 
                                 </Button>
 
                             {/* <Button 

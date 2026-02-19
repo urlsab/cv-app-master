@@ -29,7 +29,6 @@ const App = () => {
             <Route path='/register' element={<RegisterApp/>} exact="true" />
             <Route path='/postInputs' element={<InputsForm setShowNavbar={setShowNavbar}/>} />
             <Route path='/atsTemplate' element={<AtsTemplate setShowNavbar={setShowNavbar}/>} />
-            {/* <Route path="/resume/:id" element={<InputsForm />} /> */}
             {/* <Route path='/postInputs/:id' element={<InputsForm/>} /> */}
             {/* <Route path='/allResumes' element={<AllResumes/> } exact="true" /> */}
             <Route path='/dashboard' element={<Dashboard setShowNavbar={setShowNavbar}/> } exact="true" />

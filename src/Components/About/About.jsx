@@ -29,11 +29,6 @@ const About = () => {
               <Fade  delay={2000} top> <Button style={{marginTop:'20px', marginBottom:'190px'}} startIcon={<ForwardToInboxIcon/>} sx={{m:4, mt:10, mb:10}} size="large" onClick={() => navigate("/contact")} color="primary" variant="contained"> TO CONTACT </Button> </Fade>
             </div> 
           </div>
-
-          <div></div>
-
-          
-
        </div>
     </>
   )

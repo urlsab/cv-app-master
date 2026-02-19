@@ -22,6 +22,8 @@ export const firestoreDB = initializeFirestore(app, {
 
 /* 
 
+//
+
 TO DEPLOY, COMMAND:
 
 after any deploy to github desktop - do this (otherwise the api will be undefined  d567[]]lon;)
